@@ -1,26 +1,51 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SaludPro - Gestión Clínica</title>
+    <title>SaludPro - Ecosistema Médico Integral</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Material+Symbols+Outlined" rel="stylesheet">
     <style>
-        /* Estilos Generales y Reset */
         :root {
             --primary-blue: #1a73e8;
+            --primary-blue-darker: #0d47a1;
+            --primary-blue-lighter: #e8f0fe;
             --success-green: #34a853;
             --warning-yellow: #f9ab00;
             --alert-red: #ea4335;
+            --accent-teal: #00897b;
+            --accent-purple: #7b1fa2;
             --background-light: #f8f9fa;
+            --background-dark: #1e1e1e;
             --text-dark: #202124;
+            --text-light: #ffffff;
+            --text-muted: #5f6368;
             --border-radius: 8px;
+            --shadow-small: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
             --shadow-medium: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
             --shadow-large: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
             --transition-fast: all 0.2s ease-in-out;
+            --transition-slow: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --z-modal: 1000;
+            --z-header: 900;
+            --status-success: #34a853;
+            --status-warning: #f9ab00;
+            --status-error: #ea4335;
+            --status-info: #1a73e8;
         }
+        
+        .theme-dark {
+            --background-light: #1e1e1e;
+            --background-dark: #121212;
+            --text-dark: #e0e0e0;
+            --text-muted: #b0b0b0;
+            --primary-blue-lighter: #1a237e;
+        }
+        
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
@@ -31,19 +56,25 @@
             min-height: 100vh;
             line-height: 1.6;
             overflow-x: hidden;
+            transition: var(--transition-slow);
         }
+        
         h1, h2, h3, h4, h5, h6 {
             color: var(--primary-blue);
             margin-top: 0;
+            font-weight: 500;
         }
+        
         a {
             color: var(--primary-blue);
             text-decoration: none;
             transition: var(--transition-fast);
         }
+        
         a:hover {
-            color: #0d47a1;
+            color: var(--primary-blue-darker);
         }
+        
         /* Header */
         header {
             display: flex;
@@ -54,30 +85,60 @@
             box-shadow: var(--shadow-medium);
             border-bottom-left-radius: var(--border-radius);
             border-bottom-right-radius: var(--border-radius);
+            z-index: var(--z-header);
+            position: relative;
         }
+        
         .logo-container {
             display: flex;
             align-items: center;
         }
+        
         .app-icon {
             font-size: 2.5em;
             color: var(--primary-blue);
             margin-right: 10px;
         }
+        
         header h1 {
             margin: 0;
             font-size: 2em;
             color: var(--primary-blue);
         }
+        
         .subtitle {
             font-size: 1.1em;
-            color: #5f6368;
+            color: var(--text-muted);
             font-weight: 500;
         }
+        
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            transition: var(--transition-fast);
+        }
+        
+        .theme-toggle:hover {
+            background-color: var(--background-light);
+            color: var(--primary-blue);
+        }
+        
         .user-profile {
             display: flex;
             align-items: center;
         }
+        
         .avatar {
             width: 40px;
             height: 40px;
@@ -85,10 +146,18 @@
             margin-right: 10px;
             object-fit: cover;
             border: 2px solid var(--primary-blue);
+            transition: var(--transition-fast);
         }
+        
+        .avatar:hover {
+            transform: scale(1.05);
+        }
+        
         .user-profile span {
             font-weight: 500;
+            color: var(--text-dark);
         }
+        
         /* Navigation */
         nav {
             background-color: white;
@@ -97,7 +166,11 @@
             border-bottom-left-radius: var(--border-radius);
             border-bottom-right-radius: var(--border-radius);
             margin-bottom: 20px;
+            position: sticky;
+            top: 0;
+            z-index: var(--z-header);
         }
+        
         nav ul {
             list-style: none;
             padding: 0;
@@ -105,34 +178,58 @@
             display: flex;
             justify-content: center;
         }
+        
         nav ul li {
             margin: 0 15px;
         }
+        
         nav ul li a {
             display: flex;
             align-items: center;
             padding: 10px 15px;
             border-radius: var(--border-radius);
-            color: #5f6368;
+            color: var(--text-muted);
             font-weight: 500;
             transition: var(--transition-fast);
             background-color: transparent;
+            position: relative;
+            overflow: hidden;
         }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-blue);
+            transition: var(--transition-fast);
+        }
+        
         nav ul li a:hover,
         nav ul li a.active {
-            background-color: #e8f0fe;
             color: var(--primary-blue);
+            background-color: var(--primary-blue-lighter);
         }
+        
+        nav ul li a:hover::after,
+        nav ul li a.active::after {
+            width: 100%;
+        }
+        
         nav ul li a .material-symbols-outlined {
             margin-right: 8px;
             font-size: 1.3em;
         }
+        
         /* Main Content Area */
         #app-content {
             flex-grow: 1;
             padding: 0 30px 30px;
             position: relative;
         }
+        
         .page {
             display: none;
             padding: 20px;
@@ -141,10 +238,22 @@
             box-shadow: var(--shadow-medium);
             margin-top: 20px;
             animation: fadeIn 0.5s ease-out;
+            min-height: 500px;
         }
+        
         .page.active {
             display: block;
         }
+        
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
         /* Dashboard Specific Styles */
         .patient-selector {
             display: flex;
@@ -154,18 +263,30 @@
             background-color: var(--background-light);
             border-radius: var(--border-radius);
             border: 1px solid #e0e0e0;
+            box-shadow: var(--shadow-small);
         }
+        
         .patient-selector label {
             margin-right: 15px;
             font-weight: 500;
+            color: var(--text-dark);
         }
+        
         #active-patient {
             padding: 8px 12px;
             border-radius: var(--border-radius);
             border: 1px solid #ccc;
             min-width: 200px;
             font-size: 1em;
+            transition: var(--transition-fast);
         }
+        
+        #active-patient:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+        }
+        
         .alert-card {
             display: flex;
             align-items: center;
@@ -176,65 +297,141 @@
             margin-bottom: 20px;
             box-shadow: var(--shadow-medium);
             border-left: 5px solid var(--alert-red);
+            position: relative;
+            overflow: hidden;
         }
+        
+        .alert-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
         .alert-icon {
             color: var(--alert-red);
             margin-right: 15px;
             font-size: 1.5em;
         }
+        
         .indicator-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
             margin-bottom: 30px;
         }
+        
         .indicator-card {
             background-color: white;
             padding: 20px;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow-medium);
             text-align: center;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: var(--transition-slow);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #eee;
         }
+        
+        .indicator-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-teal));
+        }
+        
         .indicator-card:hover {
             transform: translateY(-5px);
-            box-shadow: var(--shadow-large);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary-blue);
         }
+        
         .indicator-card .material-symbols-outlined {
             font-size: 2.5em;
-            color: var(--primary-blue);
             margin-bottom: 10px;
+            transition: var(--transition-fast);
         }
+        
+        .indicator-card .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-left: 5px;
+        }
+        
         .indicator-card h3 {
             margin: 0 0 5px 0;
             font-size: 1.2em;
-            color: #5f6368;
+            color: var(--text-muted);
         }
+        
         .indicator-card p {
             font-size: 1.5em;
             font-weight: 500;
             margin: 0;
             color: var(--text-dark);
         }
+        
         .chart-container {
             position: relative;
             padding: 20px;
             background-color: white;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow-medium);
-            text-align: center;
+            margin-bottom: 20px;
         }
+        
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
         .chart-container canvas {
             max-width: 100%;
             height: 300px !important;
         }
-        #chart-type-selector {
-            margin-top: 20px;
+        
+        .chart-controls {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .chart-controls select,
+        .chart-controls button {
             padding: 8px 12px;
             border-radius: var(--border-radius);
             border: 1px solid #ccc;
             font-size: 1em;
         }
+        
+        .chart-controls button {
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+        
+        .chart-controls button:hover {
+            background-color: var(--primary-blue-darker);
+        }
+        
         /* Pacientes Page Styles */
         .search-filter-bar {
             display: flex;
@@ -244,48 +441,109 @@
             padding: 15px;
             background-color: var(--background-light);
             border-radius: var(--border-radius);
+            box-shadow: var(--shadow-small);
         }
+        
         #patient-search, #specialty-filter {
             padding: 10px 15px;
             border-radius: var(--border-radius);
             border: 1px solid #ccc;
             flex-grow: 1;
             font-size: 1em;
+            transition: var(--transition-fast);
         }
+        
+        #patient-search:focus, #specialty-filter:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+        }
+        
         #specialty-filter {
             flex-grow: 0;
         }
+        
         .patient-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 20px;
         }
+        
         .patient-card {
             background-color: white;
             padding: 20px;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow-medium);
-            transition: var(--transition-fast);
+            transition: var(--transition-slow);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            border: 1px solid #eee;
+            position: relative;
+            overflow: hidden;
         }
+        
+        .patient-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-teal));
+        }
+        
         .patient-card:hover {
             transform: translateY(-5px);
-            box-shadow: var(--shadow-large);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary-blue);
         }
+        
         .patient-card h3 {
             margin-top: 0;
             color: var(--primary-blue);
             font-size: 1.3em;
+            margin-bottom: 10px;
         }
+        
         .patient-card p {
             margin-bottom: 5px;
             font-size: 0.95em;
+            color: var(--text-dark);
         }
+        
         .patient-card strong {
-            color: #3c4043;
+            color: var(--text-dark);
+            font-weight: 500;
         }
+        
+        .patient-risk {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 500;
+            margin-top: 5px;
+        }
+        
+        .risk-high {
+            background-color: rgba(234, 67, 53, 0.1);
+            color: var(--alert-red);
+            border: 1px solid rgba(234, 67, 53, 0.3);
+        }
+        
+        .risk-moderate {
+            background-color: rgba(249, 171, 0, 0.1);
+            color: var(--warning-yellow);
+            border: 1px solid rgba(249, 171, 0, 0.3);
+        }
+        
+        .risk-low {
+            background-color: rgba(52, 168, 83, 0.1);
+            color: var(--success-green);
+            border: 1px solid rgba(52, 168, 83, 0.3);
+        }
+        
         .btn-view-history {
             display: flex;
             align-items: center;
@@ -299,15 +557,35 @@
             font-weight: 500;
             cursor: pointer;
             transition: var(--transition-fast);
+            position: relative;
+            overflow: hidden;
         }
+        
+        .btn-view-history::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn-view-history:hover::before {
+            left: 100%;
+        }
+        
         .btn-view-history .material-symbols-outlined {
             margin-right: 8px;
             font-size: 1.2em;
         }
+        
         .btn-view-history:hover {
-            background-color: #0d47a1;
+            background-color: var(--primary-blue-darker);
             transform: translateY(-2px);
         }
+        
         /* Botones generales */
         .btn {
             padding: 10px 20px;
@@ -319,24 +597,144 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+            overflow: hidden;
         }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
         .btn-primary {
             background-color: var(--primary-blue);
             color: white;
         }
+        
         .btn-primary:hover {
-            background-color: #0d47a1;
+            background-color: var(--primary-blue-darker);
             transform: translateY(-2px);
         }
+        
         .btn-secondary {
-            background-color: #e8f0fe;
+            background-color: var(--primary-blue-lighter);
             color: var(--primary-blue);
             border: 1px solid var(--primary-blue);
         }
+        
         .btn-secondary:hover {
-            background-color: #cfe2ff;
+            background-color: rgba(26, 115, 232, 0.1);
             transform: translateY(-2px);
         }
+        
+        .btn-success {
+            background-color: var(--success-green);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: #2e8b4d;
+        }
+        
+        .btn-warning {
+            background-color: var(--warning-yellow);
+            color: var(--text-dark);
+        }
+        
+        .btn-warning:hover {
+            background-color: #e59e00;
+        }
+        
+        .btn-danger {
+            background-color: var(--alert-red);
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #d32f2f;
+        }
+        
+        /* Formularios */
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-medium);
+            margin-bottom: 20px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .form-group {
+            flex-grow: 1;
+            min-width: 200px;
+        }
+        
+        .form-group.flex-grow {
+            flex-grow: 2;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: var(--border-radius);
+            border: 1px solid #ccc;
+            font-size: 1em;
+            transition: var(--transition-fast);
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .radio-group input[type="radio"] {
+            margin-right: 5px;
+        }
+        
         /* Modals */
         .modal-overlay {
             position: fixed;
@@ -348,22 +746,25 @@
             display: none;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            z-index: var(--z-modal);
             opacity: 0;
             animation: fadeInOverlay 0.3s ease-out forwards;
         }
+        
         .modal-content {
             background-color: white;
             padding: 30px;
             border-radius: var(--border-radius);
-            box-shadow: var(--shadow-large);
+            box-shadow: var(--shadow-xl);
             width: 90%;
             max-width: 800px;
             max-height: 90vh;
             overflow-y: auto;
             animation: slideIn 0.4s ease-out forwards;
             position: relative;
+            border: 1px solid rgba(0,0,0,0.1);
         }
+        
         .modal-header {
             display: flex;
             justify-content: space-between;
@@ -372,11 +773,20 @@
             padding-bottom: 15px;
             margin-bottom: 15px;
         }
+        
         .modal-header h2 {
             margin: 0;
             color: var(--text-dark);
             font-size: 1.5em;
+            display: flex;
+            align-items: center;
         }
+        
+        .modal-header h2 .material-symbols-outlined {
+            margin-right: 10px;
+            color: var(--primary-blue);
+        }
+        
         .modal-close-btn {
             background: none;
             border: none;
@@ -386,16 +796,30 @@
             padding: 0 10px;
             line-height: 1;
             transition: var(--transition-fast);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+        
         .modal-close-btn:hover {
             color: var(--alert-red);
+            background-color: rgba(234, 67, 53, 0.1);
         }
+        
         /* Tabs dentro del modal */
         .modal-tabs {
             display: flex;
             margin-bottom: 20px;
-            border-bottom: 2px solid var(--primary-blue);
+            border-bottom: 2px solid #eee;
+            position: sticky;
+            top: 0;
+            background-color: white;
+            z-index: 10;
         }
+        
         .modal-tab {
             padding: 10px 20px;
             border: none;
@@ -403,143 +827,422 @@
             cursor: pointer;
             font-size: 1.1em;
             font-weight: 500;
-            color: #5f6368;
+            color: var(--text-muted);
             transition: var(--transition-fast);
+            position: relative;
         }
+        
         .modal-tab.active {
             color: var(--primary-blue);
-            border-bottom: 2px solid var(--primary-blue);
+            font-weight: 600;
         }
+        
+        .modal-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-blue);
+        }
+        
+        .modal-tab:hover {
+            color: var(--primary-blue);
+            background-color: rgba(26, 115, 232, 0.05);
+        }
+        
         .modal-tab-content {
             display: none;
         }
+        
         .modal-tab-content.active {
             display: block;
         }
+        
         /* Estilos para tablas en modales */
         .modal-tab-content table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 15px;
+            box-shadow: var(--shadow-small);
         }
+        
         .modal-tab-content th,
         .modal-tab-content td {
             padding: 12px 15px;
             text-align: left;
             border-bottom: 1px solid #e0e0e0;
+            transition: var(--transition-fast);
         }
+        
         .modal-tab-content th {
             background-color: var(--background-light);
             color: var(--text-dark);
             font-weight: 500;
+            position: sticky;
+            top: 0;
+            background: inherit;
+            z-index: 1;
         }
+        
         .modal-tab-content tr:hover {
-            background-color: #f0f0f0;
+            background-color: #f8f9fa;
         }
+        
+        .modal-tab-content tr:hover td:first-child {
+            color: var(--primary-blue);
+            font-weight: 500;
+        }
+        
+        /* Recursos de Educación Médica */
+        .resource-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .resource-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-medium);
+            border: 1px solid #eee;
+            transition: var(--transition-slow);
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary-blue);
+        }
+        
+        .resource-card h3 {
+            color: var(--primary-blue);
+            margin-top: 0;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .resource-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .resource-card ul li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .resource-card ul li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary-blue);
+        }
+        
+        .resource-card ul li a {
+            color: var(--text-dark);
+            transition: var(--transition-fast);
+        }
+        
+        .resource-card ul li a:hover {
+            color: var(--primary-blue);
+            text-decoration: underline;
+        }
+        
+        /* Calculadoras Médicas */
+        .calculator-selector {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: var(--background-light);
+            border-radius: var(--border-radius);
+            border: 1px solid #eee;
+        }
+        
+        .calculator-selector label {
+            margin-right: 10px;
+            font-weight: 500;
+        }
+        
+        .calculator-selector select {
+            padding: 10px 15px;
+            border-radius: var(--border-radius);
+            border: 1px solid #ccc;
+            font-size: 1em;
+        }
+        
+        .calculator-form {
+            background-color: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-medium);
+            margin-bottom: 20px;
+            border: 1px solid #eee;
+        }
+        
+        .calculator-form h3 {
+            color: var(--primary-blue);
+            margin-top: 0;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .child-pugh-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-small);
+        }
+        
+        .child-pugh-table th,
+        .child-pugh-table td {
+            padding: 12px 15px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        
+        .child-pugh-table th {
+            background-color: var(--primary-blue);
+            color: white;
+            font-weight: 500;
+        }
+        
+        .child-pugh-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        /* Resultados */
+        .result-display {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: var(--primary-blue-lighter);
+            border-radius: var(--border-radius);
+            border-left: 5px solid var(--primary-blue);
+        }
+        
+        .result-display h4 {
+            margin: 0 0 10px 0;
+            color: var(--primary-blue);
+        }
+        
+        .result-display p {
+            margin: 5px 0;
+            color: var(--text-dark);
+        }
+        
+        .result-display strong {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+        
+        /* Interacciones Medicamentosas */
+        .interactions-warning {
+            background-color: #fff8e1;
+            border: 1px solid #ffe082;
+            border-radius: var(--border-radius);
+            padding: 15px;
+            margin: 20px 0;
+            display: none;
+        }
+        
+        .interactions-warning .material-symbols-outlined {
+            color: var(--warning-yellow);
+            margin-right: 10px;
+            font-size: 1.5em;
+            vertical-align: middle;
+        }
+        
+        .interactions-warning strong {
+            color: var(--text-dark);
+        }
+        
+        .interactions-list {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+        
+        .interactions-list li {
+            margin-bottom: 5px;
+        }
+        
+        .severity-fatal {
+            color: var(--alert-red);
+            font-weight: 600;
+        }
+        
+        .severity-moderate {
+            color: var(--warning-yellow);
+        }
+        
+        .severity-leve {
+            color: var(--text-dark);
+        }
+        
         /* Animaciones */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        
         @keyframes fadeInOverlay {
             from { opacity: 0; }
             to { opacity: 1; }
         }
+        
         @keyframes slideIn {
             from { transform: translateY(100%); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
+        
         /* Responsive adjustments */
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
                 padding: 15px;
+                gap: 10px;
             }
+            
             .subtitle {
                 display: none;
             }
+            
+            .header-controls {
+                width: 100%;
+                justify-content: center;
+            }
+            
             nav ul {
                 flex-wrap: wrap;
                 justify-content: center;
             }
+            
             nav ul li {
                 margin: 5px 10px;
             }
+            
             #app-content {
                 padding: 0 15px 15px;
             }
+            
             .patient-selector {
                 flex-direction: column;
-                align-items: flex-start;
+                align-items: stretch;
+                gap: 10px;
             }
+            
             .patient-selector label {
-                margin-bottom: 10px;
+                margin-bottom: 0;
             }
+            
             .search-filter-bar {
                 flex-direction: column;
                 align-items: stretch;
             }
+            
             #patient-search, #specialty-filter {
                 width: 100%;
             }
+            
             .modal-content {
                 width: 95%;
                 padding: 20px;
             }
+            
+            .form-row {
+                flex-direction: column;
+            }
+            
+            .chart-controls {
+                flex-direction: column;
+            }
         }
+        
         @media (max-width: 480px) {
             header h1 {
                 font-size: 1.5em;
             }
+            
             .user-profile span {
                 font-size: 0.9em;
             }
+            
             nav ul li a {
                 font-size: 0.9em;
                 padding: 8px 12px;
             }
+            
             .indicator-cards {
                 grid-template-columns: 1fr;
             }
+            
             .alert-card {
                 flex-direction: column;
                 text-align: center;
+                gap: 10px;
             }
+            
             .alert-icon {
                 margin-bottom: 10px;
             }
+            
             .patient-card {
                 padding: 15px;
+            }
+            
+            .modal-header h2 {
+                font-size: 1.3em;
+            }
+            
+            .modal-close-btn {
+                font-size: 1.8em;
+                width: 35px;
+                height: 35px;
             }
         }
     </style>
 </head>
-<body>
+<body class="theme-light">
     <header>
         <div class="logo-container">
             <span class="material-symbols-outlined app-icon">local_hospital</span>
             <h1>SaludPro</h1>
         </div>
-        <div class="subtitle">Sistema Integral de Gestión Clínica</div>
-        <div class="user-profile">
-            <img src="https://placehold.co/40x40/1a73e8/ffffff?text=JP" alt="Avatar del médico" class="avatar">
-            <span>Dr. Juan Pérez</span>
+        <div class="subtitle">Ecosistema Médico Integral</div>
+        <div class="header-controls">
+            <button id="theme-toggle" class="theme-toggle" title="Cambiar tema">
+                <span class="material-symbols-outlined">dark_mode</span>
+            </button>
+            <div class="user-profile">
+                <img src="https://placehold.co/40x40/1a73e8/ffffff?text=JP" alt="Avatar del médico" class="avatar">
+                <span>Dr. Juan Pérez</span>
+            </div>
         </div>
     </header>
     <nav>
         <ul>
-            <li><a href="#dashboard" data-section="dashboard"><span class="material-symbols-outlined">dashboard</span> Dashboard</a></li>
+            <li><a href="#dashboard" data-section="dashboard" class="active"><span class="material-symbols-outlined">dashboard</span> Dashboard</a></li>
             <li><a href="#pacientes" data-section="pacientes"><span class="material-symbols-outlined">people</span> Pacientes</a></li>
+            <li><a href="#personal" data-section="personal"><span class="material-symbols-outlined">groups</span> Personal</a></li>
+            <li><a href="#recursos" data-section="recursos"><span class="material-symbols-outlined">library_books</span> Recursos</a></li>
             <li><a href="#signos-vitales" data-section="signos-vitales"><span class="material-symbols-outlined">monitor_heart</span> Signos Vitales</a></li>
             <li><a href="#recetas" data-section="recetas"><span class="material-symbols-outlined">medication</span> Recetas</a></li>
-            <li><a href="#educacion" data-section="educacion"><span class="material-symbols-outlined">school</span> Educación</a></li>
             <li><a href="#calculadoras" data-section="calculadoras"><span class="material-symbols-outlined">calculate</span> Calculadoras</a></li>
         </ul>
     </nav>
     <main id="app-content">
         <!-- Dashboard -->
         <section id="dashboard" class="page active">
-            <h2>Dashboard</h2>
+            <div class="page-header">
+                <h2>Dashboard Clínico</h2>
+                <div class="dashboard-controls">
+                    <button class="btn btn-secondary"><span class="material-symbols-outlined">settings</span> Personalizar</button>
+                </div>
+            </div>
             <p>Bienvenido, Dr. Juan Pérez.</p>
             <div class="patient-selector">
                 <label for="active-patient">Paciente Activo:</label>
@@ -549,58 +1252,124 @@
             </div>
             <div class="alert-card">
                 <span class="material-symbols-outlined alert-icon">warning</span>
-                Seguimiento pendiente: Paciente Ana García con VIH requiere control.
+                <div>
+                    <strong>Seguimiento pendiente:</strong> Paciente Ana García con VIH requiere control de carga viral.
+                </div>
             </div>
             <div class="indicator-cards">
                 <div class="indicator-card">
                     <span class="material-symbols-outlined">trending_up</span>
                     <h3>CD4</h3>
-                    <p>500 cel/µL</p>
+                    <p>500 cel/µL <span class="status-indicator" style="background-color: var(--status-success);"></span></p>
                 </div>
                 <div class="indicator-card">
                     <span class="material-symbols-outlined">analytics</span>
                     <h3>Carga Viral</h3>
-                    <p>Indetectable</p>
+                    <p>Indetectable <span class="status-indicator" style="background-color: var(--status-success);"></span></p>
                 </div>
                 <div class="indicator-card">
                     <span class="material-symbols-outlined">fitness_center</span>
                     <h3>IMC</h3>
-                    <p>24.5</p>
+                    <p>24.5 <span class="status-indicator" style="background-color: var(--status-info);"></span></p>
                 </div>
                 <div class="indicator-card">
                     <span class="material-symbols-outlined">blood_pressure</span>
                     <h3>PA</h3>
-                    <p>120/80 mmHg</p>
+                    <p>120/80 mmHg <span class="status-indicator" style="background-color: var(--status-success);"></span></p>
                 </div>
             </div>
             <div class="chart-container">
+                <div class="chart-header">
+                    <h3>Evolución de Signos Vitales</h3>
+                    <div class="chart-actions">
+                        <button class="btn btn-secondary"><span class="material-symbols-outlined">download</span> Exportar</button>
+                    </div>
+                </div>
                 <canvas id="vitalSignsChart"></canvas>
-                <select id="chart-type-selector">
-                    <option value="pressure">Presión Arterial</option>
-                    <option value="heartRate">Frecuencia Cardíaca</option>
-                    <option value="temperature">Temperatura</option>
-                </select>
+                <div class="chart-controls">
+                    <select id="chart-type-selector">
+                        <option value="pressure">Presión Arterial</option>
+                        <option value="heartRate">Frecuencia Cardíaca</option>
+                        <option value="temperature">Temperatura</option>
+                        <option value="spo2">Saturación O2</option>
+                    </select>
+                    <button id="refresh-chart" class="btn btn-secondary"><span class="material-symbols-outlined">refresh</span> Actualizar</button>
+                </div>
+            </div>
+            <div class="chart-container">
+                <h3>Recomendaciones de IA</h3>
+                <p><strong>Basado en los datos del paciente:</strong> Se sugiere considerar ajuste en medicación antihipertensiva para paciente Ana García, considerando tendencia a descenso de PA en últimos controles.</p>
+                <p><strong>Alerta de riesgo:</strong> Paciente Carlos Martínez presenta perfil lipídico con LDL elevado, considerar intensificación de tratamiento estatínico.</p>
             </div>
         </section>
         
         <!-- Gestión de Pacientes -->
         <section id="pacientes" class="page">
-            <h2>Gestión de Pacientes</h2>
+            <div class="page-header">
+                <h2>Gestión de Pacientes</h2>
+                <div class="patient-controls">
+                    <button class="btn btn-primary btn-add-patient"><span class="material-symbols-outlined">add</span> Nuevo Paciente</button>
+                </div>
+            </div>
             <div class="search-filter-bar">
-                <input type="text" id="patient-search" placeholder="Buscar paciente por nombre o diagnóstico...">
+                <input type="text" id="patient-search" placeholder="Buscar paciente por nombre, diagnóstico o CIE-10...">
                 <select id="specialty-filter">
                     <option value="">Filtrar por especialidad...</option>
                 </select>
-                <button class="btn btn-primary btn-add-patient"><span class="material-symbols-outlined">add</span> Nuevo Paciente</button>
+                <button id="advanced-search" class="btn btn-secondary"><span class="material-symbols-outlined">search</span> Búsqueda Avanzada</button>
             </div>
             <div id="patient-grid" class="patient-grid">
                 <!-- Tarjetas de pacientes se cargarán aquí -->
             </div>
         </section>
         
+        <!-- Gestión de Personal -->
+        <section id="personal" class="page">
+            <div class="page-header">
+                <h2>Gestión de Personal Médico</h2>
+                <button class="btn btn-primary btn-add-staff"><span class="material-symbols-outlined">add</span> Nuevo Miembro</button>
+            </div>
+            <div class="search-filter-bar">
+                <input type="text" id="staff-search" placeholder="Buscar personal por nombre, especialidad o rol...">
+                <select id="role-filter">
+                    <option value="">Filtrar por rol...</option>
+                </select>
+            </div>
+            <div id="staff-grid" class="patient-grid">
+                <!-- Tarjetas de personal se cargarán aquí -->
+            </div>
+        </section>
+        
+        <!-- Recursos Educativos -->
+        <section id="recursos" class="page">
+            <div class="page-header">
+                <h2>Recursos Educativos</h2>
+                <div class="resource-controls">
+                    <button class="btn btn-primary btn-add-resource"><span class="material-symbols-outlined">add</span> Nuevo Recurso</button>
+                </div>
+            </div>
+            <div class="search-filter-bar">
+                <input type="text" id="resource-search" placeholder="Buscar recursos por título, etiqueta o contenido...">
+                <select id="category-filter">
+                    <option value="">Filtrar por categoría...</option>
+                </select>
+            </div>
+            <div class="resource-tabs">
+                <button class="resource-tab active" data-category="all">Todos</button>
+                <button class="resource-tab" data-category="imagenes">Imágenes</button>
+                <button class="resource-tab" data-category="videos">Videos</button>
+                <button class="resource-tab" data-category="documentos">Documentos</button>
+            </div>
+            <div id="resource-grid" class="resource-cards">
+                <!-- Recursos educativos se cargarán aquí -->
+            </div>
+        </section>
+        
         <!-- Signos Vitales -->
         <section id="signos-vitales" class="page">
-            <h2>Registro de Signos Vitales</h2>
+            <div class="page-header">
+                <h2>Registro de Signos Vitales</h2>
+            </div>
             <div class="patient-selector">
                 <label for="vitals-patient">Paciente:</label>
                 <select id="vitals-patient">
@@ -652,13 +1421,22 @@
                     <label for="notes">Notas adicionales</label>
                     <textarea id="notes" rows="3" placeholder="Observaciones del paciente..."></textarea>
                 </div>
-                <button class="btn btn-primary" id="save-vitals">Guardar Signos Vitales</button>
+                <div class="form-actions">
+                    <button class="btn btn-secondary" id="clear-vitals">Limpiar</button>
+                    <button class="btn btn-primary" id="save-vitals">Guardar Signos Vitales</button>
+                </div>
+            </div>
+            <div class="chart-container">
+                <h3>Historial de Signos Vitales</h3>
+                <canvas id="vitalsHistoryChart"></canvas>
             </div>
         </section>
         
         <!-- Recetas -->
         <section id="recetas" class="page">
-            <h2>Emisión de Recetas</h2>
+            <div class="page-header">
+                <h2>Emisión de Recetas</h2>
+            </div>
             <div class="patient-selector">
                 <label for="recipe-patient">Paciente:</label>
                 <select id="recipe-patient">
@@ -702,7 +1480,7 @@
                 <button class="btn btn-secondary" id="add-medication"><span class="material-symbols-outlined">add</span> Añadir Medicamento</button>
             </div>
             <div class="interactions-warning" id="interactions-warning" style="display: none;">
-                <span class="material-symbols-outlined alert-icon">dangerous</span>
+                <span class="material-symbols-outlined">dangerous</span>
                 <div>
                     <strong>Interacciones Medicamentosas Detectadas</strong>
                     <p id="interactions-list"></p>
@@ -712,12 +1490,17 @@
                 <label for="prescription-notes">Notas para el paciente</label>
                 <textarea id="prescription-notes" rows="3" placeholder="Información adicional para el paciente..."></textarea>
             </div>
-            <button class="btn btn-primary" id="issue-prescription">Emitir Receta</button>
+            <div class="form-actions">
+                <button class="btn btn-secondary">Guardar Borrador</button>
+                <button class="btn btn-primary" id="issue-prescription">Emitir Receta</button>
+            </div>
         </section>
         
         <!-- Educación Médica -->
         <section id="educacion" class="page">
-            <h2>Recursos de Educación Médica</h2>
+            <div class="page-header">
+                <h2>Recursos de Educación Médica</h2>
+            </div>
             <div class="resource-cards">
                 <div class="resource-card">
                     <h3>Guías Clínicas</h3>
@@ -727,6 +1510,7 @@
                         <li><a href="#">Diabetes Mellitus - 2023</a></li>
                         <li><a href="#">Enfermedad Pulmonar Obstructiva Crónica</a></li>
                         <li><a href="#">VIH/SIDA - Manejo Integral</a></li>
+                        <li><a href="#">Insuficiencia Cardíaca - 2023</a></li>
                     </ul>
                 </div>
                 <div class="resource-card">
@@ -737,6 +1521,7 @@
                         <li><a href="#">Nuevos fármacos para enfermedades cardiovasculares</a></li>
                         <li><a href="#">Tratamientos innovadores para enfermedades neurodegenerativas</a></li>
                         <li><a href="#">Medicina de precisión en oncología</a></li>
+                        <li><a href="#">Inteligencia artificial en diagnóstico médico</a></li>
                     </ul>
                 </div>
                 <div class="resource-card">
@@ -747,6 +1532,7 @@
                         <li><a href="#">Ejercicios para pacientes con artrosis</a></li>
                         <li><a href="#">Alimentación saludable para hipertensos</a></li>
                         <li><a href="#">Manejo del estrés y ansiedad</a></li>
+                        <li><a href="#">Vacunación en adultos mayores</a></li>
                     </ul>
                 </div>
             </div>
@@ -754,7 +1540,9 @@
         
         <!-- Calculadoras Médicas -->
         <section id="calculadoras" class="page">
-            <h2>Calculadoras Clínicas</h2>
+            <div class="page-header">
+                <h2>Calculadoras Clínicas</h2>
+            </div>
             <div class="calculator-selector">
                 <label for="calc-selector">Selecciona una calculadora:</label>
                 <select id="calc-selector">
@@ -763,6 +1551,7 @@
                     <option value="child-pugh">Child-Pugh</option>
                     <option value="apgar">Apgar</option>
                     <option value="gestational-age">Edad Gestacional</option>
+                    <option value="cardiovascular-risk">Riesgo Cardiovascular</option>
                 </select>
             </div>
             
@@ -784,6 +1573,7 @@
                     <h4>Resultado</h4>
                     <p><strong>IMC:</strong> <span id="imc-value"></span></p>
                     <p><strong>Clasificación:</strong> <span id="imc-classification"></span></p>
+                    <p><strong>Recomendaciones:</strong> <span id="imc-recommendations"></span></p>
                 </div>
             </div>
             
@@ -812,6 +1602,7 @@
                     <h4>Resultado</h4>
                     <p><strong>Filtrado Glomerular:</strong> <span id="filtration-value"></span> ml/min/1.73m²</p>
                     <p><strong>Estadio de Enfermedad Renal:</strong> <span id="filtration-stage"></span></p>
+                    <p><strong>Recomendaciones:</strong> <span id="filtration-recommendations"></span></p>
                 </div>
             </div>
             
@@ -906,6 +1697,49 @@
                     <p><strong>Puntuación total:</strong> <span id="child-pugh-score"></span> puntos</p>
                     <p><strong>Clasificación:</strong> <span id="child-pugh-class"></span></p>
                     <p><strong>Prognóstico medio de supervivencia:</strong> <span id="child-pugh-prognosis"></span></p>
+                    <p><strong>Recomendaciones:</strong> <span id="child-pugh-recommendations"></span></p>
+                </div>
+            </div>
+            
+            <!-- Calculadora de Riesgo Cardiovascular -->
+            <div class="calculator-form" id="cardiovascular-risk-calculator" style="display: none;">
+                <h3>Calculadora de Riesgo Cardiovascular (SCORE)</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cv-age">Edad (años)</label>
+                        <input type="number" id="cv-age" placeholder="55">
+                    </div>
+                    <div class="form-group">
+                        <label for="cv-total-cholesterol">Colesterol total (mg/dL)</label>
+                        <input type="number" id="cv-total-cholesterol" placeholder="200">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cv-systolic">Presión arterial sistólica (mmHg)</label>
+                        <input type="number" id="cv-systolic" placeholder="130">
+                    </div>
+                    <div class="form-group">
+                        <label for="cv-smoking">Tabaquismo</label>
+                        <select id="cv-smoking">
+                            <option value="no">No fumador</option>
+                            <option value="yes">Fumador</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Sexo</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="cv-gender" value="male" checked> Masculino</label>
+                        <label><input type="radio" name="cv-gender" value="female"> Femenino</label>
+                    </div>
+                </div>
+                <button class="btn btn-primary" id="calculate-cardiovascular-risk">Calcular Riesgo</button>
+                <div class="result-display" id="cardiovascular-risk-result" style="display: none;">
+                    <h4>Resultado</h4>
+                    <p><strong>Riesgo cardiovascular a 10 años:</strong> <span id="cv-risk-value"></span></p>
+                    <p><strong>Nivel de riesgo:</strong> <span id="cv-risk-level"></span></p>
+                    <p><strong>Recomendaciones:</strong> <span id="cv-recommendations"></span></p>
                 </div>
             </div>
         </section>
@@ -927,6 +1761,8 @@
                 edad: 45,
                 diagnosticoPrincipal: "Hipertensión Arterial",
                 especialidad: "Cardiología",
+                riesgoCardiovascular: "alto",
+                alergias: ["Penicilina"],
                 historiaClinica: {
                     resumen: "Paciente femenina de 45 años con HTA controlada desde hace 2 años. Actualmente en tratamiento con Losartán.",
                     diagnosticos: [
@@ -938,13 +1774,13 @@
                         { fecha: "2023-01-15", nota: "Primer diagnóstico de HTA. Iniciado tratamiento con Losartán." },
                         { fecha: "2023-03-20", nota: "Control de PA satisfactorio. Se agrega Atorvastatina por perfil lipídico alterado." },
                         { fecha: "2023-06-20", nota: "PA 120/80 mmHg. Perfil lipídico mejorado." }
+                    ],
+                    signosVitales: [
+                        { fecha: "2023-01-15", temperatura: 36.8, pa: "130/85", fc: 75, fr: 16, spo2: 98, peso: 70, talla: 1.65 },
+                        { fecha: "2023-03-20", temperatura: 36.7, pa: "125/82", fc: 72, fr: 15, spo2: 99, peso: 69, talla: 1.65 },
+                        { fecha: "2023-06-20", temperatura: 36.7, pa: "120/80", fc: 70, fr: 15, spo2: 99, peso: 69, talla: 1.65 }
                     ]
-                },
-                signosVitales: [
-                    { fecha: "2023-01-15", temperatura: 36.8, pa: "130/85", fc: 75, fr: 16, spo2: 98, peso: 70, talla: 1.65 },
-                    { fecha: "2023-03-20", temperatura: 36.7, pa: "125/82", fc: 72, fr: 15, spo2: 99, peso: 69, talla: 1.65 },
-                    { fecha: "2023-06-20", temperatura: 36.7, pa: "120/80", fc: 70, fr: 15, spo2: 99, peso: 69, talla: 1.65 }
-                ]
+                }
             },
             {
                 id: 2,
@@ -952,6 +1788,8 @@
                 edad: 52,
                 diagnosticoPrincipal: "Diabetes Mellitus Tipo 2",
                 especialidad: "Endocrinología",
+                riesgoCardiovascular: "moderado",
+                alergias: [],
                 historiaClinica: {
                     resumen: "Paciente masculino de 52 años con DM2 diagnosticada hace 5 años. Control metabólico subóptimo.",
                     diagnosticos: [
@@ -963,13 +1801,13 @@
                         { fecha: "2018-05-10", nota: "Diagnóstico de DM2. Iniciado tratamiento con Metformina." },
                         { fecha: "2020-02-15", nota: "HbA1c 8.5%. Se agrega Glibenclamida." },
                         { fecha: "2022-11-03", nota: "Angioplastia coronaria por angina inestable. Iniciado tratamiento con Aspirina." }
+                    ],
+                    signosVitales: [
+                        { fecha: "2023-02-10", temperatura: 36.6, pa: "140/90", fc: 78, fr: 16, spo2: 97, peso: 85, talla: 1.75 },
+                        { fecha: "2023-05-15", temperatura: 36.5, pa: "135/85", fc: 76, fr: 15, spo2: 98, peso: 83, talla: 1.75 },
+                        { fecha: "2023-08-20", temperatura: 36.7, pa: "130/80", fc: 74, fr: 15, spo2: 99, peso: 82, talla: 1.75 }
                     ]
-                },
-                signosVitales: [
-                    { fecha: "2023-02-10", temperatura: 36.6, pa: "140/90", fc: 78, fr: 16, spo2: 97, peso: 85, talla: 1.75 },
-                    { fecha: "2023-05-15", temperatura: 36.5, pa: "135/85", fc: 76, fr: 15, spo2: 98, peso: 83, talla: 1.75 },
-                    { fecha: "2023-08-20", temperatura: 36.7, pa: "130/80", fc: 74, fr: 15, spo2: 99, peso: 82, talla: 1.75 }
-                ]
+                }
             },
             {
                 id: 3,
@@ -977,6 +1815,8 @@
                 edad: 38,
                 diagnosticoPrincipal: "VIH",
                 especialidad: "Infectología",
+                riesgoCardiovascular: "bajo",
+                alergias: ["Sulfa"],
                 historiaClinica: {
                     resumen: "Paciente femenina de 38 años con VIH diagnosticado hace 8 años. En terapia antirretroviral con buena adherencia.",
                     diagnosticos: [
@@ -988,13 +1828,13 @@
                         { fecha: "2015-07-22", nota: "Diagnóstico de VIH. Iniciado TARV con buen control inmunológico." },
                         { fecha: "2020-01-10", nota: "Cambio de esquema por efectos secundarios." },
                         { fecha: "2023-04-05", nota: "Carga viral indetectable desde hace 3 años. CD4 estable en 500-600 cel/µL." }
+                    ],
+                    signosVitales: [
+                        { fecha: "2023-01-10", temperatura: 36.8, pa: "115/75", fc: 72, fr: 14, spo2: 98, peso: 62, talla: 1.60 },
+                        { fecha: "2023-04-05", temperatura: 36.7, pa: "118/78", fc: 70, fr: 14, spo2: 99, peso: 63, talla: 1.60 },
+                        { fecha: "2023-07-12", temperatura: 36.6, pa: "116/76", fc: 71, fr: 14, spo2: 98, peso: 62, talla: 1.60 }
                     ]
-                },
-                signosVitales: [
-                    { fecha: "2023-01-10", temperatura: 36.8, pa: "115/75", fc: 72, fr: 14, spo2: 98, peso: 62, talla: 1.60 },
-                    { fecha: "2023-04-05", temperatura: 36.7, pa: "118/78", fc: 70, fr: 14, spo2: 99, peso: 63, talla: 1.60 },
-                    { fecha: "2023-07-12", temperatura: 36.6, pa: "116/76", fc: 71, fr: 14, spo2: 98, peso: 62, talla: 1.60 }
-                ]
+                }
             },
             {
                 id: 4,
@@ -1002,6 +1842,8 @@
                 edad: 67,
                 diagnosticoPrincipal: "Insuficiencia Cardíaca",
                 especialidad: "Cardiología",
+                riesgoCardiovascular: "alto",
+                alergias: [],
                 historiaClinica: {
                     resumen: "Paciente masculino de 67 años con IC por miocardiopatía isquémica. Clase funcional II NYHA.",
                     diagnosticos: [
@@ -1013,13 +1855,97 @@
                         { fecha: "2019-09-05", nota: "Diagnóstico de IC tras infarto de miocardio. Iniciado tratamiento farmacológico." },
                         { fecha: "2021-06-18", nota: "Optimizado tratamiento. Clase funcional II NYHA." },
                         { fecha: "2023-03-22", nota: "Estable con tratamiento actual. Control de peso y PA adecuado." }
+                    ],
+                    signosVitales: [
+                        { fecha: "2023-02-08", temperatura: 36.5, pa: "125/80", fc: 68, fr: 16, spo2: 96, peso: 78, talla: 1.72 },
+                        { fecha: "2023-05-11", temperatura: 36.6, pa: "122/78", fc: 66, fr: 15, spo2: 97, peso: 77, talla: 1.72 },
+                        { fecha: "2023-08-15", temperatura: 36.4, pa: "120/75", fc: 65, fr: 15, spo2: 98, peso: 77, talla: 1.72 }
                     ]
-                },
-                signosVitales: [
-                    { fecha: "2023-02-08", temperatura: 36.5, pa: "125/80", fc: 68, fr: 16, spo2: 96, peso: 78, talla: 1.72 },
-                    { fecha: "2023-05-11", temperatura: 36.6, pa: "122/78", fc: 66, fr: 15, spo2: 97, peso: 77, talla: 1.72 },
-                    { fecha: "2023-08-15", temperatura: 36.4, pa: "120/75", fc: 65, fr: 15, spo2: 98, peso: 77, talla: 1.72 }
-                ]
+                }
+            }
+        ];
+
+        // Datos simulados de personal médico
+        const medicalStaff = [
+            {
+                id: 1,
+                nombre: "Juan Pérez",
+                especialidad: "Cardiología",
+                rol: "Médico",
+                avatar: "https://placehold.co/40x40/1a73e8/ffffff?text=JP",
+                contacto: { telefono: "555-1234", email: "juan.perez@hospital.com" },
+                bio: "Cardiólogo con 15 años de experiencia en el manejo de hipertensión y arritmias.",
+                citas: 12
+            },
+            {
+                id: 2,
+                nombre: "Ana Martínez",
+                especialidad: "Enfermería",
+                rol: "Enfermera",
+                avatar: "https://placehold.co/40x40/34a853/ffffff?text=AM",
+                contacto: { telefono: "555-5678", email: "ana.martinez@hospital.com" },
+                bio: "Enfermera especializada en cuidados intensivos y manejo de pacientes críticos.",
+                citas: 8
+            },
+            {
+                id: 3,
+                nombre: "Carlos Gómez",
+                especialidad: "Administración",
+                rol: "Administrador",
+                avatar: "https://placehold.co/40x40/f9ab00/ffffff?text=CG",
+                contacto: { telefono: "555-9012", email: "carlos.gomez@hospital.com" },
+                bio: "Administrador de la clínica con experiencia en gestión de recursos y personal.",
+                citas: 0
+            },
+            {
+                id: 4,
+                nombre: "Lucía Fernández",
+                especialidad: "Pediatría",
+                rol: "Médico",
+                avatar: "https://placehold.co/40x40/ea4335/ffffff?text=LF",
+                contacto: { telefono: "555-3456", email: "lucia.fernandez@hospital.com" },
+                bio: "Pediatra con enfoque en desarrollo infantil y vacunación.",
+                citas: 15
+            }
+        ];
+
+        // Datos simulados de recursos educativos
+        const educationalResources = [
+            {
+                id: 1,
+                titulo: "Técnica de Curación de Herida Quirúrgica",
+                tipo: "imagen",
+                url: "https://placehold.co/300x200/1a73e8/ffffff?text=Curación+Herida",
+                categoria: "curacion",
+                etiquetas: ["curacion", "procedimiento", "enfermeria"],
+                descripcion: "Guía visual para el correcto procedimiento de curación de heridas quirúrgicas."
+            },
+            {
+                id: 2,
+                titulo: "Anatomía del Sistema Cardiovascular",
+                tipo: "imagen",
+                url: "https://placehold.co/300x200/34a853/ffffff?text=Sistema+Cardiovascular",
+                categoria: "anatomia",
+                etiquetas: ["anatomia", "cardiovascular"],
+                descripcion: "Diagrama detallado del sistema cardiovascular humano."
+            },
+            {
+                id: 3,
+                titulo: "Protocolo de Reanimación Cardiopulmonar",
+                tipo: "documento",
+                url: "#",
+                categoria: "protocolo",
+                etiquetas: ["resucitación", "emergencia", "protocolo"],
+                descripcion: "Documento PDF con el protocolo oficial de RCP para profesionales de la salud."
+            },
+            {
+                id: 4,
+                titulo: "Introducción a la Diabetes Mellitus",
+                tipo: "video",
+                url: "#",
+                categoria: "educacion",
+                etiquetas: ["diabetes", "educacion", "paciente"],
+                descripcion: "Video educativo sobre los fundamentos de la diabetes mellitus para pacientes."
             }
         ];
 
@@ -1027,6 +1953,9 @@
         const medicamentosDB = {
             "Losartán": {
                 nombre: "Losartán",
+                laboratorio: "MSD",
+                precio: 15.50,
+                contraindicaciones: ["Embarazo", "Hipersensibilidad"],
                 interacciones: {
                     "Aspirina": { severidad: "leve", descripcion: "Puede aumentar levemente el riesgo de sangrado." },
                     "Furosemida": { severidad: "moderada", descripcion: "Puede potenciar el efecto hipotensor." }
@@ -1034,6 +1963,9 @@
             },
             "Aspirina": {
                 nombre: "Aspirina",
+                laboratorio: "Bayer",
+                precio: 8.20,
+                contraindicaciones: ["Hemorragia activa", "Úlcera péptica"],
                 interacciones: {
                     "Losartán": { severidad: "leve", descripcion: "Puede aumentar levemente el riesgo de sangrado." },
                     "Warfarina": { severidad: "fatal", descripcion: "Riesgo muy alto de hemorragia grave." },
@@ -1042,6 +1974,9 @@
             },
             "Metformina": {
                 nombre: "Metformina",
+                laboratorio: "Merck",
+                precio: 12.80,
+                contraindicaciones: ["Insuficiencia renal", "Acidosis metabólica"],
                 interacciones: {
                     "Aspirina": { severidad: "leve", descripcion: "No hay interacción significativa, pero ambos pueden causar molestias gastrointestinales." },
                     "Glibenclamida": { severidad: "moderada", descripcion: "Aumenta el riesgo de hipoglucemia." }
@@ -1049,12 +1984,18 @@
             },
             "Glibenclamida": {
                 nombre: "Glibenclamida",
+                laboratorio: "Roche",
+                precio: 18.90,
+                contraindicaciones: ["Diabetes tipo 1", "Cetoacidosis"],
                 interacciones: {
                     "Metformina": { severidad: "moderada", descripcion: "Aumenta el riesgo de hipoglucemia." }
                 }
             },
             "Warfarina": {
                 nombre: "Warfarina",
+                laboratorio: "Pfizer",
+                precio: 25.50,
+                contraindicaciones: ["Embarazo", "Hemorragia activa"],
                 interacciones: {
                     "Aspirina": { severidad: "fatal", descripcion: "Riesgo muy alto de hemorragia grave." },
                     "Ibuprofeno": { severidad: "moderada", descripcion: "Aumenta el riesgo de sangrado gastrointestinal." }
@@ -1062,6 +2003,9 @@
             },
             "Tenofovir": {
                 nombre: "Tenofovir",
+                laboratorio: "Gilead",
+                precio: 85.00,
+                contraindicaciones: ["Insuficiencia renal severa"],
                 interacciones: {
                     "Atazanavir": { severidad: "moderada", descripcion: "Aumenta las concentraciones de tenofovir, riesgo de nefrotoxicidad." }
                 }
@@ -1074,38 +2018,66 @@
             avatar: "https://placehold.co/40x40/1a73e8/ffffff?text=JP"
         };
 
+        // Estado de la aplicación
+        const APP_STATE = {
+            activePatientId: null,
+            currentSection: 'dashboard',
+            filters: {
+                patientSearch: '',
+                specialty: '',
+                staffSearch: '',
+                staffRole: '',
+                resourceSearch: '',
+                resourceCategory: ''
+            },
+            theme: 'light',
+            activeChart: 'pressure'
+        };
+
         // --- Lógica de la aplicación ---
         document.addEventListener('DOMContentLoaded', () => {
-            // Mostrar dashboard por defecto
-            showSection('dashboard');
+            // Inicializar la aplicación
+            initializeApp();
             loadPatientsIntoSelectors();
             renderPatientGrid();
+            renderStaffGrid();
+            renderResourceGrid();
             loadSpecialties();
-            
-            // Inicializar calculadoras
+            loadRoles();
+            loadCategories();
             setupCalculators();
-            
-            // Inicializar signos vitales
             setupVitalSigns();
-            
-            // Inicializar recetas
             setupPrescriptions();
+            setupThemeToggle();
         });
 
-        // Navegación entre secciones
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const sectionId = link.getAttribute('data-section');
-                showSection(sectionId);
+        function initializeApp() {
+            // Mostrar dashboard por defecto
+            showSection('dashboard');
+            
+            // Configurar navegación
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const sectionId = link.getAttribute('data-section');
+                    showSection(sectionId);
+                    
+                    // Actualizar estado activo en navegación
+                    document.querySelectorAll('nav a').forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                });
             });
-        });
+            
+            // Configurar botón de refrescar gráfico
+            document.getElementById('refresh-chart')?.addEventListener('click', refreshChart);
+        }
 
         function showSection(sectionId) {
             document.querySelectorAll('.page').forEach(section => {
                 section.classList.remove('active');
             });
             document.getElementById(sectionId).classList.add('active');
+            APP_STATE.currentSection = sectionId;
             
             // Ocultar todas las calculadoras y mostrar la predeterminada si es la sección de calculadoras
             if (sectionId === 'calculadoras') {
@@ -1141,12 +2113,26 @@
             simulatedPatients.forEach(patient => {
                 const card = document.createElement('div');
                 card.className = 'patient-card';
+                const riskClass = patient.riesgoCardiovascular === 'alto' ? 'risk-high' : 
+                                patient.riesgoCardiovascular === 'moderado' ? 'risk-moderate' : 'risk-low';
+                const riskText = patient.riesgoCardiovascular === 'alto' ? 'Alto riesgo cardiovascular' : 
+                                patient.riesgoCardiovascular === 'moderado' ? 'Riesgo moderado' : 'Riesgo bajo';
+                
                 card.innerHTML = `
                     <h3>${patient.nombre}</h3>
                     <p><strong>Edad:</strong> ${patient.edad}</p>
                     <p><strong>Diagnóstico Principal:</strong> ${patient.diagnosticoPrincipal}</p>
                     <p><strong>Especialidad:</strong> ${patient.especialidad}</p>
-                    <button class="btn btn-secondary btn-view-history" data-patient-id="${patient.id}">
+                    <span class="patient-risk ${riskClass}">${riskText}</span>
+                    <div class="patient-actions">
+                        <button class="btn btn-secondary btn-edit-patient" data-patient-id="${patient.id}">
+                            <span class="material-symbols-outlined">edit</span> Editar
+                        </button>
+                        <button class="btn btn-warning btn-delete-patient" data-patient-id="${patient.id}">
+                            <span class="material-symbols-outlined">delete</span> Eliminar
+                        </button>
+                    </div>
+                    <button class="btn btn-primary btn-view-history" data-patient-id="${patient.id}">
                         <span class="material-symbols-outlined">history</span> Ver Historia Completa
                     </button>
                 `;
@@ -1154,23 +2140,327 @@
             });
             
             // Añadir event listeners a los botones de "Ver Historia"
-            document.querySelectorAll('.btn-view-history').forEach(button => {
-                button.addEventListener('click', handleViewHistory);
+            document.getElementById('patient-grid').addEventListener('click', handlePatientCardClick);
+            
+            // Añadir event listeners a los botones de edición y eliminación
+            document.querySelectorAll('.btn-edit-patient').forEach(button => {
+                button.addEventListener('click', handleEditPatient);
+            });
+            
+            document.querySelectorAll('.btn-delete-patient').forEach(button => {
+                button.addEventListener('click', handleDeletePatient);
             });
         }
 
-        function handleViewHistory(event) {
+        function renderStaffGrid() {
+            const grid = document.getElementById('staff-grid');
+            grid.innerHTML = '';
+            
+            medicalStaff.forEach(staff => {
+                const card = document.createElement('div');
+                card.className = 'patient-card';
+                card.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <img src="${staff.avatar}" alt="${staff.nombre}" style="width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--primary-blue);">
+                        <div>
+                            <h3>${staff.nombre}</h3>
+                            <p><strong>Rol:</strong> ${staff.rol}</p>
+                            <p><strong>Especialidad:</strong> ${staff.especialidad}</p>
+                        </div>
+                    </div>
+                    <div class="staff-actions">
+                        <button class="btn btn-secondary btn-edit-staff" data-staff-id="${staff.id}">
+                            <span class="material-symbols-outlined">edit</span> Editar
+                        </button>
+                        <button class="btn btn-warning btn-delete-staff" data-staff-id="${staff.id}">
+                            <span class="material-symbols-outlined">delete</span> Eliminar
+                        </button>
+                    </div>
+                    <button class="btn btn-primary btn-view-staff" data-staff-id="${staff.id}">
+                        <span class="material-symbols-outlined">person</span> Ver Perfil
+                    </button>
+                `;
+                grid.appendChild(card);
+            });
+            
+            // Añadir event listeners a los botones de personal
+            document.getElementById('staff-grid').addEventListener('click', handleStaffCardClick);
+            
+            document.querySelectorAll('.btn-edit-staff').forEach(button => {
+                button.addEventListener('click', handleEditStaff);
+            });
+            
+            document.querySelectorAll('.btn-delete-staff').forEach(button => {
+                button.addEventListener('click', handleDeleteStaff);
+            });
+        }
+
+        function renderResourceGrid() {
+            const grid = document.getElementById('resource-grid');
+            grid.innerHTML = '';
+            
+            educationalResources.forEach(resource => {
+                const card = document.createElement('div');
+                card.className = 'resource-card';
+                card.innerHTML = `
+                    <div style="text-align: center; margin-bottom: 15px;">
+                        <img src="${resource.url}" alt="${resource.titulo}" style="max-width: 100%; height: auto; border-radius: var(--border-radius);">
+                    </div>
+                    <h3>${resource.titulo}</h3>
+                    <p><strong>Tipo:</strong> ${resource.tipo}</p>
+                    <p><strong>Categoría:</strong> ${resource.categoria}</p>
+                    <p>${resource.descripcion}</p>
+                    <div class="resource-actions">
+                        <button class="btn btn-secondary btn-edit-resource" data-resource-id="${resource.id}">
+                            <span class="material-symbols-outlined">edit</span> Editar
+                        </button>
+                        <button class="btn btn-warning btn-delete-resource" data-resource-id="${resource.id}">
+                            <span class="material-symbols-outlined">delete</span> Eliminar
+                        </button>
+                    </div>
+                    <button class="btn btn-primary btn-view-resource" data-resource-id="${resource.id}">
+                        <span class="material-symbols-outlined">visibility</span> Ver Recurso
+                    </button>
+                `;
+                grid.appendChild(card);
+            });
+            
+            // Añadir event listeners a los botones de recursos
+            document.getElementById('resource-grid').addEventListener('click', handleResourceCardClick);
+            
+            document.querySelectorAll('.btn-edit-resource').forEach(button => {
+                button.addEventListener('click', handleEditResource);
+            });
+            
+            document.querySelectorAll('.btn-delete-resource').forEach(button => {
+                button.addEventListener('click', handleDeleteResource);
+            });
+        }
+
+        function handlePatientCardClick(event) {
+            const btn = event.target.closest('.btn-view-history');
+            if (btn) {
+                const patientId = parseInt(btn.getAttribute('data-patient-id'));
+                const patient = simulatedPatients.find(p => p.id === patientId);
+                if (patient) {
+                    showModal('Historia Clínica', generateHistoryModalContent(patient));
+                }
+            }
+            
+            const editBtn = event.target.closest('.btn-edit-patient');
+            if (editBtn) {
+                const patientId = parseInt(editBtn.getAttribute('data-patient-id'));
+                const patient = simulatedPatients.find(p => p.id === patientId);
+                if (patient) {
+                    showModal('Editar Paciente', generateEditPatientModalContent(patient));
+                }
+            }
+            
+            const deleteBtn = event.target.closest('.btn-delete-patient');
+            if (deleteBtn) {
+                const patientId = parseInt(deleteBtn.getAttribute('data-patient-id'));
+                const patient = simulatedPatients.find(p => p.id === patientId);
+                if (patient) {
+                    handleConfirmDeletePatient(patient);
+                }
+            }
+        }
+
+        function handleStaffCardClick(event) {
+            const viewBtn = event.target.closest('.btn-view-staff');
+            if (viewBtn) {
+                const staffId = parseInt(viewBtn.getAttribute('data-staff-id'));
+                const staff = medicalStaff.find(s => s.id === staffId);
+                if (staff) {
+                    showModal('Perfil del Personal', generateStaffProfileModalContent(staff));
+                }
+            }
+            
+            const editBtn = event.target.closest('.btn-edit-staff');
+            if (editBtn) {
+                const staffId = parseInt(editBtn.getAttribute('data-staff-id'));
+                const staff = medicalStaff.find(s => s.id === staffId);
+                if (staff) {
+                    showModal('Editar Personal', generateEditStaffModalContent(staff));
+                }
+            }
+            
+            const deleteBtn = event.target.closest('.btn-delete-staff');
+            if (deleteBtn) {
+                const staffId = parseInt(deleteBtn.getAttribute('data-staff-id'));
+                const staff = medicalStaff.find(s => s.id === staffId);
+                if (staff) {
+                    handleConfirmDeleteStaff(staff);
+                }
+            }
+        }
+
+        function handleResourceCardClick(event) {
+            const viewBtn = event.target.closest('.btn-view-resource');
+            if (viewBtn) {
+                const resourceId = parseInt(viewBtn.getAttribute('data-resource-id'));
+                const resource = educationalResources.find(r => r.id === resourceId);
+                if (resource) {
+                    showModal('Recurso Educativo', generateResourceModalContent(resource));
+                }
+            }
+            
+            const editBtn = event.target.closest('.btn-edit-resource');
+            if (editBtn) {
+                const resourceId = parseInt(editBtn.getAttribute('data-resource-id'));
+                const resource = educationalResources.find(r => r.id === resourceId);
+                if (resource) {
+                    showModal('Editar Recurso', generateEditResourceModalContent(resource));
+                }
+            }
+            
+            const deleteBtn = event.target.closest('.btn-delete-resource');
+            if (deleteBtn) {
+                const resourceId = parseInt(deleteBtn.getAttribute('data-resource-id'));
+                const resource = educationalResources.find(r => r.id === resourceId);
+                if (resource) {
+                    handleConfirmDeleteResource(resource);
+                }
+            }
+        }
+
+        function handleEditPatient(event) {
             const patientId = parseInt(event.currentTarget.getAttribute('data-patient-id'));
             const patient = simulatedPatients.find(p => p.id === patientId);
             if (patient) {
-                showModal('Historia Clínica', generateHistoryModalContent(patient));
+                showModal('Editar Paciente', generateEditPatientModalContent(patient));
+            }
+        }
+
+        function handleDeletePatient(event) {
+            const patientId = parseInt(event.currentTarget.getAttribute('data-patient-id'));
+            const patient = simulatedPatients.find(p => p.id === patientId);
+            if (patient) {
+                handleConfirmDeletePatient(patient);
+            }
+        }
+
+        function handleConfirmDeletePatient(patient) {
+            const confirmModal = `
+                <div class="modal-header">
+                    <h2><span class="material-symbols-outlined">warning</span> Confirmar Eliminación</h2>
+                    <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+                </div>
+                <div class="modal-tab-content active">
+                    <p><strong>¿Está seguro de que desea eliminar al paciente ${patient.nombre}?</strong></p>
+                    <p>Esta acción no se puede deshacer y eliminará todos los registros clínicos asociados a este paciente.</p>
+                    <div style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">
+                        <button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+                        <button class="btn btn-danger" onclick="confirmDeletePatient(${patient.id})">Eliminar</button>
+                    </div>
+                </div>
+            `;
+            showModal('Confirmar Eliminación', confirmModal);
+        }
+
+        function confirmDeletePatient(patientId) {
+            const index = simulatedPatients.findIndex(p => p.id === patientId);
+            if (index !== -1) {
+                simulatedPatients.splice(index, 1);
+                closeModal();
+                renderPatientGrid();
+                loadPatientsIntoSelectors();
+                alert(`Paciente eliminado correctamente.`);
+            }
+        }
+
+        function handleEditStaff(event) {
+            const staffId = parseInt(event.currentTarget.getAttribute('data-staff-id'));
+            const staff = medicalStaff.find(s => s.id === staffId);
+            if (staff) {
+                showModal('Editar Personal', generateEditStaffModalContent(staff));
+            }
+        }
+
+        function handleDeleteStaff(event) {
+            const staffId = parseInt(event.currentTarget.getAttribute('data-staff-id'));
+            const staff = medicalStaff.find(s => s.id === staffId);
+            if (staff) {
+                handleConfirmDeleteStaff(staff);
+            }
+        }
+
+        function handleConfirmDeleteStaff(staff) {
+            const confirmModal = `
+                <div class="modal-header">
+                    <h2><span class="material-symbols-outlined">warning</span> Confirmar Eliminación</h2>
+                    <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+                </div>
+                <div class="modal-tab-content active">
+                    <p><strong>¿Está seguro de que desea eliminar al miembro del personal ${staff.nombre}?</strong></p>
+                    <p>Esta acción no se puede deshacer y eliminará todos los registros asociados a este miembro.</p>
+                    <div style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">
+                        <button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+                        <button class="btn btn-danger" onclick="confirmDeleteStaff(${staff.id})">Eliminar</button>
+                    </div>
+                </div>
+            `;
+            showModal('Confirmar Eliminación', confirmModal);
+        }
+
+        function confirmDeleteStaff(staffId) {
+            const index = medicalStaff.findIndex(s => s.id === staffId);
+            if (index !== -1) {
+                medicalStaff.splice(index, 1);
+                closeModal();
+                renderStaffGrid();
+                alert(`Miembro del personal eliminado correctamente.`);
+            }
+        }
+
+        function handleEditResource(event) {
+            const resourceId = parseInt(event.currentTarget.getAttribute('data-resource-id'));
+            const resource = educationalResources.find(r => r.id === resourceId);
+            if (resource) {
+                showModal('Editar Recurso', generateEditResourceModalContent(resource));
+            }
+        }
+
+        function handleDeleteResource(event) {
+            const resourceId = parseInt(event.currentTarget.getAttribute('data-resource-id'));
+            const resource = educationalResources.find(r => r.id === resourceId);
+            if (resource) {
+                handleConfirmDeleteResource(resource);
+            }
+        }
+
+        function handleConfirmDeleteResource(resource) {
+            const confirmModal = `
+                <div class="modal-header">
+                    <h2><span class="material-symbols-outlined">warning</span> Confirmar Eliminación</h2>
+                    <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+                </div>
+                <div class="modal-tab-content active">
+                    <p><strong>¿Está seguro de que desea eliminar el recurso "${resource.titulo}"?</strong></p>
+                    <p>Esta acción no se puede deshacer y eliminará este recurso educativo del sistema.</p>
+                    <div style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">
+                        <button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+                        <button class="btn btn-danger" onclick="confirmDeleteResource(${resource.id})">Eliminar</button>
+                    </div>
+                </div>
+            `;
+            showModal('Confirmar Eliminación', confirmModal);
+        }
+
+        function confirmDeleteResource(resourceId) {
+            const index = educationalResources.findIndex(r => r.id === resourceId);
+            if (index !== -1) {
+                educationalResources.splice(index, 1);
+                closeModal();
+                renderResourceGrid();
+                alert(`Recurso educativo eliminado correctamente.`);
             }
         }
 
         function generateHistoryModalContent(patient) {
             return `
                 <div class="modal-header">
-                    <h2>${patient.nombre}</h2>
+                    <h2><span class="material-symbols-outlined">person</span> ${patient.nombre}</h2>
                     <button class="modal-close-btn" onclick="closeModal()">&times;</button>
                 </div>
                 <div class="modal-tabs">
@@ -1178,11 +2468,14 @@
                     <button class="modal-tab" data-tab="diagnosticos">Diagnósticos</button>
                     <button class="modal-tab" data-tab="tratamientos">Tratamientos</button>
                     <button class="modal-tab" data-tab="evolucion">Evolución</button>
+                    <button class="modal-tab" data-tab="alergias">Alergias</button>
                 </div>
                 <div class="modal-tab-content active" data-tab-pane="resumen">
                     <p><strong>Edad:</strong> ${patient.edad}</p>
                     <p><strong>Diagnóstico Principal:</strong> ${patient.diagnosticoPrincipal}</p>
                     <p><strong>Especialidad:</strong> ${patient.especialidad}</p>
+                    <p><strong>Riesgo Cardiovascular:</strong> <span class="patient-risk risk-${patient.riesgoCardiovascular}">${patient.riesgoCardiovascular === 'alto' ? 'Alto' : patient.riesgoCardiovascular === 'moderado' ? 'Moderado' : 'Bajo'}</span></p>
+                    <p><strong>Alergias:</strong> ${patient.alergias.length > 0 ? patient.alergias.join(', ') : 'Ninguna registrada'}</p>
                     <p><strong>Información básica:</strong> ${patient.historiaClinica.resumen}</p>
                 </div>
                 <div class="modal-tab-content" data-tab-pane="diagnosticos">
@@ -1203,16 +2496,336 @@
                     </table>
                 </div>
                 <div class="modal-tab-content" data-tab-pane="tratamientos">
-                    <ul>
-                        ${patient.historiaClinica.tratamientos.map(trat => `<li>${trat}</li>`).join('')}
-                    </ul>
+                    <table>
+                        <thead>
+                            <tr><th>Medicamento</th><th>Dosis</th><th>Frecuencia</th><th>Estado</th></tr>
+                        </thead>
+                        <tbody>
+                            ${patient.historiaClinica.tratamientos.map(trat => `
+                                <tr>
+                                    <td>${trat.split(' ')[0]}</td>
+                                    <td>${trat.split(' ')[1]}</td>
+                                    <td>${trat.split(' ').slice(2).join(' ')}</td>
+                                    <td>Activo</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
                 </div>
                 <div class="modal-tab-content" data-tab-pane="evolucion">
+                    <table>
+                        <thead>
+                            <tr><th>Fecha</th><th>Nota</th></tr>
+                        </thead>
+                        <tbody>
+                            ${patient.historiaClinica.evolucion.map(evol => `
+                                <tr>
+                                    <td>${evol.fecha}</td>
+                                    <td>${evol.nota}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-tab-content" data-tab-pane="alergias">
                     <ul>
-                        ${patient.historiaClinica.evolucion.map(evol => `<li><strong>${evol.fecha}:</strong> ${evol.nota}</li>`).join('')}
+                        ${patient.alergias.length > 0 ? 
+                            patient.alergias.map(alergia => `<li><strong>${alergia}</strong>: Reacción severa. Evitar completamente.</li>`).join('') :
+                            '<li>El paciente no tiene alergias registradas.</li>'
+                        }
                     </ul>
                 </div>
             `;
+        }
+
+        function generateEditPatientModalContent(patient) {
+            return `
+                <div class="modal-header">
+                    <h2><span class="material-symbols-outlined">edit</span> Editar Paciente</h2>
+                    <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+                </div>
+                <div class="modal-tab-content active">
+                    <div class="form-container">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="edit-patient-nombre">Nombre</label>
+                                <input type="text" id="edit-patient-nombre" value="${patient.nombre}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-patient-edad">Edad</label>
+                                <input type="number" id="edit-patient-edad" value="${patient.edad}" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="edit-patient-diagnostico">Diagnóstico Principal</label>
+                                <input type="text" id="edit-patient-diagnostico" value="${patient.diagnosticoPrincipal}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-patient-especialidad">Especialidad</label>
+                                <select id="edit-patient-especialidad">
+                                    <option value="Cardiología" ${patient.especialidad === 'Cardiología' ? 'selected' : ''}>Cardiología</option>
+                                    <option value="Endocrinología" ${patient.especialidad === 'Endocrinología' ? 'selected' : ''}>Endocrinología</option>
+                                    <option value="Infectología" ${patient.especialidad === 'Infectología' ? 'selected' : ''}>Infectología</option>
+                                    <option value="Neurología" ${patient.especialidad === 'Neurología' ? 'selected' : ''}>Neurología</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-patient-alergias">Alergias (separadas por comas)</label>
+                            <input type="text" id="edit-patient-alergias" value="${patient.alergias.join(', ')}">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-patient-riesgo">Riesgo Cardiovascular</label>
+                            <select id="edit-patient-riesgo">
+                                <option value="bajo" ${patient.riesgoCardiovascular === 'bajo' ? 'selected' : ''}>Bajo</option>
+                                <option value="moderado" ${patient.riesgoCardiovascular === 'moderado' ? 'selected' : ''}>Moderado</option>
+                                <option value="alto" ${patient.riesgoCardiovascular === 'alto' ? 'selected' : ''}>Alto</option>
+                            </select>
+                        </div>
+                        <div class="form-actions" style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">
+                            <button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+                            <button class="btn btn-primary" onclick="savePatientChanges(${patient.id})">Guardar Cambios</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function savePatientChanges(patientId) {
+            const nombre = document.getElementById('edit-patient-nombre').value;
+            const edad = parseInt(document.getElementById('edit-patient-edad').value);
+            const diagnostico = document.getElementById('edit-patient-diagnostico').value;
+            const especialidad = document.getElementById('edit-patient-especialidad').value;
+            const alergiasInput = document.getElementById('edit-patient-alergias').value;
+            const alergias = alergiasInput ? alergiasInput.split(',').map(a => a.trim()) : [];
+            const riesgo = document.getElementById('edit-patient-riesgo').value;
+            
+            if (!nombre || !edad || !diagnostico || !especialidad) {
+                alert('Por favor, complete todos los campos obligatorios.');
+                return;
+            }
+            
+            const patientIndex = simulatedPatients.findIndex(p => p.id === patientId);
+            if (patientIndex !== -1) {
+                simulatedPatients[patientIndex] = {
+                    ...simulatedPatients[patientIndex],
+                    nombre,
+                    edad,
+                    diagnosticoPrincipal: diagnostico,
+                    especialidad,
+                    alergias,
+                    riesgoCardiovascular: riesgo
+                };
+                
+                closeModal();
+                renderPatientGrid();
+                loadPatientsIntoSelectors();
+                alert('Paciente actualizado correctamente.');
+            }
+        }
+
+        function generateStaffProfileModalContent(staff) {
+            return `
+                <div class="modal-header">
+                    <h2><span class="material-symbols-outlined">person</span> ${staff.nombre}</h2>
+                    <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+                </div>
+                <div class="modal-tab-content active">
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <img src="${staff.avatar}" alt="${staff.nombre}" style="width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--primary-blue);">
+                    </div>
+                    <p><strong>Rol:</strong> ${staff.rol}</p>
+                    <p><strong>Especialidad:</strong> ${staff.especialidad}</p>
+                    <p><strong>Contacto:</strong> ${staff.contacto.telefono} / ${staff.contacto.email}</p>
+                    <p><strong>Biografía:</strong> ${staff.bio}</p>
+                    <p><strong>Citas programadas:</strong> ${staff.citas}</p>
+                </div>
+            `;
+        }
+
+        function generateEditStaffModalContent(staff) {
+            return `
+                <div class="modal-header">
+                    <h2><span class="material-symbols-outlined">edit</span> Editar Personal</h2>
+                    <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+                </div>
+                <div class="modal-tab-content active">
+                    <div class="form-container">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="edit-staff-nombre">Nombre</label>
+                                <input type="text" id="edit-staff-nombre" value="${staff.nombre}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-staff-rol">Rol</label>
+                                <select id="edit-staff-rol">
+                                    <option value="Médico" ${staff.rol === 'Médico' ? 'selected' : ''}>Médico</option>
+                                    <option value="Enfermero" ${staff.rol === 'Enfermero' ? 'selected' : ''}>Enfermero</option>
+                                    <option value="Administrador" ${staff.rol === 'Administrador' ? 'selected' : ''}>Administrador</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="edit-staff-especialidad">Especialidad</label>
+                                <input type="text" id="edit-staff-especialidad" value="${staff.especialidad}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-staff-telefono">Teléfono</label>
+                                <input type="text" id="edit-staff-telefono" value="${staff.contacto.telefono}" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-staff-email">Email</label>
+                            <input type="email" id="edit-staff-email" value="${staff.contacto.email}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-staff-bio">Biografía</label>
+                            <textarea id="edit-staff-bio" rows="3">${staff.bio}</textarea>
+                        </div>
+                        <div class="form-actions" style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">
+                            <button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+                            <button class="btn btn-primary" onclick="saveStaffChanges(${staff.id})">Guardar Cambios</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function saveStaffChanges(staffId) {
+            const nombre = document.getElementById('edit-staff-nombre').value;
+            const rol = document.getElementById('edit-staff-rol').value;
+            const especialidad = document.getElementById('edit-staff-especialidad').value;
+            const telefono = document.getElementById('edit-staff-telefono').value;
+            const email = document.getElementById('edit-staff-email').value;
+            const bio = document.getElementById('edit-staff-bio').value;
+            
+            if (!nombre || !rol || !especialidad || !telefono || !email) {
+                alert('Por favor, complete todos los campos obligatorios.');
+                return;
+            }
+            
+            const staffIndex = medicalStaff.findIndex(s => s.id === staffId);
+            if (staffIndex !== -1) {
+                medicalStaff[staffIndex] = {
+                    ...medicalStaff[staffIndex],
+                    nombre,
+                    rol,
+                    especialidad,
+                    contacto: {
+                        telefono,
+                        email
+                    },
+                    bio
+                };
+                
+                closeModal();
+                renderStaffGrid();
+                alert('Personal actualizado correctamente.');
+            }
+        }
+
+        function generateResourceModalContent(resource) {
+            return `
+                <div class="modal-header">
+                    <h2><span class="material-symbols-outlined">visibility</span> ${resource.titulo}</h2>
+                    <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+                </div>
+                <div class="modal-tab-content active">
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <img src="${resource.url}" alt="${resource.titulo}" style="max-width: 100%; height: auto; border-radius: var(--border-radius);">
+                    </div>
+                    <p><strong>Tipo:</strong> ${resource.tipo}</p>
+                    <p><strong>Categoría:</strong> ${resource.categoria}</p>
+                    <p><strong>Etiquetas:</strong> ${resource.etiquetas.join(', ')}</p>
+                    <p><strong>Descripción:</strong> ${resource.descripcion}</p>
+                </div>
+            `;
+        }
+
+        function generateEditResourceModalContent(resource) {
+            return `
+                <div class="modal-header">
+                    <h2><span class="material-symbols-outlined">edit</span> Editar Recurso</h2>
+                    <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+                </div>
+                <div class="modal-tab-content active">
+                    <div class="form-container">
+                        <div class="form-group">
+                            <label for="edit-resource-titulo">Título</label>
+                            <input type="text" id="edit-resource-titulo" value="${resource.titulo}" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="edit-resource-tipo">Tipo</label>
+                                <select id="edit-resource-tipo">
+                                    <option value="imagen" ${resource.tipo === 'imagen' ? 'selected' : ''}>Imagen</option>
+                                    <option value="video" ${resource.tipo === 'video' ? 'selected' : ''}>Video</option>
+                                    <option value="documento" ${resource.tipo === 'documento' ? 'selected' : ''}>Documento</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-resource-categoria">Categoría</label>
+                                <select id="edit-resource-categoria">
+                                    <option value="curacion" ${resource.categoria === 'curacion' ? 'selected' : ''}>Curación</option>
+                                    <option value="anatomia" ${resource.categoria === 'anatomia' ? 'selected' : ''}>Anatomía</option>
+                                    <option value="protocolo" ${resource.categoria === 'protocolo' ? 'selected' : ''}>Protocolo</option>
+                                    <option value="educacion" ${resource.categoria === 'educacion' ? 'selected' : ''}>Educación</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-resource-url">URL</label>
+                            <input type="text" id="edit-resource-url" value="${resource.url}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-resource-etiquetas">Etiquetas (separadas por comas)</label>
+                            <input type="text" id="edit-resource-etiquetas" value="${resource.etiquetas.join(', ')}">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-resource-descripcion">Descripción</label>
+                            <textarea id="edit-resource-descripcion" rows="3">${resource.descripcion}</textarea>
+                        </div>
+                        <div class="form-actions" style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">
+                            <button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+                            <button class="btn btn-primary" onclick="saveResourceChanges(${resource.id})">Guardar Cambios</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function saveResourceChanges(resourceId) {
+            const titulo = document.getElementById('edit-resource-titulo').value;
+            const tipo = document.getElementById('edit-resource-tipo').value;
+            const categoria = document.getElementById('edit-resource-categoria').value;
+            const url = document.getElementById('edit-resource-url').value;
+            const etiquetasInput = document.getElementById('edit-resource-etiquetas').value;
+            const etiquetas = etiquetasInput ? etiquetasInput.split(',').map(e => e.trim()) : [];
+            const descripcion = document.getElementById('edit-resource-descripcion').value;
+            
+            if (!titulo || !tipo || !categoria || !url) {
+                alert('Por favor, complete todos los campos obligatorios.');
+                return;
+            }
+            
+            const resourceIndex = educationalResources.findIndex(r => r.id === resourceId);
+            if (resourceIndex !== -1) {
+                educationalResources[resourceIndex] = {
+                    ...educationalResources[resourceIndex],
+                    titulo,
+                    tipo,
+                    categoria,
+                    url,
+                    etiquetas,
+                    descripcion
+                };
+                
+                closeModal();
+                renderResourceGrid();
+                alert('Recurso educativo actualizado correctamente.');
+            }
         }
 
         function showModal(title, content) {
@@ -1231,21 +2844,6 @@
             document.body.classList.remove('modal-open');
         }
 
-        // Lógica para el selector de pacientes activos
-        document.getElementById('active-patient')?.addEventListener('change', (e) => {
-            const selectedPatientId = parseInt(e.target.value);
-            if (selectedPatientId) {
-                const patient = simulatedPatients.find(p => p.id === selectedPatientId);
-                console.log(`Paciente activo seleccionado: ${patient.nombre}`);
-                // Aquí podrías actualizar el dashboard con datos del paciente seleccionado
-            }
-        });
-
-        // Lógica básica para el botón "Agregar nuevo paciente"
-        document.querySelector('.btn-add-patient')?.addEventListener('click', () => {
-            alert("Funcionalidad para agregar nuevo paciente aún no implementada.");
-        });
-
         // Manejo de pestañas en modales
         document.addEventListener('click', (e) => {
             if (e.target.classList.contains('modal-tab')) {
@@ -1262,6 +2860,764 @@
                 closeModal();
             }
         });
+
+        // --- Funcionalidades CRUD ---
+        document.querySelector('.btn-add-patient')?.addEventListener('click', () => {
+            const modalContent = `
+                <div class="modal-header">
+                    <h2><span class="material-symbols-outlined">add</span> Nuevo Paciente</h2>
+                    <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+                </div>
+                <div class="modal-tab-content active">
+                    <div class="form-container">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="new-patient-nombre">Nombre</label>
+                                <input type="text" id="new-patient-nombre" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="new-patient-edad">Edad</label>
+                                <input type="number" id="new-patient-edad" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="new-patient-diagnostico">Diagnóstico Principal</label>
+                                <input type="text" id="new-patient-diagnostico" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="new-patient-especialidad">Especialidad</label>
+                                <select id="new-patient-especialidad">
+                                    <option value="Cardiología">Cardiología</option>
+                                    <option value="Endocrinología">Endocrinología</option>
+                                    <option value="Infectología">Infectología</option>
+                                    <option value="Neurología">Neurología</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="new-patient-alergias">Alergias (separadas por comas)</label>
+                            <input type="text" id="new-patient-alergias">
+                        </div>
+                        <div class="form-group">
+                            <label for="new-patient-riesgo">Riesgo Cardiovascular</label>
+                            <select id="new-patient-riesgo">
+                                <option value="bajo">Bajo</option>
+                                <option value="moderado">Moderado</option>
+                                <option value="alto">Alto</option>
+                            </select>
+                        </div>
+                        <div class="form-actions" style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">
+                            <button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+                            <button class="btn btn-primary" onclick="addNewPatient()">Crear Paciente</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            showModal('Nuevo Paciente', modalContent);
+        });
+
+        function addNewPatient() {
+            const nombre = document.getElementById('new-patient-nombre').value;
+            const edad = parseInt(document.getElementById('new-patient-edad').value);
+            const diagnostico = document.getElementById('new-patient-diagnostico').value;
+            const especialidad = document.getElementById('new-patient-especialidad').value;
+            const alergiasInput = document.getElementById('new-patient-alergias').value;
+            const alergias = alergiasInput ? alergiasInput.split(',').map(a => a.trim()) : [];
+            const riesgo = document.getElementById('new-patient-riesgo').value;
+            
+            if (!nombre || !edad || !diagnostico || !especialidad) {
+                alert('Por favor, complete todos los campos obligatorios.');
+                return;
+            }
+            
+            const newPatient = {
+                id: simulatedPatients.length + 1,
+                nombre,
+                edad,
+                diagnosticoPrincipal: diagnostico,
+                especialidad,
+                riesgoCardiovascular: riesgo,
+                alergias,
+                historiaClinica: {
+                    resumen: `Paciente ${nombre} agregado recientemente.`,
+                    diagnosticos: [],
+                    tratamientos: [],
+                    evolucion: []
+                },
+                signosVitales: []
+            };
+            
+            simulatedPatients.push(newPatient);
+            closeModal();
+            renderPatientGrid();
+            loadPatientsIntoSelectors();
+            alert('Paciente creado correctamente.');
+        }
+
+        document.querySelector('.btn-add-staff')?.addEventListener('click', () => {
+            const modalContent = `
+                <div class="modal-header">
+                    <h2><span class="material-symbols-outlined">add</span> Nuevo Miembro del Personal</h2>
+                    <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+                </div>
+                <div class="modal-tab-content active">
+                    <div class="form-container">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="new-staff-nombre">Nombre</label>
+                                <input type="text" id="new-staff-nombre" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="new-staff-rol">Rol</label>
+                                <select id="new-staff-rol">
+                                    <option value="Médico">Médico</option>
+                                    <option value="Enfermero">Enfermero</option>
+                                    <option value="Administrador">Administrador</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="new-staff-especialidad">Especialidad</label>
+                                <input type="text" id="new-staff-especialidad" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="new-staff-telefono">Teléfono</label>
+                                <input type="text" id="new-staff-telefono" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="new-staff-email">Email</label>
+                            <input type="email" id="new-staff-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="new-staff-bio">Biografía</label>
+                            <textarea id="new-staff-bio" rows="3"></textarea>
+                        </div>
+                        <div class="form-actions" style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">
+                            <button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+                            <button class="btn btn-primary" onclick="addNewStaff()">Crear Miembro</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            showModal('Nuevo Miembro del Personal', modalContent);
+        });
+
+        function addNewStaff() {
+            const nombre = document.getElementById('new-staff-nombre').value;
+            const rol = document.getElementById('new-staff-rol').value;
+            const especialidad = document.getElementById('new-staff-especialidad').value;
+            const telefono = document.getElementById('new-staff-telefono').value;
+            const email = document.getElementById('new-staff-email').value;
+            const bio = document.getElementById('new-staff-bio').value;
+            
+            if (!nombre || !rol || !especialidad || !telefono || !email) {
+                alert('Por favor, complete todos los campos obligatorios.');
+                return;
+            }
+            
+            const newStaff = {
+                id: medicalStaff.length + 1,
+                nombre,
+                rol,
+                especialidad,
+                avatar: `https://placehold.co/40x40/${Math.floor(Math.random()*16777215).toString(16)}/ffffff?text=${nombre.charAt(0)}`,
+                contacto: {
+                    telefono,
+                    email
+                },
+                bio: bio || `Profesional ${rol.toLowerCase()} con experiencia en ${especialidad}.`,
+                citas: 0
+            };
+            
+            medicalStaff.push(newStaff);
+            closeModal();
+            renderStaffGrid();
+            alert('Miembro del personal creado correctamente.');
+        }
+
+        document.querySelector('.btn-add-resource')?.addEventListener('click', () => {
+            const modalContent = `
+                <div class="modal-header">
+                    <h2><span class="material-symbols-outlined">add</span> Nuevo Recurso Educativo</h2>
+                    <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+                </div>
+                <div class="modal-tab-content active">
+                    <div class="form-container">
+                        <div class="form-group">
+                            <label for="new-resource-titulo">Título</label>
+                            <input type="text" id="new-resource-titulo" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="new-resource-tipo">Tipo</label>
+                                <select id="new-resource-tipo">
+                                    <option value="imagen">Imagen</option>
+                                    <option value="video">Video</option>
+                                    <option value="documento">Documento</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="new-resource-categoria">Categoría</label>
+                                <select id="new-resource-categoria">
+                                    <option value="curacion">Curación</option>
+                                    <option value="anatomia">Anatomía</option>
+                                    <option value="protocolo">Protocolo</option>
+                                    <option value="educacion">Educación</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="new-resource-url">URL</label>
+                            <input type="text" id="new-resource-url" placeholder="https://ejemplo.com/recurso" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="new-resource-etiquetas">Etiquetas (separadas por comas)</label>
+                            <input type="text" id="new-resource-etiquetas">
+                        </div>
+                        <div class="form-group">
+                            <label for="new-resource-descripcion">Descripción</label>
+                            <textarea id="new-resource-descripcion" rows="3"></textarea>
+                        </div>
+                        <div class="form-actions" style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">
+                            <button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+                            <button class="btn btn-primary" onclick="addNewResource()">Crear Recurso</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            showModal('Nuevo Recurso Educativo', modalContent);
+        });
+
+        function addNewResource() {
+            const titulo = document.getElementById('new-resource-titulo').value;
+            const tipo = document.getElementById('new-resource-tipo').value;
+            const categoria = document.getElementById('new-resource-categoria').value;
+            const url = document.getElementById('new-resource-url').value;
+            const etiquetasInput = document.getElementById('new-resource-etiquetas').value;
+            const etiquetas = etiquetasInput ? etiquetasInput.split(',').map(e => e.trim()) : [];
+            const descripcion = document.getElementById('new-resource-descripcion').value;
+            
+            if (!titulo || !tipo || !categoria || !url) {
+                alert('Por favor, complete todos los campos obligatorios.');
+                return;
+            }
+            
+            const newResource = {
+                id: educationalResources.length + 1,
+                titulo,
+                tipo,
+                categoria,
+                url,
+                etiquetas,
+                descripcion: descripcion || `Recurso educativo sobre ${titulo}.`
+            };
+            
+            educationalResources.push(newResource);
+            closeModal();
+            renderResourceGrid();
+            alert('Recurso educativo creado correctamente.');
+        }
+
+        // Cargar especialidades en el filtro
+        function loadSpecialties() {
+            const filterSelect = document.getElementById('specialty-filter');
+            if (!filterSelect) return;
+            
+            const specialties = [...new Set(simulatedPatients.map(p => p.especialidad))];
+            specialties.forEach(specialty => {
+                const option = document.createElement('option');
+                option.value = specialty;
+                option.textContent = specialty;
+                filterSelect.appendChild(option);
+            });
+            
+            // Filtrado y búsqueda
+            const searchInput = document.getElementById('patient-search');
+            const specialtyFilter = document.getElementById('specialty-filter');
+            
+            function applyFilters() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const selectedSpecialty = specialtyFilter.value.toLowerCase();
+                const grid = document.getElementById('patient-grid');
+                grid.innerHTML = '';
+                
+                simulatedPatients
+                    .filter(patient => {
+                        const matchesSearch = patient.nombre.toLowerCase().includes(searchTerm) ||
+                                              patient.diagnosticoPrincipal.toLowerCase().includes(searchTerm) ||
+                                              patient.especialidad.toLowerCase().includes(searchTerm);
+                        const matchesSpecialty = selectedSpecialty === '' || patient.especialidad.toLowerCase() === selectedSpecialty;
+                        return matchesSearch && matchesSpecialty;
+                    })
+                    .forEach(patient => {
+                        const card = document.createElement('div');
+                        card.className = 'patient-card';
+                        const riskClass = patient.riesgoCardiovascular === 'alto' ? 'risk-high' : 
+                                        patient.riesgoCardiovascular === 'moderado' ? 'risk-moderate' : 'risk-low';
+                        const riskText = patient.riesgoCardiovascular === 'alto' ? 'Alto riesgo cardiovascular' : 
+                                        patient.riesgoCardiovascular === 'moderado' ? 'Riesgo moderado' : 'Riesgo bajo';
+                        
+                        card.innerHTML = `
+                            <h3>${patient.nombre}</h3>
+                            <p><strong>Edad:</strong> ${patient.edad}</p>
+                            <p><strong>Diagnóstico Principal:</strong> ${patient.diagnosticoPrincipal}</p>
+                            <p><strong>Especialidad:</strong> ${patient.especialidad}</p>
+                            <span class="patient-risk ${riskClass}">${riskText}</span>
+                            <div class="patient-actions">
+                                <button class="btn btn-secondary btn-edit-patient" data-patient-id="${patient.id}">
+                                    <span class="material-symbols-outlined">edit</span> Editar
+                                </button>
+                                <button class="btn btn-warning btn-delete-patient" data-patient-id="${patient.id}">
+                                    <span class="material-symbols-outlined">delete</span> Eliminar
+                                </button>
+                            </div>
+                            <button class="btn btn-primary btn-view-history" data-patient-id="${patient.id}">
+                                <span class="material-symbols-outlined">history</span> Ver Historia Completa
+                            </button>
+                        `;
+                        grid.appendChild(card);
+                    });
+                
+                // Re-agregar listeners
+                document.querySelectorAll('.btn-view-history').forEach(button => {
+                    button.addEventListener('click', handleViewHistory);
+                });
+                
+                document.querySelectorAll('.btn-edit-patient').forEach(button => {
+                    button.addEventListener('click', handleEditPatient);
+                });
+                
+                document.querySelectorAll('.btn-delete-patient').forEach(button => {
+                    button.addEventListener('click', handleDeletePatient);
+                });
+            }
+            
+            searchInput?.addEventListener('input', applyFilters);
+            specialtyFilter?.addEventListener('change', applyFilters);
+            applyFilters();
+        }
+
+        // Cargar roles en el filtro de personal
+        function loadRoles() {
+            const filterSelect = document.getElementById('role-filter');
+            if (!filterSelect) return;
+            
+            const roles = [...new Set(medicalStaff.map(s => s.rol))];
+            roles.forEach(rol => {
+                const option = document.createElement('option');
+                option.value = rol;
+                option.textContent = rol;
+                filterSelect.appendChild(option);
+            });
+            
+            // Filtrado y búsqueda para personal
+            const searchInput = document.getElementById('staff-search');
+            const roleFilter = document.getElementById('role-filter');
+            
+            function applyStaffFilters() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const selectedRole = roleFilter.value.toLowerCase();
+                const grid = document.getElementById('staff-grid');
+                grid.innerHTML = '';
+                
+                medicalStaff
+                    .filter(staff => {
+                        const matchesSearch = staff.nombre.toLowerCase().includes(searchTerm) ||
+                                             staff.especialidad.toLowerCase().includes(searchTerm) ||
+                                             staff.rol.toLowerCase().includes(searchTerm);
+                        const matchesRole = selectedRole === '' || staff.rol.toLowerCase() === selectedRole;
+                        return matchesSearch && matchesRole;
+                    })
+                    .forEach(staff => {
+                        const card = document.createElement('div');
+                        card.className = 'patient-card';
+                        card.innerHTML = `
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <img src="${staff.avatar}" alt="${staff.nombre}" style="width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--primary-blue);">
+                                <div>
+                                    <h3>${staff.nombre}</h3>
+                                    <p><strong>Rol:</strong> ${staff.rol}</p>
+                                    <p><strong>Especialidad:</strong> ${staff.especialidad}</p>
+                                </div>
+                            </div>
+                            <div class="staff-actions">
+                                <button class="btn btn-secondary btn-edit-staff" data-staff-id="${staff.id}">
+                                    <span class="material-symbols-outlined">edit</span> Editar
+                                </button>
+                                <button class="btn btn-warning btn-delete-staff" data-staff-id="${staff.id}">
+                                    <span class="material-symbols-outlined">delete</span> Eliminar
+                                </button>
+                            </div>
+                            <button class="btn btn-primary btn-view-staff" data-staff-id="${staff.id}">
+                                <span class="material-symbols-outlined">person</span> Ver Perfil
+                            </button>
+                        `;
+                        grid.appendChild(card);
+                    });
+                
+                // Re-agregar listeners
+                document.querySelectorAll('.btn-view-staff').forEach(button => {
+                    button.addEventListener('click', handleViewStaff);
+                });
+                
+                document.querySelectorAll('.btn-edit-staff').forEach(button => {
+                    button.addEventListener('click', handleEditStaff);
+                });
+                
+                document.querySelectorAll('.btn-delete-staff').forEach(button => {
+                    button.addEventListener('click', handleDeleteStaff);
+                });
+            }
+            
+            searchInput?.addEventListener('input', applyStaffFilters);
+            roleFilter?.addEventListener('change', applyStaffFilters);
+            applyStaffFilters();
+        }
+
+        // Cargar categorías en el filtro de recursos
+        function loadCategories() {
+            const filterSelect = document.getElementById('category-filter');
+            if (!filterSelect) return;
+            
+            const categories = [...new Set(educationalResources.map(r => r.categoria))];
+            categories.forEach(category => {
+                const option = document.createElement('option');
+                option.value = category;
+                option.textContent = category;
+                filterSelect.appendChild(option);
+            });
+            
+            // Filtrado y búsqueda para recursos
+            const searchInput = document.getElementById('resource-search');
+            const categoryFilter = document.getElementById('category-filter');
+            const resourceTabs = document.querySelectorAll('.resource-tab');
+            
+            function applyResourceFilters() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const selectedCategory = categoryFilter.value.toLowerCase();
+                const activeTab = document.querySelector('.resource-tab.active');
+                const tabCategory = activeTab ? activeTab.getAttribute('data-category') : 'all';
+                
+                const grid = document.getElementById('resource-grid');
+                grid.innerHTML = '';
+                
+                educationalResources
+                    .filter(resource => {
+                        const matchesSearch = resource.titulo.toLowerCase().includes(searchTerm) ||
+                                             resource.descripcion.toLowerCase().includes(searchTerm) ||
+                                             resource.etiquetas.some(tag => tag.toLowerCase().includes(searchTerm));
+                        const matchesCategory = selectedCategory === '' || resource.categoria.toLowerCase() === selectedCategory;
+                        const matchesTab = tabCategory === 'all' || resource.tipo === tabCategory;
+                        return matchesSearch && matchesCategory && matchesTab;
+                    })
+                    .forEach(resource => {
+                        const card = document.createElement('div');
+                        card.className = 'resource-card';
+                        card.innerHTML = `
+                            <div style="text-align: center; margin-bottom: 15px;">
+                                <img src="${resource.url}" alt="${resource.titulo}" style="max-width: 100%; height: auto; border-radius: var(--border-radius);">
+                            </div>
+                            <h3>${resource.titulo}</h3>
+                            <p><strong>Tipo:</strong> ${resource.tipo}</p>
+                            <p><strong>Categoría:</strong> ${resource.categoria}</p>
+                            <p>${resource.descripcion}</p>
+                            <div class="resource-actions">
+                                <button class="btn btn-secondary btn-edit-resource" data-resource-id="${resource.id}">
+                                    <span class="material-symbols-outlined">edit</span> Editar
+                                </button>
+                                <button class="btn btn-warning btn-delete-resource" data-resource-id="${resource.id}">
+                                    <span class="material-symbols-outlined">delete</span> Eliminar
+                                </button>
+                            </div>
+                            <button class="btn btn-primary btn-view-resource" data-resource-id="${resource.id}">
+                                <span class="material-symbols-outlined">visibility</span> Ver Recurso
+                            </button>
+                        `;
+                        grid.appendChild(card);
+                    });
+                
+                // Re-agregar listeners
+                document.querySelectorAll('.btn-view-resource').forEach(button => {
+                    button.addEventListener('click', handleViewResource);
+                });
+                
+                document.querySelectorAll('.btn-edit-resource').forEach(button => {
+                    button.addEventListener('click', handleEditResource);
+                });
+                
+                document.querySelectorAll('.btn-delete-resource').forEach(button => {
+                    button.addEventListener('click', handleDeleteResource);
+                });
+            }
+            
+            searchInput?.addEventListener('input', applyResourceFilters);
+            categoryFilter?.addEventListener('change', applyResourceFilters);
+            
+            // Event listeners para las pestañas de recursos
+            resourceTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    resourceTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    applyResourceFilters();
+                });
+            });
+            
+            applyResourceFilters();
+        }
+
+        // Configurar el interruptor de tema
+        function setupThemeToggle() {
+            const themeToggle = document.getElementById('theme-toggle');
+            const icon = themeToggle.querySelector('.material-symbols-outlined');
+            
+            themeToggle.addEventListener('click', () => {
+                const body = document.body;
+                if (body.classList.contains('theme-light')) {
+                    body.classList.remove('theme-light');
+                    body.classList.add('theme-dark');
+                    icon.textContent = 'light_mode';
+                    APP_STATE.theme = 'dark';
+                } else {
+                    body.classList.remove('theme-dark');
+                    body.classList.add('theme-light');
+                    icon.textContent = 'dark_mode';
+                    APP_STATE.theme = 'light';
+                }
+            });
+        }
+
+        // --- Gráficos (Chart.js) ---
+        // Cargar Chart.js desde CDN
+        const chartScript = document.createElement('script');
+        chartScript.src = 'https://cdn.jsdelivr.net/npm/chart.js';
+        chartScript.onload = () => {
+            console.log('Chart.js cargado.');
+            setupVitalSignsChart();
+            setupVitalsHistoryChart();
+        };
+        document.head.appendChild(chartScript);
+
+        function setupVitalSignsChart() {
+            const chartData = {
+                labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Presión Arterial (Sistólica)',
+                    data: [130, 128, 125, 122, 120, 118],
+                    borderColor: '#1a73e8',
+                    backgroundColor: 'rgba(26, 115, 232, 0.1)',
+                    fill: true,
+                    tension: 0.1,
+                    pointBackgroundColor: '#1a73e8',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointRadius: 4
+                }, {
+                    label: 'Presión Arterial (Diastólica)',
+                     [85, 84, 82, 80, 79, 78],
+                    borderColor: '#34a853',
+                    backgroundColor: 'rgba(52, 168, 83, 0.1)',
+                    fill: true,
+                    tension: 0.1,
+                    pointBackgroundColor: '#34a853',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointRadius: 4
+                }]
+            };
+            
+            const ctx = document.getElementById('vitalSignsChart').getContext('2d');
+            window.vitalSignsChart = new Chart(ctx, {
+                type: 'line',
+                 chartData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Evolución de Signos Vitales'
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Actualizar gráfico según selección
+            document.getElementById('chart-type-selector')?.addEventListener('change', (e) => {
+                const type = e.target.value;
+                updateVitalSignsChart(type);
+            });
+        }
+
+        function updateVitalSignsChart(type) {
+            const chart = window.vitalSignsChart;
+            let newData;
+            
+            switch(type) {
+                case 'heartRate':
+                    newData = {
+                        labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
+                        datasets: [{
+                            label: 'Frecuencia Cardíaca',
+                            data: [75, 74, 73, 72, 71, 70],
+                            borderColor: '#1a73e8',
+                            backgroundColor: 'rgba(26, 115, 232, 0.1)',
+                            fill: true,
+                            tension: 0.1,
+                            pointBackgroundColor: '#1a73e8',
+                            pointBorderColor: '#fff',
+                            pointBorderWidth: 2,
+                            pointRadius: 4
+                        }]
+                    };
+                    break;
+                case 'temperature':
+                    newData = {
+                        labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
+                        datasets: [{
+                            label: 'Temperatura',
+                            data: [36.8, 36.7, 36.6, 36.7, 36.6, 36.5],
+                            borderColor: '#f9ab00',
+                            backgroundColor: 'rgba(249, 171, 0, 0.1)',
+                            fill: true,
+                            tension: 0.1,
+                            pointBackgroundColor: '#f9ab00',
+                            pointBorderColor: '#fff',
+                            pointBorderWidth: 2,
+                            pointRadius: 4
+                        }]
+                    };
+                    break;
+                case 'spo2':
+                    newData = {
+                        labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
+                        datasets: [{
+                            label: 'Saturación O2',
+                             [98, 98, 99, 99, 99, 98],
+                            borderColor: '#34a853',
+                            backgroundColor: 'rgba(52, 168, 83, 0.1)',
+                            fill: true,
+                            tension: 0.1,
+                            pointBackgroundColor: '#34a853',
+                            pointBorderColor: '#fff',
+                            pointBorderWidth: 2,
+                            pointRadius: 4
+                        }]
+                    };
+                    break;
+                default:
+                    newData = {
+                        labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
+                        datasets: [{
+                            label: 'Presión Arterial (Sistólica)',
+                             [130, 128, 125, 122, 120, 118],
+                            borderColor: '#1a73e8',
+                            backgroundColor: 'rgba(26, 115, 232, 0.1)',
+                            fill: true,
+                            tension: 0.1,
+                            pointBackgroundColor: '#1a73e8',
+                            pointBorderColor: '#fff',
+                            pointBorderWidth: 2,
+                            pointRadius: 4
+                        }, {
+                            label: 'Presión Arterial (Diastólica)',
+                             [85, 84, 82, 80, 79, 78],
+                            borderColor: '#34a853',
+                            backgroundColor: 'rgba(52, 168, 83, 0.1)',
+                            fill: true,
+                            tension: 0.1,
+                            pointBackgroundColor: '#34a853',
+                            pointBorderColor: '#fff',
+                            pointBorderWidth: 2,
+                            pointRadius: 4
+                        }]
+                    };
+            }
+            
+            chart.data = newData;
+            chart.update();
+            APP_STATE.activeChart = type;
+        }
+
+        function refreshChart() {
+            updateVitalSignsChart(APP_STATE.activeChart);
+            alert('Gráfico actualizado con los últimos datos.');
+        }
+
+        function setupVitalsHistoryChart() {
+            const chartData = {
+                labels: ['2023-01-15', '2023-03-20', '2023-06-20'],
+                datasets: [{
+                    label: 'Presión Arterial Sistólica',
+                     [130, 125, 120],
+                    borderColor: '#1a73e8',
+                    backgroundColor: 'rgba(26, 115, 232, 0.1)',
+                    fill: true,
+                    tension: 0.1,
+                    pointBackgroundColor: '#1a73e8',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointRadius: 4
+                }, {
+                    label: 'Presión Arterial Diastólica',
+                    data: [85, 82, 80],
+                    borderColor: '#34a853',
+                    backgroundColor: 'rgba(52, 168, 83, 0.1)',
+                    fill: true,
+                    tension: 0.1,
+                    pointBackgroundColor: '#34a853',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointRadius: 4
+                }]
+            };
+            
+            const ctx = document.getElementById('vitalsHistoryChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                 chartData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Historial de Presión Arterial'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false
+                        }
+                    }
+                }
+            });
+        }
 
         // --- Calculadoras Médicas ---
         function setupCalculators() {
@@ -1284,22 +3640,31 @@
                     const imcValue = imc.toFixed(2);
                     
                     let classification = '';
+                    let recommendations = '';
+                    
                     if (imc < 18.5) {
                         classification = 'Bajo peso';
+                        recommendations = 'Considerar evaluación nutricional y aumento de ingesta calórica.';
                     } else if (imc < 25) {
                         classification = 'Peso normal';
+                        recommendations = 'Mantener estilo de vida saludable con dieta equilibrada y ejercicio regular.';
                     } else if (imc < 30) {
                         classification = 'Sobrepeso';
+                        recommendations = 'Recomendar dieta hipocalórica y ejercicio físico regular. Evaluar factores de riesgo cardiovascular.';
                     } else if (imc < 35) {
                         classification = 'Obesidad grado I';
+                        recommendations = 'Intervención nutricional intensiva. Considerar tratamiento farmacológico si hay comorbilidades.';
                     } else if (imc < 40) {
                         classification = 'Obesidad grado II';
+                        recommendations = 'Tratamiento multidisciplinario. Evaluar candidatura a cirugía bariátrica.';
                     } else {
                         classification = 'Obesidad grado III (mórbida)';
+                        recommendations = 'Evaluación urgente para tratamiento multidisciplinario y cirugía bariátrica.';
                     }
                     
                     document.getElementById('imc-value').textContent = imcValue;
                     document.getElementById('imc-classification').textContent = classification;
+                    document.getElementById('imc-recommendations').textContent = recommendations;
                     document.getElementById('imc-result').style.display = 'block';
                 } else {
                     alert('Por favor, ingrese valores válidos de peso y talla.');
@@ -1332,20 +3697,28 @@
                     const egfrValue = Math.round(egfr);
                     
                     let stage = '';
+                    let recommendations = '';
+                    
                     if (egfr >= 90) {
                         stage = 'Estadio 1: Daño renal con filtrado normal';
+                        recommendations = 'Control anual de función renal. Mantener factores de riesgo bajo control.';
                     } else if (egfr >= 60) {
                         stage = 'Estadio 2: Daño renal con filtrado ligeramente disminuido';
+                        recommendations = 'Control cada 6-12 meses. Evaluar causa de daño renal.';
                     } else if (egfr >= 30) {
                         stage = 'Estadio 3: Filtrado moderadamente disminuido';
+                        recommendations = 'Control cada 3-6 meses. Referir a nefrología. Evitar nefrotóxicos.';
                     } else if (egfr >= 15) {
                         stage = 'Estadio 4: Filtrado severamente disminuido';
+                        recommendations = 'Control cada 1-3 meses. Preparar para terapia de reemplazo renal.';
                     } else {
                         stage = 'Estadio 5: Insuficiencia renal';
+                        recommendations = 'Iniciar plan de terapia de reemplazo renal (diálisis o trasplante).';
                     }
                     
                     document.getElementById('filtration-value').textContent = egfrValue;
                     document.getElementById('filtration-stage').textContent = stage;
+                    document.getElementById('filtration-recommendations').textContent = recommendations;
                     document.getElementById('filtration-result').style.display = 'block';
                 } else {
                     alert('Por favor, ingrese valores válidos de creatinina y edad.');
@@ -1364,22 +3737,78 @@
                 
                 let classification = '';
                 let prognosis = '';
+                let recommendations = '';
                 
                 if (totalScore <= 6) {
                     classification = 'Clase A (7-8 puntos)';
                     prognosis = '6 meses a 2 años';
+                    recommendations = 'Manejo médico conservador. Control cada 6-12 meses.';
                 } else if (totalScore <= 9) {
                     classification = 'Clase B (9-10 puntos)';
                     prognosis = '4-6 meses';
+                    recommendations = 'Evaluar candidatura a trasplante hepático. Control cada 3-6 meses.';
                 } else {
                     classification = 'Clase C (11-15 puntos)';
                     prognosis = '1-3 meses';
+                    recommendations = 'Urgente evaluación para trasplante hepático. Manejo de complicaciones.';
                 }
                 
                 document.getElementById('child-pugh-score').textContent = totalScore;
                 document.getElementById('child-pugh-class').textContent = classification;
                 document.getElementById('child-pugh-prognosis').textContent = prognosis;
+                document.getElementById('child-pugh-recommendations').textContent = recommendations;
                 document.getElementById('child-pugh-result').style.display = 'block';
+            });
+
+            // Calculadora de Riesgo Cardiovascular (SCORE)
+            document.getElementById('calculate-cardiovascular-risk')?.addEventListener('click', () => {
+                const age = parseInt(document.getElementById('cv-age').value);
+                const totalCholesterol = parseFloat(document.getElementById('cv-total-cholesterol').value);
+                const systolic = parseInt(document.getElementById('cv-systolic').value);
+                const smoking = document.getElementById('cv-smoking').value;
+                const gender = document.querySelector('input[name="cv-gender"]:checked').value;
+                
+                if (age > 0 && totalCholesterol > 0 && systolic > 0) {
+                    // Fórmula SCORE simplificada para población europea
+                    let risk;
+                    if (gender === 'male') {
+                        // Fórmula aproximada para hombres
+                        risk = (age * 0.1) + (totalCholesterol / 20) + (systolic / 20) + (smoking === 'yes' ? 5 : 0);
+                    } else {
+                        // Fórmula aproximada para mujeres
+                        risk = (age * 0.08) + (totalCholesterol / 25) + (systolic / 25) + (smoking === 'yes' ? 4 : 0);
+                    }
+                    
+                    // Limitar el riesgo a un máximo razonable
+                    risk = Math.min(risk, 30);
+                    
+                    let level = '';
+                    let recommendations = '';
+                    
+                    if (risk < 1) {
+                        level = 'Bajo riesgo (<1%)';
+                        recommendations = 'Mantener estilo de vida saludable. Control anual.';
+                    } else if (risk < 5) {
+                        level = 'Riesgo bajo (1-5%)';
+                        recommendations = 'Mantener factores de riesgo bajo control. Evaluación cada 1-2 años.';
+                    } else if (risk < 10) {
+                        level = 'Riesgo moderado (5-10%)';
+                        recommendations = 'Intervención en factores de riesgo modificables. Considerar tratamiento farmacológico.';
+                    } else if (risk < 20) {
+                        level = 'Alto riesgo (10-20%)';
+                        recommendations = 'Tratamiento intensivo de factores de riesgo. Iniciar estatinas.';
+                    } else {
+                        level = 'Muy alto riesgo (>20%)';
+                        recommendations = 'Tratamiento agresivo de todos los factores de riesgo. Alta prioridad para prevención cardiovascular.';
+                    }
+                    
+                    document.getElementById('cv-risk-value').textContent = `${risk.toFixed(1)}%`;
+                    document.getElementById('cv-risk-level').textContent = level;
+                    document.getElementById('cv-recommendations').textContent = recommendations;
+                    document.getElementById('cardiovascular-risk-result').style.display = 'block';
+                } else {
+                    alert('Por favor, ingrese valores válidos en todos los campos.');
+                }
             });
         }
 
@@ -1445,6 +3874,19 @@
                 document.getElementById('notes').value = '';
                 imcOutput.value = '';
             });
+            
+            // Limpiar signos vitales
+            document.getElementById('clear-vitals')?.addEventListener('click', () => {
+                document.getElementById('temperature').value = '';
+                document.getElementById('pa').value = '';
+                document.getElementById('fc').value = '';
+                document.getElementById('fr').value = '';
+                document.getElementById('spo2').value = '';
+                document.getElementById('weight').value = '';
+                document.getElementById('height').value = '';
+                document.getElementById('notes').value = '';
+                document.getElementById('imc').value = '';
+            });
         }
 
         // --- Recetas ---
@@ -1485,7 +3927,7 @@
                         <label for="instructions-${entryCount}">Instrucciones</label>
                         <textarea id="instructions-${entryCount}" rows="2" placeholder="Tomar después de las comidas..."></textarea>
                     </div>
-                    <button class="btn btn-secondary remove-medication" data-entry="${entryCount}">
+                    <button class="btn btn-warning remove-medication" data-entry="${entryCount}">
                         <span class="material-symbols-outlined">delete</span> Eliminar
                     </button>
                 `;
@@ -1542,13 +3984,12 @@
                 const warningList = document.getElementById('interactions-list');
                 
                 if (warnings.length > 0) {
-                    let warningText = '';
+                    let warningText = '<ul class="interactions-list">';
                     warnings.forEach(warning => {
-                        warningText += `<strong>${warning.med1} y ${warning.med2}</strong>: ${warning.description} <span style="color: ${
-                            warning.severity === 'fatal' ? 'red' : 
-                            warning.severity === 'moderada' ? 'orange' : 'blue'
-                        }">(${warning.severity})</span><br>`;
+                        const severityClass = `severity-${warning.severity}`;
+                        warningText += `<li class="${severityClass}"><strong>${warning.med1} y ${warning.med2}</strong>: ${warning.description} (${warning.severity})</li>`;
                     });
+                    warningText += '</ul>';
                     warningList.innerHTML = warningText;
                     warningDiv.style.display = 'block';
                 } else {
@@ -1589,109 +4030,6 @@
                 alert(`Receta emitida para ${patient.nombre} con éxito.\n\nLa receta contiene ${medicationCount} medicamento(s).`);
             });
         }
-
-        // Cargar especialidades en el filtro
-        function loadSpecialties() {
-            const filterSelect = document.getElementById('specialty-filter');
-            if (!filterSelect) return;
-            
-            const specialties = [...new Set(simulatedPatients.map(p => p.especialidad))];
-            specialties.forEach(specialty => {
-                const option = document.createElement('option');
-                option.value = specialty;
-                option.textContent = specialty;
-                filterSelect.appendChild(option);
-            });
-            
-            // Filtrado y búsqueda
-            const searchInput = document.getElementById('patient-search');
-            const specialtyFilter = document.getElementById('specialty-filter');
-            
-            function applyFilters() {
-                const searchTerm = searchInput.value.toLowerCase();
-                const selectedSpecialty = specialtyFilter.value.toLowerCase();
-                const grid = document.getElementById('patient-grid');
-                grid.innerHTML = '';
-                
-                simulatedPatients
-                    .filter(patient => {
-                        const matchesSearch = patient.nombre.toLowerCase().includes(searchTerm) ||
-                                              patient.diagnosticoPrincipal.toLowerCase().includes(searchTerm);
-                        const matchesSpecialty = selectedSpecialty === '' || patient.especialidad.toLowerCase() === selectedSpecialty;
-                        return matchesSearch && matchesSpecialty;
-                    })
-                    .forEach(patient => {
-                        const card = document.createElement('div');
-                        card.className = 'patient-card';
-                        card.innerHTML = `
-                            <h3>${patient.nombre}</h3>
-                            <p><strong>Edad:</strong> ${patient.edad}</p>
-                            <p><strong>Diagnóstico Principal:</strong> ${patient.diagnosticoPrincipal}</p>
-                            <p><strong>Especialidad:</strong> ${patient.especialidad}</p>
-                            <button class="btn btn-secondary btn-view-history" data-patient-id="${patient.id}">
-                                <span class="material-symbols-outlined">history</span> Ver Historia Completa
-                            </button>
-                        `;
-                        grid.appendChild(card);
-                    });
-                
-                // Re-agregar listeners a los nuevos botones
-                document.querySelectorAll('.btn-view-history').forEach(button => {
-                    button.addEventListener('click', handleViewHistory);
-                });
-            }
-            
-            searchInput?.addEventListener('input', applyFilters);
-            specialtyFilter?.addEventListener('change', applyFilters);
-        }
-
-        // --- Gráficos (Chart.js) ---
-        // Cargar Chart.js desde CDN
-        const chartScript = document.createElement('script');
-        chartScript.src = 'https://cdn.jsdelivr.net/npm/chart.js';
-        chartScript.onload = () => {
-            console.log('Chart.js cargado.');
-            // Datos simulados para el gráfico
-            const chartData = {
-                labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
-                datasets: [{
-                    label: 'Presión Arterial (Sistólica)',
-                    data: [130, 128, 125, 122, 120, 118],
-                    borderColor: '#1a73e8',
-                    fill: false,
-                    tension: 0.1
-                }, {
-                    label: 'Presión Arterial (Diastólica)',
-                    data: [85, 84, 82, 80, 79, 78],
-                    borderColor: '#34a853',
-                    fill: false,
-                    tension: 0.1
-                }]
-            };
-            const ctx = document.getElementById('vitalSignsChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'line',
-                data: chartData,
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                        },
-                        title: {
-                            display: true,
-                            text: 'Evolución de Signos Vitales'
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: false
-                        }
-                    }
-                }
-            });
-        };
-        document.head.appendChild(chartScript);
     </script>
 </body>
 </html>
