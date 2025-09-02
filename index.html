@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,49 +9,68 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg: linear-gradient(180deg, #e0f7fa, #b2ebf2);
-            --glass: rgba(255, 255, 255, 0.85);
-            --glass-2: rgba(255, 255, 255, 0.2);
-            --accent: #26a69a;
-            --accent-2: #4db6ac;
-            --primary-blue: #1a73e8;
-            --primary-blue-darker: #0d47a1;
-            --primary-blue-lighter: #e8f0fe;
-            --success-green: #34a853;
-            --warning-yellow: #f9ab00;
-            --alert-red: #ea4335;
-            --accent-teal: #00897b;
-            --accent-purple: #7b1fa2;
-            --background-light: #f8f9fa;
-            --text-dark: #2c4a52;
-            --text-light: #ffffff;
-            --muted: #546e7a;
-            --danger: #e57373;
-            --card-radius: 16px;
-            --shadow: 0 10px 30px rgba(38, 166, 154, 0.15);
-            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.1);
-            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.15);
+            --bg: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            --glass: rgba(15, 30, 40, 0.85);
+            --glass-2: rgba(255, 255, 255, 0.1);
+            --accent: #00b4d8;
+            --accent-2: #0077b6;
+            --accent-3: #023e8a;
+            --primary-blue: #3a86ff;
+            --primary-blue-darker: #00509d;
+            --primary-blue-lighter: rgba(58, 134, 255, 0.1);
+            --success-green: #38b000;
+            --warning-yellow: #ffca3a;
+            --alert-red: #d90429;
+            --text-light: #e0f7fa;
+            --text-dark: #073b4c;
+            --muted: #8d99ae;
+            --danger: #ef233c;
+            --card-radius: 20px;
+            --shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            --shadow-sm: 0 8px 24px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 16px 32px rgba(0, 0, 0, 0.25);
+            --shadow-lg: 0 32px 64px rgba(0, 0, 0, 0.3);
+            --shadow-inset: inset 0 1px 2px rgba(255, 255, 255, 0.1);
             --tap: 48px;
             --font: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-            --maxwidth: 1200px;
-            --border: #b2ebf2;
-            --border-light: #e0e0e0;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --maxwidth: 1400px;
+            --border: rgba(141, 153, 174, 0.3);
+            --border-light: rgba(141, 153, 174, 0.2);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-fast: all 0.2s ease;
+            --z-header: 100;
+            --z-sidebar: 90;
+            --z-modal: 200;
+            --gradient-primary: linear-gradient(135deg, #00b4d8, #0077b6);
+            --gradient-secondary: linear-gradient(135deg, #3a86ff, #00509d);
+            --gradient-success: linear-gradient(135deg, #38b000, #006d21);
+            --gradient-warning: linear-gradient(135deg, #ffca3a, #e69500);
+            --gradient-danger: linear-gradient(135deg, #d90429, #9d0208);
         }
         
-        :root[data-theme="dark"] {
-            --bg: linear-gradient(180deg, #0a232f, #08313a);
-            --glass: rgba(16, 52, 64, 0.85);
-            --glass-2: rgba(255, 255, 255, 0.08);
-            --accent: #4db6ac;
-            --accent-2: #26a69a;
-            --text-dark: #e0f7fa;
-            --text-light: #ffffff;
-            --muted: #8caab5;
-            --border: #006064;
-            --border-light: #1e3a4a;
-            --background-light: #0a232f;
-            --primary-blue-lighter: #0a1f2c;
+        :root[data-theme="light"] {
+            --bg: linear-gradient(135deg, #f0f2f5, #e6e9ef, #d8dee9);
+            --glass: rgba(255, 255, 255, 0.95);
+            --glass-2: rgba(15, 30, 40, 0.05);
+            --accent: #0077b6;
+            --accent-2: #00509d;
+            --accent-3: #003f7f;
+            --primary-blue: #1e3a8a;
+            --primary-blue-darker: #1e3a8a;
+            --primary-blue-lighter: rgba(30, 58, 138, 0.1);
+            --success-green: #16a34a;
+            --warning-yellow: #d97706;
+            --alert-red: #dc2626;
+            --text-light: #073b4c;
+            --text-dark: #073b4c;
+            --muted: #64748b;
+            --border: rgba(100, 116, 139, 0.3);
+            --border-light: rgba(100, 116, 139, 0.2);
+            --gradient-primary: linear-gradient(135deg, #0077b6, #00509d);
+            --gradient-secondary: linear-gradient(135deg, #1e3a8a, #1e3a8a);
+            --gradient-success: linear-gradient(135deg, #16a34a, #059669);
+            --gradient-warning: linear-gradient(135deg, #d97706, #b45309);
+            --gradient-danger: linear-gradient(135deg, #dc2626, #b91c1c);
         }
         
         * {
@@ -70,75 +88,84 @@
             -webkit-font-smoothing: antialiased;
             display: flex;
             justify-content: center;
-            padding: 12px;
+            padding: 16px;
             color: var(--text-dark);
+            overflow-x: hidden;
         }
         
         .app {
             width: 100%;
             max-width: var(--maxwidth);
-            height: calc(100vh - 24px);
+            height: calc(100vh - 32px);
             display: flex;
             flex-direction: column;
             background: var(--glass);
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(20px);
             border-radius: var(--card-radius);
             box-shadow: var(--shadow);
             overflow: hidden;
             position: relative;
+            border: 1px solid var(--border);
         }
         
         header {
-            padding: 16px 24px;
-            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 32px;
+            background: rgba(15, 30, 40, 0.95);
+            backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border);
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: var(--z-header);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
         }
         
         header h1 {
-            font-size: 1.6rem;
-            font-weight: 600;
-            color: var(--accent);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-light);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 14px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
         
         .brand-icon {
-            font-size: 1.8rem;
+            font-size: 2rem;
             color: var(--accent);
+            text-shadow: 0 0 10px rgba(0, 180, 216, 0.5);
         }
         
         .controls {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 16px;
         }
         
         .theme-toggle {
-            background: none;
+            background: var(--glass-2);
             border: none;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             cursor: pointer;
-            color: var(--accent);
-            padding: 8px;
+            color: var(--text-light);
+            padding: 12px;
             border-radius: 50%;
-            width: 44px;
-            height: 44px;
+            width: 52px;
+            height: 52px;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: var(--transition);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
         }
         
         .theme-toggle:hover {
-            background: var(--glass-2);
-            transform: rotate(30deg);
+            background: var(--accent-2);
+            transform: translateY(-2px) rotate(15deg);
+            box-shadow: var(--shadow-md);
         }
         
         .container {
@@ -148,68 +175,96 @@
         }
         
         .sidebar {
-            width: 300px;
+            width: 320px;
             background: var(--glass);
             border-right: 1px solid var(--border);
-            padding: 16px;
+            padding: 20px;
             overflow-y: auto;
             transition: var(--transition);
+            position: relative;
+            z-index: var(--z-sidebar);
+            box-shadow: var(--shadow-sm);
         }
         
         .sidebar-header {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 12px 0;
-            margin-bottom: 16px;
+            gap: 12px;
+            padding: 16px 0;
+            margin-bottom: 24px;
             border-bottom: 1px solid var(--border-light);
+            color: var(--accent);
         }
         
         .sidebar-header h3 {
-            font-size: 1.1rem;
-            color: var(--accent);
+            font-size: 1.2rem;
             font-weight: 600;
+            letter-spacing: 0.5px;
         }
         
         .cat-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 10px;
+            gap: 14px;
         }
         
         .cat-btn {
-            padding: 14px 18px;
+            padding: 18px 22px;
             border: none;
-            border-radius: 12px;
+            border-radius: 16px;
             background: var(--glass-2);
-            color: var(--text-dark);
+            color: var(--text-light);
             font-weight: 500;
             cursor: pointer;
             text-align: left;
             transition: var(--transition);
             display: flex;
             align-items: center;
-            gap: 12px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            gap: 16px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cat-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: transparent;
+            transition: var(--transition);
         }
         
         .cat-btn:hover {
             background: var(--accent-2);
             color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(38, 166, 154, 0.2);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .cat-btn:hover::before {
+            background: var(--accent);
         }
         
         .cat-btn.active {
-            background: var(--accent);
+            background: var(--accent-2);
             color: white;
-            box-shadow: 0 6px 16px rgba(38, 166, 154, 0.2);
+            box-shadow: var(--shadow-md);
+            font-weight: 600;
+        }
+        
+        .cat-btn.active::before {
+            background: var(--accent);
         }
         
         .cat-btn i {
-            font-size: 1.4rem;
-            width: 24px;
+            font-size: 1.6rem;
+            width: 28px;
             text-align: center;
+            transition: var(--transition);
         }
         
         .cat-btn[data-cat="higiene"] i { color: #4CAF50; }
@@ -228,80 +283,94 @@
         .cat-btn[data-cat="pacientes"] i { color: #673AB7; }
         
         .small {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--muted);
-            margin-top: 8px;
-            line-height: 1.4;
+            margin-top: 10px;
+            line-height: 1.5;
+            opacity: 0.9;
         }
         
         main {
             flex: 1;
-            padding: 16px;
+            padding: 20px;
             overflow-y: auto;
-            background: var(--background-light);
+            background: var(--glass);
+            backdrop-filter: blur(10px);
         }
         
         .search-container {
             display: flex;
-            gap: 8px;
-            margin-bottom: 20px;
+            gap: 12px;
+            margin-bottom: 28px;
             position: sticky;
-            top: 80px;
-            background: var(--background-light);
-            padding: 8px 0;
+            top: 92px;
+            background: var(--glass);
+            padding: 12px 0;
             z-index: 50;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
         }
         
         .input {
             flex: 1;
-            padding: 14px 18px;
+            padding: 16px 20px;
             border: 1px solid var(--border-light);
-            border-radius: 12px;
+            border-radius: 16px;
             font-family: var(--font);
-            font-size: 1rem;
-            background: white;
-            color: var(--text-dark);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            font-size: 1.05rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(10px);
+        }
+        
+        .input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
         }
         
         .input:focus {
             outline: none;
             border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(38, 166, 154, 0.2);
+            box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.2);
+            background: rgba(255, 255, 255, 0.15);
         }
         
         .btn {
-            padding: 14px 18px;
+            padding: 16px 20px;
             border: none;
-            border-radius: 12px;
+            border-radius: 16px;
             cursor: pointer;
             font-weight: 500;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            gap: 10px;
+            box-shadow: var(--shadow-sm);
+            font-size: 1.05rem;
+            transition: var(--transition);
         }
         
         .btn.primary {
-            background: var(--accent);
+            background: var(--gradient-primary);
             color: white;
+            border: 1px solid rgba(0, 119, 182, 0.3);
         }
         
         .btn.primary:hover {
-            background: var(--accent-2);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(38, 166, 154, 0.3);
+            background: var(--gradient-secondary);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
         }
         
         .btn.secondary {
-            background: var(--primary-blue);
+            background: var(--gradient-secondary);
             color: white;
+            border: 1px solid rgba(30, 58, 138, 0.3);
         }
         
         .btn.secondary:hover {
             background: var(--primary-blue-darker);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
         }
         
         .btn.ghost {
@@ -312,77 +381,92 @@
         
         .btn.ghost:hover {
             background: var(--glass-2);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
         }
         
         .btn.small {
-            padding: 8px 12px;
-            font-size: 0.9rem;
+            padding: 10px 14px;
+            font-size: 0.95rem;
         }
         
         .content-area {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 24px;
         }
         
         .category-card {
-            background: white;
-            border-radius: 16px;
-            padding: 20px;
+            background: var(--glass-2);
+            border-radius: 20px;
+            padding: 28px;
             box-shadow: var(--shadow-sm);
             border: 1px solid var(--border-light);
             transition: var(--transition);
+            backdrop-filter: blur(10px);
         }
         
         .category-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-md);
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
         }
         
         .category-card h2 {
             color: var(--accent);
-            margin-bottom: 16px;
-            font-size: 1.4rem;
-            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            letter-spacing: -0.5px;
         }
         
         .category-card h2 i {
-            font-size: 1.5rem;
+            font-size: 1.7rem;
         }
         
         .category-card h3 {
             color: var(--accent-2);
-            margin: 16px 0 10px 0;
-            font-size: 1.2rem;
+            margin: 20px 0 12px 0;
+            font-size: 1.3rem;
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: -0.3px;
+        }
+        
+        .category-card h4 {
+            color: var(--primary-blue);
+            margin: 12px 0 8px 0;
+            font-size: 1.15rem;
+            font-weight: 500;
             display: flex;
             align-items: center;
             gap: 8px;
         }
         
-        .category-card h4 {
-            color: var(--primary-blue);
-            margin: 10px 0 6px 0;
-            font-size: 1.1rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+        .procedure {
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border-light);
+            transition: var(--transition);
+            position: relative;
         }
         
-        .procedure {
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px dashed var(--border-light);
+        .procedure::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
             transition: var(--transition);
         }
         
-        .procedure:hover {
-            border-bottom-color: var(--accent-2);
+        .procedure:hover::after {
+            width: 100%;
         }
         
         .procedure:last-child {
@@ -393,47 +477,55 @@
         
         .procedure h3 {
             color: var(--accent-2);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
         
         .procedure h3 i {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: var(--accent);
         }
         
         .procedure p {
-            margin: 5px 0;
-            color: var(--text-dark);
-            line-height: 1.5;
+            margin: 6px 0;
+            color: var(--text-light);
+            line-height: 1.6;
+            font-size: 1.02rem;
         }
         
         .procedure .summary {
             font-style: italic;
             color: var(--muted);
-            margin-bottom: 10px;
-            padding: 12px;
+            margin-bottom: 12px;
+            padding: 16px;
             background: var(--primary-blue-lighter);
-            border-radius: 8px;
+            border-radius: 12px;
             border-left: 4px solid var(--primary-blue);
+            border: 1px solid var(--border-light);
+        }
+        
+        .procedure .summary i {
+            color: var(--primary-blue);
+            margin-right: 8px;
         }
         
         .materials, .steps, .notes {
-            margin: 10px 0;
+            margin: 12px 0;
         }
         
         .materials ul, .steps ol {
-            margin: 8px 0;
-            padding-left: 24px;
+            margin: 10px 0;
+            padding-left: 28px;
         }
         
         .materials li, .steps li {
-            margin: 5px 0;
+            margin: 6px 0;
             display: flex;
             align-items: flex-start;
-            gap: 8px;
+            gap: 10px;
+            line-height: 1.5;
         }
         
         .materials li::before, .steps li::before {
@@ -441,6 +533,7 @@
             color: var(--accent);
             font-weight: bold;
             margin-top: 6px;
+            font-size: 1.2rem;
         }
         
         .steps li::before {
@@ -448,64 +541,78 @@
             counter-increment: step;
             background: var(--accent);
             color: white;
-            width: 20px;
-            height: 20px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             font-weight: bold;
             margin-top: 4px;
         }
         
         .notes {
             background: var(--primary-blue-lighter);
-            padding: 14px 18px;
-            border-radius: 10px;
+            padding: 18px 22px;
+            border-radius: 14px;
             border-left: 4px solid var(--primary-blue);
-            margin: 12px 0;
-            font-size: 0.95rem;
+            margin: 14px 0;
+            font-size: 0.98rem;
+            border: 1px solid var(--border-light);
         }
         
         .notes i {
             color: var(--primary-blue);
-            margin-right: 8px;
+            margin-right: 10px;
         }
         
         .disease-panel {
-            background: white;
-            border-radius: 16px;
-            padding: 20px;
+            background: var(--glass-2);
+            border-radius: 20px;
+            padding: 28px;
             box-shadow: var(--shadow-sm);
             border: 1px solid var(--border-light);
-            margin-top: 20px;
+            margin-top: 24px;
             transition: var(--transition);
+            backdrop-filter: blur(10px);
         }
         
         .disease-panel h2 {
             color: var(--accent);
-            margin-bottom: 16px;
-            font-size: 1.4rem;
-            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
         
         .disease-panel h2 i {
-            font-size: 1.5rem;
+            font-size: 1.7rem;
         }
         
         .disease-item {
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px dashed var(--border-light);
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border-light);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .disease-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
             transition: var(--transition);
         }
         
-        .disease-item:hover {
-            border-bottom-color: var(--accent-2);
+        .disease-item:hover::after {
+            width: 100%;
         }
         
         .disease-item:last-child {
@@ -516,275 +623,315 @@
         
         .disease-item strong {
             color: var(--accent-2);
-            font-size: 1.1rem;
+            font-size: 1.15rem;
+            font-weight: 600;
         }
         
         .disease-item .small {
-            font-size: 0.95rem;
+            font-size: 0.98rem;
             color: var(--muted);
-            margin-top: 6px;
-            line-height: 1.5;
+            margin-top: 8px;
+            line-height: 1.6;
+        }
+        
+        .disease-item .small i {
+            color: var(--primary-blue);
+            margin-right: 6px;
         }
         
         .med-combo {
-            background: white;
-            border-radius: 16px;
-            padding: 20px;
+            background: var(--glass-2);
+            border-radius: 20px;
+            padding: 28px;
             box-shadow: var(--shadow-sm);
             border: 1px solid var(--border-light);
-            margin-top: 20px;
+            margin-top: 24px;
             transition: var(--transition);
+            backdrop-filter: blur(10px);
         }
         
         .med-combo h2 {
             color: var(--accent);
-            margin-bottom: 20px;
-            font-size: 1.4rem;
-            font-weight: 600;
+            margin-bottom: 24px;
+            font-size: 1.6rem;
+            font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
         
         .med-combo h2 i {
-            font-size: 1.5rem;
+            font-size: 1.7rem;
         }
         
         .form-row {
             display: flex;
-            gap: 16px;
-            margin-bottom: 16px;
+            gap: 20px;
+            margin-bottom: 20px;
             flex-wrap: wrap;
         }
         
         .form-group {
             flex: 1;
-            min-width: 200px;
+            min-width: 240px;
         }
         
         .form-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-weight: 500;
-            color: var(--text-dark);
+            color: var(--text-light);
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
+            font-size: 1.05rem;
         }
         
         .form-group label i {
             color: var(--accent);
-            font-size: 1.1rem;
+            font-size: 1.15rem;
         }
         
         select.form-control, input.form-control {
             width: 100%;
-            padding: 14px 18px;
+            padding: 16px 20px;
             border: 1px solid var(--border-light);
-            border-radius: 12px;
+            border-radius: 16px;
             font-family: var(--font);
-            font-size: 1rem;
-            background: white;
-            color: var(--text-dark);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            font-size: 1.05rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(10px);
         }
         
         select.form-control:focus, input.form-control:focus {
             outline: none;
             border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(38, 166, 154, 0.2);
+            box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.2);
+            background: rgba(255, 255, 255, 0.15);
         }
         
         .interactions-warning {
-            background: #fff3cd;
-            border: 1px solid #ffeaa7;
-            border-radius: 12px;
-            padding: 16px;
-            margin: 16px 0;
+            background: rgba(255, 202, 58, 0.15);
+            border: 1px solid rgba(255, 202, 58, 0.3);
+            border-radius: 16px;
+            padding: 20px;
+            margin: 20px 0;
             display: flex;
             align-items: flex-start;
-            gap: 12px;
-            animation: fadeIn 0.3s ease;
+            gap: 16px;
+            animation: fadeIn 0.4s ease;
+            backdrop-filter: blur(10px);
+            border-left: 4px solid var(--warning-yellow);
         }
         
         .interactions-warning.danger {
-            background: #f8d7da;
-            border: 1px solid #f5c6cb;
-            color: #721c24;
+            background: rgba(217, 4, 41, 0.15);
+            border: 1px solid rgba(217, 4, 41, 0.3);
+            color: #f8d7da;
+            border-left: 4px solid var(--alert-red);
         }
         
         .interactions-warning.success {
-            background: #d4edda;
-            border: 1px solid #c3e6cb;
-            color: #155724;
+            background: rgba(56, 176, 0, 0.15);
+            border: 1px solid rgba(56, 176, 0, 0.3);
+            color: #d1f7e5;
+            border-left: 4px solid var(--success-green);
         }
         
         .interactions-warning i {
-            font-size: 1.5rem;
-            margin-top: 2px;
+            font-size: 1.6rem;
+            margin-top: 4px;
         }
         
         .interactions-warning.danger i {
-            color: #c82333;
+            color: var(--alert-red);
         }
         
         .interactions-warning.success i {
-            color: #218838;
+            color: var(--success-green);
         }
         
         .interactions-list {
-            margin: 8px 0 0 40px;
+            margin: 10px 0 0 48px;
             flex: 1;
         }
         
         .interactions-list li {
-            margin: 6px 0;
-            padding: 4px 0;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
+            margin: 8px 0;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
         }
         
         .interactions-list li:last-child {
             border-bottom: none;
         }
         
+        .interactions-list li a {
+            color: var(--accent);
+            text-decoration: none;
+            margin-left: 8px;
+        }
+        
+        .interactions-list li a:hover {
+            text-decoration: underline;
+        }
+        
         .pae-form {
-            background: white;
-            border-radius: 16px;
-            padding: 20px;
+            background: var(--glass-2);
+            border-radius: 20px;
+            padding: 28px;
             box-shadow: var(--shadow-sm);
             border: 1px solid var(--border-light);
-            margin-top: 20px;
+            margin-top: 24px;
             transition: var(--transition);
+            backdrop-filter: blur(10px);
         }
         
         .pae-form h2 {
             color: var(--accent);
-            margin-bottom: 20px;
-            font-size: 1.4rem;
-            font-weight: 600;
+            margin-bottom: 24px;
+            font-size: 1.6rem;
+            font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
         
         .pae-form h2 i {
-            font-size: 1.5rem;
+            font-size: 1.7rem;
         }
         
         .rcp-guide {
-            background: white;
-            border-radius: 16px;
-            padding: 20px;
+            background: var(--glass-2);
+            border-radius: 20px;
+            padding: 28px;
             box-shadow: var(--shadow-sm);
             border: 1px solid var(--border-light);
-            margin-top: 20px;
+            margin-top: 24px;
             transition: var(--transition);
+            backdrop-filter: blur(10px);
         }
         
         .rcp-guide h2 {
             color: var(--accent);
-            margin-bottom: 20px;
-            font-size: 1.4rem;
-            font-weight: 600;
+            margin-bottom: 24px;
+            font-size: 1.6rem;
+            font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
         
         .rcp-guide h2 i {
-            font-size: 1.5rem;
+            font-size: 1.7rem;
         }
         
         .rcp-step {
-            margin-bottom: 20px;
-            padding-left: 32px;
+            margin-bottom: 24px;
+            padding-left: 36px;
             position: relative;
             transition: var(--transition);
+            padding: 16px 20px;
+            background: rgba(58, 134, 255, 0.05);
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-blue);
+            border: 1px solid var(--border-light);
         }
         
         .rcp-step:hover {
-            background: var(--primary-blue-lighter);
-            border-radius: 8px;
-            padding: 12px 16px 12px 48px;
+            background: rgba(58, 134, 255, 0.1);
+            transform: translateX(8px);
         }
         
         .rcp-step::before {
             content: attr(data-step);
             position: absolute;
             left: 0;
-            top: 0;
-            width: 28px;
-            height: 28px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 32px;
+            height: 32px;
             background: var(--accent);
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: bold;
             z-index: 1;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         
         .score-result {
-            background: white;
-            border-radius: 16px;
-            padding: 20px;
+            background: var(--glass-2);
+            border-radius: 20px;
+            padding: 28px;
             box-shadow: var(--shadow-sm);
             border: 1px solid var(--border-light);
-            margin-top: 20px;
+            margin-top: 24px;
             text-align: center;
             transition: var(--transition);
+            backdrop-filter: blur(10px);
         }
         
         .score-result h3 {
             color: var(--accent);
-            margin-bottom: 16px;
-            font-size: 1.3rem;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            font-weight: 600;
         }
         
         .score-value {
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             font-weight: bold;
             color: var(--accent);
-            margin: 16px 0;
-            text-shadow: 0 2px 4px rgba(38, 166, 154, 0.2);
+            margin: 20px 0;
+            text-shadow: 0 2px 4px rgba(0, 180, 216, 0.3);
+            font-family: 'Courier New', monospace;
         }
         
         .score-category {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 500;
             color: var(--accent-2);
         }
         
         .tab-container {
-            margin-top: 20px;
+            margin-top: 24px;
         }
         
         .tabs {
             display: flex;
             border-bottom: 1px solid var(--border-light);
-            margin-bottom: 20px;
-            border-radius: 12px 12px 0 0;
+            margin-bottom: 24px;
+            border-radius: 16px 16px 0 0;
             overflow: hidden;
+            background: var(--glass-2);
+            border: 1px solid var(--border-light);
         }
         
         .tab {
-            padding: 14px 20px;
+            padding: 16px 24px;
             cursor: pointer;
             font-weight: 500;
             color: var(--muted);
             border-bottom: 3px solid transparent;
             transition: var(--transition);
-            background: var(--glass-2);
+            background: transparent;
+            flex: 1;
+            text-align: center;
         }
         
         .tab:first-child {
-            border-radius: 12px 0 0 0;
+            border-radius: 16px 0 0 0;
         }
         
         .tab:last-child {
-            border-radius: 0 12px 0 0;
+            border-radius: 0 16px 0 0;
         }
         
         .tab:hover {
@@ -795,7 +942,7 @@
         .tab.active {
             color: var(--accent);
             border-bottom: 3px solid var(--accent);
-            background: rgba(38, 166, 154, 0.1);
+            background: rgba(0, 180, 216, 0.1);
             font-weight: 600;
         }
         
@@ -809,88 +956,109 @@
         
         .calculator-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
         }
         
         .calculator-form {
-            background: white;
-            border-radius: 16px;
-            padding: 20px;
+            background: var(--glass-2);
+            border-radius: 20px;
+            padding: 28px;
             box-shadow: var(--shadow-sm);
             border: 1px solid var(--border-light);
             transition: var(--transition);
+            backdrop-filter: blur(10px);
         }
         
         .calculator-form:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-md);
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
         }
         
         .calculator-form h3 {
             color: var(--accent);
-            margin-bottom: 20px;
-            font-size: 1.3rem;
+            margin-bottom: 24px;
+            font-size: 1.4rem;
             font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
         
         .calculator-form h3 i {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
         }
         
         .patient-list {
-            background: white;
-            border-radius: 16px;
-            padding: 20px;
+            background: var(--glass-2);
+            border-radius: 20px;
+            padding: 28px;
             box-shadow: var(--shadow-sm);
             border: 1px solid var(--border-light);
-            margin-top: 20px;
+            margin-top: 24px;
             transition: var(--transition);
+            backdrop-filter: blur(10px);
         }
         
         .patient-list h2 {
             color: var(--accent);
-            margin-bottom: 20px;
-            font-size: 1.4rem;
-            font-weight: 600;
+            margin-bottom: 24px;
+            font-size: 1.6rem;
+            font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
         
         .patient-list h2 i {
-            font-size: 1.5rem;
+            font-size: 1.7rem;
         }
         
         .patient-card {
             background: var(--primary-blue-lighter);
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 12px;
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 16px;
             border-left: 5px solid var(--primary-blue);
             transition: var(--transition);
             cursor: pointer;
             position: relative;
             overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+        
+        .patient-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(58, 134, 255, 0.1));
+            opacity: 0;
+            transition: var(--transition);
         }
         
         .patient-card:hover {
-            transform: translateX(6px);
-            background: rgba(26, 115, 232, 0.15);
+            transform: translateX(8px);
+            background: rgba(58, 134, 255, 0.18);
+        }
+        
+        .patient-card:hover::before {
+            opacity: 1;
         }
         
         .patient-card::after {
             content: "→";
             position: absolute;
-            right: 16px;
+            right: 20px;
             top: 50%;
             transform: translateY(-50%);
             opacity: 0;
             transition: var(--transition);
+            color: var(--primary-blue);
+            font-weight: bold;
         }
         
         .patient-card:hover::after {
@@ -903,71 +1071,73 @@
         
         .patient-card h3 {
             color: var(--primary-blue-darker);
-            margin-bottom: 6px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .patient-card h3 i {
-            color: var(--primary-blue);
-            font-size: 1.2rem;
-        }
-        
-        .patient-card p {
-            margin: 3px 0;
-            font-size: 0.95rem;
-            color: var(--text-dark);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        
-        .patient-card p i {
-            color: var(--muted);
-            font-size: 1rem;
-            width: 20px;
-            text-align: center;
-        }
-        
-        .resource-panel {
-            background: white;
-            border-radius: 16px;
-            padding: 20px;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--border-light);
-            margin-top: 20px;
-            transition: var(--transition);
-        }
-        
-        .resource-panel h2 {
-            color: var(--accent);
-            margin-bottom: 20px;
-            font-size: 1.4rem;
+            margin-bottom: 8px;
+            font-size: 1.15rem;
             font-weight: 600;
             display: flex;
             align-items: center;
             gap: 10px;
         }
         
+        .patient-card h3 i {
+            color: var(--primary-blue);
+            font-size: 1.3rem;
+        }
+        
+        .patient-card p {
+            margin: 4px 0;
+            font-size: 0.98rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .patient-card p i {
+            color: var(--muted);
+            font-size: 1.1rem;
+            width: 22px;
+            text-align: center;
+        }
+        
+        .resource-panel {
+            background: var(--glass-2);
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            margin-top: 24px;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+        
+        .resource-panel h2 {
+            color: var(--accent);
+            margin-bottom: 24px;
+            font-size: 1.6rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
         .resource-panel h2 i {
-            font-size: 1.5rem;
+            font-size: 1.7rem;
         }
         
         .resource-card {
             background: var(--primary-blue-lighter);
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 12px;
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 16px;
             border-left: 5px solid var(--primary-blue);
             transition: var(--transition);
+            border: 1px solid var(--border-light);
         }
         
         .resource-card:hover {
-            transform: translateX(6px);
-            background: rgba(26, 115, 232, 0.15);
+            transform: translateX(8px);
+            background: rgba(58, 134, 255, 0.18);
         }
         
         .resource-card:last-child {
@@ -976,106 +1146,195 @@
         
         .resource-card h3 {
             color: var(--primary-blue-darker);
-            margin-bottom: 6px;
-            font-size: 1.1rem;
+            margin-bottom: 8px;
+            font-size: 1.15rem;
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .resource-card h3 i {
+            color: var(--primary-blue);
+            font-size: 1.3rem;
+        }
+        
+        .resource-card p {
+            margin: 4px 0;
+            font-size: 0.98rem;
+            color: var(--text-light);
             display: flex;
             align-items: center;
             gap: 8px;
         }
         
-        .resource-card h3 i {
-            color: var(--primary-blue);
-            font-size: 1.2rem;
-        }
-        
-        .resource-card p {
-            margin: 3px 0;
-            font-size: 0.95rem;
-            color: var(--text-dark);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        
         .resource-card p i {
             color: var(--muted);
-            font-size: 1rem;
-            width: 20px;
+            font-size: 1.1rem;
+            width: 22px;
             text-align: center;
+        }
+        
+        .resource-card a {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 10px 16px;
+            background: var(--gradient-secondary);
+            color: white;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            border: 1px solid rgba(30, 58, 138, 0.3);
+        }
+        
+        .resource-card a:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
         }
         
         .welcome-actions {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 16px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 24px;
         }
         
         .welcome-card {
-            background: white;
-            border-radius: 16px;
-            padding: 20px;
+            background: var(--glass-2);
+            border-radius: 20px;
+            padding: 28px;
             box-shadow: var(--shadow-sm);
             border: 1px solid var(--border-light);
             text-align: center;
             transition: var(--transition);
             cursor: pointer;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .welcome-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(0, 180, 216, 0.1));
+            opacity: 0;
+            transition: var(--transition);
         }
         
         .welcome-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-md);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .welcome-card:hover::before {
+            opacity: 1;
         }
         
         .welcome-card i {
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: var(--accent);
-            margin-bottom: 12px;
+            margin-bottom: 16px;
+            transition: var(--transition);
+        }
+        
+        .welcome-card:hover i {
+            transform: scale(1.1);
         }
         
         .welcome-card h3 {
             color: var(--accent);
-            margin-bottom: 8px;
-            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
         }
         
         .welcome-card p {
             color: var(--muted);
-            font-size: 0.95rem;
-            line-height: 1.5;
+            font-size: 0.98rem;
+            line-height: 1.6;
         }
         
         .rcp-controls {
             display: flex;
-            gap: 12px;
-            margin-top: 20px;
+            gap: 16px;
+            margin-top: 24px;
             flex-wrap: wrap;
         }
         
         .rcp-timer {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 700;
             color: var(--accent);
-            margin: 16px 0;
+            margin: 20px 0;
             text-align: center;
             font-family: 'Courier New', monospace;
-            background: rgba(38, 166, 154, 0.1);
-            padding: 12px;
-            border-radius: 12px;
+            background: rgba(0, 180, 216, 0.1);
+            padding: 16px;
+            border-radius: 16px;
             border: 2px solid var(--accent);
+            box-shadow: var(--shadow-sm);
         }
         
         .rcp-state {
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: var(--muted);
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             text-align: center;
         }
         
+        .detailed-info {
+            background: rgba(58, 134, 255, 0.08);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            padding: 20px;
+            margin: 16px 0;
+            font-size: 0.98rem;
+        }
+        
+        .detailed-info h4 {
+            color: var(--primary-blue);
+            margin: 12px 0 8px 0;
+            font-size: 1.1rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .detailed-info p {
+            margin: 6px 0;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
+            from { opacity: 0; transform: translateY(-12px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @media (max-width: 1024px) {
+            .app {
+                border-radius: 16px;
+            }
+            
+            .category-card, .disease-panel, .med-combo, .pae-form, .rcp-guide, .patient-list, .resource-panel {
+                border-radius: 16px;
+                padding: 24px;
+            }
+            
+            .calculator-container {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            }
         }
         
         @media (max-width: 768px) {
@@ -1085,7 +1344,7 @@
             
             .sidebar {
                 width: 100%;
-                max-height: 240px;
+                max-height: 280px;
                 border-right: none;
                 border-bottom: 1px solid var(--border);
                 position: relative;
@@ -1123,6 +1382,15 @@
             .btn {
                 width: 100%;
             }
+            
+            .app {
+                border-radius: 12px;
+            }
+            
+            .category-card, .disease-panel, .med-combo, .pae-form, .rcp-guide, .patient-list, .resource-panel {
+                border-radius: 12px;
+                padding: 20px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -1136,12 +1404,16 @@
             }
             
             .cat-btn {
-                padding: 12px 16px;
+                padding: 14px 18px;
                 font-size: 0.95rem;
             }
             
             .input, .btn {
                 font-size: 0.95rem;
+            }
+            
+            header h1 {
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -1149,7 +1421,7 @@
 <body>
     <div class="app">
         <header>
-            <h1><i class="fas fa-hospital-alt brand-icon"></i> Enfermería DAVID · Final Full</h1>
+            <h1><i class="fas fa-microscope brand-icon"></i> Enfermería DAVID · Final Full</h1>
             <div class="controls">
                 <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
                     <i class="fas fa-moon"></i>
@@ -1160,17 +1432,17 @@
         <div class="container">
             <nav class="sidebar" id="sidebar" aria-label="Categorías">
                 <div class="sidebar-header">
-                    <i class="fas fa-list"></i>
-                    <h3>Categorías</h3>
+                    <i class="fas fa-th-large"></i>
+                    <h3>Funcionalidades</h3>
                 </div>
                 <div class="cat-grid" role="navigation">
                     <button class="cat-btn" data-cat="higiene">
                         <i class="fas fa-soap"></i>
-                        Higiene
+                        Higiene Clínica
                     </button>
                     <button class="cat-btn" data-cat="curaciones">
                         <i class="fas fa-band-aid"></i>
-                        Curaciones
+                        Curaciones Avanzadas
                     </button>
                     <button class="cat-btn" data-cat="farmaco">
                         <i class="fas fa-pills"></i>
@@ -1178,7 +1450,7 @@
                     </button>
                     <button class="cat-btn" data-cat="emergencias">
                         <i class="fas fa-ambulance"></i>
-                        Emergencias
+                        Emergencias Médicas
                     </button>
                     <button class="cat-btn" data-cat="movilizacion">
                         <i class="fas fa-wheelchair"></i>
@@ -1190,7 +1462,7 @@
                     </button>
                     <button class="cat-btn" data-cat="infeccion">
                         <i class="fas fa-virus"></i>
-                        Control infección
+                        Control Infecciones
                     </button>
                     <button class="cat-btn" data-cat="medicamentos">
                         <i class="fas fa-prescription-bottle-alt"></i>
@@ -1202,62 +1474,62 @@
                     </button>
                     <button class="cat-btn" data-cat="pae">
                         <i class="fas fa-clipboard-list"></i>
-                        PAE
+                        PAE Avanzado
                     </button>
                     <button class="cat-btn" data-cat="rcp">
                         <i class="fas fa-heartbeat"></i>
-                        RCP
+                        RCP Integral
                     </button>
                     <button class="cat-btn" data-cat="calculadoras">
                         <i class="fas fa-calculator"></i>
-                        Calculadoras
+                        Calculadoras Clínicas
                     </button>
                     <button class="cat-btn" data-cat="recursos">
                         <i class="fas fa-book"></i>
-                        Recursos
+                        Recursos Educativos
                     </button>
                     <button class="cat-btn" data-cat="pacientes">
                         <i class="fas fa-users"></i>
-                        Pacientes
+                        Gestión de Pacientes
                     </button>
                 </div>
                 <div class="small">
-                    Toque una categoría. Cada botón abre sub-funciones y procedimientos.
+                    Seleccione una categoría para acceder a procedimientos, guías clínicas, combinador de fármacos, enfermedades y más funciones especializadas.
                 </div>
             </nav>
             
             <main class="panel" id="mainPanel" aria-live="polite">
                 <div class="search-container">
-                    <input id="globalSearch" class="input" placeholder="Buscar procedimiento/enfermedad/medicamento..." aria-label="Buscar">
+                    <input id="globalSearch" class="input" placeholder="Buscar procedimiento, enfermedad, medicamento o paciente..." aria-label="Buscar">
                     <button id="searchBtn" class="btn primary">
                         <i class="fas fa-search"></i> Buscar
                     </button>
                     <button id="openAllBtn" class="btn secondary">
-                        <i class="fas fa-expand"></i> Abrir Todo
+                        <i class="fas fa-expand"></i> Mostrar Todo
                     </button>
                 </div>
                 
                 <div class="content-area" id="contentArea">
                     <div class="category-card">
                         <h2><i class="fas fa-home"></i> Bienvenido a Enfermería DAVID</h2>
-                        <p>Seleccione una categoría del menú lateral para acceder a procedimientos, guías clínicas, combinador de fármacos, enfermedades y más.</p>
-                        <p>Esta aplicación proporciona acceso rápido a información esencial para profesionales de enfermería y salud.</p>
+                        <p>Sistema integral de apoyo clínico para profesionales de enfermería y salud. Esta plataforma proporciona acceso rápido a información esencial, protocolos, herramientas de cálculo y recursos educativos.</p>
+                        <p>Diseñado para optimizar la toma de decisiones clínicas, mejorar la seguridad del paciente y facilitar la documentación de cuidados.</p>
                         
                         <div class="welcome-actions">
                             <div class="welcome-card" id="quickRcpCard">
                                 <i class="fas fa-heartbeat"></i>
                                 <h3>Guía Rápida de RCP</h3>
-                                <p>Acceda rápidamente a los pasos esenciales de la reanimación cardiopulmonar</p>
+                                <p>Acceda rápidamente a los pasos esenciales de la reanimación cardiopulmonar con temporizador integrado y protocolos actualizados.</p>
                             </div>
                             <div class="welcome-card" id="quickMedCard">
                                 <i class="fas fa-prescription-bottle-alt"></i>
                                 <h3>Combinador de Fármacos</h3>
-                                <p>Verifique interacciones medicamentosas peligrosas en segundos</p>
+                                <p>Verifique interacciones medicamentosas peligrosas en segundos con base de datos actualizada y referencias científicas.</p>
                             </div>
                             <div class="welcome-card" id="quickPaeCard">
                                 <i class="fas fa-clipboard-list"></i>
-                                <h3>Crear PAE</h3>
-                                <p>Genere planes de atención de enfermería personalizados</p>
+                                <h3>Crear PAE Avanzado</h3>
+                                <p>Genere planes de atención de enfermería personalizados con inteligencia clínica y seguimiento de resultados.</p>
                             </div>
                         </div>
                     </div>
@@ -1265,72 +1537,72 @@
                 
                 <!-- Panel de enfermedades -->
                 <div class="disease-panel" id="diseasePanel" style="display:none;">
-                    <h2><i class="fas fa-notes-medical"></i> Enfermedades</h2>
+                    <h2><i class="fas fa-notes-medical"></i> Enfermedades y Condiciones Clínicas</h2>
                     <div id="diseaseResults"></div>
-                    <div style="margin-top:12px">
+                    <div style="margin-top:16px">
                         <button id="wikiFetchBtn" class="btn primary">
                             <i class="fas fa-wikipedia-w"></i> Buscar en Wikipedia
                         </button>
-                        <div id="wikiOutput" class="small" style="margin-top:10px"></div>
+                        <div id="wikiOutput" class="small" style="margin-top:12px"></div>
                     </div>
                 </div>
                 
                 <!-- Combinador de fármacos -->
                 <div class="med-combo" id="medCombo" style="display:none;">
-                    <h2><i class="fas fa-prescription-bottle-alt"></i> Combinador de Fármacos</h2>
+                    <h2><i class="fas fa-prescription-bottle-alt"></i> Combinador de Fármacos Inteligente</h2>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="medSearchBox"><i class="fas fa-search"></i> Buscar fármaco</label>
-                            <input type="text" id="medSearchBox" class="form-control" placeholder="Buscar fármaco...">
+                            <label for="medSearchBox"><i class="fas fa-search"></i> Búsqueda Rápida de Fármaco</label>
+                            <input type="text" id="medSearchBox" class="form-control" placeholder="Buscar fármaco por nombre...">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
                             <label for="medSelectA"><i class="fas fa-capsules"></i> Medicamento A</label>
                             <select id="medSelectA" class="form-control">
-                                <option value="">Seleccionar...</option>
+                                <option value="">Seleccionar medicamento...</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="medSelectB"><i class="fas fa-capsules"></i> Medicamento B</label>
                             <select id="medSelectB" class="form-control">
-                                <option value="">Seleccionar...</option>
+                                <option value="">Seleccionar medicamento...</option>
                             </select>
                         </div>
                     </div>
                     <button id="checkInteractionsBtn" class="btn primary">
                         <i class="fas fa-exchange-alt"></i> Verificar Interacciones
                     </button>
-                    <div id="medAlert" style="margin-top:20px;"></div>
-                    <details style="margin-top:10px">
+                    <div id="medAlert" style="margin-top:24px;"></div>
+                    <details style="margin-top:14px">
                         <summary class="small">
-                            <i class="fas fa-exclamation-triangle"></i> Lista 'Nunca combinar' (críticas)
+                            <i class="fas fa-exclamation-triangle"></i> Lista de Combinaciones Críticas (Nunca combinar)
                         </summary>
-                        <div id="neverList" style="margin-top:10px;max-height:280px;overflow:auto"></div>
+                        <div id="neverList" style="margin-top:12px;max-height:320px;overflow:auto;padding: 8px 0;"></div>
                     </details>
                 </div>
                 
                 <!-- Formulario PAE -->
                 <div class="pae-form" id="paeForm" style="display:none;">
-                    <h2><i class="fas fa-clipboard-list"></i> Plan de Atención de Enfermería (PAE)</h2>
+                    <h2><i class="fas fa-clipboard-list"></i> Plan de Atención de Enfermería Avanzado</h2>
                     <div class="form-row">
                         <div class="form-group">
                             <label for="patientName"><i class="fas fa-user"></i> Nombre del Paciente</label>
-                            <input type="text" id="patientName" class="form-control" placeholder="Nombre completo">
+                            <input type="text" id="patientName" class="form-control" placeholder="Nombre completo del paciente">
                         </div>
                         <div class="form-group">
                             <label for="patientAge"><i class="fas fa-birthday-cake"></i> Edad</label>
-                            <input type="number" id="patientAge" class="form-control" placeholder="Años">
+                            <input type="number" id="patientAge" class="form-control" placeholder="Edad en años">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="diagnosis"><i class="fas fa-diagnoses"></i> Diagnóstico Médico</label>
-                        <input type="text" id="diagnosis" class="form-control" placeholder="Diagnóstico principal">
+                        <label for="diagnosis"><i class="fas fa-diagnoses"></i> Diagnóstico Médico Principal</label>
+                        <input type="text" id="diagnosis" class="form-control" placeholder="Diagnóstico médico principal">
                     </div>
                     <div class="form-group">
                         <label for="nursingDiagnosis"><i class="fas fa-stethoscope"></i> Diagnóstico de Enfermería</label>
                         <select id="nursingDiagnosis" class="form-control">
-                            <option value="">Seleccionar diagnóstico...</option>
+                            <option value="">Seleccionar diagnóstico de enfermería...</option>
                             <option value="dolor">Dolor agudo</option>
                             <option value="riesgo-caidas">Riesgo de caídas</option>
                             <option value="alteracion-ventilacion">Alteración de la ventilación espontánea</option>
@@ -1339,35 +1611,39 @@
                             <option value="ansiedad">Ansiedad</option>
                             <option value="movilidad">Alteración de la movilidad física</option>
                             <option value="perfusión">Riesgo de perfusión tisular ineficaz</option>
+                            <option value="termorregulacion">Alteración de la termorregulación</option>
+                            <option value="eliminacion">Alteración de la eliminación urinaria</option>
+                            <option value="comunicacion">Alteración de la comunicación verbal</option>
+                            <option value="sueño">Alteración del patrón del sueño</option>
                         </select>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="goals"><i class="fas fa-bullseye"></i> Objetivos</label>
-                            <textarea id="goals" class="form-control" rows="3" placeholder="Objetivos a alcanzar..."></textarea>
+                            <label for="goals"><i class="fas fa-bullseye"></i> Objetivos Específicos</label>
+                            <textarea id="goals" class="form-control" rows="3" placeholder="Objetivos a alcanzar (específicos, medibles, alcanzables, relevantes y con tiempo definido)..."></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="interventions"><i class="fas fa-hand-holding-medical"></i> Intervenciones</label>
-                            <textarea id="interventions" class="form-control" rows="3" placeholder="Intervenciones de enfermería..."></textarea>
+                            <label for="interventions"><i class="fas fa-hand-holding-medical"></i> Intervenciones de Enfermería</label>
+                            <textarea id="interventions" class="form-control" rows="3" placeholder="Intervenciones de enfermería basadas en evidencia..."></textarea>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
                             <label for="pae_name"><i class="fas fa-file-signature"></i> Nombre del PAE</label>
-                            <input type="text" id="pae_name" class="form-control" placeholder="Nombre del plan">
+                            <input type="text" id="pae_name" class="form-control" placeholder="Nombre descriptivo del plan">
                         </div>
                         <div class="form-group">
-                            <label for="pae_diag"><i class="fas fa-diagnoses"></i> Diagnóstico</label>
-                            <input type="text" id="pae_diag" class="form-control" placeholder="Diagnóstico principal">
+                            <label for="pae_diag"><i class="fas fa-diagnoses"></i> Diagnóstico Clínico</label>
+                            <input type="text" id="pae_diag" class="form-control" placeholder="Diagnóstico principal del paciente">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="pae_plan"><i class="fas fa-clipboard"></i> Plan de Cuidados</label>
-                        <textarea id="pae_plan" class="form-control" rows="4" placeholder="Describa el plan de cuidados..."></textarea>
+                        <label for="pae_plan"><i class="fas fa-clipboard"></i> Plan de Cuidados Detallado</label>
+                        <textarea id="pae_plan" class="form-control" rows="5" placeholder="Descripción detallada del plan de cuidados, incluyendo evaluación, intervenciones, evaluación de resultados y seguimiento..."></textarea>
                     </div>
-                    <div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap">
+                    <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
                         <button id="generatePaeBtn" class="btn primary">
-                            <i class="fas fa-magic"></i> Generar PAE
+                            <i class="fas fa-magic"></i> Generar PAE Inteligente
                         </button>
                         <button id="savePaeBtn" class="btn secondary">
                             <i class="fas fa-save"></i> Guardar PAE
@@ -1376,39 +1652,67 @@
                             <i class="fas fa-file-export"></i> Exportar
                         </button>
                     </div>
-                    <div id="paeMsg" class="small" style="margin-top:10px"></div>
+                    <div id="paeMsg" class="small" style="margin-top:12px"></div>
                 </div>
                 
                 <!-- Guía de RCP -->
                 <div class="rcp-guide" id="rcpGuide" style="display:none;">
-                    <h2><i class="fas fa-heartbeat"></i> RCP Básica (Adulto)</h2>
+                    <h2><i class="fas fa-heartbeat"></i> RCP Integral (Adulto)</h2>
                     <div class="rcp-step" data-step="1">
-                        <strong>Verificar seguridad del entorno</strong>
-                        <p>Asegúrese de que el área es segura para usted y el paciente antes de intervenir.</p>
+                        <strong>Verificar Seguridad del Entorno</strong>
+                        <p>Asegúrese de que el área es segura para usted y el paciente antes de intervenir. Evalúe riesgos ambientales como fuego, electricidad, sustancias tóxicas o tráfico.</p>
+                        <div class="detailed-info">
+                            <h4><i class="fas fa-info-circle"></i> Protocolo de Seguridad</h4>
+                            <p>Utilice equipo de protección personal (EPP) si hay riesgo de exposición a fluidos corporales. Si el paciente está en un entorno peligroso, mueva al paciente solo si es absolutamente necesario y seguro hacerlo.</p>
+                        </div>
                     </div>
                     <div class="rcp-step" data-step="2">
-                        <strong>Comprobar respuesta del paciente</strong>
-                        <p>Agite suavemente los hombros y pregunte "¿Está bien?". Si no hay respuesta, proceda.</p>
+                        <strong>Comprobar Respuesta del Paciente</strong>
+                        <p>Agite suavemente los hombros y pregunte "¿Está bien?". Si no hay respuesta, proceda inmediatamente.</p>
+                        <div class="detailed-info">
+                            <h4><i class="fas fa-info-circle"></i> Evaluación de Respuesta</h4>
+                            <p>Observe movimientos, sonidos o respuestas a estímulos. Si el paciente responde, colóquelo en posición lateral de seguridad y monitoree signos vitales. Si no responde, inicie RCP inmediatamente.</p>
+                        </div>
                     </div>
                     <div class="rcp-step" data-step="3">
-                        <strong>Llamar a emergencias</strong>
-                        <p>Si está solo, grite pidiendo ayuda. Si hay alguien más, pídale que llame al 112 y traiga un DEA.</p>
+                        <strong>Llamar a Emergencias</strong>
+                        <p>Si está solo, grite pidiendo ayuda. Si hay alguien más, pídale que llame al 112 y traiga un DEA. Si está solo, llame usted mismo después de 2 minutos de RCP.</p>
+                        <div class="detailed-info">
+                            <h4><i class="fas fa-info-circle"></i> Comunicación con Emergencias</h4>
+                            <p>Proporcione información clara: ubicación exacta, número de víctimas, estado de las víctimas y tipo de ayuda requerida. No cuelgue hasta que el operador lo indique.</p>
+                        </div>
                     </div>
                     <div class="rcp-step" data-step="4">
-                        <strong>Iniciar compresiones torácicas</strong>
-                        <p>Coloque las manos en el centro del pecho. Comprima a una profundidad de 5-6 cm a una velocidad de 100-120 por minuto.</p>
+                        <strong>Iniciar Compresiones Torácicas</strong>
+                        <p>Coloque las manos en el centro del pecho. Comprima a una profundidad de 5-6 cm a una velocidad de 100-120 por minuto. Permita la expansión torácica completa entre compresiones.</p>
+                        <div class="detailed-info">
+                            <h4><i class="fas fa-info-circle"></i> Técnica de Compresión</h4>
+                            <p>Coloque el talón de una mano en el centro del pecho (borde inferior del esternón), coloque la otra mano encima, entrelace los dedos y mantenga los brazos rectos. Use su peso corporal, no solo los brazos. Minimice las interrupciones en las compresiones.</p>
+                        </div>
                     </div>
                     <div class="rcp-step" data-step="5">
-                        <strong>Apertura de vía aérea y ventilaciones</strong>
-                        <p>Después de 30 compresiones, abra la vía aérea con la maniobra frente-mentón. Dé 2 ventilaciones de 1 segundo cada una.</p>
+                        <strong>Apertura de Vía Aérea y Ventilaciones</strong>
+                        <p>Después de 30 compresiones, abra la vía aérea con la maniobra frente-mentón. Dé 2 ventilaciones de 1 segundo cada una, observando la elevación del tórax.</p>
+                        <div class="detailed-info">
+                            <h4><i class="fas fa-info-circle"></i> Ventilación Efectiva</h4>
+                            <p>Pellizque la nariz del paciente, tome una respiración normal y selle su boca sobre la del paciente. Insufle durante 1 segundo hasta ver la elevación del tórax. Evite la hiperventilación. Si no puede dar ventilaciones, continúe con compresiones torácicas solamente.</p>
+                        </div>
                     </div>
                     <div class="rcp-step" data-step="6">
-                        <strong>Usar DEA si disponible</strong>
-                        <p>Siga las instrucciones del DEA. No toque al paciente durante la descarga.</p>
+                        <strong>Usar DEA si Disponible</strong>
+                        <p>Siga las instrucciones del DEA. Aplique los parches, asegúrese de que nadie toque al paciente, analice el ritmo y siga las instrucciones de descarga.</p>
+                        <div class="detailed-info">
+                            <h4><i class="fas fa-info-circle"></i> Protocolo DEA</h4>
+                            <p>Encienda el DEA y siga las instrucciones auditivas y visuales. Coloque un parche debajo de la clavícula derecha y el otro en la zona lateral izquierda del tórax, debajo del pezón. No toque al paciente durante el análisis del ritmo ni durante la descarga.</p>
+                        </div>
                     </div>
                     <div class="rcp-step" data-step="7">
                         <strong>Continuar RCP</strong>
-                        <p>Continúe con ciclos de 30:2 (30 compresiones, 2 ventilaciones) hasta que llegue ayuda o el paciente reaccione.</p>
+                        <p>Continúe con ciclos de 30:2 (30 compresiones, 2 ventilaciones) hasta que llegue ayuda, el paciente reaccione o esté exhausto.</p>
+                        <div class="detailed-info">
+                            <h4><i class="fas fa-info-circle"></i> Monitoreo y Cambio de Reanimador</h4>
+                            <p>Cambie al reanimador cada 2 minutos para mantener la calidad de las compresiones. Monitoree constantemente la respuesta del paciente. Si el paciente comienza a moverse, respirar normalmente o responder, colóquelo en posición lateral de seguridad y monitoree signos vitales.</p>
+                        </div>
                     </div>
                     <div class="rcp-controls">
                         <div class="rcp-state" id="rcpState">Estado: detenido</div>
@@ -1434,12 +1738,21 @@
                             <label for="imc_height"><i class="fas fa-ruler-vertical"></i> Altura (cm)</label>
                             <input type="number" id="imc_height" class="form-control" placeholder="Ej: 170">
                         </div>
-                        <button id="calculateImc" class="btn primary" style="margin-top:20px;">
+                        <button id="calculateImc" class="btn primary" style="margin-top:24px;">
                             <i class="fas fa-calculator"></i> Calcular IMC
                         </button>
-                        <div id="imc-result" style="margin-top:20px;display:none;">
+                        <div id="imc-result" style="margin-top:24px;display:none;">
                             <div class="score-value" id="imc-value"></div>
                             <div class="score-category" id="imc-category"></div>
+                            <div class="detailed-info" style="margin-top:16px;">
+                                <h4><i class="fas fa-info-circle"></i> Clasificación del IMC</h4>
+                                <p><strong>Bajo peso:</strong> &lt; 18.5</p>
+                                <p><strong>Peso normal:</strong> 18.5-24.9</p>
+                                <p><strong>Sobrepeso:</strong> 25-29.9</p>
+                                <p><strong>Obesidad grado I:</strong> 30-34.9</p>
+                                <p><strong>Obesidad grado II:</strong> 35-39.9</p>
+                                <p><strong>Obesidad grado III:</strong> ≥ 40</p>
+                            </div>
                         </div>
                     </div>
                     
@@ -1451,12 +1764,12 @@
                         </div>
                         <div class="form-group">
                             <label><i class="fas fa-venus-mars"></i> Sexo</label>
-                            <div style="display:flex;gap:16px;margin-top:8px;">
-                                <label style="display:flex;align-items:center;gap:6px;">
+                            <div style="display:flex;gap:20px;margin-top:10px;">
+                                <label style="display:flex;align-items:center;gap:8px;">
                                     <input type="radio" name="sex" value="male" checked> 
                                     <i class="fas fa-male"></i> Hombre
                                 </label>
-                                <label style="display:flex;align-items:center;gap:6px;">
+                                <label style="display:flex;align-items:center;gap:8px;">
                                     <input type="radio" name="sex" value="female"> 
                                     <i class="fas fa-female"></i> Mujer
                                 </label>
@@ -1466,12 +1779,20 @@
                             <label for="age"><i class="fas fa-birthday-cake"></i> Edad</label>
                             <input type="number" id="age" class="form-control" placeholder="Ej: 45">
                         </div>
-                        <button id="calculateFiltration" class="btn primary" style="margin-top:20px;">
+                        <button id="calculateFiltration" class="btn primary" style="margin-top:24px;">
                             <i class="fas fa-calculator"></i> Calcular Filtración
                         </button>
-                        <div id="filtration-result" style="margin-top:20px;display:none;">
+                        <div id="filtration-result" style="margin-top:24px;display:none;">
                             <div class="score-value" id="filtration-value"></div>
                             <div class="score-category" id="filtration-category"></div>
+                            <div class="detailed-info" style="margin-top:16px;">
+                                <h4><i class="fas fa-info-circle"></i> Clasificación de la Función Renal</h4>
+                                <p><strong>Normal o aumentado:</strong> ≥ 90 ml/min/1.73m²</p>
+                                <p><strong>Levemente disminuido:</strong> 60-89 ml/min/1.73m²</p>
+                                <p><strong>Moderadamente disminuido:</strong> 30-59 ml/min/1.73m²</p>
+                                <p><strong>Severamente disminuido:</strong> 15-29 ml/min/1.73m²</p>
+                                <p><strong>Insuficiencia renal:</strong> &lt; 15 ml/min/1.73m²</p>
+                            </div>
                         </div>
                     </div>
                     
@@ -1494,76 +1815,87 @@
                             <input type="number" id="systolic-pressure" class="form-control" placeholder="Ej: 140">
                         </div>
                         <div class="form-group">
-                            <label style="display:flex;align-items:center;gap:10px;">
+                            <label style="display:flex;align-items:center;gap:12px;">
                                 <input type="checkbox" id="smoker"> 
                                 <i class="fas fa-smoking"></i> Fumador
                             </label>
                         </div>
                         <div class="form-group">
-                            <label style="display:flex;align-items:center;gap:10px;">
+                            <label style="display:flex;align-items:center;gap:12px;">
                                 <input type="checkbox" id="diabetes"> 
                                 <i class="fas fa-diabetes"></i> Diabetes
                             </label>
                         </div>
-                        <button id="calculateScore" class="btn primary" style="margin-top:20px;">
+                        <button id="calculateScore" class="btn primary" style="margin-top:24px;">
                             <i class="fas fa-calculator"></i> Calcular SCORE
                         </button>
-                        <div id="score-result" style="margin-top:20px;display:none;">
+                        <div id="score-result" style="margin-top:24px;display:none;">
                             <div class="score-value" id="score-value"></div>
                             <div class="score-category" id="score-category"></div>
+                            <div class="detailed-info" style="margin-top:16px;">
+                                <h4><i class="fas fa-info-circle"></i> Clasificación del Riesgo Cardiovascular</h4>
+                                <p><strong>Bajo riesgo:</strong> &lt; 1% de riesgo a 10 años</p>
+                                <p><strong>Riesgo bajo:</strong> 1-2% de riesgo a 10 años</p>
+                                <p><strong>Riesgo moderado:</strong> 3-5% de riesgo a 10 años</p>
+                                <p><strong>Riesgo alto:</strong> 6-10% de riesgo a 10 años</p>
+                                <p><strong>Riesgo muy alto:</strong> > 10% de riesgo a 10 años</p>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Lista de pacientes -->
                 <div class="patient-list" id="pacientes" style="display:none;">
-                    <h2><i class="fas fa-users"></i> Gestión de Pacientes</h2>
+                    <h2><i class="fas fa-users"></i> Gestión Integral de Pacientes</h2>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="patient-search"><i class="fas fa-search"></i> Buscar paciente</label>
+                            <label for="patient-search"><i class="fas fa-search"></i> Buscar paciente por nombre</label>
                             <input type="text" id="patient-search" class="form-control" placeholder="Nombre del paciente...">
                         </div>
                         <div class="form-group">
-                            <label for="patient-specialty"><i class="fas fa-stethoscope"></i> Especialidad</label>
+                            <label for="patient-specialty"><i class="fas fa-stethoscope"></i> Especialidad médica</label>
                             <select id="patient-specialty" class="form-control">
-                                <option value="">Todas</option>
+                                <option value="">Todas las especialidades</option>
                                 <option value="Cardiología">Cardiología</option>
                                 <option value="Neumología">Neumología</option>
                                 <option value="Endocrinología">Endocrinología</option>
                                 <option value="Neurología">Neurología</option>
                                 <option value="Oncología">Oncología</option>
                                 <option value="Nefrología">Nefrología</option>
+                                <option value="Gastroenterología">Gastroenterología</option>
+                                <option value="Reumatología">Reumatología</option>
                             </select>
                         </div>
                     </div>
-                    <button id="addPatientBtn" class="btn primary" style="margin-top:10px;">
-                        <i class="fas fa-plus"></i> Agregar Paciente
+                    <button id="addPatientBtn" class="btn primary" style="margin-top:14px;">
+                        <i class="fas fa-plus"></i> Agregar Nuevo Paciente
                     </button>
                     <div id="patients-container"></div>
                 </div>
                 
                 <!-- Recursos educativos -->
                 <div class="resource-panel" id="recursos" style="display:none;">
-                    <h2><i class="fas fa-book"></i> Recursos Educativos</h2>
+                    <h2><i class="fas fa-book"></i> Recursos Educativos Clínicos</h2>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="resource-search"><i class="fas fa-search"></i> Buscar recurso</label>
-                            <input type="text" id="resource-search" class="form-control" placeholder="Título o etiqueta...">
+                            <label for="resource-search"><i class="fas fa-search"></i> Buscar recurso por título o etiqueta</label>
+                            <input type="text" id="resource-search" class="form-control" placeholder="Título, etiqueta o contenido...">
                         </div>
                         <div class="form-group">
-                            <label for="resource-category"><i class="fas fa-tags"></i> Categoría</label>
+                            <label for="resource-category"><i class="fas fa-tags"></i> Categoría de recurso</label>
                             <select id="resource-category" class="form-control">
-                                <option value="">Todas</option>
-                                <option value="Protocolos">Protocolos</option>
-                                <option value="Guías">Guías</option>
-                                <option value="Videos">Videos</option>
-                                <option value="Imágenes">Imágenes</option>
-                                <option value="Artículos">Artículos</option>
+                                <option value="">Todas las categorías</option>
+                                <option value="Protocolos">Protocolos Clínicos</option>
+                                <option value="Guías">Guías de Práctica</option>
+                                <option value="Videos">Videos Educativos</option>
+                                <option value="Imágenes">Imágenes Médicas</option>
+                                <option value="Artículos">Artículos Científicos</option>
+                                <option value="Formularios">Formularios y Plantillas</option>
                             </select>
                         </div>
                     </div>
-                    <button id="addResourceBtn" class="btn primary" style="margin-top:10px;">
-                        <i class="fas fa-plus"></i> Agregar Recurso
+                    <button id="addResourceBtn" class="btn primary" style="margin-top:14px;">
+                        <i class="fas fa-plus"></i> Agregar Nuevo Recurso
                     </button>
                     <div id="resources-container"></div>
                 </div>
@@ -1616,343 +1948,520 @@
                 {
                     id: 'lavado_mano',
                     title: 'Lavado de manos',
-                    summary: 'Técnica esencial para prevenir infecciones.',
-                    materials: ['Jabón', 'Agua', 'Toalla'],
+                    summary: 'Técnica esencial para prevenir infecciones según protocolos de la OMS.',
+                    materials: ['Jabón', 'Agua', 'Toalla desechable', 'Gel alcohólico 70%'],
                     steps: [
-                        'Retirar joyas',
-                        'Mojar y aplicar jabón/gel',
-                        'Frotar palmas/dorsos/entre dedos ≥20s',
-                        'Enjuagar y secar'
+                        'Retirar joyas y reloj',
+                        'Mojar manos con agua',
+                        'Aplicar jabón suficiente',
+                        'Frotar palmas, dorsos, entre dedos y pulgares ≥20s',
+                        'Enjuagar abundantemente',
+                        'Secar con toalla desechable',
+                        'Cerrar grifo con toalla'
                     ],
-                    notes: 'Crucial antes y después del contacto con paciente.'
+                    notes: 'Crucial antes y después del contacto con paciente. Realice el lavado de manos siguiendo los 7 pasos recomendados por la OMS.'
                 },
                 {
                     id: 'baño_cama',
                     title: 'Baño en cama',
-                    summary: 'Higiene integral del paciente encamado.',
-                    materials: ['Toallas', 'Agua tibia', 'Jabón', 'Guantes'],
+                    summary: 'Higiene integral del paciente encamado con prevención de lesiones.',
+                    materials: ['Toallas', 'Agua tibia', 'Jabón suave', 'Guantes', 'Sábana impermeable', 'Báscula'],
                     steps: [
-                        'Preparar equipo',
-                        'Proteger intimidad',
+                        'Preparar equipo y ambiente',
+                        'Explicar procedimiento al paciente',
+                        'Proteger intimidad con cortinas',
+                        'Colocar sábana impermeable',
                         'Limpiar de proximal a distal',
-                        'Secar y vestir'
+                        'Secar y vestir',
+                        'Cambiar sábana si está húmeda',
+                        'Documentar procedimiento'
                     ],
-                    notes: ''
+                    notes: 'Evite fricciones excesivas. Revise áreas de riesgo para escaras. Mantenga al paciente abrigado durante el procedimiento.'
                 },
                 {
                     id: 'higiene_oral',
                     title: 'Higiene oral',
-                    summary: 'Prevención de infecciones orales y cuidado de mucosas.',
-                    materials: ['Cepillo suave', 'Pasta oral sin flúor si indicado', 'Colutorio'],
+                    summary: 'Prevención de infecciones orales y cuidado de mucosas en pacientes con dificultad para auto-cuidado.',
+                    materials: ['Cepillo suave', 'Pasta oral sin flúor si indicado', 'Colutorio', 'Gasas', 'Guantes'],
                     steps: [
-                        'Explicar',
-                        'Posicionar',
-                        'Limpiar suavemente',
-                        'Enjuagar y documentar'
+                        'Explicar procedimiento',
+                        'Posicionar al paciente en 30-45°',
+                        'Colocar toalla sobre pecho',
+                        'Limpiar suavemente dientes, lengua y mucosas',
+                        'Enjuagar y secar',
+                        'Aplicar hidratante labial',
+                        'Documentar estado de mucosas'
                     ],
-                    notes: ''
+                    notes: 'Evalúe riesgo de aspiración. Use succión si el paciente no puede expectorar. Revise para signos de candidiasis.'
                 },
                 {
                     id: 'cuidado_ongles',
                     title: 'Cuidado de uñas',
-                    summary: 'Prevención de colonización bacteriana en uñas largas.',
-                    materials: ['Tijeras o cortaúñas', 'Lima'],
+                    summary: 'Prevención de colonización bacteriana en uñas largas y fracturas.',
+                    materials: ['Tijeras o cortaúñas', 'Lima', 'Guantes'],
                     steps: [
-                        'Cortar con técnica',
-                        'No cortar cutícula si no indicado'
+                        'Evaluar estado de uñas y circulación',
+                        'Cortar con técnica de borde recto',
+                        'Limar bordes',
+                        'No cortar cutícula si no indicado',
+                        'Hidratar piel circundante'
                     ],
-                    notes: 'Evitar instrumentos compartidos.'
+                    notes: 'Evitar instrumentos compartidos. Especial cuidado en pacientes diabéticos o con enfermedad vascular periférica.'
                 },
                 {
                     id: 'cuidado_piel',
                     title: 'Cuidado de piel frágil',
-                    summary: 'Higiene y protección de la piel en pacientes de edad avanzada',
-                    materials: ['Emolientes', 'Guantes'],
+                    summary: 'Higiene y protección de la piel en pacientes de edad avanzada o con condiciones que afectan la integridad cutánea.',
+                    materials: ['Emolientes', 'Guantes', 'Luz adecuada', 'Lupa si necesario'],
                     steps: [
-                        'Evaluar piel',
-                        'Aplicar emolientes',
-                        'Evitar fricciones'
+                        'Evaluar piel bajo buena iluminación',
+                        'Identificar áreas de riesgo',
+                        'Aplicar emolientes sin fricción',
+                        'Evitar fricciones y arrastres',
+                        'Documentar hallazgos'
                     ],
-                    notes: 'Aumentar hidratación cutánea.'
+                    notes: 'Aumentar hidratación cutánea. Revise diariamente áreas de presión. Use protectores de piel si indicado.'
+                },
+                {
+                    id: 'higiene_genital',
+                    title: 'Higiene genital',
+                    summary: 'Prevención de infecciones del tracto urinario y cuidado de áreas íntimas.',
+                    materials: ['Guantes', 'Toallas', 'Jabón suave', 'Bacinilla', 'Bata'],
+                    steps: [
+                        'Explicar procedimiento',
+                        'Posicionar adecuadamente',
+                        'Lavar de adelante hacia atrás',
+                        'Secar completamente',
+                        'Observar secreciones',
+                        'Documentar hallazgos'
+                    ],
+                    notes: 'Mantenimiento de asepsia. Cambiar toallas entre áreas. Revise para signos de infección.'
                 }
             ],
             curaciones: [
                 {
                     id: 'curacion_simple',
                     title: 'Curación de herida simple',
-                    summary: 'Cambio de apósito en heridas limpias.',
-                    materials: ['Guantes', 'Solución salina', 'Gasas', 'Apósito estéril'],
+                    summary: 'Cambio de apósito en heridas limpias con técnica aséptica.',
+                    materials: ['Guantes', 'Solución salina', 'Gasas', 'Apósito estéril', 'Pinzas', 'Bandeja'],
                     steps: [
-                        'Higiene',
-                        'Retirar apósito',
-                        'Irrigar',
-                        'Aplicar apósito nuevo'
+                        'Higiene de manos',
+                        'Preparar equipo en bandeja',
+                        'Retirar apósito contaminado',
+                        'Irrigar con solución salina',
+                        'Secar con gasas estériles',
+                        'Aplicar apósito nuevo',
+                        'Fijar adecuadamente',
+                        'Documentar aspecto y exudado'
                     ],
-                    notes: 'Registrar aspecto y exudado.'
+                    notes: 'Evalúe signos de infección: enrojecimiento, calor, dolor, edema, exudado purulento. Cambie apósito según protocolo o cuando esté húmedo/contaminado.'
                 },
                 {
                     id: 'curacion_escaras',
                     title: 'Curación de escaras',
-                    summary: 'Manejo y alivio de presión.',
-                    materials: ['Apósitos especiales', 'Colchón antiescaras'],
+                    summary: 'Manejo y alivio de presión en úlceras por presión.',
+                    materials: ['Apósitos especiales (hidrocoloide, alginato)', 'Colchón antiescaras', 'Guantes', 'Solución de limpieza'],
                     steps: [
-                        'Evaluar estadío',
-                        'Reposicionar cada 2h',
-                        'Aplicar apósito especializado'
+                        'Evaluar estadío según clasificación NPUAP',
+                        'Reposicionar cada 2h cambiando puntos de presión',
+                        'Limpieza suave con solución fisiológica',
+                        'Aplicar apósito especializado según estadío',
+                        'Documentar evolución',
+                        'Educación al paciente y familia'
                     ],
-                    notes: ''
+                    notes: 'Prevención es clave: evaluación diaria de riesgo (escala de Braden), movilización, nutrición adecuada, hidratación.'
                 },
                 {
                     id: 'curacion_quirurgica',
                     title: 'Curación postquirúrgica',
-                    summary: 'Seguimiento de heridas operatorias.',
-                    materials: ['Guantes estériles', 'Pinzas', 'Apósito'],
+                    summary: 'Seguimiento de heridas operatorias con prevención de complicaciones.',
+                    materials: ['Guantes estériles', 'Pinzas estériles', 'Gasas estériles', 'Apósito estéril', 'Solución antiséptica si indicado'],
                     steps: [
-                        'Comprobar sellado',
-                        'Limpieza estéril',
-                        'Registrar signos infección'
+                        'Comprobar sellado de herida',
+                        'Limpieza estéril con técnica aséptica',
+                        'Evaluar signos de infección',
+                        'Aplicar apósito o dejar al aire según indicación',
+                        'Documentar aspecto, drenaje y signos de alarma'
                     ],
-                    notes: ''
+                    notes: 'Revise para signos de dehiscencia, evisceración o infección. Eduque al paciente sobre signos de alarma.'
                 },
                 {
                     id: 'curacion_valvula',
                     title: 'Cambio de apósito con drenaje',
-                    summary: 'Cuidado en heridas con drenaje activo',
-                    materials: ['EPP', 'Recipientes', 'apósitos adsorbentes'],
+                    summary: 'Cuidado en heridas con drenaje activo (Jackson-Pratt, Penrose, etc.).',
+                    materials: ['EPP completo', 'Recipientes para drenaje', 'Apósitos adsorbentes', 'Guantes estériles', 'Sistema de drenaje'],
                     steps: [
-                        'Evitar contaminación',
-                        'Documentar volumen y aspecto'
+                        'Evaluar sistema de drenaje',
+                        'Vaciar y medir drenaje',
+                        'Registrar volumen, color y aspecto',
+                        'Cambiar apósito con técnica estéril',
+                        'Asegurar fijación del tubo',
+                        'Documentar cuidados'
                     ],
-                    notes: ''
+                    notes: 'Evite contaminación del sistema. Revise para signos de obstrucción. Mantenga sistema cerrado.'
                 },
                 {
                     id: 'curacion_absceso',
                     title: 'Drenaje y curación de absceso',
-                    summary: 'Drenaje y cuidados post-drenaje',
-                    materials: ['Equipo estéril', 'Antiséptico'],
+                    summary: 'Drenaje y cuidados post-drenaje de colecciones purulentas.',
+                    materials: ['Equipo estéril para drenaje', 'Antiséptico', 'Gasas', 'Apósito', 'Guantes estériles'],
                     steps: [
-                        'Valorar',
-                        'Drenar por profesional',
-                        'Curar y control'
+                        'Valorar necesidad de drenaje',
+                        'Drenar por profesional calificado',
+                        'Irrigar cavidad',
+                        'Colocar torunda o drenaje',
+                        'Cubrir con apósito absorbente',
+                        'Control y seguimiento'
                     ],
-                    notes: 'Derivar si sospecha de celulitis.'
+                    notes: 'Derivar si sospecha de celulitis extensa o signos sistémicos. Considerar cultivo del drenaje.'
+                },
+                {
+                    id: 'curacion_cancer',
+                    title: 'Cuidados de heridas cancerosas',
+                    summary: 'Manejo de heridas asociadas a enfermedad oncológica con control de síntomas.',
+                    materials: ['Apósitos especiales', 'Medicamentos tópicos', 'Guantes', 'Equipo de protección'],
+                    steps: [
+                        'Evaluar tipo de herida',
+                        'Control de olor y exudado',
+                        'Alivio del dolor',
+                        'Aplicar tratamiento específico',
+                        'Soporte psicológico',
+                        'Documentar evolución'
+                    ],
+                    notes: 'Enfoque multidisciplinario. Considerar aspectos psicosociales. Control de síntomas es prioritario.'
                 }
             ],
             farmaco: [
                 {
                     id: 'admin_oral',
                     title: 'Administración oral',
-                    summary: 'Verificar 5 correctos antes de administrar',
-                    materials: ['Prescripción', 'Hoja alergias'],
+                    summary: 'Verificar 5 correctos antes de administrar cualquier medicamento.',
+                    materials: ['Prescripción', 'Hoja de alergias', 'Medicamento', 'Vaso de agua'],
                     steps: [
-                        'Identificar paciente',
-                        'Comprobar fármaco/dosis/vía/hora',
-                        'Administrar y registrar'
+                        'Identificar paciente (dos identificadores)',
+                        'Comprobar fármaco/dosis/vía/hora/frecuencia',
+                        'Verificar alergias',
+                        'Administrar y registrar',
+                        'Observar reacciones adversas',
+                        'Educación al paciente'
                     ],
-                    notes: ''
+                    notes: 'Los 5 correctos: paciente correcto, medicamento correcto, dosis correcta, vía correcta, hora correcta. Documente toda administración.'
                 },
                 {
                     id: 'admin_ev',
                     title: 'Administración EV (bolus)',
-                    summary: 'Preparación y administración por vía venosa',
-                    materials: ['Solución', 'Set EV', 'Aguja', 'Tubo'],
+                    summary: 'Preparación y administración por vía venosa con prevención de complicaciones.',
+                    materials: ['Solución', 'Set EV', 'Aguja', 'Tubo', 'Bomba de infusión si indicado', 'Guantes'],
                     steps: [
                         'Verificar prescripción',
+                        'Preparar medicamento con técnica aséptica',
                         'Diluir si necesario',
-                        'Administrar según velocidad',
-                        'Observar reacciones'
+                        'Administrar según velocidad indicada',
+                        'Observar reacciones inmediatas',
+                        'Documentar administración'
                     ],
-                    notes: 'Solo personal habilitado.'
+                    notes: 'Solo personal habilitado. Revise para signos de flebitis, infiltración o extravasación. Use bomba de infusión para medicamentos críticos.'
                 },
                 {
                     id: 'oxigenoterapia',
                     title: 'Oxigenoterapia',
-                    summary: 'Cánula nasal o mascarilla según indicación',
-                    materials: ['Cánula', 'Mascarilla', 'Oxímetro'],
+                    summary: 'Administración de oxígeno según indicación médica con monitorización.',
+                    materials: 'Cánula nasal, Mascarilla simple, Mascarilla con reservorio, Oxímetro de pulso, Regulador de flujo',
                     steps: [
-                        'Verificar orden',
-                        'Colocar dispositivo',
-                        'Monitorizar SpO2'
+                        'Verificar orden médica',
+                        'Seleccionar dispositivo según necesidad',
+                        'Colocar dispositivo adecuadamente',
+                        'Ajustar flujo según prescripción',
+                        'Monitorizar SpO2 y signos clínicos',
+                        'Documentar parámetros'
                     ],
-                    notes: ''
+                    notes: 'Revise para signos de hipercapnia en pacientes con EPOC. Mantenga humidificador si flujo > 4L/min. Evite fuego o chispas.'
                 },
                 {
                     id: 'vacunas',
                     title: 'Administración de vacuna IM',
-                    summary: 'Preparación estéril y registro de lote',
-                    materials: ['Jeringa', 'Vacuna', 'Algodón', 'EPI'],
+                    summary: 'Preparación estéril y registro de lote con seguimiento de reacciones.',
+                    materials: ['Jeringa', 'Vacuna', 'Algodón', 'EPI', 'Registro de vacunación'],
                     steps: [
                         'Verificar vacuna y lote',
-                        'Administrar en sitio apropiado',
+                        'Seleccionar sitio de inyección (deltoides, vasto lateral)',
+                        'Desinfectar piel',
+                        'Administrar en ángulo de 90°',
+                        'Aplicar presión sin frotar',
                         'Registrar lote y reacciones'
                     ],
-                    notes: ''
+                    notes: 'Conservar vacunas adecuadamente. Revise contraindicaciones. Observe al paciente 15-30 minutos post-vacunación.'
                 },
                 {
                     id: 'dosis_peso',
-                    title: 'Dosis según peso',
-                    summary: 'Calcular dosis por kg ejemplo',
-                    materials: ['Balanza', 'Calculadora'],
+                    title: 'Cálculo de dosis según peso',
+                    summary: 'Precisión en la administración de medicamentos pediátricos y en condiciones especiales.',
+                    materials: ['Balanza', 'Calculadora', 'Fórmula de cálculo', 'Prescripción'],
                     steps: [
-                        'Calcular kg',
-                        'Aplicar mg/kg'
+                        'Pesar al paciente',
+                        'Calcular dosis por kg de peso',
+                        'Verificar dosis máxima',
+                        'Preparar medicamento',
+                        'Administrar y registrar'
                     ],
-                    notes: 'Ejemplo 10 mg/kg como referencia no universal.'
+                    notes: 'Doble verificación en pediatría. Revise fórmulas específicas para cada medicamento. Considere función orgánica.'
+                },
+                {
+                    id: 'medicacion_controlada',
+                    title: 'Manejo de medicación controlada',
+                    summary: 'Protocolo estricto para medicamentos de control especial.',
+                    materials: ['Registro de medicación controlada', 'Llave de seguridad', 'Doble firma', 'Contenedor seguro'],
+                    steps: [
+                        'Verificar prescripción',
+                        'Retirar medicamento con doble verificación',
+                        'Contar medicamentos antes y después',
+                        'Administrar y documentar inmediatamente',
+                        'Devolver sobrantes con doble firma',
+                        'Registrar en libro de control'
+                    ],
+                    notes: 'Cumplimiento estricto de normativas. Nunca deje medicamentos sin supervisión. Reporte cualquier discrepancia.'
                 }
             ],
             emergencias: [
                 {
                     id: 'rcp',
                     title: 'RCP básica (adulto)',
-                    summary: 'Comprimir 100-120/min y 5-6 cm de profundidad',
-                    materials: ['DEA si disponible'],
+                    summary: 'Comprimir 100-120/min y 5-6 cm de profundidad según guías AHA 2020.',
+                    materials: ['DEA si disponible', 'Mascarilla de reanimación', 'Guantes', 'Barrera protectora'],
                     steps: [
-                        'Seguridad',
-                        'Comprobar respuesta',
-                        'Llamar ayuda',
-                        'Iniciar compresiones 30:2 o continuas según guía',
-                        'Usar DEA'
+                        'Verificar seguridad del entorno',
+                        'Comprobar respuesta del paciente',
+                        'Llamar a emergencias y traer DEA',
+                        'Iniciar compresiones torácicas (30:2)',
+                        'Abrir vía aérea y dar 2 ventilaciones',
+                        'Usar DEA si disponible',
+                        'Continuar RCP hasta ayuda o reanimación'
                     ],
-                    notes: ''
+                    notes: 'Minimice interrupciones en compresiones. Cambie reanimador cada 2 minutos. Siga algoritmos actualizados.'
                 },
                 {
                     id: 'anafilaxia',
                     title: 'Manejo de anafilaxia',
-                    summary: 'Reconocer y actuar rápido',
-                    materials: ['Epinefrina IM', 'Oxígeno', 'Vía IV'],
+                    summary: 'Reconocer y actuar rápido ante reacción alérgica grave.',
+                    materials: ['Epinefrina IM (adrenalina)', 'Oxígeno', 'Vía IV', 'Antihistamínicos', 'Corticoides'],
                     steps: [
-                        'Evaluar VA',
-                        'Administrar epinefrina IM',
-                        'Oxígeno y soporte'
+                        'Evaluar vía aérea, ventilación y circulación',
+                        'Administrar epinefrina IM 0.3-0.5mg en muslo',
+                        'Administrar oxígeno',
+                        'Establecer vía IV con cristaloides',
+                        'Administrar antihistamínicos y corticoides',
+                        'Monitorizar y preparar para intubación si necesario'
                     ],
-                    notes: 'Tras la dosis, monitorizar y repetir según protocolo.'
+                    notes: 'Tras la dosis, monitorizar y repetir cada 5-15 minutos si no mejora. Observación mínima de 4-6 horas post-estabilización.'
                 },
                 {
                     id: 'hemorragia',
                     title: 'Control de hemorragia',
-                    summary: 'Compresión directa, torniquete si necesario',
-                    materials: ['Gasas', 'Guantes', 'Torniquete'],
+                    summary: 'Compresión directa, torniquete si necesario y estabilización hemodinámica.',
+                    materials: ['Gasas', 'Guantes', 'Torniquete', 'Vía IV', 'Solución cristaloide'],
                     steps: [
-                        'Comprimir',
-                        'Elevar miembro',
+                        'Aplicar compresión directa con gasas',
+                        'Elevar miembro si no hay fractura',
+                        'Aplicar torniquete si hemorragia masiva',
+                        'Establecer vía IV amplia',
+                        'Administrar fluidos',
                         'Transportar a urgencias'
                     ],
-                    notes: ''
+                    notes: 'Revise para signos de shock hemorrágico. No retire objetos incrustados. Mantenga al paciente abrigado.'
                 },
                 {
                     id: 'obstruccion_va',
                     title: 'Obstrucción de vía aérea (adulto)',
-                    summary: 'Maniobra de Heimlich y cuidados',
+                    summary: 'Maniobra de Heimlich y cuidados post-rescate.',
                     materials: [],
                     steps: [
-                        'Valorar capacidad de hablar',
-                        'Heimlich si obstrucción completa',
-                        'Si inconsciente iniciar RCP'
+                        'Valorar capacidad de hablar y toser',
+                        'Si obstrucción parcial, animar a toser',
+                        'Si obstrucción completa, realizar maniobra de Heimlich',
+                        'Si inconsciente, iniciar RCP',
+                        'Reevaluar después de cada intento'
                     ],
-                    notes: ''
+                    notes: 'En embarazadas o obesos, comprima el epigastrio. En niños, use maniobras adaptadas. Siempre solicite ayuda.'
                 },
                 {
                     id: 'sintomaticos',
                     title: 'Manejo inicial del síncope',
-                    summary: 'Evaluar causas y medidas iniciales',
+                    summary: 'Evaluar causas y medidas iniciales de estabilización.',
                     materials: [],
                     steps: [
-                        'Posición supina',
+                        'Posición supina con piernas elevadas',
                         'Abrir vía aérea',
-                        'Monitorizar'
+                        'Monitorizar signos vitales',
+                        'Administrar oxígeno si indicado',
+                        'Establecer vía IV',
+                        'Evaluar causa subyacente'
                     ],
-                    notes: 'Buscar causa subyacente.'
+                    notes: 'Diferenciar síncope de otras causas de pérdida de conciencia. Revise para signos de enfermedad cardiovascular.'
+                },
+                {
+                    id: 'ictus',
+                    title: 'Actuación ante ictus',
+                    summary: 'Reconocimiento rápido y activación de código ictus.',
+                    materials: ['Escala NIHSS', 'TAC cerebral', 'Equipo de neurología'],
+                    steps: [
+                        'Usar escala FAST (Cara, Brazo, Habla, Tiempo)',
+                        'Llamar a emergencias inmediatamente',
+                        'No administrar medicación',
+                        'Monitorizar signos vitales',
+                        'Preparar para TAC cerebral',
+                        'Activar código ictus'
+                    ],
+                    notes: 'El tiempo es cerebro. Tratamiento trombolítico en ventana de 4.5 horas. Evaluación neurológica frecuente.'
                 }
             ],
             movilizacion: [
                 {
                     id: 'transferencia',
                     title: 'Transferencia segura',
-                    summary: 'Uso de técnicas y dispositivos de ayuda',
-                    materials: ['Cinturón traslado', 'Sábanas de deslizar'],
+                    summary: 'Uso de técnicas y dispositivos de ayuda para prevenir lesiones.',
+                    materials: ['Cinturón de traslado', 'Sábanas de deslizar', 'Grúa', 'Equipo'],
                     steps: [
-                        'Evaluar',
-                        'Explicar',
-                        'Coordinar equipo',
-                        'Usar ayudas mecánicas'
+                        'Evaluar capacidad del paciente',
+                        'Explicar procedimiento',
+                        'Coordinar equipo suficiente',
+                        'Usar ayudas mecánicas cuando indicado',
+                        'Mantener espalda recta',
+                        'Mover en bloque'
                     ],
-                    notes: ''
+                    notes: 'Formación previa necesaria. Evite movimientos de torsión. Revise para signos de dolor o incomodidad.'
                 },
                 {
                     id: 'posicionamiento',
                     title: 'Cambio de decúbito',
-                    summary: 'Prevención de escaras mediante cambios posicionales',
+                    summary: 'Prevención de escaras mediante cambios posicionales regulares.',
                     materials: [],
                     steps: [
-                        'Cambiar cada 2h',
-                        'Registrar posición'
+                        'Cambiar cada 2 horas',
+                        'Usar cojines protectores',
+                        'Registrar posición',
+                        'Evaluar piel',
+                        'Mantener alineación corporal'
                     ],
-                    notes: ''
+                    notes: 'Protocolo de prevención de escaras. Revise puntos de presión. Use colchones antiescaras.'
                 },
                 {
                     id: 'ayuda_mec',
                     title: 'Uso de ayuda mecánica',
-                    summary: 'Uso de grúa y tablas',
-                    materials: ['Grúa', 'Equipo'],
+                    summary: 'Uso de grúa y tablas para movilización segura.',
+                    materials: ['Grúa', 'Arnés', 'Equipo de sujeción'],
                     steps: [
-                        'Evaluar',
+                        'Evaluar necesidad',
                         'Coordinación equipo',
-                        'Seguridad paciente'
+                        'Seguridad paciente',
+                        'Verificar equipo',
+                        'Movilización suave'
                     ],
-                    notes: 'Formación previa necesaria.'
+                    notes: 'Formación previa necesaria. Inspeccione equipo antes de uso. Comunique cada paso al paciente.'
+                },
+                {
+                    id: 'movilizacion_neurologica',
+                    title: 'Movilización en pacientes neurológicos',
+                    summary: 'Técnicas especiales para pacientes con secuelas neurológicas.',
+                    materials: ['Andador', 'Muletas', 'Ortesis', 'Equipo de protección'],
+                    steps: [
+                        'Evaluar capacidad funcional',
+                        'Seleccionar ayudas adecuadas',
+                        'Entrenar progresivamente',
+                        'Prevenir caídas',
+                        'Documentar avances'
+                    ],
+                    notes: 'Enfoque individualizado. Revise tono muscular y equilibrio. Supervisión constante.'
                 }
             ],
             nutricion: [
                 {
                     id: 'alimentacion_asistida',
                     title: 'Asistencia en alimentación',
-                    summary: 'Prevención de aspiración',
-                    materials: ['Texturas adaptadas'],
+                    summary: 'Prevención de aspiración y soporte nutricional.',
+                    materials: ['Texturas adaptadas', 'Utensilios especiales', 'Silla adecuada'],
                     steps: [
-                        'Valorar riesgo',
-                        'Posicionar 45-90°',
-                        'Supervisar ingestion'
+                        'Valorar riesgo de aspiración',
+                        'Posicionar en 45-90°',
+                        'Supervisar ingestión',
+                        'Observar signos de dificultad',
+                        'Registrar ingesta'
                     ],
-                    notes: ''
+                    notes: 'Evalúe deglución. Use texturas adecuadas. Pequeñas cantidades. Tiempo suficiente.'
                 },
                 {
                     id: 'sonda_nasogastrica',
                     title: 'SNG - cuidado y administración',
-                    summary: 'Cuidado de nutrición enteral',
-                    materials: ['Sonda NG', 'Bomba nutricional'],
+                    summary: 'Cuidado de nutrición enteral con prevención de complicaciones.',
+                    materials: ['Sonda NG', 'Bomba nutricional', 'Jeringa', 'Cinta de fijación'],
                     steps: [
-                        'Comprobar posicion',
+                        'Comprobar posición (pH, aspiración)',
                         'Administrar por gravedad o bomba',
-                        'Limpiar y fijar'
+                        'Clampar al finalizar',
+                        'Limpiar y fijar',
+                        'Registrar ingesta y tolerancia'
                     ],
-                    notes: ''
+                    notes: 'Verifique posición antes de cada administración. Revise para signos de intolerancia. Mantenga cabecera elevada.'
+                },
+                {
+                    id: 'nutricion_enteral',
+                    title: 'Nutrición enteral',
+                    summary: 'Administración de fórmulas nutricionales por vía gastrointestinal.',
+                    materials: ['Fórmula nutricional', 'Bomba de infusión', 'Equipo de administración'],
+                    steps: [
+                        'Verificar prescripción',
+                        'Preparar fórmula',
+                        'Administrar según protocolo',
+                        'Monitorizar tolerancia',
+                        'Documentar parámetros'
+                    ],
+                    notes: 'Revise para signos de intolerancia: náuseas, vómitos, distensión. Control de glucemia en diabéticos.'
                 }
             ],
             infeccion: [
                 {
                     id: 'aislamiento_contacto',
                     title: 'Precauciones por contacto',
-                    summary: 'EPP y manejo de residuos',
-                    materials: ['Guantes', 'Bata', 'Mascarilla'],
+                    summary: 'EPP y manejo de residuos para prevenir transmisión.',
+                    materials: ['Guantes', 'Bata', 'Mascarilla', 'Residuos infectados'],
                     steps: [
-                        'Determinar aislamiento',
-                        'Colocar EPP',
+                        'Determinar necesidad de aislamiento',
+                        'Colocar EPP antes de entrada',
                         'Retirar EPP correctamente',
-                        'Limpiar superficies'
+                        'Limpiar superficies',
+                        'Manejar residuos adecuadamente',
+                        'Documentar cuidados'
                     ],
-                    notes: ''
+                    notes: 'Indicado para pacientes con infecciones multirresistentes. Mantenga puerta cerrada. Evite compartir equipo.'
                 },
                 {
                     id: 'control_infeccion_cateter',
                     title: 'Cuidados de catéter central',
-                    summary: 'Mantener técnica estéril',
-                    materials: ['EPP', 'Apósito estéril'],
+                    summary: 'Mantener técnica estéril para prevenir infecciones del torrente sanguíneo.',
+                    materials: ['EPP completo', 'Apósito estéril', 'Solución antiséptica', 'Guantes estériles'],
                     steps: [
                         'Higiene de manos',
                         'Cambiar apósito según protocolo',
-                        'Registrar signos infección'
+                        'Limpiar con antiséptico',
+                        'Fijar adecuadamente',
+                        'Registrar signos de infección',
+                        'Minimizar manipulaciones'
                     ],
-                    notes: ''
+                    notes: 'Protocolo de inserción y mantenimiento. Revise para signos de infección local o sistémica. Cambie apósito cada 7 días o si está húmedo.'
+                },
+                {
+                    id: 'lavado_quirurgico',
+                    title: 'Lavado quirúrgico de manos',
+                    summary: 'Técnica de asepsia para procedimientos invasivos.',
+                    materials: ['Jabón antiséptico', 'Cepillo', 'Agua', 'Toalla estéril'],
+                    steps: [
+                        'Retirar joyas',
+                        'Mojar manos y antebrazos',
+                        'Aplicar jabón',
+                        'Cepillar uñas y espacios interdigitales',
+                        'Enjuagar de manos a codos',
+                        'Secar con toalla estéril'
+                    ],
+                    notes: 'Duración mínima de 2-3 minutos. No toque grifo con manos limpias. Mantenga manos por encima de codos.'
                 }
             ]
         };
@@ -1961,59 +2470,133 @@
         const DISEASES = [
             {
                 name: 'Neumonía',
-                summary: 'Infección inflamatoria aguda del parénquima pulmonar, generalmente bacteriana o viral. Presenta fiebre, tos productiva, disnea y crepitaciones.'
+                summary: 'Infección inflamatoria aguda del parénquima pulmonar, generalmente bacteriana o viral. Presenta fiebre, tos productiva, disnea y crepitaciones. Cuidados: oxigenoterapia, movilización, antibióticos según guía.',
+                detailed: {
+                    etiologia: 'Bacteriana (Streptococcus pneumoniae), viral (influenza), atípica (Mycoplasma). Factores de riesgo: edad, tabaquismo, enfermedad pulmonar crónica.',
+                    sintomas: 'Fiebre, tos productiva, disnea, dolor torácico pleurítico, escalofríos, sudoración nocturna.',
+                    diagnostico: 'Radiografía de tórax, análisis de sangre, cultivo de esputo, gasometría arterial en casos graves.',
+                    tratamiento: 'Antibióticos empíricos según gravedad, oxigenoterapia, hidratación, fisioterapia respiratoria.',
+                    prevencion: 'Vacunación antineumocócica e influenza, abandono del tabaquismo, higiene de manos.'
+                }
             },
             {
                 name: 'Insuficiencia cardíaca',
-                summary: 'Incapacidad del corazón para bombear adecuadamente. Síntomas incluyen disnea, ortopnea, edema periférico y fatiga.'
+                summary: 'Incapacidad del corazón para bombear adecuadamente. Síntomas incluyen disnea, ortopnea, edema periférico y fatiga. Manejo: diuréticos, IECA, betabloqueantes, monitoreo de peso.',
+                detailed: {
+                    etiologia: 'Cardiopatía isquémica, miocardiopatía, valvulopatías, hipertensión arterial mal controlada.',
+                    sintomas: 'Disnea progresiva, ortopnea, disnea paroxística nocturna, edema en miembros inferiores, fatiga, tos nocturna.',
+                    diagnostico: 'Ecocardiograma, NT-proBNP, radiografía de tórax, ECG, función renal.',
+                    tratamiento: 'Diuréticos, IECA/ARA II, betabloqueantes, antagonistas de la aldosterona, SGLT2 inhibidores, dispositivos (ICD, CRT).',
+                    prevencion: 'Control de factores de riesgo cardiovasculares, ejercicio regular, dieta baja en sal.'
+                }
             },
             {
                 name: 'Diabetes mellitus',
-                summary: 'Trastorno del metabolismo de la glucosa con hiperglucemia crónica. Tipos principales: tipo 1 (autoinmune) y tipo 2 (resistencia a insulina).'
+                summary: 'Trastorno del metabolismo de la glucosa con hiperglucemia crónica. Tipos principales: tipo 1 (autoinmune) y tipo 2 (resistencia a insulina). Cuidados: control glucémico, educación, prevención de complicaciones.',
+                detailed: {
+                    etiologia: 'Tipo 1: destrucción autoinmune de células beta. Tipo 2: resistencia a insulina y déficit relativo de insulina.',
+                    sintomas: 'Poliuria, polidipsia, polifagia, pérdida de peso, fatiga, visión borrosa.',
+                    diagnostico: 'Glucemia en ayunas ≥126 mg/dL, HbA1c ≥6.5%, glucemia al azar ≥200 mg/dL con síntomas.',
+                    tratamiento: 'Tipo 1: insulina múltiple al día o bomba. Tipo 2: cambios en estilo de vida, metformina, otros orales, insulina si necesario.',
+                    prevencion: 'Estilo de vida saludable, ejercicio, dieta equilibrada, control de peso.'
+                }
             },
             {
                 name: 'EPOC',
-                summary: 'Enfermedad pulmonar obstructiva crónica con limitación al flujo aéreo progresiva. Caracterizada por tos crónica, esputo y disnea.'
+                summary: 'Enfermedad pulmonar obstructiva crónica con limitación al flujo aéreo progresiva. Caracterizada por tos crónica, esputo y disnea. Cuidados: oxigenoterapia, broncodilatadores, rehabilitación pulmonar.',
+                detailed: {
+                    etiologia: 'Tabaquismo (principal causa), contaminación ambiental, deficiencia de alfa-1 antitripsina.',
+                    sintomas: 'Tos crónica, producción de esputo, disnea progresiva, sibilancias, exacerbaciones frecuentes.',
+                    diagnostico: 'Espirometría (VFE1/CVF < 0.7 post-broncodilatador), radiografía de tórax, gasometría arterial.',
+                    tratamiento: 'Abandono del tabaquismo, broncodilatadores, corticoides inhalados, oxigenoterapia, rehabilitación pulmonar.',
+                    prevencion: 'Abandono del tabaquismo, vacunación antigripal y antineumocócica, evitar contaminantes.'
+                }
             },
             {
                 name: 'Sepsis',
-                summary: 'Respuesta sistémica descontrolada a infección que puede llevar a disfunción orgánica. Requiere tratamiento inmediato con antibióticos y soporte.'
+                summary: 'Respuesta sistémica descontrolada a infección que puede llevar a disfunción orgánica. Requiere tratamiento inmediato con antibióticos y soporte. Criterios: SOFA ≥2 puntos.',
+                detailed: {
+                    etiologia: 'Bacteriemia, neumonía, infección urinaria, peritonitis, catéteres intravasculares.',
+                    sintomas: 'Fiebre o hipotermia, taquicardia, taquipnea, leucocitosis o leucopenia, alteración del estado mental.',
+                    diagnostico: 'Cultivos sanguíneos, lactato sérico, función orgánica, imágenes según sospecha.',
+                    tratamiento: 'Antibióticos de amplio espectro en 1 hora, fluidos cristaloides, vasopresores si necesario, fuente de infección.',
+                    prevencion: 'Control de infecciones, asepsia, vigilancia de signos de alarma.'
+                }
             },
             {
                 name: 'ACV (Accidente cerebrovascular)',
-                summary: 'Pérdida repentina de función neurológica por isquemia o hemorragia cerebral. Signos: debilidad facial, alteración del habla, pérdida de fuerza en un lado.'
+                summary: 'Pérdida repentina de función neurológica por isquemia o hemorragia cerebral. Signos: debilidad facial, alteración del habla, pérdida de fuerza en un lado. Actuar rápido: "Time is brain".',
+                detailed: {
+                    etiologia: 'Isquémico (80%): trombosis, embolia. Hemorrágico: rotura de aneurisma, hipertensión arterial.',
+                    sintomas: 'Debilidad o parálisis facial/brasco/pierna, alteración del habla, pérdida de visión, cefalea intensa, vértigo.',
+                    diagnostico: 'TC cerebral, RM, angio-TC/RM, ECG, ecocardiograma, doppler de troncos supraaórticos.',
+                    tratamiento: 'Isquémico: trombólisis en ventana de 4.5h, trombectomía mecánica. Hemorrágico: control de presión, neurocirugía si indicado.',
+                    prevencion: 'Control de factores de riesgo (HTA, diabetes, dislipidemia), antiagregación si indicado, cirugía de CEA si indicado.'
+                }
             },
             {
                 name: 'Úlcera péptica',
-                summary: 'Lesión en la mucosa gástrica o duodenal. Causada por H. pylori o AINEs. Dolor epigástrico, náuseas, posible hemorragia digestiva.'
+                summary: 'Lesión en la mucosa gástrica o duodenal. Causada por H. pylori o AINEs. Dolor epigástrico, náuseas, posible hemorragia digestiva. Tratamiento: erradicación de H. pylori, PPI.',
+                detailed: {
+                    etiologia: 'H. pylori (70-90%), uso de AINEs/antiinflamatorios, estrés severo, tabaquismo.',
+                    sintomas: 'Dolor epigástrico (mejora con comida en duodenal, empeora en gástrica), náuseas, vómitos, hematemesis, melena.',
+                    diagnostico: 'Endoscopia digestiva alta, test de ureasa, serología para H. pylori.',
+                    tratamiento: 'PPI, erradicación de H. pylori (triple o cuádruple terapia), suspensión de AINEs, cirugía si complicaciones.',
+                    prevencion: 'Evitar AINEs si posible, tratamiento de H. pylori, estilo de vida saludable.'
+                }
             },
             {
                 name: 'Insuficiencia renal aguda',
-                summary: 'Pérdida rápida de función renal con alteración de homeostasis. Caracterizada por oliguria, retención de metabolitos y alteraciones electrolíticas.'
+                summary: 'Pérdida rápida de función renal con alteración de homeostasis. Caracterizada por oliguria, retención de metabolitos y alteraciones electrolíticas. Causas: prerrenal, renal, posrenal.',
+                detailed: {
+                    etiologia: 'Prerrenal: hipovolemia, shock. Renal: nefrotoxinas, glomerulonefritis. Posrenal: obstrucción urinaria.',
+                    sintomas: 'Oliguria/anuria, edema, náuseas, confusión, arritmias, hipertensión.',
+                    diagnostico: 'Creatinina sérica, urea, electrolitos, ecografía renal, relación BUN/creatinina.',
+                    tratamiento: 'Tratar causa subyacente, manejo de fluidos/electrolitos, diálisis si indicado, evitar nefrotoxinas.',
+                    prevencion: 'Hidratación adecuada, monitoreo en riesgo, evitar nefrotoxinas, control de factores de riesgo.'
+                }
             },
             {
                 name: 'Hipertensión arterial',
-                summary: 'Presión arterial persistentemente elevada (>140/90 mmHg). Factor de riesgo para enfermedad cardiovascular, ACV y nefropatía.'
+                summary: 'Presión arterial persistentemente elevada (>140/90 mmHg). Factor de riesgo para enfermedad cardiovascular, ACV y nefropatía. Cuidados: monitoreo, adherencia al tratamiento, cambios en estilo de vida.',
+                detailed: {
+                    etiologia: 'Esencial (90-95%): multifactorial. Secundaria: enfermedad renal, endocrina, apnea del sueño.',
+                    sintomas: 'Generalmente asintomática. Puede causar cefalea, mareos, epistaxis, visión borrosa en casos graves.',
+                    diagnostico: 'Mediciones repetidas de PA, evaluación de órganos diana, factores de riesgo cardiovascular.',
+                    tratamiento: 'Cambio de estilo de vida, diuréticos, IECA/ARA II, calcio antagonistas, betabloqueantes, combinaciones.',
+                    prevencion: 'Dieta DASH, ejercicio, reducción de sal, control de peso, limitar alcohol, no fumar.'
+                }
             },
             {
                 name: 'Cáncer de pulmón',
-                summary: 'Neoplasia maligna más común y letal. Relacionado con tabaquismo. Síntomas: tos persistente, hemoptisis, pérdida de peso, disnea.'
+                summary: 'Neoplasia maligna más común y letal. Relacionado con tabaquismo. Síntomas: tos persistente, hemoptisis, pérdida de peso, disnea. Diagnóstico: TC torácica, biopsia.',
+                detailed: {
+                    etiologia: 'Tabaquismo (principal factor), exposición ocupacional (amianto), contaminación del aire, factores genéticos.',
+                    sintomas: 'Tos persistente o cambio en tos crónica, hemoptisis, disnea, dolor torácico, pérdida de peso, anorexia.',
+                    diagnostico: 'Radiografía de tórax, TC torácica, PET-CT, biopsia (broncoscopia, aguja fina), estadificación.',
+                    tratamiento: 'Cirugía, radioterapia, quimioterapia, inmunoterapia, terapia dirigida según mutaciones.',
+                    prevencion: 'Abandono del tabaquismo, evitar exposiciones ocupacionales, detección temprana en fumadores de alto riesgo.'
+                }
             }
         ];
         
         // Medicamentos y combinaciones peligrosas
         const NEVER_COMBINE = [
-            { a: 'warfarina', b: 'ibuprofeno', reason: 'Aumento del riesgo de hemorragia', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK545235/' },
-            { a: 'paracetamol', b: 'alcohol', reason: 'Hepatotoxicidad severa', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK547703/' },
-            { a: 'ciprofloxacina', b: 'antiácidos', reason: 'Disminución de absorción', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK538340/' },
-            { a: 'metformina', b: 'contraste iodado', reason: 'Riesgo de acidosis láctica', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK537272/' },
-            { a: 'sertralina', b: 'fenelzina', reason: 'Síndrome serotoninérgico', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK537281/' },
-            { a: 'simvastatina', b: 'eritromicina', reason: 'Miopatía severa', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK537092/' },
-            { a: 'gemfibrozil', b: 'statinas', reason: 'Rabdomiólisis', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK537290/' },
-            { a: 'metotrexato', b: 'cotrimoxazol', reason: 'Mielosupresión', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK537276/' },
-            { a: 'digoxina', b: 'verapamilo', reason: 'Bloqueo cardíaco', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK537278/' },
-            { a: 'nitroglicerina', b: 'sildenafil', reason: 'Hipotensión severa', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK537279/' },
-            { a: 'linezolid', b: 'sertralina', reason: 'Síndrome serotoninérgico', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK537282/' }
+            { a: 'warfarina', b: 'ibuprofeno', reason: 'Aumento del riesgo de hemorragia gastrointestinal y sistémica', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK545235/' },
+            { a: 'paracetamol', b: 'alcohol', reason: 'Hepatotoxicidad severa y potencial para insuficiencia hepática aguda', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK547703/' },
+            { a: 'ciprofloxacina', b: 'antiácidos', reason: 'Disminución significativa de absorción y eficacia del antibiótico', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK538340/' },
+            { a: 'metformina', b: 'contraste iodado', reason: 'Riesgo de acidosis láctica, especialmente en pacientes con disfunción renal', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK537272/' },
+            { a: 'sertralina', b: 'fenelzina', reason: 'Síndrome serotoninérgico potencialmente mortal', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK537281/' },
+            { a: 'simvastatina', b: 'eritromicina', reason: 'Miopatía severa y riesgo de rabdomiólisis', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK537092/' },
+            { a: 'gemfibrozil', b: 'statinas', reason: 'Aumento dramático del riesgo de rabdomiólisis', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK537290/' },
+            { a: 'metotrexato', b: 'cotrimoxazol', reason: 'Mielosupresión severa y toxicidad potenciada', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK537276/' },
+            { a: 'digoxina', b: 'verapamilo', reason: 'Bloqueo cardíaco completo y toxicidad digitálica potenciada', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK537278/' },
+            { a: 'nitroglicerina', b: 'sildenafil', reason: 'Hipotensión severa y potencial para shock', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK537279/' },
+            { a: 'linezolid', b: 'sertralina', reason: 'Síndrome serotoninérgico con riesgo de muerte', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK537282/' },
+            { a: 'ketoconazol', b: 'simvastatina', reason: 'Aumento extremo de niveles de statina y riesgo de rabdomiólisis', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK537092/' },
+            { a: 'digoxina', b: 'espironolactona', reason: 'Riesgo de toxicidad digitálica por hiperkalemia', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK537278/' },
+            { a: 'litio', b: 'diuréticos', reason: 'Aumento de niveles de litio y riesgo de intoxicación', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK537277/' },
+            { a: 'fenitoína', b: 'isoniacida', reason: 'Disminución de niveles de fenitoína y riesgo de convulsiones', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK537279/' }
         ];
         
         const MEDS = [
@@ -2021,7 +2604,10 @@
             'Sertralina', 'Omeprazol', 'Sildenafil', 'Nitroglicerina', 'Clopidogrel',
             'Digoxina', 'Verapamilo', 'Fenelzina (MAOI)', 'Sertralina (SSRI)', 
             'Contraste iodado', 'Simvastatina', 'Eritromicina', 'Gemfibrozil', 
-            'Metotrexato', 'Linezolid'
+            'Metotrexato', 'Linezolid', 'Ketoconazol', 'Espironolactona', 
+            'Litio', 'Fenitoína', 'Isoniacida', 'Amiodarona', 'Carbamazepina',
+            'Varfarina', 'Aspirina', 'Heparina', 'Insulina', 'Metoprolol',
+            'Lisinopril', 'Atorvastatina', 'Omeprazol', 'Diazepam', 'Morfina'
         ];
         
         // Pacientes
@@ -2035,26 +2621,31 @@
                 riesgoCardiovascular: 'moderado',
                 alergias: ['Penicilina'],
                 historiaClinica: {
-                    resumen: 'Paciente femenina de 65 años con diabetes tipo 2 diagnosticada hace 10 años.',
+                    resumen: 'Paciente femenina de 65 años con diabetes tipo 2 diagnosticada hace 10 años. Buen control glucémico actual con metformina y estilo de vida.',
                     diagnosticos: [
                         { fecha: '2013-06-15', cie10: 'E11.9', descripcion: 'Diabetes mellitus tipo 2', estado: 'Crónico' },
-                        { fecha: '2018-03-20', cie10: 'E78.0', descripcion: 'Hipercolesterolemia', estado: 'Crónico' }
+                        { fecha: '2018-03-20', cie10: 'E78.0', descripcion: 'Hipercolesterolemia', estado: 'Crónico' },
+                        { fecha: '2021-01-10', cie10: 'I10', descripcion: 'Hipertensión arterial esencial', estado: 'Crónico' }
                     ],
                     tratamientos: [
                         { fechaInicio: '2013-06-15', medicamento: 'Metformina', dosis: '850mg cada 12h', duracion: 'Continuo' },
-                        { fechaInicio: '2018-03-20', medicamento: 'Atorvastatina', dosis: '20mg cada 24h', duracion: 'Continuo' }
+                        { fechaInicio: '2018-03-20', medicamento: 'Atorvastatina', dosis: '20mg cada 24h', duracion: 'Continuo' },
+                        { fechaInicio: '2021-01-10', medicamento: 'Lisinopril', dosis: '10mg cada 24h', duracion: 'Continuo' }
                     ],
                     evolucion: [
-                        { fecha: '2023-01-10', nota: 'HbA1c 7.2%. Buen control glucémico.' },
-                        { fecha: '2023-07-15', nota: 'LDL 110 mg/dL. Ajuste de dosis de estatina.' }
+                        { fecha: '2023-01-10', nota: 'HbA1c 7.2%. Buen control glucémico. Aumento de actividad física.' },
+                        { fecha: '2023-07-15', nota: 'LDL 110 mg/dL. Ajuste de dosis de estatina a 40mg.' },
+                        { fecha: '2024-01-10', nota: 'PA 128/78 mmHg. Buen control de todos los factores de riesgo.' }
                     ],
                     signosVitales: [
                         { fecha: '2023-01-10', temperatura: 36.5, pa: '130/80', fc: 78, fr: 16, spo2: 98, peso: 70, talla: 1.60, imc: 27.3 },
-                        { fecha: '2023-07-15', temperatura: 36.7, pa: '128/78', fc: 76, fr: 14, spo2: 98, peso: 68, talla: 1.60, imc: 26.6 }
+                        { fecha: '2023-07-15', temperatura: 36.7, pa: '128/78', fc: 76, fr: 14, spo2: 98, peso: 68, talla: 1.60, imc: 26.6 },
+                        { fecha: '2024-01-10', temperatura: 36.6, pa: '128/76', fc: 74, fr: 12, spo2: 99, peso: 67, talla: 1.60, imc: 26.2 }
                     ],
                     controles: [
-                        { tipo: 'HbA1c', cada: '3 meses', proximo: '2023-10-15' },
-                        { tipo: 'Perfil lipídico', cada: '6 meses', proximo: '2024-01-15' }
+                        { tipo: 'HbA1c', cada: '3 meses', proximo: '2024-04-10' },
+                        { tipo: 'Perfil lipídico', cada: '6 meses', proximo: '2024-07-15' },
+                        { tipo: 'Microalbuminuria', cada: '12 meses', proximo: '2025-01-10' }
                     ]
                 }
             },
@@ -2067,26 +2658,31 @@
                 riesgoCardiovascular: 'alto',
                 alergias: [],
                 historiaClinica: {
-                    resumen: 'Paciente masculino de 72 años con EPOC grado III, exfumador de 40 paquetes-año.',
+                    resumen: 'Paciente masculino de 72 años con EPOC grado III, exfumador de 40 paquetes-año. Exacerbaciones frecuentes. En rehabilitación pulmonar.',
                     diagnosticos: [
                         { fecha: '2010-05-12', cie10: 'J44.9', descripcion: 'EPOC', estado: 'Crónico' },
-                        { fecha: '2015-11-03', cie10: 'I20.9', descripcion: 'Angina de pecho', estado: 'Intermitente' }
+                        { fecha: '2015-11-03', cie10: 'I20.9', descripcion: 'Angina de pecho', estado: 'Intermitente' },
+                        { fecha: '2020-06-15', cie10: 'E66.9', descripcion: 'Obesidad', estado: 'Crónico' }
                     ],
                     tratamientos: [
                         { fechaInicio: '2010-05-12', medicamento: 'Tiotropio', dosis: '18mcg cada 24h', duracion: 'Continuo' },
-                        { fechaInicio: '2015-11-03', medicamento: 'Isosorbide', dosis: '20mg cada 12h', duracion: 'Continuo' }
+                        { fechaInicio: '2015-11-03', medicamento: 'Isosorbide', dosis: '20mg cada 12h', duracion: 'Continuo' },
+                        { fechaInicio: '2020-06-15', medicamento: 'Formoterol/Budesonida', dosis: '2 inhalaciones cada 12h', duracion: 'Continuo' }
                     ],
                     evolucion: [
-                        { fecha: '2023-02-20', nota: 'Exacerbación leve de EPOC. Tratada con antibiótico y corticoide.' },
-                        { fecha: '2023-08-10', nota: 'Función pulmonar estable. Continúa rehabilitación.' }
+                        { fecha: '2023-02-20', nota: 'Exacerbación leve de EPOC tratada con antibiótico y corticoide oral.' },
+                        { fecha: '2023-08-10', nota: 'Función pulmonar estable. Continúa rehabilitación pulmonar con buena adherencia.' },
+                        { fecha: '2024-01-15', nota: 'Reducción de hospitalizaciones. Mejora en calidad de vida.' }
                     ],
                     signosVitales: [
                         { fecha: '2023-02-20', temperatura: 37.2, pa: '140/85', fc: 88, fr: 22, spo2: 92, peso: 65, talla: 1.70, imc: 22.5 },
-                        { fecha: '2023-08-10', temperatura: 36.8, pa: '138/82', fc: 84, fr: 18, spo2: 94, peso: 66, talla: 1.70, imc: 22.8 }
+                        { fecha: '2023-08-10', temperatura: 36.8, pa: '138/82', fc: 84, fr: 18, spo2: 94, peso: 66, talla: 1.70, imc: 22.8 },
+                        { fecha: '2024-01-15', temperatura: 36.7, pa: '136/80', fc: 82, fr: 16, spo2: 95, peso: 67, talla: 1.70, imc: 23.1 }
                     ],
                     controles: [
-                        { tipo: 'Espirometría', cada: '6 meses', proximo: '2024-02-10' },
-                        { tipo: 'Control de oxigenoterapia', cada: '3 meses', proximo: '2023-11-10' }
+                        { tipo: 'Espirometría', cada: '6 meses', proximo: '2024-07-10' },
+                        { tipo: 'Control de oxigenoterapia', cada: '3 meses', proximo: '2024-04-10' },
+                        { tipo: 'Rehabilitación pulmonar', cada: '12 meses', proximo: '2025-01-15' }
                     ]
                 }
             },
@@ -2099,25 +2695,28 @@
                 riesgoCardiovascular: 'moderado',
                 alergias: ['Sulfamidas'],
                 historiaClinica: {
-                    resumen: 'Paciente femenina de 48 años con VIH desde 2013, tratamiento antirretroviral efectivo.',
+                    resumen: 'Paciente femenina de 48 años con VIH desde 2013, tratamiento antirretroviral efectivo. Control viral indetectable desde hace 5 años.',
                     diagnosticos: [
                         { fecha: '2013-06-15', cie10: 'B20', descripcion: 'VIH', estado: 'Crónico' }
                     ],
                     tratamientos: [
-                        { fechaInicio: '2013-06-15', medicamento: 'Dolutegravir', dosis: '50mg cada 24h', duracion: 'Continuo' }
+                        { fechaInicio: '2013-06-15', medicamento: 'Dolutegravir', dosis: '50mg cada 24h', duracion: 'Continuo' },
+                        { fechaInicio: '2013-06-15', medicamento: 'Tenofovir/Emtricitabina', dosis: '1 comprimido cada 24h', duracion: 'Continuo' }
                     ],
                     evolucion: [
                         { fecha: '2013-06-15', nota: 'Diagnóstico de VIH. Iniciado tratamiento antirretroviral.' },
-                        { fecha: '2020-01-10', nota: 'Control viral indetectable desde hace 5 años.' },
-                        { fecha: '2023-03-15', nota: 'Carga viral indetectable. CD4 650 células/mm³.' }
+                        { fecha: '2020-01-10', nota: 'Control viral indetectable desde hace 5 años. Buen estado inmunológico.' },
+                        { fecha: '2023-03-15', nota: 'Carga viral indetectable. CD4 650 células/mm³. Buen adherencia al tratamiento.' }
                     ],
                     signosVitales: [
                         { fecha: '2023-01-10', temperatura: 36.8, pa: '115/75', fc: 72, fr: 14, spo2: 98, peso: 62, talla: 1.60, imc: 24.2 },
-                        { fecha: '2023-07-15', temperatura: 36.6, pa: '118/72', fc: 70, fr: 12, spo2: 99, peso: 63, talla: 1.60, imc: 24.6 }
+                        { fecha: '2023-07-15', temperatura: 36.6, pa: '118/72', fc: 70, fr: 12, spo2: 99, peso: 63, talla: 1.60, imc: 24.6 },
+                        { fecha: '2024-01-10', temperatura: 36.5, pa: '116/70', fc: 68, fr: 12, spo2: 99, peso: 64, talla: 1.60, imc: 25.0 }
                     ],
                     controles: [
-                        { tipo: 'Carga Viral', cada: '6 meses', proximo: '2023-09-15' },
-                        { tipo: 'Perfil Inmunológico', cada: '6 meses', proximo: '2023-09-15' }
+                        { tipo: 'Carga Viral', cada: '6 meses', proximo: '2024-07-15' },
+                        { tipo: 'Perfil Inmunológico', cada: '6 meses', proximo: '2024-07-15' },
+                        { tipo: 'Perfil metabólico', cada: '12 meses', proximo: '2025-01-10' }
                     ]
                 }
             },
@@ -2130,28 +2729,67 @@
                 riesgoCardiovascular: 'alto',
                 alergias: ['Ioduro'],
                 historiaClinica: {
-                    resumen: 'Paciente masculino de 67 años con IC por miocardiopatía isquémica.',
+                    resumen: 'Paciente masculino de 67 años con IC por miocardiopatía isquémica. Clase funcional II NYHA. Buen control de síntomas.',
                     diagnosticos: [
                         { fecha: '2020-01-15', cie10: 'I50.9', descripcion: 'Insuficiencia Cardíaca', estado: 'Crónico' },
-                        { fecha: '2020-01-15', cie10: 'I25.10', descripcion: 'Enfermedad arterial coronaria', estado: 'Crónico' }
+                        { fecha: '2020-01-15', cie10: 'I25.10', descripcion: 'Enfermedad arterial coronaria', estado: 'Crónico' },
+                        { fecha: '2022-03-10', cie10: 'E78.0', descripcion: 'Hipercolesterolemia', estado: 'Crónico' }
                     ],
                     tratamientos: [
                         { fechaInicio: '2020-01-15', medicamento: 'Enalapril', dosis: '10mg cada 12h', duracion: 'Continuo' },
                         { fechaInicio: '2020-01-15', medicamento: 'Carvedilol', dosis: '25mg cada 12h', duracion: 'Continuo' },
-                        { fechaInicio: '2020-01-15', medicamento: 'Furosemida', dosis: '40mg cada 24h', duracion: 'Continuo' }
+                        { fechaInicio: '2020-01-15', medicamento: 'Furosemida', dosis: '40mg cada 24h', duracion: 'Continuo' },
+                        { fechaInicio: '2022-03-10', medicamento: 'Atorvastatina', dosis: '80mg cada 24h', duracion: 'Continuo' }
                     ],
                     evolucion: [
-                        { fecha: '2020-01-15', nota: 'IC clase III NYHA. Iniciado tratamiento.' },
-                        { fecha: '2022-06-20', nota: 'Mejoría funcional. Clase II NYHA.' },
-                        { fecha: '2023-05-10', nota: 'Estable. Control de peso diario.' }
+                        { fecha: '2020-01-15', nota: 'IC clase III NYHA. Iniciado tratamiento con IECA, betabloqueante y diurético.' },
+                        { fecha: '2022-06-20', nota: 'Mejoría funcional. Clase II NYHA. Buen adherencia al tratamiento.' },
+                        { fecha: '2023-05-10', nota: 'Estable. Control de peso diario. Buen estado funcional.' }
                     ],
                     signosVitales: [
                         { fecha: '2020-01-15', temperatura: 36.9, pa: '150/90', fc: 92, fr: 20, spo2: 94, peso: 85, talla: 1.75, imc: 27.8 },
-                        { fecha: '2023-05-10', temperatura: 36.7, pa: '128/78', fc: 76, fr: 14, spo2: 97, peso: 78, talla: 1.75, imc: 25.5 }
+                        { fecha: '2023-05-10', temperatura: 36.7, pa: '128/78', fc: 76, fr: 14, spo2: 97, peso: 78, talla: 1.75, imc: 25.5 },
+                        { fecha: '2024-01-10', temperatura: 36.6, pa: '126/76', fc: 74, fr: 12, spo2: 98, peso: 77, talla: 1.75, imc: 25.2 }
                     ],
                     controles: [
-                        { tipo: 'Ecocardiograma', cada: '12 meses', proximo: '2024-05-10' },
-                        { tipo: 'Perfil renal', cada: '6 meses', proximo: '2023-11-10' }
+                        { tipo: 'Ecocardiograma', cada: '12 meses', proximo: '2025-01-10' },
+                        { tipo: 'Perfil renal', cada: '6 meses', proximo: '2024-07-10' },
+                        { tipo: 'Control de peso', cada: '7 días', proximo: '2024-01-17' }
+                    ]
+                }
+            },
+            {
+                id: 5,
+                nombre: 'Laura Fernández',
+                edad: 34,
+                diagnosticoPrincipal: 'Embarazo de alto riesgo',
+                especialidad: 'Ginecología',
+                riesgoCardiovascular: 'bajo',
+                alergias: [],
+                historiaClinica: {
+                    resumen: 'Paciente femenina de 34 años, embarazo de 28 semanas, con preeclampsia leve. Control prenatal regular.',
+                    diagnosticos: [
+                        { fecha: '2024-01-10', cie10: 'O14.1', descripcion: 'Preeclampsia leve', estado: 'Activo' },
+                        { fecha: '2023-10-15', cie10: 'Z3A.28', descripcion: 'Embarazo de 28 semanas', estado: 'Activo' }
+                    ],
+                    tratamientos: [
+                        { fechaInicio: '2024-01-10', medicamento: 'Aspirina baja dosis', dosis: '100mg cada 24h', duracion: 'Hasta parto' },
+                        { fechaInicio: '2024-01-10', medicamento: 'Suplemento de hierro', dosis: '100mg cada 24h', duracion: 'Continuo' }
+                    ],
+                    evolucion: [
+                        { fecha: '2024-01-10', nota: 'Diagnóstico de preeclampsia leve. Iniciado aspirina baja dosis y control estricto.' },
+                        { fecha: '2024-01-24', nota: 'PA estable. Proteinuria leve. Buen crecimiento fetal en ecografía.' },
+                        { fecha: '2024-02-07', nota: 'Control satisfactorio. Paciente asintomática. Adherente al tratamiento.' }
+                    ],
+                    signosVitales: [
+                        { fecha: '2024-01-10', temperatura: 36.7, pa: '142/92', fc: 84, fr: 16, spo2: 98, peso: 68, talla: 1.65, imc: 25.0 },
+                        { fecha: '2024-01-24', temperatura: 36.6, pa: '138/88', fc: 82, fr: 14, spo2: 99, peso: 70, talla: 1.65, imc: 25.7 },
+                        { fecha: '2024-02-07', temperatura: 36.5, pa: '136/86', fc: 80, fr: 14, spo2: 99, peso: 72, talla: 1.65, imc: 26.5 }
+                    ],
+                    controles: [
+                        { tipo: 'Control prenatal', cada: '2 semanas', proximo: '2024-02-21' },
+                        { tipo: 'Ecografía obstétrica', cada: '4 semanas', proximo: '2024-03-06' },
+                        { tipo: 'Analítica completa', cada: '4 semanas', proximo: '2024-03-06' }
                     ]
                 }
             }
@@ -2161,48 +2799,75 @@
         const RESOURCES = [
             {
                 id: 1,
-                titulo: 'Guía de RCP 2023',
-                categoria: 'Guías',
+                titulo: 'Guía de Práctica Clínica: Manejo de la Diabetes Tipo 2',
+                categoria: 'Protocolos',
                 tipo: 'documento',
-                url: 'https://example.com/rcp2023.pdf',
-                etiquetas: ['RCP', 'emergencias', 'cardiología'],
-                descripcion: 'Guía actualizada de reanimación cardiopulmonar según recomendaciones 2023.'
+                url: 'https://example.com/diabetes2.pdf',
+                etiquetas: ['diabetes', 'endocrinología', 'protocolo', 'tratamiento'],
+                descripcion: 'Guía actualizada basada en evidencia para el manejo integral de la diabetes mellitus tipo 2, incluyendo objetivos terapéuticos, algoritmos de tratamiento y prevención de complicaciones.'
             },
             {
                 id: 2,
-                titulo: 'Video: Técnica de curación',
+                titulo: 'Video: Técnica de Curación de Heridas Crónicas',
                 categoria: 'Videos',
                 tipo: 'video',
-                url: 'https://example.com/curacion.mp4',
-                etiquetas: ['curaciones', 'heridas', 'asepsia'],
-                descripcion: 'Demostración de técnica correcta para curación de heridas simples.'
+                url: 'https://example.com/curacion_heridas.mp4',
+                etiquetas: ['curaciones', 'heridas', 'asepsia', 'técnicas'],
+                descripcion: 'Demostración paso a paso de la técnica correcta para la curación de heridas crónicas, incluyendo evaluación, limpieza, selección de apósitos y educación al paciente.'
             },
             {
                 id: 3,
-                titulo: 'Imagen: Anatomía del corazón',
+                titulo: 'Imagen: Anatomía del Sistema Cardiovascular',
                 categoria: 'Imágenes',
                 tipo: 'imagen',
-                url: 'https://placehold.co/600x400/orange/white?text=Anatom%C3%ADa+del+coraz%C3%B3n',
-                etiquetas: ['cardiología', 'anatomía'],
-                descripcion: 'Ilustración detallada de la anatomía cardíaca.'
+                url: 'https://placehold.co/800x600/blue/white?text=Anatom%C3%ADa+Cardiovascular',
+                etiquetas: ['cardiología', 'anatomía', 'educación', 'visual'],
+                descripcion: 'Ilustración detallada del sistema cardiovascular humano, mostrando el corazón, vasos sanguíneos principales y circulación sistémica y pulmonar.'
             },
             {
                 id: 4,
-                titulo: 'Protocolo de diabetes',
+                titulo: 'Protocolo de Reanimación Cardiopulmonar Básica (RCP)',
                 categoria: 'Protocolos',
                 tipo: 'documento',
-                url: 'https://example.com/diabetes.pdf',
-                etiquetas: ['diabetes', 'endocrinología', 'protocolo'],
-                descripcion: 'Protocolo de manejo de diabetes mellitus en atención primaria.'
+                url: 'https://example.com/rcp.pdf',
+                etiquetas: ['RCP', 'emergencias', 'cardiología', 'reanimación'],
+                descripcion: 'Protocolo estandarizado de RCP básica según las últimas guías de la American Heart Association, incluyendo algoritmos, secuencias y consideraciones especiales.'
             },
             {
                 id: 5,
-                titulo: 'Video: Administración de medicamentos EV',
+                titulo: 'Video: Administración Segura de Medicamentos por Vía Endovenosa',
                 categoria: 'Videos',
                 tipo: 'video',
                 url: 'https://example.com/medicamentos_ev.mp4',
-                etiquetas: ['farmacología', 'vía endovenosa'],
-                descripcion: 'Técnica segura para la administración de medicamentos por vía endovenosa.'
+                etiquetas: ['farmacología', 'vía endovenosa', 'seguridad', 'técnicas'],
+                descripcion: 'Tutorial completo sobre la administración segura de medicamentos por vía endovenosa, cubriendo desde la preparación hasta la monitorización post-administración.'
+            },
+            {
+                id: 6,
+                titulo: 'Infografía: Prevención de Infecciones Nosocomiales',
+                categoria: 'Imágenes',
+                tipo: 'imagen',
+                url: 'https://placehold.co/800x600/green/white?text=Prevenci%C3%B3n+de+Infecciones',
+                etiquetas: ['infecciones', 'prevención', 'control', 'infografía'],
+                descripcion: 'Infografía visual que resume las medidas esenciales para la prevención de infecciones nosocomiales en entornos hospitalarios, incluyendo asepsia, aislamientos y control de dispositivos.'
+            },
+            {
+                id: 7,
+                titulo: 'Plantilla: Historia Clínica de Enfermería',
+                categoria: 'Formularios',
+                tipo: 'documento',
+                url: 'https://example.com/historia_clinica_enfermeria.docx',
+                etiquetas: ['documentación', 'historia clínica', 'plantilla', 'formato'],
+                descripcion: 'Plantilla estandarizada para la documentación completa de la historia clínica de enfermería, incluyendo evaluación, diagnósticos, planes de cuidados y evolución.'
+            },
+            {
+                id: 8,
+                titulo: 'Artículo: Avances en el Manejo del Dolor Crónico',
+                categoria: 'Artículos',
+                tipo: 'documento',
+                url: 'https://example.com/dolor_cronico.pdf',
+                etiquetas: ['dolor', 'analgesia', 'cuidados paliativos', 'actualización'],
+                descripcion: 'Revisión actualizada sobre los avances en el manejo del dolor crónico, incluyendo enfoques farmacológicos y no farmacológicos, y enfoque multidisciplinario.'
             }
         ];
         
@@ -2274,7 +2939,7 @@
                         materials.className = 'materials';
                         
                         const materialsLabel = document.createElement('h4');
-                        materialsLabel.innerHTML = `<i class="fas fa-box-open"></i> Materiales:`;
+                        materialsLabel.innerHTML = `<i class="fas fa-box-open"></i> Materiales y Equipos Necesarios:`;
                         materials.appendChild(materialsLabel);
                         
                         const ul = document.createElement('ul');
@@ -2292,7 +2957,7 @@
                         steps.className = 'steps';
                         
                         const stepsLabel = document.createElement('h4');
-                        stepsLabel.innerHTML = `<i class="fas fa-list-ol"></i> Pasos:`;
+                        stepsLabel.innerHTML = `<i class="fas fa-list-ol"></i> Procedimiento Paso a Paso:`;
                         steps.appendChild(stepsLabel);
                         
                         const ol = document.createElement('ol');
@@ -2322,20 +2987,20 @@
         
         function getCatTitle(cat) {
             const titles = {
-                'higiene': 'Procedimientos de Higiene',
-                'curaciones': 'Curaciones y Heridas',
-                'farmaco': 'Farmacología',
-                'emergencias': 'Emergencias',
-                'movilizacion': 'Movilización y Transferencia',
-                'nutricion': 'Nutrición',
-                'infeccion': 'Control de Infecciones',
-                'medicamentos': 'Medicamentos',
-                'enfermedades': 'Enfermedades',
-                'pae': 'Plan de Atención de Enfermería',
-                'rcp': 'Reanimación Cardiovascular',
-                'calculadoras': 'Calculadoras Clínicas',
-                'recursos': 'Recursos Educativos',
-                'pacientes': 'Gestión de Pacientes'
+                'higiene': 'Procedimientos de Higiene Clínica',
+                'curaciones': 'Técnicas Avanzadas de Curación',
+                'farmaco': 'Farmacología y Administración de Medicamentos',
+                'emergencias': 'Manejo de Emergencias Médicas',
+                'movilizacion': 'Técnicas de Movilización y Transferencia',
+                'nutricion': 'Cuidados Nutricionales',
+                'infeccion': 'Control de Infecciones y Aislamientos',
+                'medicamentos': 'Gestión de Medicamentos y Interacciones',
+                'enfermedades': 'Enfermedades y Condiciones Clínicas',
+                'pae': 'Plan de Atención de Enfermería Avanzado',
+                'rcp': 'Reanimación Cardiovascular Integral',
+                'calculadoras': 'Calculadoras Clínicas Especializadas',
+                'recursos': 'Recursos Educativos y Protocolos',
+                'pacientes': 'Gestión Integral de Pacientes'
             };
             return titles[cat] || cat;
         }
@@ -2402,7 +3067,7 @@
                 dHits.forEach(d => {
                     const diseaseItem = document.createElement('div');
                     diseaseItem.className = 'disease-item';
-                    diseaseItem.innerHTML = `<strong>${d.name}</strong><div class="small">${d.summary}</div>`;
+                    diseaseItem.innerHTML = `<strong>${d.name}</strong><div class="small"><i class="fas fa-info-circle"></i> ${d.summary}</div>`;
                     card.appendChild(diseaseItem);
                 });
                 
@@ -2430,7 +3095,7 @@
                 pHits.forEach(p => {
                     const patientItem = document.createElement('div');
                     patientItem.className = 'disease-item';
-                    patientItem.innerHTML = `<strong>${p.nombre}</strong><div class="small">Edad: ${p.edad}, Diagnóstico: ${p.diagnosticoPrincipal}, Especialidad: ${p.especialidad}</div>`;
+                    patientItem.innerHTML = `<strong>${p.nombre}</strong><div class="small"><i class="fas fa-user-md"></i> Edad: ${p.edad}, <i class="fas fa-diagnoses"></i> Diagnóstico: ${p.diagnosticoPrincipal}, <i class="fas fa-stethoscope"></i> Especialidad: ${p.especialidad}</div>`;
                     card.appendChild(patientItem);
                 });
                 
@@ -2480,7 +3145,15 @@
             diseaseResults.innerHTML = DISEASES.map(d => 
                 `<div class="disease-item">
                     <strong>${d.name}</strong>
-                    <div class="small">${d.summary}</div>
+                    <div class="small"><i class="fas fa-info-circle"></i> ${d.summary}</div>
+                    <div class="detailed-info" style="margin-top:12px;">
+                        <h4><i class="fas fa-book-medical"></i> Información Detallada</h4>
+                        <p><strong>Etiología:</strong> ${d.detailed.etiologia}</p>
+                        <p><strong>Síntomas:</strong> ${d.detailed.sintomas}</p>
+                        <p><strong>Diagnóstico:</strong> ${d.detailed.diagnostico}</p>
+                        <p><strong>Tratamiento:</strong> ${d.detailed.tratamiento}</p>
+                        <p><strong>Prevención:</strong> ${d.detailed.prevencion}</p>
+                    </div>
                 </div>`
             ).join('');
         }
@@ -2494,8 +3167,8 @@
             const medSelectA = $('medSelectA');
             const medSelectB = $('medSelectB');
             
-            medSelectA.innerHTML = '<option value="">Seleccionar...</option>';
-            medSelectB.innerHTML = '<option value="">Seleccionar...</option>';
+            medSelectA.innerHTML = '<option value="">Seleccionar medicamento...</option>';
+            medSelectB.innerHTML = '<option value="">Seleccionar medicamento...</option>';
             
             MEDS.forEach(med => {
                 const optionA = document.createElement('option');
@@ -2511,9 +3184,9 @@
             
             // Populate never list
             $('neverList').innerHTML = NEVER_COMBINE.map(n => 
-                `<div style="margin-bottom:10px;padding:8px;background:rgba(232,232,232,0.4);border-radius:8px">
-                    <strong style="color:#c62828">${n.a} + ${n.b}</strong>
-                    <div class="small">${n.reason} <a href="${n.ref}" target="_blank" rel="noopener" style="color:#1565c0"><i class="fas fa-external-link-alt"></i></a></div>
+                `<div style="margin-bottom:12px;padding:10px;background:rgba(217, 4, 41, 0.1);border-radius:10px;border:1px solid rgba(217, 4, 41, 0.3);">
+                    <strong style="color:#dc2626">${n.a} + ${n.b}</strong>
+                    <div class="small" style="margin-top:6px;"><i class="fas fa-exclamation-triangle"></i> ${n.reason} <a href="${n.ref}" target="_blank" rel="noopener" style="color:#0077b6"><i class="fas fa-external-link-alt"></i> Referencia científica</a></div>
                 </div>`
             ).join('');
             
@@ -2536,12 +3209,12 @@
             const out = $('medAlert');
             
             if (!a || !b) {
-                out.innerHTML = '<div class="interactions-warning danger"><i class="fas fa-exclamation-triangle"></i> <span>Seleccione dos fármacos</span></div>';
+                out.innerHTML = '<div class="interactions-warning danger"><i class="fas fa-exclamation-triangle"></i> <span>Seleccione dos fármacos para verificar interacciones</span></div>';
                 return;
             }
             
             if (a === b) {
-                out.innerHTML = '<div class="interactions-warning success"><i class="fas fa-check-circle"></i> <span>Mismo medicamento seleccionado — cuidado con duplicidad terapéutica.</span></div>';
+                out.innerHTML = '<div class="interactions-warning success"><i class="fas fa-check-circle"></i> <span>Mismo medicamento seleccionado — cuidado con duplicidad terapéutica. Verifique dosis total diaria.</span></div>';
                 return;
             }
             
@@ -2557,13 +3230,13 @@
                         <div>
                             <strong>Interacciones Peligrosas Detectadas:</strong>
                             <ul class="interactions-list">
-                                ${hits.map(h => `<li><strong>${h.reason}</strong> (${h.a.toUpperCase()} + ${h.b.toUpperCase()}) <a href="${h.ref}" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i></a></li>`).join('')}
+                                ${hits.map(h => `<li><strong>${h.reason}</strong> (${h.a.toUpperCase()} + ${h.b.toUpperCase()}) <a href="${h.ref}" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Ver evidencia científica</a></li>`).join('')}
                             </ul>
                         </div>
                     </div>
                 `;
             } else {
-                out.innerHTML = '<div class="interactions-warning success"><i class="fas fa-check-circle"></i> <span>No se detectaron interacciones peligrosas conocidas entre estos medicamentos.</span></div>';
+                out.innerHTML = '<div class="interactions-warning success"><i class="fas fa-check-circle"></i> <span>No se detectaron interacciones peligrosas conocidas entre estos medicamentos en nuestra base. Recomendamos verificar en bases especializadas para un análisis completo.</span></div>';
             }
         });
         
@@ -2609,21 +3282,28 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label><i class="fas fa-bullseye"></i> Objetivos:</label>
+                        <label><i class="fas fa-bullseye"></i> Objetivos SMART:</label>
                         <p>${goals}</p>
                     </div>
                     <div class="form-group">
-                        <label><i class="fas fa-hand-holding-medical"></i> Intervenciones:</label>
+                        <label><i class="fas fa-hand-holding-medical"></i> Intervenciones Basadas en Evidencia:</label>
                         <p>${interventions}</p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label><i class="far fa-calendar-alt"></i> Fecha:</label>
+                    <label><i class="far fa-calendar-alt"></i> Fecha de Elaboración:</label>
                     <p>${new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
                 </div>
-                <div style="margin-top:20px;text-align:center;">
+                <div class="form-group">
+                    <label><i class="fas fa-user-nurse"></i> Elaborado por:</label>
+                    <p>Enfermero/a de Atención Directa</p>
+                </div>
+                <div style="margin-top:24px;text-align:center;">
                     <button id="printPaeBtn" class="btn primary">
                         <i class="fas fa-print"></i> Imprimir PAE
+                    </button>
+                    <button id="savePaeBtn" class="btn secondary" style="margin-left:12px;">
+                        <i class="fas fa-save"></i> Guardar PAE
                     </button>
                 </div>
             `;
@@ -2633,6 +3313,22 @@
             // Print functionality
             $('printPaeBtn').addEventListener('click', () => {
                 window.print();
+            });
+            
+            // Save functionality
+            $('savePaeBtn').addEventListener('click', () => {
+                const arr = JSON.parse(localStorage.getItem(PAE_KEY) || '[]');
+                arr.push({
+                    patient: patientName,
+                    age: patientAge,
+                    diagnosis: diagnosis,
+                    nursingDiagnosis: $('nursingDiagnosis').options[$('nursingDiagnosis').selectedIndex].text,
+                    goals: goals,
+                    interventions: interventions,
+                    date: new Date().toISOString()
+                });
+                localStorage.setItem(PAE_KEY, JSON.stringify(arr));
+                alert('PAE guardado con éxito');
             });
         });
         
@@ -2664,7 +3360,7 @@
                 return;
             }
             
-            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(arr, null, 2));
+            const dataStr = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(arr, null, 2));
             const downloadAnchorNode = document.createElement('a');
             downloadAnchorNode.setAttribute("href", dataStr);
             downloadAnchorNode.setAttribute("download", "pae_records.json");
@@ -2695,10 +3391,10 @@
                 $('rcpTimer').textContent = `${mm}:${ss}`;
                 if(rcpSeconds % 120 === 0) {
                     if(navigator.vibrate) navigator.vibrate([200,100,200]);
-                    alert('Cambio de reanimador recomendado (cada 2 min).');
+                    alert('¡Cambio de reanimador recomendado! (cada 2 minutos para mantener calidad de compresiones)');
                 }
             }, 1000);
-            $('rcpState').textContent='Estado: iniciado';
+            $('rcpState').textContent='Estado: RCP en progreso';
         }
         
         function stopRCP() {
@@ -2850,7 +3546,7 @@
             });
             
             if (filteredPatients.length === 0) {
-                container.innerHTML = '<p class="small">No se encontraron pacientes.</p>';
+                container.innerHTML = '<p class="small">No se encontraron pacientes que coincidan con los criterios de búsqueda.</p>';
                 return;
             }
             
@@ -2861,7 +3557,14 @@
                     <p><i class="fas fa-diagnoses"></i> Diagnóstico: ${p.diagnosticoPrincipal}</p>
                     <p><i class="fas fa-stethoscope"></i> Especialidad: ${p.especialidad}</p>
                     <p><i class="fas fa-heartbeat"></i> Riesgo cardiovascular: ${p.riesgoCardiovascular}</p>
-                    <p><i class="fas fa-allergies"></i> Alergias: ${p.alergias.length > 0 ? p.alergias.join(', ') : 'Ninguna'}</p>
+                    <p><i class="fas fa-allergies"></i> Alergias: ${p.alergias.length > 0 ? p.alergias.join(', ') : 'Ninguna registrada'}</p>
+                    <div class="detailed-info" style="margin-top:12px;">
+                        <h4><i class="fas fa-notes-medical"></i> Información Clínica</h4>
+                        <p><strong>Resumen:</strong> ${p.historiaClinica.resumen}</p>
+                        <p><strong>Diagnosticos:</strong> ${p.historiaClinica.diagnosticos.map(d => d.descripcion).join(', ')}</p>
+                        <p><strong>Tratamientos:</strong> ${p.historiaClinica.tratamientos.map(t => t.medicamento).join(', ')}</p>
+                        <p><strong>Próximos controles:</strong> ${p.historiaClinica.controles.map(c => c.tipo + ' (' + c.proximo + ')').join(', ')}</p>
+                    </div>
                 </div>`
             ).join('');
         }
@@ -2890,13 +3593,14 @@
             
             const filteredResources = RESOURCES.filter(r => {
                 const matchesSearch = !search || r.titulo.toLowerCase().includes(search) || 
-                                    r.etiquetas.some(tag => tag.toLowerCase().includes(search));
+                                    r.etiquetas.some(tag => tag.toLowerCase().includes(search)) ||
+                                    r.descripcion.toLowerCase().includes(search);
                 const matchesCategory = !category || r.categoria === category;
                 return matchesSearch && matchesCategory;
             });
             
             if (filteredResources.length === 0) {
-                container.innerHTML = '<p class="small">No se encontraron recursos.</p>';
+                container.innerHTML = '<p class="small">No se encontraron recursos que coincidan con los criterios de búsqueda.</p>';
                 return;
             }
             
@@ -2906,9 +3610,9 @@
                     <p><i class="fas fa-tags"></i> Categoría: ${r.categoria}</p>
                     <p><i class="fas fa-file"></i> Tipo: ${r.tipo}</p>
                     <p><i class="fas fa-tags"></i> Etiquetas: ${r.etiquetas.join(', ')}</p>
-                    <p>${r.descripcion}</p>
-                    <a href="${r.url}" target="_blank" class="btn primary" style="margin-top:10px;">
-                        <i class="fas fa-external-link-alt"></i> Abrir Recurso
+                    <p><i class="fas fa-info-circle"></i> ${r.descripcion}</p>
+                    <a href="${r.url}" target="_blank" class="btn primary" style="margin-top:12px;">
+                        <i class="fas fa-external-link-alt"></i> Acceder al Recurso
                     </a>
                 </div>`
             ).join('');
@@ -2939,7 +3643,7 @@
                     return; 
                 }
                 const data = await res.json();
-                $('wikiOutput').innerHTML = `<strong>${data.title}</strong><div class="small">${data.extract}</div><div style="margin-top:8px"><a href="${data.content_urls?.desktop?.page||'#'}" target="_blank" class="btn small"><i class="fas fa-external-link-alt"></i> Leer en Wikipedia</a></div>`;
+                $('wikiOutput').innerHTML = `<strong>${data.title}</strong><div class="small"><i class="fas fa-info-circle"></i> ${data.extract}</div><div style="margin-top:10px"><a href="${data.content_urls?.desktop?.page||'#'}" target="_blank" class="btn small"><i class="fas fa-external-link-alt"></i> Leer en Wikipedia</a></div>`;
                 diseasePanel.style.display = 'block';
             } catch(e) {
                 $('wikiOutput').textContent = 'Error al buscar en Wikipedia.';
@@ -2983,24 +3687,24 @@
             welcomeCard.className = 'category-card';
             welcomeCard.innerHTML = `
                 <h2><i class="fas fa-home"></i> Bienvenido a Enfermería DAVID</h2>
-                <p>Seleccione una categoría del menú lateral para acceder a procedimientos, guías clínicas, combinador de fármacos, enfermedades y más.</p>
-                <p>Esta aplicación proporciona acceso rápido a información esencial para profesionales de enfermería y salud.</p>
+                <p>Sistema integral de apoyo clínico para profesionales de enfermería y salud. Esta plataforma proporciona acceso rápido a información esencial, protocolos, herramientas de cálculo y recursos educativos.</p>
+                <p>Diseñado para optimizar la toma de decisiones clínicas, mejorar la seguridad del paciente y facilitar la documentación de cuidados.</p>
                 
                 <div class="welcome-actions">
                     <div class="welcome-card" id="quickRcpCard">
                         <i class="fas fa-heartbeat"></i>
                         <h3>Guía Rápida de RCP</h3>
-                        <p>Acceda rápidamente a los pasos esenciales de la reanimación cardiopulmonar</p>
+                        <p>Acceda rápidamente a los pasos esenciales de la reanimación cardiopulmonar con temporizador integrado y protocolos actualizados.</p>
                     </div>
                     <div class="welcome-card" id="quickMedCard">
                         <i class="fas fa-prescription-bottle-alt"></i>
                         <h3>Combinador de Fármacos</h3>
-                        <p>Verifique interacciones medicamentosas peligrosas en segundos</p>
+                        <p>Verifique interacciones medicamentosas peligrosas en segundos con base de datos actualizada y referencias científicas.</p>
                     </div>
                     <div class="welcome-card" id="quickPaeCard">
                         <i class="fas fa-clipboard-list"></i>
-                        <h3>Crear PAE</h3>
-                        <p>Genere planes de atención de enfermería personalizados</p>
+                        <h3>Crear PAE Avanzado</h3>
+                        <p>Genere planes de atención de enfermería personalizados con inteligencia clínica y seguimiento de resultados.</p>
                     </div>
                 </div>
             `;
