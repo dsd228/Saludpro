@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -862,6 +861,31 @@
             margin: var(--spacer-lg) 0;
         }
         
+        .alert {
+            padding: var(--spacer-md);
+            margin: var(--spacer-md) 0;
+            border-radius: var(--shapes-corner-md);
+            font-weight: 500;
+        }
+        
+        .alert-success {
+            background: var(--green-50);
+            border-left: 4px solid var(--green-600);
+            color: var(--green-700);
+        }
+        
+        .alert-warning {
+            background: var(--yellow-50);
+            border-left: 4px solid var(--yellow-600);
+            color: var(--yellow-700);
+        }
+        
+        .alert-danger {
+            background: var(--red-50);
+            border-left: 4px solid var(--red-600);
+            color: var(--red-700);
+        }
+        
         @media (max-width: 768px) {
             .app {
                 padding: var(--spacer-sm);
@@ -1207,11 +1231,7 @@
                 <label for="medicamento">Medicamento</label>
                 <input type="text" id="medicamento" placeholder="Nombre del medicamento" list="medicamentosList">
                 <datalist id="medicamentosList">
-                    <option value="Losartan">
-                    <option value="Metformina">
-                    <option value="Aspirina">
-                    <option value="Paracetamol">
-                    <option value="Omeprazol">
+                    <!-- Los medicamentos se cargarán dinámicamente -->
                 </datalist>
             </div>
             
@@ -1289,7 +1309,7 @@
                         <span>56 páginas</span>
                         <span>PDF</span>
                     </div>
-                    <button class="btn-secondary">Descargar guía</button>
+                    <button class="btn-secondary" onclick="window.open('https://www.diabetes.org/sites/default/files/2023-01/2023-Standards-of-Care.pdf', '_blank')">Descargar guía</button>
                 </div>
                 <div class="medication-card">
                     <h4>Guías ESC 2023 para el Manejo de la Cardiopatía Coronaria</h4>
@@ -1299,7 +1319,7 @@
                         <span>42 páginas</span>
                         <span>PDF</span>
                     </div>
-                    <button class="btn-secondary">Descargar guía</button>
+                    <button class="btn-secondary" onclick="window.open('https://academic.oup.com/eurheartj/article/44/39/4065/7225235', '_blank')">Descargar guía</button>
                 </div>
                 <div class="medication-card">
                     <h4>Guía de Práctica Clínica sobre Hipertensión Arterial</h4>
@@ -1309,7 +1329,7 @@
                         <span>38 páginas</span>
                         <span>PDF</span>
                     </div>
-                    <button class="btn-secondary">Descargar guía</button>
+                    <button class="btn-secondary" onclick="window.open('https://jamanetwork.com/journals/jama/fullarticle/2570875', '_blank')">Descargar guía</button>
                 </div>
                 <div class="medication-card">
                     <h4>Guía de Manejo de Infecciones del Tracto Urinario</h4>
@@ -1319,7 +1339,7 @@
                         <span>34 páginas</span>
                         <span>PDF</span>
                     </div>
-                    <button class="btn-secondary">Descargar guía</button>
+                    <button class="btn-secondary" onclick="window.open('https://www.idsociety.org/practice-guideline/care-of-patients-with-an-infectious-disease/', '_blank')">Descargar guía</button>
                 </div>
             </div>
             
@@ -1333,7 +1353,7 @@
                         <span>12 páginas</span>
                         <span>PDF</span>
                     </div>
-                    <button class="btn-secondary">Descargar protocolo</button>
+                    <button class="btn-secondary" onclick="window.open('https://www.ahajournals.org/doi/10.1161/HYPERTENSIONAHA.117.10803', '_blank')">Descargar protocolo</button>
                 </div>
                 <div class="medication-card">
                     <h4>Protocolo de Antibioticoterapia Empírica</h4>
@@ -1343,7 +1363,7 @@
                         <span>24 páginas</span>
                         <span>PDF</span>
                     </div>
-                    <button class="btn-secondary">Descargar protocolo</button>
+                    <button class="btn-secondary" onclick="window.open('https://www.cdc.gov/antibiotic-use/clinicalguidelines.html', '_blank')">Descargar protocolo</button>
                 </div>
                 <div class="medication-card">
                     <h4>Protocolo de Manejo del Dolor Agudo y Crónico</h4>
@@ -1353,7 +1373,7 @@
                         <span>18 páginas</span>
                         <span>PDF</span>
                     </div>
-                    <button class="btn-secondary">Descargar protocolo</button>
+                    <button class="btn-secondary" onclick="window.open('https://www.guideline.gov/summaries/summary/55292', '_blank')">Descargar protocolo</button>
                 </div>
                 <div class="medication-card">
                     <h4>Protocolo de Reanimación Cardiopulmonar (RCP)</h4>
@@ -1363,7 +1383,7 @@
                         <span>16 páginas</span>
                         <span>PDF</span>
                     </div>
-                    <button class="btn-secondary">Descargar protocolo</button>
+                    <button class="btn-secondary" onclick="window.open('https://cpr.heart.org/en/resuscitation-science/cpr-guidelines-and-recommendations', '_blank')">Descargar protocolo</button>
                 </div>
             </div>
             
@@ -1377,7 +1397,7 @@
                         <span>16 páginas</span>
                         <span>PDF</span>
                     </div>
-                    <button class="btn-secondary">Descargar material</button>
+                    <button class="btn-secondary" onclick="window.open('https://www.diabetes.org/resources/living-with-diabetes/diabetes-care/blood-glucose-testing-and-control', '_blank')">Descargar material</button>
                 </div>
                 <div class="medication-card">
                     <h4>Guía de Alimentación Saludable</h4>
@@ -1387,7 +1407,7 @@
                         <span>20 páginas</span>
                         <span>PDF</span>
                     </div>
-                    <button class="btn-secondary">Descargar material</button>
+                    <button class="btn-secondary" onclick="window.open('https://www.myplate.gov/', '_blank')">Descargar material</button>
                 </div>
                 <div class="medication-card">
                     <h4>Guía de Actividad Física</h4>
@@ -1397,7 +1417,7 @@
                         <span>14 páginas</span>
                         <span>PDF</span>
                     </div>
-                    <button class="btn-secondary">Descargar material</button>
+                    <button class="btn-secondary" onclick="window.open('https://www.cdc.gov/physical-activity/basics/index.htm', '_blank')">Descargar material</button>
                 </div>
                 <div class="medication-card">
                     <h4>Guía de Manejo del Estrés y Ansiedad</h4>
@@ -1407,7 +1427,7 @@
                         <span>12 páginas</span>
                         <span>PDF</span>
                     </div>
-                    <button class="btn-secondary">Descargar material</button>
+                    <button class="btn-secondary" onclick="window.open('https://www.apa.org/topics/stress', '_blank')">Descargar material</button>
                 </div>
             </div>
             
@@ -1421,7 +1441,7 @@
                         <span>68 páginas</span>
                         <span>PDF</span>
                     </div>
-                    <button class="btn-secondary">Descargar manual</button>
+                    <button class="btn-secondary" onclick="window.open('https://www.ncbi.nlm.nih.gov/books/NBK556074/', '_blank')">Descargar manual</button>
                 </div>
                 <div class="medication-card">
                     <h4>Guía de Antibióticos</h4>
@@ -1431,7 +1451,7 @@
                         <span>32 páginas</span>
                         <span>PDF</span>
                     </div>
-                    <button class="btn-secondary">Descargar guía</button>
+                    <button class="btn-secondary" onclick="window.open('https://www.rxlist.com/', '_blank')">Descargar guía</button>
                 </div>
                 <div class="medication-card">
                     <h4>Interacciones Medicamentosas Comunes</h4>
@@ -1441,7 +1461,7 @@
                         <span>26 páginas</span>
                         <span>PDF</span>
                     </div>
-                    <button class="btn-secondary">Descargar guía</button>
+                    <button class="btn-secondary" onclick="window.open('https://www.drugs.com/drug_interactions.html', '_blank')">Descargar guía</button>
                 </div>
                 <div class="medication-card">
                     <h4>Guía de Anticoagulantes</h4>
@@ -1451,7 +1471,7 @@
                         <span>28 páginas</span>
                         <span>PDF</span>
                     </div>
-                    <button class="btn-secondary">Descargar guía</button>
+                    <button class="btn-secondary" onclick="window.open('https://www.acc.org/latest-in-cardiology/clinical-trials/2020/11/16/16/24/2020-acc-aha-guideline-for-the-management-of-atrial-fibrillation', '_blank')">Descargar guía</button>
                 </div>
             </div>
         </div>
@@ -2010,6 +2030,7 @@
                     <div class="form-group">
                         <label>Medicamento 1</label>
                         <input type="text" placeholder="Nombre del medicamento" list="medicamentosList">
+                        <input type="text" placeholder="Nombre comercial (opcional)">
                     </div>
                     <div class="form-group">
                         <label>Dosis</label>
@@ -2024,6 +2045,116 @@
             <div class="calculator-result" style="margin-top: var(--spacer-xl); display: none;" id="resultado-combinador">
                 <h4>Resultado del análisis</h4>
                 <div id="detalle-combinador"></div>
+            </div>
+        </section>
+        
+        <!-- Panel de Información de Medicamentos -->
+        <section class="panel" id="panel-medicamentos">
+            <button class="close-btn" title="Cerrar" onclick="document.getElementById('panel-medicamentos').classList.remove('active'); document.querySelector('.modal-backdrop').classList.remove('active');">&times;</button>
+            <h2><span class="material-symbols-outlined">pill</span>Información de Medicamentos</h2>
+            
+            <div class="search-box">
+                <input type="text" placeholder="Buscar medicamento..." id="searchMedicamentos">
+            </div>
+            
+            <div class="tabs">
+                <div class="tab active" data-tab="todos">Todos</div>
+                <div class="tab" data-tab="cardiologia">Cardiología</div>
+                <div class="tab" data-tab="endocrinologia">Endocrinología</div>
+                <div class="tab" data-tab="neurologia">Neurología</div>
+            </div>
+            
+            <div class="tab-content active" id="tab-todos">
+                <div class="medication-card">
+                    <h4>Losartan</h4>
+                    <p><strong>Nombre comercial:</strong> Cozaar</p>
+                    <p><strong>Categoría:</strong> Antihipertensivo (Bloqueador de receptores de angiotensina II)</p>
+                    <p><strong>Indicaciones:</strong> Hipertensión arterial, protección renal en diabetes tipo 2</p>
+                    <p><strong>Dosis habitual:</strong> 50 mg una vez al día, ajustable a 100 mg si es necesario</p>
+                    <p><strong>Efectos adversos comunes:</strong> Mareo, hipotensión, hiperkalemia, disfunción renal</p>
+                    <button class="btn-secondary" onclick="window.open('https://www.accessdata.fda.gov/drugsatfda_docs/label/2018/020525s038lbl.pdf', '_blank')">Ficha técnica completa</button>
+                </div>
+                <div class="medication-card">
+                    <h4>Metformina</h4>
+                    <p><strong>Nombre comercial:</strong> Glucophage</p>
+                    <p><strong>Categoría:</strong> Antidiabético (Biguanida)</p>
+                    <p><strong>Indicaciones:</strong> Diabetes tipo 2, síndrome de ovario poliquístico</p>
+                    <p><strong>Dosis habitual:</strong> 500-850 mg dos veces al día, con las comidas</p>
+                    <p><strong>Efectos adversos comunes:</strong> Náuseas, diarrea, pérdida de apetito, sabor metálico</p>
+                    <button class="btn-secondary" onclick="window.open('https://www.accessdata.fda.gov/drugsatfda_docs/label/2012/020357s023lbl.pdf', '_blank')">Ficha técnica completa</button>
+                </div>
+                <div class="medication-card">
+                    <h4>Aspirina</h4>
+                    <p><strong>Nombre comercial:</strong> Bayaspirina</p>
+                    <p><strong>Categoría:</strong> Antiagregante, antiinflamatorio no esteroideo (AINE)</p>
+                    <p><strong>Indicaciones:</strong> Prevención cardiovascular, dolor leve, fiebre</p>
+                    <p><strong>Dosis habitual:</strong> 75-100 mg una vez al día para prevención cardiovascular</p>
+                    <p><strong>Efectos adversos comunes:</strong> Irritación gástrica, riesgo de hemorragia gastrointestinal</p>
+                    <button class="btn-secondary" onclick="window.open('https://www.accessdata.fda.gov/drugsatfda_docs/label/2017/005803s060lbl.pdf', '_blank')">Ficha técnica completa</button>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="tab-cardiologia">
+                <div class="medication-card">
+                    <h4>Losartan</h4>
+                    <p><strong>Nombre comercial:</strong> Cozaar</p>
+                    <p><strong>Categoría:</strong> Antihipertensivo (Bloqueador de receptores de angiotensina II)</p>
+                    <p><strong>Indicaciones:</strong> Hipertensión arterial, protección renal en diabetes tipo 2</p>
+                    <p><strong>Dosis habitual:</strong> 50 mg una vez al día, ajustable a 100 mg si es necesario</p>
+                    <p><strong>Efectos adversos comunes:</strong> Mareo, hipotensión, hiperkalemia, disfunción renal</p>
+                    <button class="btn-secondary" onclick="window.open('https://www.accessdata.fda.gov/drugsatfda_docs/label/2018/020525s038lbl.pdf', '_blank')">Ficha técnica completa</button>
+                </div>
+                <div class="medication-card">
+                    <h4>Atorvastatina</h4>
+                    <p><strong>Nombre comercial:</strong> Lipitor</p>
+                    <p><strong>Categoría:</strong> Estatina (hipolipemiante)</p>
+                    <p><strong>Indicaciones:</strong> Hipercolesterolemia, prevención cardiovascular</p>
+                    <p><strong>Dosis habitual:</strong> 10-80 mg una vez al día</p>
+                    <p><strong>Efectos adversos comunes:</strong> Dolor muscular, elevación de enzimas hepáticas, diabetes</p>
+                    <button class="btn-secondary" onclick="window.open('https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/020702s081lbl.pdf', '_blank')">Ficha técnica completa</button>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="tab-endocrinologia">
+                <div class="medication-card">
+                    <h4>Metformina</h4>
+                    <p><strong>Nombre comercial:</strong> Glucophage</p>
+                    <p><strong>Categoría:</strong> Antidiabético (Biguanida)</p>
+                    <p><strong>Indicaciones:</strong> Diabetes tipo 2, síndrome de ovario poliquístico</p>
+                    <p><strong>Dosis habitual:</strong> 500-850 mg dos veces al día, con las comidas</p>
+                    <p><strong>Efectos adversos comunes:</strong> Náuseas, diarrea, pérdida de apetito, sabor metálico</p>
+                    <button class="btn-secondary" onclick="window.open('https://www.accessdata.fda.gov/drugsatfda_docs/label/2012/020357s023lbl.pdf', '_blank')">Ficha técnica completa</button>
+                </div>
+                <div class="medication-card">
+                    <h4>Levotiroxina</h4>
+                    <p><strong>Nombre comercial:</strong> Eutirox</p>
+                    <p><strong>Categoría:</strong> Hormona tiroidea</p>
+                    <p><strong>Indicaciones:</strong> Hipotiroidismo, bocio</p>
+                    <p><strong>Dosis habitual:</strong> 1.6 mcg/kg/día, ajustada según TSH</p>
+                    <p><strong>Efectos adversos comunes:</strong> Palpitaciones, insomnio, pérdida de peso, osteoporosis con dosis altas</p>
+                    <button class="btn-secondary" onclick="window.open('https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/022416s034lbl.pdf', '_blank')">Ficha técnica completa</button>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="tab-neurologia">
+                <div class="medication-card">
+                    <h4>Levetiracetam</h4>
+                    <p><strong>Nombre comercial:</strong> Keppra</p>
+                    <p><strong>Categoría:</strong> Anticonvulsivante</p>
+                    <p><strong>Indicaciones:</strong> Epilepsia, convulsiones parciales y generalizadas</p>
+                    <p><strong>Dosis habitual:</strong> 1000-3000 mg/día en dos dosis</p>
+                    <p><strong>Efectos adversos comunes:</strong> Somnolencia, mareo, infecciones nasofaríngeas</p>
+                    <button class="btn-secondary" onclick="window.open('https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/021235s041lbl.pdf', '_blank')">Ficha técnica completa</button>
+                </div>
+                <div class="medication-card">
+                    <h4>Carbamazepina</h4>
+                    <p><strong>Nombre comercial:</strong> Tegretol</p>
+                    <p><strong>Categoría:</strong> Anticonvulsivante, estabilizador del estado de ánimo</p>
+                    <p><strong>Indicaciones:</strong> Epilepsia, neuralgia del trigémino, trastorno bipolar</p>
+                    <p><strong>Dosis habitual:</strong> 200-1200 mg/día en dosis divididas</p>
+                    <p><strong>Efectos adversos comunes:</strong> Mareo, nistagmo, ataxia, leucopenia</p>
+                    <button class="btn-secondary" onclick="window.open('https://www.accessdata.fda.gov/drugsatfda_docs/label/2017/017443s046lbl.pdf', '_blank')">Ficha técnica completa</button>
+                </div>
             </div>
         </section>
         
@@ -2103,18 +2234,166 @@
                 ],
                 
                 medicamentos: [
-                    { nombre: "Losartan", categoria: "Antihipertensivo", laboratorio: "MSD", forma: "Comprimido 50 mg" },
-                    { nombre: "Metformina", categoria: "Antidiabético", laboratorio: "Bago", forma: "Comprimido 850 mg" },
-                    { nombre: "Aspirina", categoria: "Antiagregante", laboratorio: "Bayer", forma: "Comprimido 100 mg" },
-                    { nombre: "Paracetamol", categoria: "Analgésico", laboratorio: "Dolores", forma: "Comprimido 500 mg" },
-                    { nombre: "Omeprazol", categoria: "Inhibidor de bomba de protones", laboratorio: "AstraZeneca", forma: "Cápsula 20 mg" },
-                    { nombre: "Digoxina", categoria: "Cardiotónico", laboratorio: "Roemmers", forma: "Comprimido 0.25 mg" },
-                    { nombre: "Furosemida", categoria: "Diurético", laboratorio: "Roemmers", forma: "Comprimido 40 mg" },
-                    { nombre: "Apixaban", categoria: "Anticoagulante", laboratorio: "Bristol-Myers Squibb", forma: "Comprimido 5 mg" },
-                    { nombre: "Metotrexato", categoria: "Inmunosupresor", laboratorio: "Pfizer", forma: "Comprimido 2.5 mg" },
-                    { nombre: "Calcio", categoria: "Suplemento", laboratorio: "Sanofi", forma: "Cápsula 500 mg" },
-                    { nombre: "Vitamina D", categoria: "Suplemento", laboratorio: "Roche", forma: "Cápsula 1000 UI" },
-                    { nombre: "Tri-zevuvir", categoria: "Antirretroviral", laboratorio: "Gilead", forma: "Comprimido" }
+                    { 
+                        nombre: "Losartan", 
+                        nombreComercial: "Cozaar", 
+                        categoria: "Antihipertensivo", 
+                        laboratorio: "MSD", 
+                        forma: "Comprimido 50 mg",
+                        indicaciones: "Hipertensión arterial, protección renal en diabetes tipo 2",
+                        dosisHabitual: "50 mg una vez al día, ajustable a 100 mg si es necesario",
+                        efectosAdversos: "Mareo, hipotensión, hiperkalemia, disfunción renal"
+                    },
+                    { 
+                        nombre: "Metformina", 
+                        nombreComercial: "Glucophage", 
+                        categoria: "Antidiabético", 
+                        laboratorio: "Bago", 
+                        forma: "Comprimido 850 mg",
+                        indicaciones: "Diabetes tipo 2, síndrome de ovario poliquístico",
+                        dosisHabitual: "500-850 mg dos veces al día, con las comidas",
+                        efectosAdversos: "Náuseas, diarrea, pérdida de apetito, sabor metálico"
+                    },
+                    { 
+                        nombre: "Aspirina", 
+                        nombreComercial: "Bayaspirina", 
+                        categoria: "Antiagregante", 
+                        laboratorio: "Bayer", 
+                        forma: "Comprimido 100 mg",
+                        indicaciones: "Prevención cardiovascular, dolor leve, fiebre",
+                        dosisHabitual: "75-100 mg una vez al día para prevención cardiovascular",
+                        efectosAdversos: "Irritación gástrica, riesgo de hemorragia gastrointestinal"
+                    },
+                    { 
+                        nombre: "Paracetamol", 
+                        nombreComercial: "Dolores", 
+                        categoria: "Analgésico", 
+                        laboratorio: "Dolores", 
+                        forma: "Comprimido 500 mg",
+                        indicaciones: "Dolor leve a moderado, fiebre",
+                        dosisHabitual: "500-1000 mg cada 4-6 horas, máximo 4000 mg/día",
+                        efectosAdversos: "Daño hepático con sobredosis"
+                    },
+                    { 
+                        nombre: "Omeprazol", 
+                        nombreComercial: "Losec", 
+                        categoria: "Inhibidor de bomba de protones", 
+                        laboratorio: "AstraZeneca", 
+                        forma: "Cápsula 20 mg",
+                        indicaciones: "Enfermedad por reflujo gastroesofágico, úlcera péptica",
+                        dosisHabitual: "20 mg una vez al día",
+                        efectosAdversos: "Dolor de cabeza, diarrea, náuseas"
+                    },
+                    { 
+                        nombre: "Digoxina", 
+                        nombreComercial: "Lanoxin", 
+                        categoria: "Cardiotónico", 
+                        laboratorio: "Roemmers", 
+                        forma: "Comprimido 0.25 mg",
+                        indicaciones: "Insuficiencia cardíaca, fibrilación auricular",
+                        dosisHabitual: "0.125-0.25 mg una vez al día",
+                        efectosAdversos: "Náuseas, vómitos, arritmias, visión borrosa"
+                    },
+                    { 
+                        nombre: "Furosemida", 
+                        nombreComercial: "Lasix", 
+                        categoria: "Diurético", 
+                        laboratorio: "Roemmers", 
+                        forma: "Comprimido 40 mg",
+                        indicaciones: "Edema por insuficiencia cardíaca, hipertensión",
+                        dosisHabitual: "20-80 mg una vez al día",
+                        efectosAdversos: "Deshidratación, hipotensión, hipopotasemia"
+                    },
+                    { 
+                        nombre: "Apixaban", 
+                        nombreComercial: "Eliquis", 
+                        categoria: "Anticoagulante", 
+                        laboratorio: "Bristol-Myers Squibb", 
+                        forma: "Comprimido 5 mg",
+                        indicaciones: "Prevención de accidente cerebrovascular en FA, trombosis venosa",
+                        dosisHabitual: "5 mg dos veces al día",
+                        efectosAdversos: "Riesgo de hemorragia, anemia"
+                    },
+                    { 
+                        nombre: "Metotrexato", 
+                        nombreComercial: "Trexall", 
+                        categoria: "Inmunosupresor", 
+                        laboratorio: "Pfizer", 
+                        forma: "Comprimido 2.5 mg",
+                        indicaciones: "Artritis reumatoide, psoriasis, cáncer",
+                        dosisHabitual: "7.5-25 mg una vez a la semana",
+                        efectosAdversos: "Mucositis, hepatotoxicidad, mielosupresión"
+                    },
+                    { 
+                        nombre: "Calcio", 
+                        nombreComercial: "Calciosan", 
+                        categoria: "Suplemento", 
+                        laboratorio: "Sanofi", 
+                        forma: "Cápsula 500 mg",
+                        indicaciones: "Osteoporosis, deficiencia de calcio",
+                        dosisHabitual: "1000-1200 mg/día",
+                        efectosAdversos: "Estreñimiento, cálculos renales"
+                    },
+                    { 
+                        nombre: "Vitamina D", 
+                        nombreComercial: "Decodrate", 
+                        categoria: "Suplemento", 
+                        laboratorio: "Roche", 
+                        forma: "Cápsula 1000 UI",
+                        indicaciones: "Deficiencia de vitamina D, osteoporosis",
+                        dosisHabitual: "800-2000 UI/día",
+                        efectosAdversos: "Hipercalcemia con dosis altas"
+                    },
+                    { 
+                        nombre: "Tri-zevuvir", 
+                        nombreComercial: "Truvada", 
+                        categoria: "Antirretroviral", 
+                        laboratorio: "Gilead", 
+                        forma: "Comprimido",
+                        indicaciones: "Tratamiento y prevención de VIH",
+                        dosisHabitual: "1 comprimido al día",
+                        efectosAdversos: "Náuseas, dolor de cabeza, disfunción renal"
+                    },
+                    { 
+                        nombre: "Atorvastatina", 
+                        nombreComercial: "Lipitor", 
+                        categoria: "Estatinas", 
+                        laboratorio: "Pfizer", 
+                        forma: "Comprimido 20 mg",
+                        indicaciones: "Hipercolesterolemia, prevención cardiovascular",
+                        dosisHabitual: "10-80 mg una vez al día",
+                        efectosAdversos: "Dolor muscular, elevación de enzimas hepáticas"
+                    },
+                    { 
+                        nombre: "Levotiroxina", 
+                        nombreComercial: "Eutirox", 
+                        categoria: "Hormona tiroidea", 
+                        laboratorio: "Merck", 
+                        forma: "Comprimido 50 mcg",
+                        indicaciones: "Hipotiroidismo, bocio",
+                        dosisHabitual: "1.6 mcg/kg/día, ajustada según TSH",
+                        efectosAdversos: "Palpitaciones, insomnio, pérdida de peso"
+                    },
+                    { 
+                        nombre: "Levetiracetam", 
+                        nombreComercial: "Keppra", 
+                        categoria: "Anticonvulsivante", 
+                        laboratorio: "UCB", 
+                        forma: "Comprimido 500 mg",
+                        indicaciones: "Epilepsia, convulsiones",
+                        dosisHabitual: "1000-3000 mg/día en dos dosis",
+                        efectosAdversos: "Somnolencia, mareo, infecciones nasofaríngeas"
+                    },
+                    { 
+                        nombre: "Carbamazepina", 
+                        nombreComercial: "Tegretol", 
+                        categoria: "Anticonvulsivante", 
+                        laboratorio: "Novartis", 
+                        forma: "Comprimido 200 mg",
+                        indicaciones: "Epilepsia, neuralgia del trigémino",
+                        dosisHabitual: "200-1200 mg/día en dosis divididas",
+                        efectosAdversos: "Mareo, nistagmo, ataxia, leucopenia"
+                    }
                 ],
                 
                 interacciones: [
@@ -2122,49 +2401,61 @@
                         medicamento1: "Warfarina",
                         medicamento2: "AINEs",
                         severidad: "fatal",
-                        descripcion: "Aumento del riesgo de hemorragia gastrointestinal."
+                        descripcion: "Aumento significativo del riesgo de hemorragia gastrointestinal. Los AINEs inhiben la agregación plaquetaria y dañan la mucosa gástrica, potenciando el efecto anticoagulante de la warfarina."
                     },
                     {
                         medicamento1: "IECA",
                         medicamento2: "Espironolactona",
                         severidad: "moderate",
-                        descripcion: "Riesgo de hiperkalemia."
+                        descripcion: "Riesgo de hiperkalemia grave. Ambos medicamentos reducen la excreción de potasio, lo que puede llevar a niveles peligrosos, especialmente en pacientes con insuficiencia renal."
                     },
                     {
                         medicamento1: "Digoxina",
                         medicamento2: "Verapamilo",
                         severidad: "moderate",
-                        descripcion: "Aumento de niveles de digoxina."
+                        descripcion: "El verapamilo aumenta los niveles séricos de digoxina al reducir su eliminación renal y aumentar su absorción, lo que puede llevar a toxicidad digitálica con náuseas, vómitos y arritmias."
                     },
                     {
                         medicamento1: "Metformina",
                         medicamento2: "Contraste yodado",
                         severidad: "moderate",
-                        descripcion: "Riesgo de acidosis láctica."
+                        descripcion: "Riesgo de acidosis láctica. El contraste yodado puede causar nefropatía por contraste, reduciendo la eliminación de metformina y aumentando el riesgo de acidosis láctica, especialmente en pacientes con función renal comprometida."
                     },
                     {
                         medicamento1: "Insulina",
                         medicamento2: "Betabloqueantes",
                         severidad: "moderate",
-                        descripcion: "Enmascaramiento de hipoglucemia."
+                        descripcion: "Los betabloqueantes enmascaran los síntomas de hipoglucemia (taquicardia, temblores), dificultando el reconocimiento de niveles bajos de glucosa, lo que puede llevar a hipoglucemias graves no reconocidas."
                     },
                     {
                         medicamento1: "ISRS",
                         medicamento2: "IMAO",
                         severidad: "fatal",
-                        descripcion: "Riesgo de síndrome serotoninérgico."
+                        descripcion: "Riesgo extremo de síndrome serotoninérgico, una condición potencialmente mortal caracterizada por hipertermia, rigidez muscular, taquicardia, alteraciones del estado mental y convulsiones."
                     },
                     {
                         medicamento1: "Benzodiacepinas",
                         medicamento2: "Opioides",
                         severidad: "fatal",
-                        descripcion: "Depresión respiratoria severa."
+                        descripcion: "Depresión respiratoria severa y sinérgica. Ambos depresores del SNC potencian mutuamente sus efectos, aumentando significativamente el riesgo de apnea, hipoxia e insuficiencia respiratoria."
                     },
                     {
                         medicamento1: "Metotrexato",
                         medicamento2: "NSAIDs",
                         severidad: "moderate",
-                        descripcion: "Aumento del riesgo de toxicidad por metotrexato."
+                        descripcion: "Aumento del riesgo de toxicidad por metotrexato. Los AINEs reducen la excreción renal de metotrexato, elevando sus niveles séricos y aumentando el riesgo de mielosupresión, mucositis y hepatotoxicidad."
+                    },
+                    {
+                        medicamento1: "Atorvastatina",
+                        medicamento2: "Macrólidos",
+                        severidad: "moderate",
+                        descripcion: "Los macrólidos (como la eritromicina) inhiben el metabolismo de las estatinas vía CYP3A4, aumentando significativamente sus niveles séricos y el riesgo de rabdomiólisis."
+                    },
+                    {
+                        medicamento1: "Levotiroxina",
+                        medicamento2: "Calcio",
+                        severidad: "moderate",
+                        descripcion: "El calcio reduce significativamente la absorción intestinal de levotiroxina. Debe administrarse con al menos 4 horas de separación para evitar la interferencia en el control del hipotiroidismo."
                     }
                 ]
             };
@@ -2195,6 +2486,14 @@
             
             // Inicialización
             document.addEventListener('DOMContentLoaded', function() {
+                // Cargar medicamentos en el datalist
+                const datalist = document.getElementById('medicamentosList');
+                db.medicamentos.forEach(med => {
+                    const option = document.createElement('option');
+                    option.value = med.nombre;
+                    datalist.appendChild(option);
+                });
+                
                 // Evento de inicio de sesión
                 document.getElementById('loginBtn').addEventListener('click', () => {
                     const email = document.getElementById('email').value;
@@ -2374,6 +2673,28 @@
                         return;
                     }
                     
+                    // Verificar interacciones antes de agregar
+                    const pacienteSeleccionado = document.querySelector('#selectorRecetas .patient-pill.active').textContent;
+                    const paciente = db.pacientes.find(p => p.nombre.includes(pacienteSeleccionado.split(' ')[0]));
+                    
+                    if (paciente && paciente.medicamentos) {
+                        const medicamentosActuales = paciente.medicamentos.split(', ').map(m => m.trim());
+                        
+                        for (let medActual of medicamentosActuales) {
+                            const interaccion = db.interacciones.find(i => 
+                                (i.medicamento1.toLowerCase() === medicamento.toLowerCase() && i.medicamento2.toLowerCase() === medActual.toLowerCase()) ||
+                                (i.medicamento1.toLowerCase() === medActual.toLowerCase() && i.medicamento2.toLowerCase() === medicamento.toLowerCase())
+                            );
+                            
+                            if (interaccion) {
+                                const confirmacion = confirm(`ADVERTENCIA: Posible interacción entre ${medicamento} y ${medActual}.\n\n${interaccion.severidad.toUpperCase()}: ${interaccion.descripcion}\n\n¿Desea continuar de todas formas?`);
+                                if (!confirmacion) {
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                    
                     const medicamentoCard = document.createElement('div');
                     medicamentoCard.className = 'medication-card';
                     medicamentoCard.innerHTML = `
@@ -2455,7 +2776,8 @@
                 const searchTerm = document.getElementById('searchPacientes').value.toLowerCase();
                 const pacientesFiltrados = db.pacientes.filter(p => 
                     p.nombre.toLowerCase().includes(searchTerm) ||
-                    p.diagnosticos.some(d => d.diagnostico.toLowerCase().includes(searchTerm))
+                    p.diagnosticos.some(d => d.diagnostico.toLowerCase().includes(searchTerm)) ||
+                    p.medicamentos.toLowerCase().includes(searchTerm)
                 );
                 
                 pacientesFiltrados.forEach(paciente => {
@@ -2536,12 +2858,12 @@
                 const vitalsCtx = document.getElementById('vitalsChart').getContext('2d');
                 new Chart(vitalsCtx, {
                     type: 'line',
-                    data: {
+                     {
                         labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
                         datasets: [
                             {
                                 label: 'Presión Sistólica',
-                                data: [135, 138, 132, 130, 134, 132],
+                                 [135, 138, 132, 130, 134, 132],
                                 borderColor: '#ea4335',
                                 backgroundColor: 'rgba(234, 67, 53, 0.1)',
                                 tension: 0.4,
@@ -2549,7 +2871,7 @@
                             },
                             {
                                 label: 'Presión Diastólica',
-                                data: [88, 86, 85, 84, 86, 85],
+                                 [88, 86, 85, 84, 86, 85],
                                 borderColor: '#34a853',
                                 backgroundColor: 'rgba(52, 168, 83, 0.1)',
                                 tension: 0.4,
@@ -2919,6 +3241,7 @@
                     <div class="form-group">
                         <label>Medicamento ${numMedicamentos + 1}</label>
                         <input type="text" placeholder="Nombre del medicamento" list="medicamentosList">
+                        <input type="text" placeholder="Nombre comercial (opcional)">
                     </div>
                     <div class="form-group">
                         <label>Dosis</label>
@@ -2992,4 +3315,3 @@
     </div>
 </body>
 </html>
-```
