@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -206,6 +207,11 @@
         
         .user-profile.active {
             display: flex;
+        }
+        
+        .user-profile:hover {
+            background: var(--blue-50);
+            transform: translateY(-1px);
         }
         
         .avatar {
@@ -861,31 +867,6 @@
             margin: var(--spacer-lg) 0;
         }
         
-        .alert {
-            padding: var(--spacer-md);
-            margin: var(--spacer-md) 0;
-            border-radius: var(--shapes-corner-md);
-            font-weight: 500;
-        }
-        
-        .alert-success {
-            background: var(--green-50);
-            border-left: 4px solid var(--green-600);
-            color: var(--green-700);
-        }
-        
-        .alert-warning {
-            background: var(--yellow-50);
-            border-left: 4px solid var(--yellow-600);
-            color: var(--yellow-700);
-        }
-        
-        .alert-danger {
-            background: var(--red-50);
-            border-left: 4px solid var(--red-600);
-            color: var(--red-700);
-        }
-        
         @media (max-width: 768px) {
             .app {
                 padding: var(--spacer-sm);
@@ -1231,7 +1212,11 @@
                 <label for="medicamento">Medicamento</label>
                 <input type="text" id="medicamento" placeholder="Nombre del medicamento" list="medicamentosList">
                 <datalist id="medicamentosList">
-                    <!-- Los medicamentos se cargarán dinámicamente -->
+                    <option value="Losartan">
+                    <option value="Metformina">
+                    <option value="Aspirina">
+                    <option value="Paracetamol">
+                    <option value="Omeprazol">
                 </datalist>
             </div>
             
@@ -2030,7 +2015,6 @@
                     <div class="form-group">
                         <label>Medicamento 1</label>
                         <input type="text" placeholder="Nombre del medicamento" list="medicamentosList">
-                        <input type="text" placeholder="Nombre comercial (opcional)">
                     </div>
                     <div class="form-group">
                         <label>Dosis</label>
@@ -2879,7 +2863,7 @@
                             },
                             {
                                 label: 'Frecuencia Cardíaca',
-                                data: [78, 76, 78, 75, 77, 78],
+                                 [78, 76, 78, 75, 77, 78],
                                 borderColor: '#4285f4',
                                 backgroundColor: 'rgba(66, 133, 244, 0.1)',
                                 tension: 0.4,
@@ -3241,7 +3225,6 @@
                     <div class="form-group">
                         <label>Medicamento ${numMedicamentos + 1}</label>
                         <input type="text" placeholder="Nombre del medicamento" list="medicamentosList">
-                        <input type="text" placeholder="Nombre comercial (opcional)">
                     </div>
                     <div class="form-group">
                         <label>Dosis</label>
@@ -3315,3 +3298,4 @@
     </div>
 </body>
 </html>
+```
