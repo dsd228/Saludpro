@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Enfermería DAVID · Final Full — procedimientos, PAE, combinador fármacos, enfermedades, RCP, PWA.">
-    <title>Enfermería DAVID · Final Full</title>
+    <meta name="description" content="Enfermería DAVID · Sistema completo con almacenamiento persistente">
+    <title>Enfermería DAVID · Sistema Completo</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --bg: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            --glass: rgba(15, 30, 40, 0.85);
+            --glass: rgba(15, 30, 40, 0.9);
             --glass-2: rgba(255, 255, 255, 0.1);
             --accent: #00b4d8;
             --accent-2: #0077b6;
@@ -1421,7 +1421,7 @@
 <body>
     <div class="app">
         <header>
-            <h1><i class="fas fa-microscope brand-icon"></i> Enfermería DAVID · Final Full</h1>
+            <h1><i class="fas fa-microscope brand-icon"></i> Enfermería DAVID · Sistema Completo</h1>
             <div class="controls">
                 <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
                     <i class="fas fa-moon"></i>
@@ -1867,9 +1867,14 @@
                             </select>
                         </div>
                     </div>
-                    <button id="addPatientBtn" class="btn primary" style="margin-top:14px;">
-                        <i class="fas fa-plus"></i> Agregar Nuevo Paciente
-                    </button>
+                    <div style="margin-top:14px;display:flex;gap:12px;flex-wrap:wrap">
+                        <button id="addPatientBtn" class="btn primary">
+                            <i class="fas fa-plus"></i> Agregar Nuevo Paciente
+                        </button>
+                        <button id="exportPatientsBtn" class="btn secondary">
+                            <i class="fas fa-file-export"></i> Exportar Pacientes
+                        </button>
+                    </div>
                     <div id="patients-container"></div>
                 </div>
                 
@@ -1894,9 +1899,14 @@
                             </select>
                         </div>
                     </div>
-                    <button id="addResourceBtn" class="btn primary" style="margin-top:14px;">
-                        <i class="fas fa-plus"></i> Agregar Nuevo Recurso
-                    </button>
+                    <div style="margin-top:14px;display:flex;gap:12px;flex-wrap:wrap">
+                        <button id="addResourceBtn" class="btn primary">
+                            <i class="fas fa-plus"></i> Agregar Nuevo Recurso
+                        </button>
+                        <button id="exportResourcesBtn" class="btn secondary">
+                            <i class="fas fa-file-export"></i> Exportar Recursos
+                        </button>
+                    </div>
                     <div id="resources-container"></div>
                 </div>
             </main>
@@ -2302,7 +2312,7 @@
                     id: 'ictus',
                     title: 'Actuación ante ictus',
                     summary: 'Reconocimiento rápido y activación de código ictus.',
-                    materials: ['Escala NIHSS', 'TAC cerebral', 'Equipo de neurología'],
+                    materials: ['Escala FAST (Cara, Brazo, Habla, Tiempo)', 'TAC cerebral', 'Equipo de neurología'],
                     steps: [
                         'Usar escala FAST (Cara, Brazo, Habla, Tiempo)',
                         'Llamar a emergencias inmediatamente',
@@ -2539,7 +2549,7 @@
                 summary: 'Lesión en la mucosa gástrica o duodenal. Causada por H. pylori o AINEs. Dolor epigástrico, náuseas, posible hemorragia digestiva. Tratamiento: erradicación de H. pylori, PPI.',
                 detailed: {
                     etiologia: 'H. pylori (70-90%), uso de AINEs/antiinflamatorios, estrés severo, tabaquismo.',
-                    sintomas: 'Dolor epigástrico (mejora con comida en duodenal, empeora en gástrica), náuseas, vómitos, hematemesis, melena.',
+                    sintomas: 'Dolor epigástrico (mejora con comida en duodenal, empeora en gástrica), náuseas, vómites, hematemesis, melena.',
                     diagnostico: 'Endoscopia digestiva alta, test de ureasa, serología para H. pylori.',
                     tratamiento: 'PPI, erradicación de H. pylori (triple o cuádruple terapia), suspensión de AINEs, cirugía si complicaciones.',
                     prevencion: 'Evitar AINEs si posible, tratamiento de H. pylori, estilo de vida saludable.'
@@ -2611,7 +2621,33 @@
         ];
         
         // Pacientes
-        const PATIENTS = [
+        const PATIENTS_KEY = 'enfermeria_david_pacientes';
+        const PAE_KEY = 'enfermeria_david_pae';
+        const RECURSOS_KEY = 'enfermeria_david_recursos';
+        
+        // Funciones de almacenamiento persistente
+        function getStoredData(key, defaultValue = []) {
+            try {
+                const data = localStorage.getItem(key);
+                return data ? JSON.parse(data) : defaultValue;
+            } catch (e) {
+                console.error('Error reading from localStorage:', e);
+                return defaultValue;
+            }
+        }
+        
+        function setStoredData(key, data) {
+            try {
+                localStorage.setItem(key, JSON.stringify(data));
+                return true;
+            } catch (e) {
+                console.error('Error writing to localStorage:', e);
+                return false;
+            }
+        }
+        
+        // Obtener datos almacenados o usar datos iniciales
+        let PACIENTES = getStoredData(PATIENTS_KEY, [
             {
                 id: 1,
                 nombre: 'María González',
@@ -2793,10 +2829,9 @@
                     ]
                 }
             }
-        ];
+        ]);
         
-        // Recursos educativos
-        const RESOURCES = [
+        let RECURSOS = getStoredData(RECURSOS_KEY, [
             {
                 id: 1,
                 titulo: 'Guía de Práctica Clínica: Manejo de la Diabetes Tipo 2',
@@ -2869,10 +2904,7 @@
                 etiquetas: ['dolor', 'analgesia', 'cuidados paliativos', 'actualización'],
                 descripcion: 'Revisión actualizada sobre los avances en el manejo del dolor crónico, incluyendo enfoques farmacológicos y no farmacológicos, y enfoque multidisciplinario.'
             }
-        ];
-        
-        // PAE almacenados
-        const PAE_KEY = 'pae_records';
+        ]);
         
         // Content area and functions
         const contentArea = $('contentArea');
@@ -3084,7 +3116,7 @@
             }
             
             // Search patients
-            const pHits = PATIENTS.filter(p => p.nombre.toLowerCase().includes(q) || 
+            const pHits = PACIENTES.filter(p => p.nombre.toLowerCase().includes(q) || 
                 p.diagnosticoPrincipal.toLowerCase().includes(q) || 
                 p.especialidad.toLowerCase().includes(q));
             if (pHits.length) {
@@ -3317,7 +3349,7 @@
             
             // Save functionality
             $('savePaeBtn').addEventListener('click', () => {
-                const arr = JSON.parse(localStorage.getItem(PAE_KEY) || '[]');
+                const arr = getStoredData(PAE_KEY, []);
                 arr.push({
                     patient: patientName,
                     age: patientAge,
@@ -3327,8 +3359,8 @@
                     interventions: interventions,
                     date: new Date().toISOString()
                 });
-                localStorage.setItem(PAE_KEY, JSON.stringify(arr));
-                alert('PAE guardado con éxito');
+                setStoredData(PAE_KEY, arr);
+                showNotification('PAE guardado con éxito', 'success');
             });
         });
         
@@ -3339,24 +3371,21 @@
             const plan = $('pae_plan').value.trim();
             
             if (!name || !diag) {
-                $('paeMsg').textContent = 'Nombre y diagnóstico requeridos';
-                setTimeout(() => $('paeMsg').textContent='', 2000);
+                showNotification('Nombre y diagnóstico requeridos', 'error');
                 return;
             }
             
-            const arr = JSON.parse(localStorage.getItem(PAE_KEY) || '[]');
+            const arr = getStoredData(PAE_KEY, []);
             arr.push({name, diag, plan, ts: Date.now()});
-            localStorage.setItem(PAE_KEY, JSON.stringify(arr));
-            $('paeMsg').textContent = 'PAE guardado localmente';
-            setTimeout(() => $('paeMsg').textContent='', 2000);
+            setStoredData(PAE_KEY, arr);
+            showNotification('PAE guardado localmente', 'success');
         });
         
         // Export PAE
         $('exportPaeBtn').addEventListener('click', () => {
-            const arr = JSON.parse(localStorage.getItem(PAE_KEY) || '[]');
+            const arr = getStoredData(PAE_KEY, []);
             if (arr.length === 0) {
-                $('paeMsg').textContent = 'No hay PAEs guardados para exportar';
-                setTimeout(() => $('paeMsg').textContent='', 2000);
+                showNotification('No hay PAEs guardados para exportar', 'error');
                 return;
             }
             
@@ -3367,8 +3396,7 @@
             document.body.appendChild(downloadAnchorNode);
             downloadAnchorNode.click();
             downloadAnchorNode.remove();
-            $('paeMsg').textContent = 'PAEs exportados';
-            setTimeout(() => $('paeMsg').textContent='', 2000);
+            showNotification('PAEs exportados', 'success');
         });
         
         // Show RCP guide
@@ -3391,7 +3419,7 @@
                 $('rcpTimer').textContent = `${mm}:${ss}`;
                 if(rcpSeconds % 120 === 0) {
                     if(navigator.vibrate) navigator.vibrate([200,100,200]);
-                    alert('¡Cambio de reanimador recomendado! (cada 2 minutos para mantener calidad de compresiones)');
+                    showNotification('¡Cambio de reanimador recomendado! (cada 2 minutos para mantener calidad de compresiones)', 'info');
                 }
             }, 1000);
             $('rcpState').textContent='Estado: RCP en progreso';
@@ -3538,7 +3566,7 @@
             const search = $('patient-search').value.toLowerCase();
             const specialty = $('patient-specialty').value;
             
-            const filteredPatients = PATIENTS.filter(p => {
+            const filteredPatients = PACIENTES.filter(p => {
                 const matchesSearch = !search || p.nombre.toLowerCase().includes(search) || 
                                     p.diagnosticoPrincipal.toLowerCase().includes(search);
                 const matchesSpecialty = !specialty || p.especialidad === specialty;
@@ -3575,7 +3603,71 @@
         
         // Add patient button
         $('addPatientBtn').addEventListener('click', () => {
-            alert('Funcionalidad de agregar paciente disponible en versión completa con backend.');
+            const name = prompt('Nombre del paciente:');
+            if (!name) return;
+            
+            const age = prompt('Edad del paciente:');
+            if (!age || isNaN(age)) {
+                showNotification('Edad debe ser un número válido', 'error');
+                return;
+            }
+            
+            const diagnosis = prompt('Diagnóstico principal:');
+            if (!diagnosis) return;
+            
+            const specialty = prompt('Especialidad médica:');
+            if (!specialty) return;
+            
+            const newPatient = {
+                id: PACIENTES.length > 0 ? Math.max(...PACIENTES.map(p => p.id)) + 1 : 1,
+                nombre: name,
+                edad: parseInt(age),
+                diagnosticoPrincipal: diagnosis,
+                especialidad: specialty,
+                riesgoCardiovascular: 'moderado',
+                alergias: [],
+                historiaClinica: {
+                    resumen: `Paciente ${name} de ${age} años con diagnóstico de ${diagnosis}.`,
+                    diagnosticos: [{
+                        fecha: new Date().toISOString().split('T')[0],
+                        cie10: 'XX.X',
+                        descripcion: diagnosis,
+                        estado: 'Activo'
+                    }],
+                    tratamientos: [],
+                    evolucion: [{
+                        fecha: new Date().toISOString().split('T')[0],
+                        nota: 'Paciente agregado al sistema.'
+                    }],
+                    signosVitales: [],
+                    controles: []
+                }
+            };
+            
+            PACIENTES.push(newPatient);
+            if (setStoredData(PATIENTS_KEY, PACIENTES)) {
+                showNotification(`Paciente ${name} agregado con éxito`, 'success');
+                updatePatientGrid();
+            } else {
+                showNotification('Error al guardar el paciente', 'error');
+            }
+        });
+        
+        // Export patients
+        $('exportPatientsBtn').addEventListener('click', () => {
+            if (PACIENTES.length === 0) {
+                showNotification('No hay pacientes para exportar', 'error');
+                return;
+            }
+            
+            const dataStr = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(PACIENTES, null, 2));
+            const downloadAnchorNode = document.createElement('a');
+            downloadAnchorNode.setAttribute("href", dataStr);
+            downloadAnchorNode.setAttribute("download", "pacientes_enfermeria_david.json");
+            document.body.appendChild(downloadAnchorNode);
+            downloadAnchorNode.click();
+            downloadAnchorNode.remove();
+            showNotification('Pacientes exportados', 'success');
         });
         
         // Show recursos
@@ -3591,7 +3683,7 @@
             const search = $('resource-search').value.toLowerCase();
             const category = $('resource-category').value;
             
-            const filteredResources = RESOURCES.filter(r => {
+            const filteredResources = RECURSOS.filter(r => {
                 const matchesSearch = !search || r.titulo.toLowerCase().includes(search) || 
                                     r.etiquetas.some(tag => tag.toLowerCase().includes(search)) ||
                                     r.descripcion.toLowerCase().includes(search);
@@ -3624,14 +3716,64 @@
         
         // Add resource button
         $('addResourceBtn').addEventListener('click', () => {
-            alert('Funcionalidad de agregar recurso disponible en versión completa con backend.');
+            const titulo = prompt('Título del recurso:');
+            if (!titulo) return;
+            
+            const categoria = prompt('Categoría (Protocolos, Guías, Videos, Imágenes, Artículos, Formularios):');
+            if (!categoria) return;
+            
+            const tipo = prompt('Tipo (documento, video, imagen):');
+            if (!tipo) return;
+            
+            const url = prompt('URL del recurso:');
+            if (!url) return;
+            
+            const descripcion = prompt('Descripción del recurso:');
+            if (!descripcion) return;
+            
+            const etiquetas = prompt('Etiquetas (separadas por comas):');
+            
+            const newResource = {
+                id: RECURSOS.length > 0 ? Math.max(...RECURSOS.map(r => r.id)) + 1 : 1,
+                titulo,
+                categoria,
+                tipo,
+                url,
+                etiquetas: etiquetas ? etiquetas.split(',').map(e => e.trim()) : [],
+                descripcion
+            };
+            
+            RECURSOS.push(newResource);
+            if (setStoredData(RECURSOS_KEY, RECURSOS)) {
+                showNotification(`Recurso "${titulo}" agregado con éxito`, 'success');
+                updateResourceCards();
+            } else {
+                showNotification('Error al guardar el recurso', 'error');
+            }
+        });
+        
+        // Export resources
+        $('exportResourcesBtn').addEventListener('click', () => {
+            if (RECURSOS.length === 0) {
+                showNotification('No hay recursos para exportar', 'error');
+                return;
+            }
+            
+            const dataStr = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(RECURSOS, null, 2));
+            const downloadAnchorNode = document.createElement('a');
+            downloadAnchorNode.setAttribute("href", dataStr);
+            downloadAnchorNode.setAttribute("download", "recursos_enfermeria_david.json");
+            document.body.appendChild(downloadAnchorNode);
+            downloadAnchorNode.click();
+            downloadAnchorNode.remove();
+            showNotification('Recursos exportados', 'success');
         });
         
         // Wikipedia search
         $('wikiFetchBtn').addEventListener('click', async () => {
             const q = $('globalSearch').value.trim();
             if(!q) { 
-                alert('Escriba término en la búsqueda (ej: neumonía)'); 
+                showNotification('Escriba término en la búsqueda (ej: neumonía)', 'error');
                 return; 
             }
             $('wikiOutput').textContent = 'Buscando en Wikipedia...';
@@ -3649,6 +3791,52 @@
                 $('wikiOutput').textContent = 'Error al buscar en Wikipedia.';
             }
         });
+        
+        // Notification system
+        function showNotification(message, type = 'info') {
+            const container = document.getElementById('notification-container') || createNotificationContainer();
+            
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <div class="notification-icon">
+                    ${type === 'success' ? '<i class="fas fa-check-circle"></i>' : 
+                      type === 'error' ? '<i class="fas fa-exclamation-triangle"></i>' : 
+                      type === 'warning' ? '<i class="fas fa-exclamation-triangle"></i>' : 
+                      '<i class="fas fa-info-circle"></i>'}
+                </div>
+                <div class="notification-message">${message}</div>
+                <button class="notification-close" onclick="this.parentElement.remove()">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            container.appendChild(notification);
+            
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.remove();
+                }
+            }, 5000);
+        }
+        
+        function createNotificationContainer() {
+            const container = document.createElement('div');
+            container.id = 'notification-container';
+            container.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 1000;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                max-width: 350px;
+            `;
+            document.body.appendChild(container);
+            return container;
+        }
         
         // Quick action buttons
         $('quickRcpCard').addEventListener('click', () => {
@@ -3679,6 +3867,9 @@
         
         // Initialize app
         document.addEventListener('DOMContentLoaded', () => {
+            // Create notification container
+            createNotificationContainer();
+            
             // Set initial state
             clearContent();
             
@@ -3722,7 +3913,16 @@
             $('quickPaeCard').addEventListener('click', () => {
                 document.querySelector('[data-cat="pae"]').click();
             });
+            
+            // Show success notification for storage
+            if (typeof(Storage) !== "undefined") {
+                showNotification('Sistema de almacenamiento local habilitado', 'success');
+            } else {
+                showNotification('Su navegador no soporta almacenamiento local', 'error');
+            }
         });
     </script>
+    
+    <!-- Notification container will be created dynamically -->
 </body>
 </html>
