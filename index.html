@@ -5353,15 +5353,24 @@
                 }
                 
                 // Verificar interacciones antes de emitir
-                const warningDiv = document.getElementById('interactions-warning');
-                if (warningDiv.style.display === 'block') {
-                    const confirmIssue = confirm('Hay interacciones medicamentosas detectadas. ¿Desea continuar con la emisión de la receta?');
-                    if (!confirmIssue) return;
-                }
-                
-                alert(`Receta emitida para ${patient.nombre} con éxito.\n\nLa receta contiene ${medicationCount} medicamento(s).`);
-            });
-        }
-    </script>
+            const warningDiv = document.getElementById('interactions-warning');
+            if (warningDiv.style.display === 'block') {
+                const confirmIssue = confirm('Hay interacciones medicamentosas detectadas. ¿Desea continuar con la emisión de la receta?');
+                if (!confirmIssue) return;
+            }
+            
+            alert(`Receta emitida para ${patient.nombre} con éxito.\n\nLa receta contiene ${medicationCount} medicamento(s).`);
+        });
+
+        // Llamar a las funciones de configuración inicial (ESTA ES LA PARTE CORREGIDA)
+        setupNavigation();
+        setupThemeToggle();
+        setupModals();
+        setupCalculators();
+        setupVitalsHistoryChart();
+        showPage('dashboard');
+        showVitalSignsChart();
+    });
+</script>
 </body>
 </html>
