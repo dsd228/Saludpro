@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SaludPro v6.0 - Inteligencia Clínica Avanzada</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+  <title>SaludPro v7.0 - Inteligencia Clínica Avanzada</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Material+Symbols+Outlined" rel="stylesheet">
   <style>
     :root {
       --primary-blue: #1a73e8;
-      --primary-blue-lighter: #4285f4;
+      --primary-blue-darker: #0d47a1;
+      --primary-blue-lighter: #e8f0fe;
+      --success-green: #34a853;
       --warning-yellow: #f9ab00;
       --alert-red: #ea4335;
       --accent-teal: #00897b;
@@ -31,6 +32,8 @@
       --status-warning: #f9ab00;
       --status-error: #ea4335;
       --status-info: #1a73e8;
+      --font-size-base: 16px;
+      --font-family: 'Roboto', sans-serif;
     }
 
     .theme-dark {
@@ -42,7 +45,7 @@
     }
 
     body {
-      font-family: 'Roboto', sans-serif;
+      font-family: var(--font-family);
       margin: 0;
       background-color: var(--background-light);
       color: var(--text-dark);
@@ -50,8 +53,8 @@
       flex-direction: column;
       min-height: 100vh;
       line-height: 1.6;
-      overflow-x: hidden;
       transition: var(--transition-slow);
+      font-size: var(--font-size-base);
     }
 
     h1, h2, h3, h4, h5, h6 {
@@ -80,7 +83,7 @@
       box-shadow: var(--shadow-medium);
       position: sticky;
       top: 0;
-      z-index: var(--z-header);
+      z-index: 1000;
     }
 
     .header-content {
@@ -168,6 +171,18 @@
       color: var(--primary-blue);
     }
 
+    .breadcrumbs {
+      display: flex;
+      gap: 5px;
+      margin-bottom: 10px;
+      font-size: 0.9em;
+      color: var(--text-muted);
+    }
+
+    .breadcrumbs span {
+      color: var(--text-dark);
+    }
+
     .btn {
       padding: 10px 20px;
       border: none;
@@ -186,7 +201,7 @@
     }
 
     .btn-primary:hover {
-      background-color: var(--primary-blue-lighter);
+      background-color: var(--primary-blue-darker);
     }
 
     .btn-secondary {
@@ -356,7 +371,7 @@
     }
 
     .search-box button:hover {
-      background-color: var(--primary-blue-lighter);
+      background-color: var(--primary-blue-darker);
     }
 
     .suggestions {
@@ -732,6 +747,45 @@
         margin: 10px;
       }
     }
+
+    /* Cargadores */
+    .loader {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid #f3f3f3;
+      border-top: 3px solid var(--primary-blue);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-right: 10px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Accesibilidad */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    button, input, select, textarea {
+      font-family: var(--font-family);
+    }
+
+    *:focus {
+      outline: 2px solid var(--primary-blue);
+      outline-offset: 2px;
+    }
   </style>
 </head>
 <body>
@@ -739,7 +793,7 @@
     <div class="header-content">
       <div class="logo">
         <span class="material-symbols-outlined">medical_information</span>
-        Salud<span>Pro</span> v6.0
+        Salud<span>Pro</span> v7.0
       </div>
       <nav>
         <ul>
@@ -796,11 +850,23 @@
           <!-- Se llenará con JavaScript -->
         </div>
       </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title"><span class="material-symbols-outlined">warning</span>Alertas Clínicas</h3>
+        </div>
+        <div id="clinical-alerts">
+          <!-- Se llenará con JavaScript -->
+        </div>
+      </div>
     </section>
 
     <!-- Consultorio Virtual -->
     <section id="consultorio" class="page">
       <div class="page-header">
+        <div class="breadcrumbs">
+          <span>Dashboard</span> > <span>Consultorio</span>
+        </div>
         <h2><span class="material-symbols-outlined">healing</span>Consultorio Virtual</h2>
         <button class="btn btn-secondary" onclick="navigateTo('dashboard')">
           <span class="material-symbols-outlined">arrow_back</span>Volver
@@ -816,6 +882,7 @@
         <div id="active-patient-info" style="margin-bottom: 20px; padding: 15px; background-color: #e3f2fd; border-radius: var(--border-radius); display: none;">
           <h3 id="active-patient-name"></h3>
           <p><strong>Edad:</strong> <span id="active-patient-age"></span> | <strong>Diagnóstico:</strong> <span id="active-patient-diagnosis"></span></p>
+          <p><strong>Genotipo:</strong> <span id="active-patient-genotype"></span> | <strong>Riesgo CV:</strong> <span id="active-patient-risk"></span></p>
         </div>
 
         <div class="tabs">
@@ -823,6 +890,7 @@
           <div class="tab" onclick="switchTab('vitals')">Signos Vitales</div>
           <div class="tab" onclick="switchTab('prescriptions')">Recetas</div>
           <div class="tab" onclick="switchTab('orders')">Órdenes</div>
+          <div class="tab" onclick="switchTab('history')">Historia Clínica</div>
         </div>
 
         <div id="diagnosis-tab" class="tab-content active">
@@ -976,6 +1044,17 @@
             </button>
             <div id="orders-list" style="margin-top: 20px;">
               <!-- Lista de órdenes -->
+            </div>
+          </div>
+        </div>
+
+        <div id="history-tab" class="tab-content">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><span class="material-symbols-outlined">history</span>Historia Clínica</h3>
+            </div>
+            <div id="patient-history">
+              <!-- Se llenará con JavaScript -->
             </div>
           </div>
         </div>
@@ -1146,25 +1225,8 @@
               <th style="padding: 12px; text-align: left;">Estado</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>Metformina</td>
-              <td>Genérico</td>
-              <td>120</td>
-              <td><span style="color: green; font-weight: 600;">Normal</span></td>
-            </tr>
-            <tr>
-              <td>Losartán</td>
-              <td>MSD</td>
-              <td>30</td>
-              <td><span style="color: orange; font-weight: 600;">Bajo</span></td>
-            </tr>
-            <tr>
-              <td>Aspirina</td>
-              <td>Bayer</td>
-              <td>8</td>
-              <td><span style="color: red; font-weight: 600;">Crítico</span></td>
-            </tr>
+          <tbody id="pharmacy-stock-body">
+            <!-- Se llenará con JavaScript -->
           </tbody>
         </table>
       </div>
@@ -1218,37 +1280,419 @@
   </div>
 
   <script>
+    // Base de datos simulada con estructuras FHIR-like
+    const DATA_STORE = {
+      patients: [
+        {
+          id: "urn:uuid:patient-001",
+          resourceType: "Patient",
+          nombre: "María López",
+          edad: 45,
+          diagnosticoPrincipal: "Meningitis Bacteriana",
+          especialidad: "Neurología",
+          riesgoCardiovascular: "alto",
+          alergias: ["Penicilina"],
+          genotipo: "CYP2D6_metabolizador_lento",
+          historiaClinica: {
+            resumen: "Paciente femenina de 45 años con meningitis bacteriana aguda.",
+            diagnosticos: [
+              { fecha: "2025-04-10", cie10: "G00.9", descripcion: "Meningitis Bacteriana", estado: "Activo" },
+              { fecha: "2024-03-15", cie10: "E11.9", descripcion: "Diabetes Mellitus Tipo 2", estado: "Crónico" }
+            ],
+            tratamientos: [
+              { fechaInicio: "2025-04-10", medicamento: "Ceftriaxona", dosis: "2g IV cada 12h", duracion: "14 días" },
+              { fechaInicio: "2025-04-10", medicamento: "Dexametasona", dosis: "10mg IV cada 6h", duracion: "4 días" }
+            ],
+            evolucion: [
+              { fecha: "2025-04-10", nota: "Ingreso con cefalea intensa, fiebre y rigidez de nuca. Sospecha de meningitis." },
+              { fecha: "2025-04-11", nota: "Punción lumbar realizada. LCR turbio, neutrófilos elevados. Iniciado tratamiento empírico." }
+            ],
+            signosVitales: [
+              { fecha: "2025-04-10", temperatura: 39.2, pa: "150/95", fc: 110, fr: 22, spo2: 94 },
+              { fecha: "2025-04-11", temperatura: 38.1, pa: "140/85", fc: 95, fr: 18, spo2: 96 }
+            ],
+            laboratorio: [],
+            seguimiento: [
+              { tipo: "Control de LCR", cada: "7 días", proximo: "2025-04-17" },
+              { tipo: "Hemograma", cada: "3 días", proximo: "2025-04-14" }
+            ]
+          }
+        },
+        {
+          id: "urn:uuid:patient-002",
+          resourceType: "Patient",
+          nombre: "Carlos Martínez",
+          edad: 38,
+          diagnosticoPrincipal: "Diabetes Mellitus Tipo 2",
+          especialidad: "Endocrinología",
+          riesgoCardiovascular: "moderado",
+          alergias: [],
+          genotipo: "CYP2C9_normal",
+          historiaClinica: {
+            resumen: "Paciente masculino de 38 años con DM2 diagnosticado hace 5 años.",
+            diagnosticos: [
+              { fecha: "2020-05-10", cie10: "E11.9", descripcion: "Diabetes Mellitus Tipo 2", estado: "Crónico" },
+              { fecha: "2022-11-03", cie10: "I25.10", descripcion: "Enfermedad Arterial Coronaria", estado: "Crónico" }
+            ],
+            tratamientos: [
+              { fechaInicio: "2020-05-10", medicamento: "Metformina", dosis: "1000mg cada 12h", duracion: "Continuo" },
+              { fechaInicio: "2022-11-03", medicamento: "Aspirina", dosis: "100mg cada 24h", duracion: "Continuo" },
+              { fechaInicio: "2023-02-15", medicamento: "Glibenclamida", dosis: "5mg cada 24h", duracion: "Continuo" }
+            ],
+            evolucion: [
+              { fecha: "2020-05-10", nota: "Diagnóstico de DM2. Iniciado tratamiento con Metformina." },
+              { fecha: "2023-02-15", nota: "HbA1c 8.5%. Se agrega Glibenclamida." },
+              { fecha: "2023-08-20", nota: "Angioplastia coronaria por angina inestable. Iniciado tratamiento con Aspirina." }
+            ],
+            signosVitales: [
+              { fecha: "2023-02-10", temperatura: 36.6, pa: "140/90", fc: 78, fr: 16, spo2: 97, peso: 85, talla: 1.75, imc: 27.8 },
+              { fecha: "2023-05-15", temperatura: 36.5, pa: "135/85", fc: 76, fr: 15, spo2: 98, peso: 83, talla: 1.75, imc: 27.1 },
+              { fecha: "2023-08-20", temperatura: 36.7, pa: "130/80", fc: 74, fr: 15, spo2: 99, peso: 82, talla: 1.75, imc: 26.8 }
+            ],
+            laboratorio: [
+              { fecha: "2023-02-10", test: "HbA1c", resultado: "8.5%", normal: "4.0-5.6%" },
+              { fecha: "2023-05-15", test: "HbA1c", resultado: "7.8%", normal: "4.0-5.6%" },
+              { fecha: "2023-08-20", test: "HbA1c", resultado: "7.2%", normal: "4.0-5.6%" }
+            ],
+            seguimiento: [
+              { tipo: "HbA1c", cada: "3 meses", proximo: "2025-07-15" },
+              { tipo: "Perfil Lipídico", cada: "6 meses", proximo: "2025-10-20" }
+            ]
+          }
+        },
+        {
+          id: "urn:uuid:patient-003",
+          resourceType: "Patient",
+          nombre: "Roberto Sánchez",
+          edad: 67,
+          diagnosticoPrincipal: "Insuficiencia Cardíaca",
+          especialidad: "Cardiología",
+          riesgoCardiovascular: "alto",
+          alergias: ["Ioduro"],
+          genotipo: "CYP2C19_normal",
+          historiaClinica: {
+            resumen: "Paciente masculino de 67 años con IC por miocardiopatía isquémica.",
+            diagnosticos: [
+              { fecha: "2020-01-15", cie10: "I50.9", descripcion: "Insuficiencia Cardíaca", estado: "Crónico" },
+              { fecha: "2018-06-20", cie10: "I25.10", descripcion: "Enfermedad Arterial Coronaria", estado: "Crónico" }
+            ],
+            tratamientos: [
+              { fechaInicio: "2020-01-15", medicamento: "Furosemida", dosis: "40mg cada 24h", duracion: "Continuo" },
+              { fechaInicio: "2020-01-15", medicamento: "Carvedilol", dosis: "25mg cada 12h", duracion: "Continuo" },
+              { fechaInicio: "2020-01-15", medicamento: "Losartán", dosis: "50mg cada 24h", duracion: "Continuo" },
+              { fechaInicio: "2020-01-15", medicamento: "Digoxina", dosis: "0.125mg cada 24h", duracion: "Continuo" }
+            ],
+            evolucion: [
+              { fecha: "2020-01-15", nota: "Diagnóstico de IC por miocardiopatía isquémica. Clase funcional III NYHA." },
+              { fecha: "2021-06-18", nota: "Optimizado tratamiento. Clase funcional II NYHA." },
+              { fecha: "2023-03-22", nota: "Estable con tratamiento actual. Control de peso y PA adecuado." }
+            ],
+            signosVitales: [
+              { fecha: "2023-02-08", temperatura: 36.5, pa: "125/80", fc: 68, fr: 16, spo2: 96, peso: 78, talla: 1.72, imc: 26.4 },
+              { fecha: "2023-05-11", temperatura: 36.6, pa: "122/78", fc: 66, fr: 15, spo2: 97, peso: 77, talla: 1.72, imc: 26.0 },
+              { fecha: "2023-08-15", temperatura: 36.4, pa: "120/75", fc: 65, fr: 15, spo2: 98, peso: 77, talla: 1.72, imc: 26.0 }
+            ],
+            laboratorio: [
+              { fecha: "2023-02-08", test: "BNP", resultado: "850 pg/mL", normal: "<100 pg/mL" },
+              { fecha: "2023-05-11", test: "BNP", resultado: "620 pg/mL", normal: "<100 pg/mL" },
+              { fecha: "2023-08-15", test: "BNP", resultado: "580 pg/mL", normal: "<100 pg/mL" }
+            ],
+            seguimiento: [
+              { tipo: "Control de peso", cada: "semanal", proximo: "2025-04-19" },
+              { tipo: "Ecocardiograma", cada: "12 meses", proximo: "2026-03-15" }
+            ]
+          }
+        }
+      ],
+      appointments: [
+        { id: "app-001", pacienteId: "urn:uuid:patient-001", fecha: "2025-04-12", hora: "10:00", motivo: "Consulta de seguimiento", estado: "confirmada", medico: "Dr. Pérez" },
+        { id: "app-002", pacienteId: "urn:uuid:patient-002", fecha: "2025-04-12", hora: "14:00", motivo: "Control de glucemia", estado: "pendiente", medico: "Dr. Gómez" },
+        { id: "app-003", pacienteId: "urn:uuid:patient-003", fecha: "2025-04-12", hora: "11:00", motivo: "Evaluación cardiológica", estado: "confirmada", medico: "Dr. Fernández" }
+      ],
+      medicalOrders: [],
+      pharmacyStock: [
+        { id: "med-001", nombre: "Metformina", laboratorio: "Genérico", cantidad: 120, umbral: 50 },
+        { id: "med-002", nombre: "Losartán", laboratorio: "MSD", cantidad: 30, umbral: 50 },
+        { id: "med-003", nombre: "Aspirina", laboratorio: "Bayer", cantidad: 8, umbral: 20 },
+        { id: "med-004", nombre: "Ceftriaxona", laboratorio: "Roche", cantidad: 50, umbral: 10 },
+        { id: "med-005", nombre: "Dexametasona", laboratorio: "Merck", cantidad: 100, umbral: 25 }
+      ],
+      staff: [
+        { id: 1, nombre: "Juan Pérez", especialidad: "Cardiología", rol: "Médico", citas: 12 },
+        { id: 2, nombre: "Ana Martínez", especialidad: "Enfermería", rol: "Enfermera", citas: 8 },
+        { id: 3, nombre: "Carlos Gómez", especialidad: "Administración", rol: "Administrador", citas: 0 },
+        { id: 4, nombre: "Lucía Fernández", especialidad: "Pediatría", rol: "Médico", citas: 15 }
+      ]
+    };
+
+    // Base de conocimiento médico con estructuras LOINC/SNOMED
+    const medicalKnowledgeBase = {
+      diseases: [
+        {
+          id: "urn:snomed:74400008",
+          nombre: "Esclerosis Múltiple",
+          codigoCIE10: "G35",
+          etiologia: "Enfermedad autoinmune donde el sistema inmunológico ataca la mielina, la cubierta protectora de los nervios, en el sistema nervioso central.",
+          fisiopatologia: "La inflamación autoinmune conduce a la desmielinización de las fibras nerviosas, lo que interrumpe la transmisión de señales nerviosas entre el cerebro y otras partes del cuerpo.",
+          prevalencia: 0.0003,
+          factoresRiesgo: ["edad: 20-50", "género: F > M", "antecedentes familiares", "deficiencia de vitamina D"],
+          diagnostico: "Basado en criterios de McDonald, que requieren evidencia de lesiones en diferentes partes del sistema nervioso central (diseminación en el espacio) y en diferentes momentos (diseminación en el tiempo), generalmente confirmadas por resonancia magnética (RM) y estudios del líquido cefalorraquídeo.",
+          diagnosticosDiferenciales: ["Neuromielitis óptica", "Síndrome de Guillain-Barré", "Enfermedad de Lyme", "Tumores del sistema nervioso central", "Deficiencia de vitamina B12"],
+          clasificacion: "Forma recurrente-remitente (RRMS), progresiva primaria (PPMS), progresiva secundaria (SPMS), progresiva activa, progresiva no activa.",
+          tratamientos: ["Interferón beta (reduce la frecuencia de brotes)", "Glatiramer acetato", "Terapias de células B (Ocrelizumab)", "Inmunosupresores (Mitoxantrona)", "Terapias para síntomas específicos (fatiga, espasmos, depresión)"],
+          protocolos: ["Guía de práctica clínica de la Asociación Americana de Esclerosis Múltiple"],
+          pronostico: "Variable. La mayoría de los pacientes tienen una esperanza de vida cercana a la normal, pero con discapacidad progresiva. El curso depende del tipo y de la respuesta al tratamiento.",
+          educacionPaciente: "La esclerosis múltiple es una condición crónica del sistema nervioso. Aunque no tiene cura, hay tratamientos que pueden ralentizar su progreso y manejar los síntomas. Es importante mantener un estilo de vida saludable.",
+          recursosAdicionales: ["https://www.nationalmssociety.org/", "https://www.msif.org/"],
+          imagenes: [
+            { url: "https://placehold.co/400x300/1a73e8/ffffff?text=RM+Esclerosis+Múltiple", descripcion: "Lesiones desmielinizantes en la resonancia magnética cerebral" },
+            { url: "https://placehold.co/400x300/34a853/ffffff?text=Marcha+en+EM", descripcion: "Paciente con esclerosis múltiple mostrando dificultad de marcha" }
+          ]
+        },
+        {
+          id: "urn:snomed:32277002",
+          nombre: "Meningitis Bacteriana",
+          codigoCIE10: "G00.9",
+          etiologia: "Infección bacteriana del sistema nervioso central, comúnmente causada por Streptococcus pneumoniae, Neisseria meningitidis o Haemophilus influenzae tipo b.",
+          fisiopatologia: "Las bacterias ingresan al sistema nervioso central, provocando inflamación de las meninges (membranas que rodean el cerebro y la médula espinal), lo que aumenta la presión intracraneal y puede dañar el tejido cerebral.",
+          prevalencia: 0.00001,
+          factoresRiesgo: ["edad: niños, ancianos", "inmunosupresión", "trauma craneal", "otitis media", "sinusitis"],
+          presentacionClinica: ["Cefalea intensa", "Fotofobia (sensibilidad a la luz)", "Fiebre alta", "Rigidez de nuca", "Náuseas y vómites", "Confusión mental", "Convulsiones"],
+          diagnostico: "Diagnóstico definitivo mediante punción lumbar y análisis del líquido cefalorraquídeo (LCR): elevación de células (predominio de neutrófilos), proteínas elevadas, glucosa baja. Cultivo del LCR para identificar el patógeno.",
+          diagnosticosDiferenciales: ["Meningitis viral", "Encefalitis", "Absceso cerebral", "Hemorragia subaracnoidea", "Sepsis"],
+          clasificacion: "Aguda (progresión rápida) o subaguda (progresión más lenta).",
+          tratamientos: ["Ceftriaxona 2g IV cada 12h", "Vancomicina 15mg/kg IV cada 12h", "Dexametasona 10mg IV cada 6h", "Soporte vital"],
+          protocolos: ["Guía IDSA para meningitis bacteriana", "Protocolo de manejo de meningitis en adultos"],
+          pronostico: "Grave. Mortalidad del 10-30% incluso con tratamiento. Secuelas neurológicas en 20-50% de los sobrevivientes.",
+          educacionPaciente: "La meningitis bacteriana es una emergencia médica grave. Requiere hospitalización inmediata y tratamiento con antibióticos intravenosos.",
+          recursosAdicionales: ["https://www.cdc.gov/meningitis/index.html"],
+          imagenes: [
+            { url: "https://placehold.co/400x300/ea4335/ffffff?text=RM+Meningitis", descripcion: "Resonancia magnética cerebral en meningitis" },
+            { url: "https://placehold.co/400x300/f9ab00/ffffff?text=Punción+Lumbar", descripcion: "Procedimiento de punción lumbar" }
+          ]
+        },
+        {
+          id: "urn:snomed:44054006",
+          nombre: "Diabetes Mellitus Tipo 2",
+          codigoCIE10: "E11.9",
+          etiologia: "Resistencia a la insulina combinada con una deficiencia relativa de insulina. Factores de riesgo: obesidad, sedentarismo, antecedentes familiares, edad avanzada.",
+          fisiopatologia: "Las células del cuerpo no responden adecuadamente a la insulina (resistencia), lo que lleva a una producción inadecuada de insulina por parte del páncreas, resultando en hiperglucemia crónica.",
+          prevalencia: 0.1,
+          factoresRiesgo: ["obesidad", "sedentarismo", "antecedentes familiares", "edad > 45", "hipertensión", "dislipidemia"],
+          presentacionClinica: ["Poliuria", "Polidipsia", "Polidipsia", "Pérdida de peso inexplicada", "Fatiga", "Visión borrosa", "Infecciones recurrentes"],
+          diagnostico: "Diagnóstico basado en niveles de glucosa: ayunas ≥126 mg/dL, HbA1c ≥6.5%, o glucosa al azar ≥200 mg/dL con síntomas.",
+          diagnosticosDiferenciales: ["Diabetes Mellitus Tipo 1", "Diabetes secundaria", "Síndrome de Cushing", "Feocromocitoma"],
+          clasificacion: "Por gravedad del control glucémico, presencia de complicaciones micro/macrovasculares.",
+          tratamientos: ["Modificación del estilo de vida (dieta, ejercicio)", "Metformina (primera línea)", "Sulfonilureas", "Inhibidores de DPP-4", "Análogos del GLP-1", "Insulina (en etapas avanzadas)"],
+          protocolos: ["Guías de la Asociación Americana de Diabetes (ADA)"],
+          pronostico: "Crónica progresiva. Buen control glucémico reduce significativamente el riesgo de complicaciones como nefropatía, retinopatía, neuropatía y enfermedad cardiovascular.",
+          educacionPaciente: "La diabetes tipo 2 se puede manejar con dieta, ejercicio y medicamentos. Es crucial controlar la glucosa para prevenir complicaciones.",
+          recursosAdicionales: ["https://www.diabetes.org/"],
+          imagenes: [
+            { url: "https://placehold.co/400x300/34a853/ffffff?text=Glucosa+en+Sangre", descripcion: "Monitoreo de glucosa en sangre" },
+            { url: "https://placehold.co/400x300/1a73e8/ffffff?text=Complicaciones+Diabetes", descripcion: "Complicaciones crónicas de la diabetes" }
+          ]
+        },
+        {
+          id: "urn:snomed:59621000",
+          nombre: "Enfermedad de Parkinson",
+          codigoCIE10: "G20",
+          etiologia: "Trastorno neurodegenerativo caracterizado por la pérdida progresiva de neuronas dopaminérgicas en la sustancia negra del mesencéfalo.",
+          fisiopatologia: "La deficiencia de dopamina en los ganglios basales interrumpe los circuitos motores, llevando a los síntomas motores característicos.",
+          prevalencia: 0.003,
+          factoresRiesgo: ["edad > 60", "género: M > F", "antecedentes familiares", "exposición a pesticidas"],
+          presentacionClinica: ["Temblor de reposo (mano, pierna, mandíbula)", "Bradicinesia (lentitud de movimientos)", "Rigidez muscular", "Postura encorvada", "Problemas de equilibrio y marcha (falta de balanceo de brazos, arrastre de pies)", "Alteraciones del habla y escritura"],
+          diagnostico: "Diagnóstico clínico basado en la historia y el examen físico. No hay una prueba definitiva. Criterios de diagnóstico de la UK Parkinson's Disease Society Brain Bank.",
+          diagnosticosDiferenciales: ["Parkinsonismo secundario (por medicamentos, traumatismo)", "Parálisis supranuclear progresiva", "Atrofia multisistémica", "Temblor esencial"],
+          clasificacion: "Por etapa (escala de Hoehn y Yahr), por tipo de presentación (temblor-dominante, akinético-rígido).",
+          tratamientos: ["Levodopa/Carbidopa (tratamiento más eficaz)", "Agonistas dopaminérgicos (Pramipexol, Ropinirol)", "Inhibidores de la COMT (Entacapona)", "Inhibidores de la MAO-B (Selegilina)", "Terapia con ejercicio y rehabilitación"],
+          protocolos: ["Guías de práctica clínica para el manejo del Parkinson"],
+          pronostico: "Progresivo. No curable, pero los tratamientos pueden controlar los síntomas durante muchos años. La esperanza de vida puede reducirse ligeramente.",
+          educacionPaciente: "El Parkinson es una enfermedad neurodegenerativa que afecta el movimiento. Aunque no tiene cura, hay tratamientos que pueden mejorar significativamente la calidad de vida.",
+          recursosAdicionales: ["https://www.parkinson.org/"],
+          imagenes: [
+            { url: "https://placehold.co/400x300/ea4335/ffffff?text=RM+Parkinson", descripcion: "Resonancia magnética cerebral en Parkinson" },
+            { url: "https://placehold.co/400x300/f9ab00/ffffff?text=Marcha+Parkinson", descripcion: "Característica marcha en pacientes con Parkinson" }
+          ]
+        }
+      ],
+      medicalTests: [
+        {
+          id: "urn:loinc:15056-0",
+          nombre: "Hemoglobina",
+          indicaciones: ["Anemia", "Pérdida de sangre", "Evaluación general de salud"],
+          interpretacion: "Valores normales: Hombres 13.8-17.2 g/dL, Mujeres 12.1-15.1 g/dL. Valores bajos indican anemia, valores altos pueden indicar policitemia."
+        },
+        {
+          id: "urn:loinc:2075-0",
+          nombre: "Creatinina",
+          indicaciones: ["Evaluación de función renal", "Monitorización en pacientes con enfermedad renal crónica", "Antes de estudios con contraste"],
+          interpretacion: "Valores normales: 0.7-1.3 mg/dL. Valores elevados indican disminución de la función renal glomerular."
+        },
+        {
+          id: "urn:loinc:17855-8",
+          nombre: "HbA1c",
+          indicaciones: ["Diagnóstico de diabetes", "Monitorización del control glucémico a largo plazo"],
+          interpretacion: "Valores normales: <5.7%. Prediabetes: 5.7-6.4%. Diabetes: ≥6.5%. Refleja el promedio de glucosa en sangre en los últimos 2-3 meses."
+        },
+        {
+          id: "urn:loinc:2885-2",
+          nombre: "Perfil Lipídico",
+          indicaciones: ["Evaluación de riesgo cardiovascular", "Monitorización en pacientes con dislipidemia"],
+          interpretacion: "Incluye colesterol total, LDL, HDL y triglicéridos. LDL <100 mg/dL óptimo, HDL >40 mg/dL (H), >50 mg/dL (M), triglicéridos <150 mg/dL."
+        },
+        {
+          id: "urn:loinc:1988-5",
+          nombre: "PCR (Proteína C Reactiva)",
+          indicaciones: ["Evaluación de inflamación", "Monitorización en enfermedades autoinmunes", "Riesgo cardiovascular"],
+          interpretacion: "Valores normales: <10 mg/L. Valores elevados indican inflamación sistémica. Valores >3 mg/L indican riesgo cardiovascular aumentado."
+        },
+        {
+          id: "urn:loinc:94545-4",
+          nombre: "BNP (Péptido Natriurético B", 
+          indicaciones: ["Evaluación de insuficiencia cardíaca", "Diferenciación de disnea por IC vs. causa pulmonar"],
+          interpretacion: "Valores normales: <100 pg/mL. Valores >400 pg/mL sugieren IC. Valores entre 100-400 pg/mL requieren evaluación clínica adicional."
+        },
+        {
+          id: "urn:loinc:24357-5",
+          nombre: "Punción Lumbar",
+          indicaciones: ["Diagnóstico de meningitis", "Diagnóstico de hemorragia subaracnoidea", "Medición de presión del LCR", "Administración de medicamentos (quimioterapia, anestesia espinal)"],
+          contraindicaciones: ["Infección en el sitio de punción", "Trastornos de coagulación no corregidos", "Presión intracraneal muy elevada (riesgo de herniación)"],
+          riesgos: ["Dolor de cabeza post-punción", "Infección", "Hemorragia", "Daño nervioso"],
+          interpretacion: "El LCR normal es claro e incoloro. En meningitis bacteriana: turbio, elevación de células (neutrófilos), proteínas elevadas, glucosa baja. En meningitis viral: líquido claro, linfocitos elevados, proteínas levemente elevadas, glucosa normal."
+        },
+        {
+          id: "urn:loinc:18728-5",
+          nombre: "Resonancia Magnética (RM) Cerebral",
+          indicaciones: ["Evaluación de tumores", "Diagnóstico de esclerosis múltiple", "Evaluación de accidente cerebrovascular", "Investigación de epilepsia", "Evaluación de trauma craneal"],
+          interpretacion: "Permite visualizar con gran detalle el tejido cerebral. Las lesiones desmielinizantes en EM aparecen como hiperintensidades en secuencias T2/FLAIR. Los tumores pueden realzarse con contraste."
+        }
+      ],
+      treatments: [
+        {
+          id: "urn:rxnorm:860975",
+          nombre: "Metformina",
+          indicaciones: ["Diabetes Mellitus Tipo 2", "Síndrome de ovario poliquístico"],
+          mecanismoAccion: "Disminuye la producción de glucosa por el hígado (gluconeogénesis) y mejora la sensibilidad a la insulina en los músculos.",
+          farmacocinetica: "Biodisponibilidad del 50-60%. No se metaboliza. Se excreta inalterada por los riñones.",
+          efectosAdversos: ["Hipoglucemia", "Náuseas", "Malestar gastrointestinal"],
+          contraindicaciones: ["Insuficiencia renal (TFG <30 ml/min)", "Acidosis metabólica", "Alcoholismo crónico"],
+          interacciones: {
+            "Contraste yodado": { severidad: "moderada", descripcion: "Aumenta el riesgo de acidosis láctica." },
+            "Alcohol": { severidad: "moderada", descripcion: "Aumenta el riesgo de acidosis láctica." },
+            "Cimetidina": { severidad: "leve", descripcion: "Puede aumentar los niveles plasmáticos de metformina." }
+          }
+        },
+        {
+          id: "urn:rxnorm:64726",
+          nombre: "Losartán",
+          indicaciones: ["Hipertensión arterial", "Nefropatía diabética", "Insuficiencia cardíaca"],
+          mecanismoAccion: "Antagonista del receptor de angiotensina II (AT1), bloquea los efectos de la angiotensina II, causando vasodilatación y disminución de la retención de sodio.",
+          farmacocinetica: "Biodisponibilidad del 33%. Se metaboliza a un metabolito activo. Eliminación biliar y renal.",
+          efectosAdversos: ["Hipotensión", "Hiperkalemia", "Tos", "Dolor de espalda"],
+          contraindicaciones: ["Embarazo", "Hipersensibilidad", "Estenosis de arteria renal bilateral"],
+          interacciones: {
+            "Potasio": { severidad: "moderada", descripcion: "Aumenta el riesgo de hiperkalemia." },
+            "AINEs": { severidad: "moderada", descripcion: "Pueden reducir el efecto antihipertensivo y aumentar el riesgo de nefrotoxicidad." },
+            "Litio": { severidad: "moderada", descripcion: "Puede aumentar los niveles séricos de litio." }
+          }
+        },
+        {
+          id: "urn:rxnorm:1597380",
+          nombre: "Aspirina",
+          indicaciones: ["Analgesia", "Antipirético", "Antiinflamatorio", "Antiagregante plaquetario (prevención de eventos cardiovasculares)"],
+          mecanismoAccion: "Inhibidor irreversible de la ciclooxigenasa (COX-1 y COX-2), reduciendo la producción de prostaglandinas y tromboxano A2.",
+          farmacocinetica: "Absorción rápida en el estómago e intestino delgado. Metabolismo hepático. Excreción renal.",
+          efectosAdversos: ["Irritación gástrica", "Sangrado gastrointestinal", "Úlcera péptica", "Síndrome de Reye (en niños)"],
+          contraindicaciones: ["Hemorragia activa", "Úlcera péptica activa", "Hipersensibilidad a AINEs", "Asma inducida por AINEs"],
+          interacciones: {
+            "Warfarina": { severidad: "fatal", descripcion: "Riesgo muy alto de hemorragia grave." },
+            "Tolbutamida": { severidad: "moderada", descripcion: "Puede aumentar el riesgo de hipoglucemia." },
+            "Metotrexato": { severidad: "moderada", descripcion: "Puede aumentar los niveles séricos y toxicidad del metotrexato." }
+          }
+        },
+        {
+          id: "urn:rxnorm:387025",
+          nombre: "Glibenclamida",
+          indicaciones: ["Diabetes Mellitus Tipo 2"],
+          mecanismoAccion: "Secretagogo de insulina. Estimula la liberación de insulina por las células beta del páncreas.",
+          farmacocinetica: "Absorción completa. Metabolismo hepático extenso. Excreción renal y biliar.",
+          efectosAdversos: ["Hipoglucemia", "Aumento de peso", "Reacciones cutáneas"],
+          contraindicaciones: ["Diabetes Mellitus Tipo 1", "Cetoacidosis diabética", "Insuficiencia hepática grave"],
+          interacciones: {
+            "Metformina": { severidad: "moderada", descripcion: "Aumenta el riesgo de hipoglucemia." },
+            "AINEs": { severidad: "moderada", descripcion: "Pueden potenciar el efecto hipoglucemiante." },
+            "Corticosteroides": { severidad: "moderada", descripcion: "Pueden antagonizar el efecto hipoglucemiante." }
+          }
+        },
+        {
+          id: "urn:rxnorm:11572",
+          nombre: "Warfarina",
+          indicaciones: ["Prevención y tratamiento de trombosis venosa", "Prevención de embolismo sistémico en fibrilación auricular", "Válvulas cardíacas mecánicas"],
+          mecanismoAccion: "Antagonista de la vitamina K, inhibe la síntesis de factores de coagulación dependientes de vitamina K (II, VII, IX, X).",
+          farmacocinetica: "Absorción completa. Metabolismo hepático extenso. Vida media de 20-60 horas.",
+          efectosAdversos: ["Hemorragia", "Necrosis cutánea", "Teratogenicidad"],
+          contraindicaciones: ["Embarazo", "Hemorragia activa", "Úlcera péptica activa", "Trauma o cirugía reciente"],
+          interacciones: {
+            "Aspirina": { severidad: "fatal", descripcion: "Riesgo muy alto de hemorragia grave." },
+            "Antibióticos (como ciprofloxacina)": { severidad: "moderada", descripcion: "Pueden potenciar el efecto anticoagulante." },
+            "Barbitúricos": { severidad: "moderada", descripcion: "Pueden reducir el efecto anticoagulante." }
+          }
+        },
+        {
+          id: "urn:rxnorm:1596903",
+          nombre: "Tenofovir",
+          indicaciones: ["Tratamiento de VIH", "Tratamiento de hepatitis B crónica"],
+          mecanismoAccion: "Análogo nucleótido que inhibe la transcriptasa inversa del VIH.",
+          farmacocinetica: "Biodisponibilidad variable. Metabolismo hepático. Excreción renal.",
+          efectosAdversos: ["Nefrotoxicidad", "Disminución de la densidad mineral ósea", "Náuseas"],
+          contraindicaciones: ["Insuficiencia renal grave", "Hipersensibilidad"],
+          interacciones: {
+            "Didanosina": { severidad: "moderada", descripcion: "Aumenta el riesgo de toxicidad pancreática y neuropática." },
+            "Atazanavir": { severidad: "moderada", descripcion: "Aumenta los niveles plasmáticos de tenofovir, aumentando el riesgo de nefrotoxicidad." }
+          }
+        }
+      ],
+      protocols: [
+        {
+          id: "urn:protocol:meningitis-001",
+          nombre: "Manejo de Meningitis Bacteriana en Adultos",
+          area: "Infectología/Neurología",
+          descripcion: "Protocolo basado en evidencia para el diagnóstico y tratamiento inmediato de meningitis bacteriana.",
+          pasos: [
+            "1. Sospecha clínica: Cefalea intensa, fiebre, rigidez de nuca, fotofobia.",
+            "2. Estudios inmediatos: Hemograma, función renal, glucemia, cultivos de sangre.",
+            "3. Imágenes: Tomografía computarizada (TC) de cráneo si hay signos de herniación o antecedente de lesión cerebral.",
+            "4. Punción lumbar: Si la TC es normal o no está indicada, realizar punción lumbar para análisis del LCR.",
+            "5. Tratamiento empírico inmediato: Ceftriaxona 2g IV cada 12h + Vancomicina 15mg/kg IV cada 12h + Dexametasona 10mg IV cada 6h.",
+            "6. Ajustar tratamiento según cultivo del LCR.",
+            "7. Soporte vital y monitoreo neurológico."
+          ],
+          referencias: ["IDSA Guidelines", "UpToDate"]
+        },
+        {
+          id: "urn:protocol:ms-001",
+          nombre: "Diagnóstico de Esclerosis Múltiple (Criterios McDonald 2017)",
+          area: "Neurología",
+          descripcion: "Criterios internacionales para el diagnóstico de esclerosis múltiple.",
+          pasos: [
+            "1. Demostrar diseminación en el espacio (DIS): ≥1 lesión en al menos 2 de las 4 áreas características del SNC (periventricular, juxtacortical, infratentorial, médula espinal).",
+            "2. Demostrar diseminación en el tiempo (DIT): ≥1 lesión gadolinio-positiva nueva en relación con una escaneo previo, o una nueva lesión T2 o gadolinio-positiva en un escaneo posterior.",
+            "3. Excluir diagnósticos alternativos más probables."
+          ],
+          referencias: ["Lancet Neurology 2018"]
+        }
+      ]
+    };
+
     // Estado de la aplicación
     const APP_STATE = {
       activePatientId: null,
       currentSection: 'dashboard',
       theme: 'light',
-      patients: [
-        { id: 1, nombre: "María López", edad: 45, diagnosticoPrincipal: "Meningitis Bacteriana", especialidad: "Neurología", riesgoCardiovascular: "alto" },
-        { id: 2, nombre: "Carlos Martínez", edad: 38, diagnosticoPrincipal: "Diabetes Mellitus Tipo 2", especialidad: "Endocrinología", riesgoCardiovascular: "moderado" },
-        { id: 3, nombre: "Ana García", edad: 62, diagnosticoPrincipal: "VIH", especialidad: "Infectología", riesgoCardiovascular: "bajo" },
-        { id: 4, nombre: "Roberto Sánchez", edad: 67, diagnosticoPrincipal: "Insuficiencia Cardíaca", especialidad: "Cardiología", riesgoCardiovascular: "alto" }
-      ],
-      appointments: [
-        { id: 1, pacienteId: 1, fecha: "2025-04-12", hora: "10:00", motivo: "Consulta de seguimiento", estado: "confirmada" },
-        { id: 2, pacienteId: 2, fecha: "2025-04-12", hora: "14:00", motivo: "Control de glucemia", estado: "pendiente" },
-        { id: 3, pacienteId: 4, fecha: "2025-04-12", hora: "11:00", motivo: "Evaluación cardiológica", estado: "confirmada" }
-      ],
-      medicalOrders: [],
-      medications: [
-        { id: "dr-001", nombre: "Metformina", laboratorio: "Genérico", contraindicaciones: ["Embarazo", "Insuficiencia renal"], interacciones: {
-          "Contraste yodado": { severidad: "fatal", descripcion: "Riesgo muy alto de acidosis láctica." },
-          "Alcohol": { severidad: "moderada", descripcion: "Aumenta el riesgo de acidosis láctica." }
-        }, efectosSecundarios: ["Diarrea", "Náuseas", "Dolor abdominal"] },
-        { id: "dr-002", nombre: "Losartán", laboratorio: "MSD", contraindicaciones: ["Embarazo", "Hipersensibilidad"], interacciones: {
-          "Aspirina": { severidad: "leve", descripcion: "Puede aumentar levemente el riesgo de sangrado." },
-          "Furosemida": { severidad: "moderada", descripcion: "Puede potenciar el efecto hipotensor." }
-        }, efectosSecundarios: ["Hipotensión", "Hiperkalemia", "Tos"] },
-        { id: "dr-003", nombre: "Aspirina", laboratorio: "Bayer", contraindicaciones: ["Hemorragia activa", "Úlcera péptica"], interacciones: {
-          "Losartán": { severidad: "leve", descripcion: "Puede aumentar levemente el riesgo de sangrado." },
-          "Warfarina": { severidad: "fatal", descripcion: "Riesgo muy alto de hemorragia grave." }
-        }, efectosSecundarios: ["Irritación gástrica", "Sangrado"] }
-      ]
+      fontSize: 16,
+      activeTab: 'diagnosis',
+      alerts: []
     };
 
     // Funciones de utilidad
@@ -1276,6 +1720,11 @@
       
       document.querySelector(`.tab[onclick="switchTab('${tabId}')"]`).classList.add('active');
       document.getElementById(`${tabId}-tab`).classList.add('active');
+      APP_STATE.activeTab = tabId;
+      
+      if (tabId === 'history' && APP_STATE.activePatientId) {
+        loadPatientHistory();
+      }
     }
 
     function toggleTheme() {
@@ -1317,34 +1766,32 @@
       const options = { year: 'numeric', month: 'long', day: 'numeric' };
       document.getElementById('current-date').textContent = now.toLocaleDateString('es-ES', options);
       
-      // Llenar lista de pacientes
+      // Llenar listas
       updatePatientList();
-      
-      // Llenar lista de pacientes en el modal
       updateModalPatientList();
-      
-      // Llenar select de pacientes en citas
       updateAppointmentPatientSelect();
-      
-      // Actualizar próximas citas
       updateUpcomingAppointments();
+      updatePharmacyStock();
+      checkClinicalAlerts();
       
-      // Actualizar opciones de IMC
+      // Inicializar funcionalidades
       setupVitalSigns();
+      setupSearchFunctionality();
     }
 
     function updatePatientList() {
       const tbody = document.getElementById('patient-list-body');
+      if (!tbody) return;
       tbody.innerHTML = '';
       
-      APP_STATE.patients.forEach(patient => {
+      DATA_STORE.patients.forEach(patient => {
         const row = document.createElement('tr');
         row.innerHTML = `
           <td>${patient.nombre}</td>
           <td>${patient.edad}</td>
           <td>${patient.diagnosticoPrincipal}</td>
           <td>
-            <button class="btn btn-primary" onclick="selectPatient(${patient.id})">
+            <button class="btn btn-primary" onclick="selectPatient('${patient.id}')">
               <span class="material-symbols-outlined">edit</span>Atender
             </button>
           </td>
@@ -1355,9 +1802,10 @@
 
     function updateModalPatientList() {
       const container = document.getElementById('modal-patient-list');
+      if (!container) return;
       container.innerHTML = '';
       
-      APP_STATE.patients.forEach(patient => {
+      DATA_STORE.patients.forEach(patient => {
         const div = document.createElement('div');
         div.className = 'patient-card';
         div.style = 'padding: 15px; border: 1px solid #eee; border-radius: var(--border-radius); margin-bottom: 10px; background-color: white; cursor: pointer;';
@@ -1374,11 +1822,12 @@
     }
 
     function filterModalPatients() {
-      const query = document.getElementById('modal-search').value.toLowerCase();
+      const query = document.getElementById('modal-search')?.value.toLowerCase().trim() || '';
       const container = document.getElementById('modal-patient-list');
+      if (!container) return;
       container.innerHTML = '';
       
-      const filtered = APP_STATE.patients.filter(patient => 
+      const filtered = DATA_STORE.patients.filter(patient => 
         patient.nombre.toLowerCase().includes(query)
       );
       
@@ -1405,9 +1854,10 @@
 
     function updateAppointmentPatientSelect() {
       const select = document.getElementById('appointment-patient');
+      if (!select) return;
       select.innerHTML = '<option value="">Seleccionar paciente...</option>';
       
-      APP_STATE.patients.forEach(patient => {
+      DATA_STORE.patients.forEach(patient => {
         const option = document.createElement('option');
         option.value = patient.id;
         option.textContent = patient.nombre;
@@ -1417,10 +1867,11 @@
 
     function updateUpcomingAppointments() {
       const container = document.getElementById('upcoming-appointments');
+      if (!container) return;
       container.innerHTML = '';
       
       const today = new Date().toISOString().split('T')[0];
-      const upcoming = APP_STATE.appointments.filter(appt => appt.fecha >= today);
+      const upcoming = DATA_STORE.appointments.filter(appt => appt.fecha >= today);
       
       if (upcoming.length === 0) {
         container.innerHTML = '<p>No hay citas programadas.</p>';
@@ -1431,7 +1882,7 @@
       ul.style = 'list-style: none; padding: 0;';
       
       upcoming.forEach(appt => {
-        const patient = APP_STATE.patients.find(p => p.id === appt.pacienteId);
+        const patient = DATA_STORE.patients.find(p => p.id === appt.pacienteId);
         const li = document.createElement('li');
         li.style = 'padding: 10px; border-bottom: 1px solid #eee; margin-bottom: 5px;';
         li.innerHTML = `
@@ -1443,18 +1894,109 @@
       container.appendChild(ul);
     }
 
+    function updatePharmacyStock() {
+      const tbody = document.getElementById('pharmacy-stock-body');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+      
+      DATA_STORE.pharmacyStock.forEach(item => {
+        let status = 'Normal';
+        let color = 'green';
+        
+        if (item.cantidad < item.umbral * 0.5) {
+          status = 'Crítico';
+          color = 'red';
+        } else if (item.cantidad < item.umbral) {
+          status = 'Bajo';
+          color = 'orange';
+        }
+        
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${item.nombre}</td>
+          <td>${item.laboratorio}</td>
+          <td>${item.cantidad}</td>
+          <td><span style="color: ${color}; font-weight: 600;">${status}</span></td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    function checkClinicalAlerts() {
+      const container = document.getElementById('clinical-alerts');
+      if (!container) return;
+      container.innerHTML = '';
+      
+      const alerts = [];
+      
+      // Alertas de bajo stock
+      DATA_STORE.pharmacyStock.forEach(item => {
+        if (item.cantidad < item.umbral) {
+          alerts.push({
+            type: 'warning',
+            message: `Bajo stock de ${item.nombre}: ${item.cantidad} unidades (umbral: ${item.umbral})`
+          });
+        }
+      });
+      
+      // Alertas de seguimiento
+      DATA_STORE.patients.forEach(patient => {
+        if (patient.historiaClinica.seguimiento) {
+          patient.historiaClinica.seguimiento.forEach(seguimiento => {
+            const today = new Date();
+            const nextDate = new Date(seguimiento.proximo);
+            const diffTime = nextDate - today;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            
+            if (diffDays <= 7 && diffDays >= 0) {
+              alerts.push({
+                type: 'info',
+                message: `Próximo seguimiento para ${patient.nombre}: ${seguimiento.tipo} (${seguimiento.proximo})`
+              });
+            }
+          });
+        }
+      });
+      
+      if (alerts.length === 0) {
+        container.innerHTML = '<p>No hay alertas clínicas.</p>';
+        return;
+      }
+      
+      const ul = document.createElement('ul');
+      ul.style = 'list-style: none; padding: 0;';
+      
+      alerts.forEach(alert => {
+        const li = document.createElement('li');
+        li.style = 'padding: 10px; border-bottom: 1px solid #eee; margin-bottom: 5px;';
+        li.innerHTML = `
+          <span class="material-symbols-outlined" style="color: ${alert.type === 'warning' ? 'orange' : 'blue'};">
+            ${alert.type === 'warning' ? 'warning' : 'info'}
+          </span>
+          ${alert.message}
+        `;
+        ul.appendChild(li);
+      });
+      
+      container.appendChild(ul);
+    }
+
     function selectPatient(patientId) {
-      const patient = APP_STATE.patients.find(p => p.id === patientId);
+      const patient = DATA_STORE.patients.find(p => p.id === patientId);
       if (!patient) return;
       
       APP_STATE.activePatientId = patientId;
       
       // Mostrar información del paciente activo
       const patientInfo = document.getElementById('active-patient-info');
-      patientInfo.style.display = 'block';
-      document.getElementById('active-patient-name').textContent = patient.nombre;
-      document.getElementById('active-patient-age').textContent = `${patient.edad} años`;
-      document.getElementById('active-patient-diagnosis').textContent = patient.diagnosticoPrincipal;
+      if (patientInfo) {
+        patientInfo.style.display = 'block';
+        document.getElementById('active-patient-name').textContent = patient.nombre;
+        document.getElementById('active-patient-age').textContent = `${patient.edad} años`;
+        document.getElementById('active-patient-diagnosis').textContent = patient.diagnosticoPrincipal;
+        document.getElementById('active-patient-genotype').textContent = patient.genotipo || 'No disponible';
+        document.getElementById('active-patient-risk').textContent = patient.riesgoCardiovascular;
+      }
       
       // Navegar al consultorio
       navigateTo('consultorio');
@@ -1464,14 +2006,21 @@
 
     function openPatientSearchModal() {
       const modal = document.getElementById('modal-overlay');
-      modal.classList.add('active');
-      document.getElementById('modal-search').value = '';
-      filterModalPatients();
+      if (modal) {
+        modal.classList.add('active');
+        const searchInput = document.getElementById('modal-search');
+        if (searchInput) {
+          searchInput.value = '';
+          filterModalPatients();
+        }
+      }
     }
 
     function closeModal() {
       const modal = document.getElementById('modal-overlay');
-      modal.classList.remove('active');
+      if (modal) {
+        modal.classList.remove('active');
+      }
     }
 
     // Funcionalidades del consultorio
@@ -1489,84 +2038,167 @@
         return;
       }
       
-      // Simulación de IA de diagnóstico diferencial
+      // Mostrar indicador de carga
       const resultsDiv = document.getElementById('diagnostic-results');
-      resultsDiv.innerHTML = '<p>Analizando síntomas y resultados...</p>';
+      if (resultsDiv) {
+        resultsDiv.innerHTML = '<p><div class="loader"></div>Analizando síntomas y resultados...</p>';
+      }
       
       // Simular proceso de análisis
       setTimeout(() => {
-        let results = [];
-        
-        if (symptoms.includes('cefalea') && symptoms.includes('fiebre') && symptoms.includes('rigidez de nuca')) {
-          results.push({
-            diagnostico: 'Meningitis Bacteriana',
-            nivelSospecha: 92,
-            recomendaciones: [
-              'Realizar punción lumbar de urgencia',
-              'Iniciar tratamiento empírico con ceftriaxona + vancomicina',
-              'Solicitar hemograma, función renal y cultivos de sangre'
-            ]
-          });
-        }
-        
-        if (symptoms.includes('dolor torácico') && symptoms.includes('disnea')) {
-          results.push({
-            diagnostico: 'Síndrome Coronario Agudo',
-            nivelSospecha: 85,
-            recomendaciones: [
-              'Realizar ECG de urgencia',
-              'Marcadores de daño miocárdico (troponina)',
-              'Considerar angioplastia primaria si STEMI'
-            ]
-          });
-        }
-        
-        if (symptoms.includes('poliuria') && symptoms.includes('polidipsia')) {
-          results.push({
-            diagnostico: 'Diabetes Mellitus Tipo 2',
-            nivelSospecha: 78,
-            recomendaciones: [
-              'Glucosa en ayunas y HbA1c',
-              'Perfil lipídico',
-              'Evaluación de complicaciones crónicas'
-            ]
-          });
-        }
-        
-        if (results.length === 0) {
-          results.push({
-            diagnostico: 'Síndrome Febril Inespecífico',
-            nivelSospecha: 65,
-            recomendaciones: [
-              'Hemograma completo',
-              'PCR o VSG',
-              'Cultivos según sospecha clínica'
-            ]
-          });
-        }
+        const patient = DATA_STORE.patients.find(p => p.id === APP_STATE.activePatientId);
+        const results = calculateDifferentialDiagnosis(symptoms, labResults, patient);
         
         // Mostrar resultados
-        resultsDiv.innerHTML = '';
-        results.forEach(result => {
-          const resultDiv = document.createElement('div');
-          resultDiv.className = 'diagnostic-result';
-          resultDiv.innerHTML = `
-            <h4>${result.diagnostico}</h4>
-            <small>Nivel de sospecha</small>
-            <div class="progress-bar">
-              <div class="progress" style="width: ${result.nivelSospecha}%"></div>
-            </div>
-            <small>${result.nivelSospecha}% de probabilidad</small>
-            <div class="recommendation">
-              <strong>Recomendaciones:</strong>
-              <ul>${result.recomendaciones.map(rec => `<li>${rec}</li>`).join('')}</ul>
-            </div>
-          `;
-          resultsDiv.appendChild(resultDiv);
-        });
-        
-        showNotification('Análisis de diagnóstico completado.');
+        if (resultsDiv) {
+          resultsDiv.innerHTML = '';
+          results.forEach(result => {
+            const resultDiv = document.createElement('div');
+            resultDiv.className = 'diagnostic-result';
+            resultDiv.innerHTML = `
+              <h4>${result.diagnostico}</h4>
+              <small>Nivel de sospecha</small>
+              <div class="progress-bar">
+                <div class="progress" style="width: ${result.nivelSospecha}%"></div>
+              </div>
+              <small>${result.nivelSospecha}% de probabilidad</small>
+              <div class="recommendation">
+                <strong>Recomendaciones:</strong>
+                <ul>${result.recomendaciones.map(rec => `<li>${rec}</li>`).join('')}</ul>
+              </div>
+            `;
+            resultsDiv.appendChild(resultDiv);
+          });
+          
+          showNotification('Análisis de diagnóstico completado.');
+        }
       }, 1500);
+    }
+
+    function calculateDifferentialDiagnosis(symptoms, labResults, patient) {
+      const results = [];
+      
+      // Para cada enfermedad en la base de conocimiento
+      medicalKnowledgeBase.diseases.forEach(disease => {
+        let score = 0;
+        let matchedSymptoms = 0;
+        
+        // 1. Coincidencia de síntomas
+        if (disease.presentacionClinica) {
+          disease.presentacionClinica.forEach(presentacion => {
+            const presentacionLower = presentacion.toLowerCase();
+            symptoms.forEach(symptom => {
+              if (presentacionLower.includes(symptom)) {
+                matchedSymptoms++;
+                score += 20; // Puntuación por síntoma coincidente
+              }
+            });
+          });
+        }
+        
+        // 2. Prevalencia base
+        score += (disease.prevalencia * 10000); // Escalar para hacerlo comparable
+        
+        // 3. Factores de riesgo del paciente
+        if (disease.factoresRiesgo) {
+          disease.factoresRiesgo.forEach(riskFactor => {
+            if (riskFactor.includes('edad')) {
+              const ageRange = riskFactor.match(/\d+/g);
+              if (ageRange && patient && patient.edad >= parseInt(ageRange[0]) && patient.edad <= parseInt(ageRange[1])) {
+                score += 15;
+              }
+            }
+            if (riskFactor.includes('género') && patient && riskFactor.includes(patient.genero || 'M')) {
+              score += 10;
+            }
+            if (patient && patient.riesgoCardiovascular === 'alto' && riskFactor.includes('hipertensión')) {
+              score += 10;
+            }
+          });
+        }
+        
+        // 4. Resultados de laboratorio
+        if (labResults.includes('lc') && disease.nombre.toLowerCase().includes('meningitis')) {
+          score += 30;
+        }
+        if (labResults.includes('glucosa') && labResults.includes('alta') && disease.nombre.toLowerCase().includes('diabetes')) {
+          score += 25;
+        }
+        
+        // 5. Comorbilidades del paciente
+        if (patient && patient.historiaClinica.diagnosticos) {
+          patient.historiaClinica.diagnosticos.forEach(diag => {
+            if (diag.descripcion.toLowerCase().includes('diabetes') && disease.nombre.toLowerCase().includes('nefropatía')) {
+              score += 20;
+            }
+            if (diag.descripcion.toLowerCase().includes('cardíaco') && disease.nombre.toLowerCase().includes('insuficiencia')) {
+              score += 18;
+            }
+          });
+        }
+        
+        // Calcular porcentaje (normalizar entre 0-100)
+        const maxPossibleScore = 100;
+        const nivelSospecha = Math.min(100, Math.round((score / maxPossibleScore) * 100));
+        
+        if (nivelSospecha > 20) { // Solo incluir si es significativo
+          const recomendaciones = generateRecommendations(disease, symptoms, patient);
+          
+          results.push({
+            diagnostico: disease.nombre,
+            nivelSospecha,
+            recomendaciones
+          });
+        }
+      });
+      
+      // Ordenar por nivel de sospecha
+      return results.sort((a, b) => b.nivelSospecha - a.nivelSospecha);
+    }
+
+    function generateRecommendations(disease, symptoms, patient) {
+      const recommendations = [];
+      
+      // Recomendaciones generales por enfermedad
+      if (disease.nombre.toLowerCase().includes('meningitis')) {
+        recommendations.push('Realizar punción lumbar de urgencia');
+        recommendations.push('Iniciar tratamiento empírico con ceftriaxona + vancomicina');
+        recommendations.push('Solicitar hemograma, función renal y cultivos de sangre');
+        recommendations.push('Considerar TC craneal si hay signos de herniación');
+      }
+      
+      if (disease.nombre.toLowerCase().includes('diabetes')) {
+        recommendations.push('Realizar HbA1c y perfil lipídico');
+        recommendations.push('Evaluar complicaciones microvasculares (retinopatía, nefropatía)');
+        recommendations.push('Educación en autogestión de la diabetes');
+      }
+      
+      if (disease.nombre.toLowerCase().includes('parkinson')) {
+        recommendations.push('Evaluar mediante escala de Hoehn y Yahr');
+        recommendations.push('Considerar tratamiento con levodopa/carbidopa');
+        recommendations.push('Rehabilitación con fisioterapia y terapia ocupacional');
+      }
+      
+      // Recomendaciones basadas en comorbilidades
+      if (patient && patient.historiaClinica.diagnosticos) {
+        const hasCardio = patient.historiaClinica.diagnosticos.some(d => d.cie10.startsWith('I'));
+        const hasRenal = patient.historiaClinica.diagnosticos.some(d => d.cie10.startsWith('N'));
+        
+        if (hasCardio && disease.nombre.toLowerCase().includes('antiinflamatorio')) {
+          recommendations.push('Evitar AINEs por riesgo cardiovascular aumentado');
+        }
+        
+        if (hasRenal && disease.nombre.toLowerCase().includes('metformina')) {
+          recommendations.push('Evaluar función renal antes de iniciar metformina');
+        }
+      }
+      
+      // Si no hay recomendaciones específicas, usar las del protocolo
+      if (recommendations.length === 0 && disease.tratamientos) {
+        recommendations.push(...disease.tratamientos.slice(0, 3));
+      }
+      
+      return recommendations.length > 0 ? recommendations : ['Evaluar clínicamente y realizar estudios complementarios'];
     }
 
     function setupVitalSigns() {
@@ -1574,20 +2206,22 @@
       const heightInput = document.getElementById('height');
       const imcOutput = document.getElementById('imc');
       
+      if (!weightInput || !heightInput || !imcOutput) return;
+      
       function updateIMC() {
-        const weight = parseFloat(weightInput?.value);
-        const height = parseFloat(heightInput?.value);
+        const weight = parseFloat(weightInput.value);
+        const height = parseFloat(heightInput.value);
         if (weight > 0 && height > 0) {
           const heightInMeters = height / 100;
           const imc = weight / (heightInMeters * heightInMeters);
-          if (imcOutput) imcOutput.value = imc.toFixed(2);
+          imcOutput.value = imc.toFixed(2);
         } else {
-          if (imcOutput) imcOutput.value = '';
+          imcOutput.value = '';
         }
       }
       
-      weightInput?.addEventListener('input', updateIMC);
-      heightInput?.addEventListener('input', updateIMC);
+      weightInput.addEventListener('input', updateIMC);
+      heightInput.addEventListener('input', updateIMC);
     }
 
     function saveVitalSigns() {
@@ -1599,23 +2233,39 @@
       const weight = document.getElementById('weight');
       const height = document.getElementById('height');
       
-      if (!temperature || !pa || !fc || !fr || !spo2 || !weight || !height) {
-        showNotification('Error al guardar signos vitales.', 'error');
-        return;
-      }
-      
       if (!APP_STATE.activePatientId) {
         showNotification('Por favor, seleccione un paciente primero.', 'warning');
         return;
       }
       
-      if (!temperature.value || !pa.value || !fc.value || !fr.value || !spo2.value || !weight.value || !height.value) {
+      if (!temperature.value || !pa.value || !fc.value || !fr.value || !spo2.value) {
         showNotification('Por favor, complete todos los campos de signos vitales.', 'warning');
         return;
       }
       
-      // Simular guardado
-      showNotification('Signos vitales guardados correctamente.', 'success');
+      const patient = DATA_STORE.patients.find(p => p.id === APP_STATE.activePatientId);
+      if (!patient) return;
+      
+      // Crear nueva entrada de signos vitales
+      const newVitalSign = {
+        fecha: new Date().toISOString().split('T')[0],
+        temperatura: parseFloat(temperature.value),
+        pa: pa.value,
+        fc: parseInt(fc.value),
+        fr: parseInt(fr.value),
+        spo2: parseInt(spo2.value)
+      };
+      
+      // Añadir peso y talla si están disponibles
+      if (weight.value) newVitalSign.peso = parseFloat(weight.value);
+      if (height.value) newVitalSign.talla = parseFloat(height.value);
+      if (weight.value && height.value) {
+        const heightInMeters = parseFloat(height.value) / 100;
+        newVitalSign.imc = (parseFloat(weight.value) / (heightInMeters * heightInMeters)).toFixed(2);
+      }
+      
+      // Añadir a la historia clínica
+      patient.historiaClinica.signosVitales.push(newVitalSign);
       
       // Limpiar formulario
       temperature.value = '';
@@ -1625,10 +2275,14 @@
       spo2.value = '';
       weight.value = '';
       height.value = '';
+      
+      showNotification('Signos vitales guardados correctamente.', 'success');
     }
 
     function addMedicationEntry() {
       const container = document.getElementById('medication-entries');
+      if (!container) return;
+      
       const entryCount = container.children.length + 1;
       
       const entry = document.createElement('div');
@@ -1691,9 +2345,9 @@
       // Verificar interacciones directas
       for (let i = 0; i < currentMedications.length; i++) {
         const med1Name = currentMedications[i];
-        const med1Data = APP_STATE.medications.find(med => med.nombre.toLowerCase() === med1Name.toLowerCase());
+        const med1Data = medicalKnowledgeBase.treatments.find(med => med.nombre.toLowerCase() === med1Name.toLowerCase());
         
-        if (med1Data) {
+        if (med1Data && med1Data.interacciones) {
           for (let j = i + 1; j < currentMedications.length; j++) {
             const med2Name = currentMedications[j];
             
@@ -1703,13 +2357,53 @@
             }
             
             // Verificar la interacción inversa
-            const med2Data = APP_STATE.medications.find(med => med.nombre.toLowerCase() === med2Name.toLowerCase());
-            if (med2Data && med2Data.interacciones[med1Name]) {
+            const med2Data = medicalKnowledgeBase.treatments.find(med => med.nombre.toLowerCase() === med2Name.toLowerCase());
+            if (med2Data && med2Data.interacciones && med2Data.interacciones[med1Name]) {
               const interaction = med2Data.interacciones[med1Name];
               warnings.add(`${med2Name} - ${med1Name}: ${interaction.descripcion} (<span class="severity-${interaction.severidad}">${interaction.severidad}</span>)`);
             }
           }
         }
+      }
+      
+      // Verificar interacciones de tercer orden
+      for (let i = 0; i < currentMedications.length; i++) {
+        for (let j = 0; j < currentMedications.length; j++) {
+          if (i !== j) {
+            const med1Name = currentMedications[i];
+            const med2Name = currentMedications[j];
+            const med1Data = medicalKnowledgeBase.treatments.find(med => med.nombre.toLowerCase() === med1Name.toLowerCase());
+            const med2Data = medicalKnowledgeBase.treatments.find(med => med.nombre.toLowerCase() === med2Name.toLowerCase());
+            
+            if (med1Data && med2Data) {
+              // Si med1 interactúa con med2, y med2 interactúa con otro med3 que está en la lista
+              for (let k = 0; k < currentMedications.length; k++) {
+                if (k !== i && k !== j) {
+                  const med3Name = currentMedications[k];
+                  if (med2Data.interacciones && med2Data.interacciones[med3Name]) {
+                    warnings.add(`⚠️ Interacción indirecta detectada: ${med1Name} → ${med2Name} → ${med3Name}`);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      
+      // Verificar farmacogenómica
+      const patient = DATA_STORE.patients.find(p => p.id === APP_STATE.activePatientId);
+      if (patient && patient.genotipo) {
+        currentMedications.forEach(medName => {
+          const medData = medicalKnowledgeBase.treatments.find(med => med.nombre.toLowerCase() === medName.toLowerCase());
+          if (medData) {
+            if (patient.genotipo === 'CYP2D6_metabolizador_lento' && medName === 'Warfarina') {
+              warnings.add(`⚠️ Riesgo farmacogenómico: ${patient.genotipo} aumenta la sensibilidad a Warfarina`);
+            }
+            if (patient.genotipo === 'CYP2C9*2' && medName === 'Warfarina') {
+              warnings.add(`⚠️ Riesgo farmacogenómico: ${patient.genotipo} aumenta la toxicidad con Warfarina`);
+            }
+          }
+        });
       }
       
       // Mostrar advertencias
@@ -1763,17 +2457,34 @@
         return;
       }
       
-      // Simular guardado
-      showNotification('Receta guardada correctamente.', 'success');
+      // Verificar interacciones antes de emitir
+      const warningDiv = document.getElementById('interactions-warning');
+      if (warningDiv && warningDiv.style.display === 'block') {
+        const confirmIssue = confirm('Hay interacciones medicamentosas detectadas. ¿Desea continuar con la emisión de la receta?');
+        if (!confirmIssue) return;
+      }
       
-      // Limpiar formulario
-      document.getElementById('medication-entries').innerHTML = '';
-      addMedicationEntry();
+      const patient = DATA_STORE.patients.find(p => p.id === APP_STATE.activePatientId);
+      
+      // Reducir stock
+      prescriptions.forEach(pres => {
+        const stockItem = DATA_STORE.pharmacyStock.find(item => item.nombre.toLowerCase() === pres.medName.toLowerCase());
+        if (stockItem) {
+          stockItem.cantidad -= 1; // Simulación simple
+        }
+      });
+      
+      // Actualizar UI de farmacia
+      updatePharmacyStock();
+      checkClinicalAlerts();
+      
+      showNotification(`Receta emitida para ${patient.nombre} con éxito.`, 'success');
     }
 
     function updateOrderOptions() {
-      const orderType = document.getElementById('order-type').value;
+      const orderType = document.getElementById('order-type')?.value;
       const container = document.getElementById('order-options-container');
+      if (!container) return;
       container.innerHTML = '';
       
       if (!orderType) return;
@@ -1784,33 +2495,38 @@
       select.innerHTML = '<option value="">Seleccionar opción...</option>';
       
       if (orderType === 'laboratory') {
-        select.innerHTML += `
-          <option value="hemograma">Hemograma Completo</option>
-          <option value="funcion-renales">Función Renales</option>
-          <option value="perfil-lipidico">Perfil Lipídico</option>
-          <option value="glucosa">Glucosa en Ayunas</option>
-        `;
+        medicalKnowledgeBase.medicalTests
+          .filter(test => test.id.startsWith('urn:loinc:'))
+          .forEach(test => {
+            const option = document.createElement('option');
+            option.value = test.id;
+            option.textContent = test.nombre;
+            select.appendChild(option);
+          });
       } else if (orderType === 'imaging') {
-        select.innerHTML += `
-          <option value="rx-torax">Rayos X de Tórax</option>
-          <option value="tac-cerebral">TAC Cerebral</option>
-          <option value="rm-columna">RM de Columna</option>
-          <option value="ecografia-abdominal">Ecografía Abdominal</option>
-        `;
+        medicalKnowledgeBase.medicalTests
+          .filter(test => test.nombre.toLowerCase().includes('resonancia') || test.nombre.toLowerCase().includes('rm') || test.nombre.toLowerCase().includes('tc'))
+          .forEach(test => {
+            const option = document.createElement('option');
+            option.value = test.id;
+            option.textContent = test.nombre;
+            select.appendChild(option);
+          });
       } else if (orderType === 'consultation') {
-        select.innerHTML += `
-          <option value="neurologia">Neurología</option>
-          <option value="cardiologia">Cardiología</option>
-          <option value="endocrinologia">Endocrinología</option>
-          <option value="infectologia">Infectología</option>
-        `;
+        const specialties = [...new Set(DATA_STORE.patients.map(p => p.especialidad))];
+        specialties.forEach(specialty => {
+          const option = document.createElement('option');
+          option.value = specialty.toLowerCase();
+          option.textContent = specialty;
+          select.appendChild(option);
+        });
       }
       
       container.appendChild(select);
     }
 
     function createMedicalOrder() {
-      const orderType = document.getElementById('order-type').value;
+      const orderType = document.getElementById('order-type')?.value;
       const orderOption = document.getElementById('order-option')?.value;
       
       if (!orderType || !orderOption) {
@@ -1823,64 +2539,191 @@
         return;
       }
       
-      const patient = APP_STATE.patients.find(p => p.id === APP_STATE.activePatientId);
+      const patient = DATA_STORE.patients.find(p => p.id === APP_STATE.activePatientId);
+      const test = medicalKnowledgeBase.medicalTests.find(t => t.id === orderOption);
       
       const order = {
         id: 'ord-' + Date.now(),
         type: orderType,
-        option: orderOption,
+        option: test ? test.nombre : orderOption,
         patientId: APP_STATE.activePatientId,
         patientName: patient.nombre,
         date: new Date().toISOString().split('T')[0],
         status: 'pendiente'
       };
       
-      APP_STATE.medicalOrders.push(order);
+      DATA_STORE.medicalOrders.push(order);
       
-      // Mostrar en lista
-      const ordersList = document.getElementById('orders-list');
-      if (!ordersList.querySelector('.alert-card')) {
-        ordersList.innerHTML = '';
+      // Simular generación de resultados después de un tiempo
+      if (orderType === 'laboratory' || orderType === 'imaging') {
+        showNotification(`Orden creada: ${order.option}. Los resultados estarán disponibles en unos momentos.`, 'info');
+        
+        setTimeout(() => {
+          // Generar resultado simulado
+          const result = generateSimulatedResult(test, patient);
+          const patientHistory = DATA_STORE.patients.find(p => p.id === APP_STATE.activePatientId).historiaClinica;
+          patientHistory.laboratorio.push(result);
+          
+          // Actualizar estado de la orden
+          order.status = 'resultados listos';
+          order.result = result;
+          
+          showNotification(`Resultados disponibles para ${order.option}: ${result.resultado}`, 'success');
+          
+          // Actualizar UI si estamos en la sección de farmacia
+          if (APP_STATE.currentSection === 'pharmacy') {
+            updateLabOrdersList();
+          }
+        }, 3000); // Simular 3 segundos de procesamiento
+      } else {
+        showNotification('Orden médica creada correctamente.', 'success');
       }
       
-      const alert = document.createElement('div');
-      alert.className = 'alert-card info';
-      alert.innerHTML = `
-        <span class="material-symbols-outlined alert-icon">info</span>
-        <div>
-          <strong>Orden Creada:</strong> ${order.option} para ${patient.nombre}
-        </div>
-      `;
-      ordersList.appendChild(alert);
-      
-      showNotification('Orden médica creada correctamente.');
+      // Actualizar lista de órdenes
+      updateOrdersList();
       
       // Resetear formulario
       document.getElementById('order-type').value = '';
       document.getElementById('order-options-container').innerHTML = '';
     }
 
+    function generateSimulatedResult(test, patient) {
+      const today = new Date().toISOString().split('T')[0];
+      
+      // Valores normales y patológicos simulados
+      const results = {
+        'Hemoglobina': { normal: '12.1-15.1 g/dL', values: ['13.5 g/dL', '11.8 g/dL', '16.2 g/dL'] },
+        'Creatinina': { normal: '0.7-1.3 mg/dL', values: ['1.1 mg/dL', '1.8 mg/dL', '0.9 mg/dL'] },
+        'HbA1c': { normal: '<5.7%', values: ['5.2%', '8.5%', '6.8%'] },
+        'Perfil Lipídico': { normal: 'LDL <100 mg/dL', values: ['LDL 95 mg/dL, HDL 55 mg/dL', 'LDL 145 mg/dL, HDL 38 mg/dL'] },
+        'PCR': { normal: '<10 mg/L', values: ['5 mg/L', '25 mg/L', '8 mg/L'] },
+        'BNP': { normal: '<100 pg/mL', values: ['85 pg/mL', '650 pg/mL', '95 pg/mL'] },
+        'Punción Lumbar': { normal: 'LCR claro, células <5/mm³', values: ['LCR turbio, neutrófilos elevados', 'LCR claro, linfocitos elevados'] },
+        'Resonancia Magnética (RM) Cerebral': { normal: 'Sin lesiones', values: ['Lesiones desmielinizantes en sustancia blanca', 'Sin hallazgos significativos'] }
+      };
+      
+      const testName = test ? test.nombre : 'Estudio';
+      const possibleResults = results[testName] || { normal: 'Normal', values: ['Normal', 'Anormal'] };
+      
+      // Simular resultado basado en el paciente
+      let resultado;
+      if (patient.diagnosticoPrincipal.includes('Diabetes') && testName === 'HbA1c') {
+        resultado = Math.random() > 0.5 ? '8.5%' : '7.2%';
+      } else if (patient.diagnosticoPrincipal.includes('Insuficiencia') && testName === 'BNP') {
+        resultado = Math.random() > 0.3 ? '650 pg/mL' : '450 pg/mL';
+      } else if (patient.diagnosticoPrincipal.includes('Meningitis') && testName === 'Punción Lumbar') {
+        resultado = 'LCR turbio, neutrófilos elevados, proteínas 80 mg/dL, glucosa 30 mg/dL';
+      } else {
+        resultado = possibleResults.values[Math.floor(Math.random() * possibleResults.values.length)];
+      }
+      
+      return {
+        fecha: today,
+        test: testName,
+        resultado: resultado,
+        normal: possibleResults.normal
+      };
+    }
+
+    function updateOrdersList() {
+      const ordersList = document.getElementById('orders-list');
+      if (!ordersList) return;
+      
+      if (DATA_STORE.medicalOrders.length === 0) {
+        ordersList.innerHTML = '<p>No hay órdenes médicas.</p>';
+        return;
+      }
+      
+      ordersList.innerHTML = '';
+      DATA_STORE.medicalOrders
+        .filter(order => order.patientId === APP_STATE.activePatientId)
+        .forEach(order => {
+          const alert = document.createElement('div');
+          alert.className = `alert-card ${order.status === 'resultados listos' ? 'success' : 'info'}`;
+          alert.innerHTML = `
+            <span class="material-symbols-outlined alert-icon">${order.status === 'resultados listos' ? 'check_circle' : 'info'}</span>
+            <div>
+              <strong>${order.status === 'resultados listos' ? 'Resultados Disponibles:' : 'Orden Creada:'}</strong> ${order.option} 
+              ${order.status === 'resultados listos' && order.result ? `- ${order.result.resultado}` : ''}
+            </div>
+          `;
+          ordersList.appendChild(alert);
+        });
+    }
+
+    function updateLabOrdersList() {
+      const ordersList = document.getElementById('lab-orders-list');
+      if (!ordersList) return;
+      
+      ordersList.innerHTML = '';
+      
+      // Órdenes pendientes
+      const pending = DATA_STORE.medicalOrders.filter(o => o.status === 'pendiente');
+      if (pending.length > 0) {
+        const alert = document.createElement('div');
+        alert.className = 'alert-card info';
+        alert.innerHTML = `
+          <span class="material-symbols-outlined alert-icon">info</span>
+          <div>
+            <strong>Órdenes Pendientes:</strong> ${pending.map(o => o.option).join(', ')}
+          </div>
+        `;
+        ordersList.appendChild(alert);
+      }
+      
+      // Resultados disponibles
+      const completed = DATA_STORE.medicalOrders.filter(o => o.status === 'resultados listos');
+      if (completed.length > 0) {
+        completed.forEach(order => {
+          const alert = document.createElement('div');
+          alert.className = 'alert-card success';
+          alert.innerHTML = `
+            <span class="material-symbols-outlined alert-icon">check_circle</span>
+            <div>
+              <strong>Resultados Disponibles:</strong> ${order.option} - ${order.result.resultado}
+            </div>
+          `;
+          ordersList.appendChild(alert);
+        });
+      }
+      
+      if (pending.length === 0 && completed.length === 0) {
+        ordersList.innerHTML = '<p>No hay órdenes de laboratorio.</p>';
+      }
+    }
+
     function createAppointment() {
-      const patientId = document.getElementById('appointment-patient').value;
-      const date = document.getElementById('appointment-date').value;
-      const time = document.getElementById('appointment-time').value;
-      const reason = document.getElementById('appointment-reason').value;
+      const patientId = document.getElementById('appointment-patient')?.value;
+      const date = document.getElementById('appointment-date')?.value;
+      const time = document.getElementById('appointment-time')?.value;
+      const reason = document.getElementById('appointment-reason')?.value;
       
       if (!patientId || !date || !time || !reason) {
         showNotification('Por favor, complete todos los campos.', 'warning');
         return;
       }
       
+      // Verificar disponibilidad
+      const existingAppointment = DATA_STORE.appointments.find(appt => 
+        appt.fecha === date && appt.hora === time
+      );
+      
+      if (existingAppointment) {
+        showNotification('El médico ya tiene una cita programada a esa hora.', 'warning');
+        return;
+      }
+      
       const appointment = {
         id: 'app-' + Date.now(),
-        pacienteId: parseInt(patientId),
+        pacienteId: patientId,
         fecha: date,
         hora: time,
         motivo: reason,
-        estado: 'confirmada'
+        estado: 'confirmada',
+        medico: 'Dr. Pérez' // Asignación simulada
       };
       
-      APP_STATE.appointments.push(appointment);
+      DATA_STORE.appointments.push(appointment);
       
       // Resetear formulario
       document.getElementById('appointment-patient').value = '';
@@ -1891,7 +2734,255 @@
       // Actualizar listas
       updateUpcomingAppointments();
       
+      // Simular envío de recordatorio
+      const patient = DATA_STORE.patients.find(p => p.id === patientId);
+      setTimeout(() => {
+        showNotification(`Recordatorio enviado al paciente ${patient.nombre} y al médico.`, 'info');
+      }, 1000);
+      
       showNotification('Cita programada correctamente.');
+    }
+
+    function loadPatientHistory() {
+      const historyDiv = document.getElementById('patient-history');
+      if (!historyDiv || !APP_STATE.activePatientId) return;
+      
+      const patient = DATA_STORE.patients.find(p => p.id === APP_STATE.activePatientId);
+      if (!patient) return;
+      
+      historyDiv.innerHTML = '';
+      
+      // Diagnósticos
+      if (patient.historiaClinica.diagnosticos && patient.historiaClinica.diagnosticos.length > 0) {
+        const diags = document.createElement('div');
+        diags.className = 'card';
+        diags.innerHTML = `
+          <div class="card-header">
+            <h3 class="card-title"><span class="material-symbols-outlined">diagnosis</span>Diagnósticos</h3>
+          </div>
+          <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr style="background-color: #f5f5f5; border-bottom: 2px solid #eee;">
+                <th style="padding: 12px; text-align: left;">Fecha</th>
+                <th style="padding: 12px; text-align: left;">CIE-10</th>
+                <th style="padding: 12px; text-align: left;">Descripción</th>
+                <th style="padding: 12px; text-align: left;">Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${patient.historiaClinica.diagnosticos.map(d => `
+                <tr>
+                  <td>${d.fecha}</td>
+                  <td>${d.cie10}</td>
+                  <td>${d.descripcion}</td>
+                  <td>${d.estado}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        `;
+        historyDiv.appendChild(diags);
+      }
+      
+      // Tratamientos
+      if (patient.historiaClinica.tratamientos && patient.historiaClinica.tratamientos.length > 0) {
+        const trats = document.createElement('div');
+        trats.className = 'card';
+        trats.innerHTML = `
+          <div class="card-header">
+            <h3 class="card-title"><span class="material-symbols-outlined">prescriptions</span>Tratamientos</h3>
+          </div>
+          <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr style="background-color: #f5f5f5; border-bottom: 2px solid #eee;">
+                <th style="padding: 12px; text-align: left;">Inicio</th>
+                <th style="padding: 12px; text-align: left;">Medicamento</th>
+                <th style="padding: 12px; text-align: left;">Dosis</th>
+                <th style="padding: 12px; text-align: left;">Duración</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${patient.historiaClinica.tratamientos.map(t => `
+                <tr>
+                  <td>${t.fechaInicio}</td>
+                  <td>${t.medicamento}</td>
+                  <td>${t.dosis}</td>
+                  <td>${t.duracion}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        `;
+        historyDiv.appendChild(trats);
+      }
+      
+      // Evolución
+      if (patient.historiaClinica.evolucion && patient.historiaClinica.evolucion.length > 0) {
+        const evol = document.createElement('div');
+        evol.className = 'card';
+        evol.innerHTML = `
+          <div class="card-header">
+            <h3 class="card-title"><span class="material-symbols-outlined">timeline</span>Evolución</h3>
+          </div>
+          <div class="timeline">
+            ${patient.historiaClinica.evolucion.map(e => `
+              <div style="padding: 10px; border-bottom: 1px solid #eee;">
+                <strong>${e.fecha}</strong>: ${e.nota}
+              </div>
+            `).join('')}
+          </div>
+        `;
+        historyDiv.appendChild(evol);
+      }
+      
+      // Signos vitales
+      if (patient.historiaClinica.signosVitales && patient.historiaClinica.signosVitales.length > 0) {
+        const vitals = document.createElement('div');
+        vitals.className = 'card';
+        vitals.innerHTML = `
+          <div class="card-header">
+            <h3 class="card-title"><span class="material-symbols-outlined">monitor_heart</span>Signos Vitales</h3>
+          </div>
+          <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr style="background-color: #f5f5f5; border-bottom: 2px solid #eee;">
+                <th style="padding: 12px; text-align: left;">Fecha</th>
+                <th style="padding: 12px; text-align: left;">Temp (°C)</th>
+                <th style="padding: 12px; text-align: left;">PA</th>
+                <th style="padding: 12px; text-align: left;">FC</th>
+                <th style="padding: 12px; text-align: left;">FR</th>
+                <th style="padding: 12px; text-align: left;">SpO2</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${patient.historiaClinica.signosVitales.map(v => `
+                <tr>
+                  <td>${v.fecha}</td>
+                  <td>${v.temperatura}</td>
+                  <td>${v.pa}</td>
+                  <td>${v.fc}</td>
+                  <td>${v.fr}</td>
+                  <td>${v.spo2}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        `;
+        historyDiv.appendChild(vitals);
+      }
+      
+      // Laboratorio
+      if (patient.historiaClinica.laboratorio && patient.historiaClinica.laboratorio.length > 0) {
+        const labs = document.createElement('div');
+        labs.className = 'card';
+        labs.innerHTML = `
+          <div class="card-header">
+            <h3 class="card-title"><span class="material-symbols-outlined">science</span>Laboratorio</h3>
+          </div>
+          <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr style="background-color: #f5f5f5; border-bottom: 2px solid #eee;">
+                <th style="padding: 12px; text-align: left;">Fecha</th>
+                <th style="padding: 12px; text-align: left;">Test</th>
+                <th style="padding: 12px; text-align: left;">Resultado</th>
+                <th style="padding: 12px; text-align: left;">Normal</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${patient.historiaClinica.laboratorio.map(l => `
+                <tr>
+                  <td>${l.fecha}</td>
+                  <td>${l.test}</td>
+                  <td>${l.resultado}</td>
+                  <td>${l.normal}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        `;
+        historyDiv.appendChild(labs);
+      }
+      
+      if (historyDiv.children.length === 0) {
+        historyDiv.innerHTML = '<p>No hay historial clínico disponible.</p>';
+      }
+    }
+
+    function setupSearchFunctionality() {
+      const searchInput = document.getElementById('patient-search');
+      const suggestionsContainer = document.createElement('div');
+      suggestionsContainer.className = 'suggestions';
+      suggestionsContainer.style.display = 'none';
+      
+      if (searchInput) {
+        searchInput.parentNode.appendChild(suggestionsContainer);
+        
+        const commonSuggestions = [
+          "cefalea intensa, fotofobia, fiebre", // Meningitis
+          "diabetes mellitus tipo 2 tratamiento",
+          "metformina mecanismo de acción",
+          "protocolo de esclerosis múltiple",
+          "parkinson diagnóstico",
+          "losartán interacciones",
+          "punción lumbar indicaciones",
+          "RM cerebral en esclerosis múltiple",
+          "síntomas de insuficiencia cardíaca"
+        ];
+        
+        searchInput.addEventListener('focus', () => {
+          if (searchInput.value === '') {
+            suggestionsContainer.innerHTML = '';
+            commonSuggestions.forEach(suggestion => {
+              const item = document.createElement('div');
+              item.className = 'suggestion-item';
+              item.textContent = suggestion;
+              item.onclick = () => {
+                searchInput.value = suggestion;
+                suggestionsContainer.style.display = 'none';
+              };
+              suggestionsContainer.appendChild(item);
+            });
+            suggestionsContainer.style.display = 'block';
+          }
+        });
+        
+        searchInput.addEventListener('input', () => {
+          const query = searchInput.value.toLowerCase().trim();
+          if (query === '') {
+            suggestionsContainer.style.display = 'none';
+            return;
+          }
+          
+          const filteredSuggestions = commonSuggestions.filter(suggestion => 
+            suggestion.toLowerCase().includes(query)
+          );
+          
+          suggestionsContainer.innerHTML = '';
+          if (filteredSuggestions.length > 0) {
+            filteredSuggestions.forEach(suggestion => {
+              const item = document.createElement('div');
+              item.className = 'suggestion-item';
+              item.innerHTML = suggestion.replace(new RegExp(query, 'gi'), match => 
+                `<span class="highlight">${match}</span>`
+              );
+              item.onclick = () => {
+                searchInput.value = suggestion;
+                suggestionsContainer.style.display = 'none';
+              };
+              suggestionsContainer.appendChild(item);
+            });
+            suggestionsContainer.style.display = 'block';
+          } else {
+            suggestionsContainer.style.display = 'none';
+          }
+        });
+        
+        document.addEventListener('click', (e) => {
+          if (e.target !== searchInput && !suggestionsContainer.contains(e.target)) {
+            suggestionsContainer.style.display = 'none';
+          }
+        });
+      }
     }
 
     // Inicializar la aplicación
