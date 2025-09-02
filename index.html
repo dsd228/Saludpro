@@ -3,487 +3,675 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MediGuide - Herramienta Médica Integral</title>
+    <title>MediGuide Pro - Sistema Clínico Integral</title>
     <style>
         :root {
-            --primary-color: #2c7bb7;
-            --primary-dark: #1f5a8a;
-            --secondary-color: #4caf50;
-            --accent-color: #ff9800;
-            --text-color: #333;
-            --bg-color: #f8f9fa;
+            --primary: #1a73e8;
+            --primary-light: #e8f0fe;
+            --primary-dark: #0d47a1;
+            --secondary: #34a853;
+            --accent: #fbbc05;
+            --danger: #ea4335;
+            --warning: #f9a825;
+            --success: #34a853;
+            --text: #202124;
+            --text-light: #5f6368;
+            --bg: #f8f9fa;
+            --bg-light: #ffffff;
             --card-bg: #ffffff;
-            --border-color: #e0e0e0;
-            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            --success: #4caf50;
-            --warning: #ff9800;
-            --danger: #f44336;
-            --info: #2196f3;
+            --border: #dadce0;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --radius: 12px;
+            --header-height: 64px;
+            --sidebar-width: 280px;
         }
 
         .dark-mode {
-            --primary-color: #4dabf7;
+            --primary: #4dabf7;
+            --primary-light: #0c3866;
             --primary-dark: #339af0;
-            --secondary-color: #51cf66;
-            --accent-color: #fd7e14;
-            --text-color: #e9ecef;
-            --bg-color: #1a1a1a;
+            --secondary: #51cf66;
+            --accent: #fd7e14;
+            --danger: #ff6b6b;
+            --warning: #fd7e14;
+            --success: #51cf66;
+            --text: #e9ecef;
+            --text-light: #adb5bd;
+            --bg: #121212;
+            --bg-light: #1e1e1e;
             --card-bg: #2d2d2d;
-            --border-color: #404040;
-            --shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            --border: #383838;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+            transition: var(--transition);
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-color);
+            color: var(--text);
+            background-color: var(--bg);
             min-height: 100vh;
         }
 
+        /* Sistema de tipografía mejorado */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2rem; }
+        h3 { font-size: 1.5rem; }
+        h4 { font-size: 1.25rem; }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        /* Header moderno con barra de progreso */
         header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 1rem;
-            position: sticky;
+            position: fixed;
             top: 0;
-            z-index: 100;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            background-color: var(--bg-light);
             box-shadow: var(--shadow);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            padding: 0 1.5rem;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
+            width: 100%;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
             font-weight: 700;
             font-size: 1.5rem;
-        }
-
-        .logo i {
-            font-size: 1.8rem;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 1rem;
-        }
-
-        nav a {
-            color: white;
+            color: var(--primary);
             text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-            font-weight: 500;
         }
 
-        nav a:hover, nav a.active {
-            background-color: rgba(255, 255, 255, 0.2);
+        .logo-icon {
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
+        .logo-text {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
+        /* Barra de búsqueda con sugerencias */
         .search-container {
-            display: flex;
-            gap: 0.5rem;
-            margin: 1rem auto;
-            max-width: 600px;
-        }
-
-        .search-container input {
             flex: 1;
-            padding: 0.75rem;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            font-size: 1rem;
-            background-color: var(--card-bg);
-            color: var(--text-color);
+            max-width: 600px;
+            margin: 0 2rem;
+            position: relative;
         }
 
-        .search-container button {
-            padding: 0.75rem 1.5rem;
-            background-color: var(--primary-color);
-            color: white;
+        .search-wrapper {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 3rem;
             border: none;
-            border-radius: 4px;
+            outline: none;
+            font-size: 1rem;
+            background-color: var(--bg-light);
+            color: var(--text);
+            border-radius: 24px;
+        }
+
+        .search-input:focus {
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+            pointer-events: none;
+        }
+
+        .search-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 var(--radius) var(--radius);
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 100;
+            display: none;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .suggestion-item {
+            padding: 0.75rem 1rem;
             cursor: pointer;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .suggestion-item:hover {
+            background-color: var(--primary-light);
+        }
+
+        .suggestion-icon {
+            color: var(--text-light);
+            font-size: 1.25rem;
+        }
+
+        .suggestion-text {
+            flex: 1;
+        }
+
+        .suggestion-category {
+            font-size: 0.75rem;
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+        }
+
+        /* Sidebar con estado de actividad */
+        .sidebar {
+            width: var(--sidebar-width);
+            height: calc(100vh - var(--header-height));
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            background-color: var(--bg-light);
+            border-right: 1px solid var(--border);
+            padding: 1.5rem 1rem;
+            overflow-y: auto;
+            z-index: 999;
+        }
+
+        .nav-title {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-light);
+            margin: 1.5rem 0 0.75rem 0;
+            padding-left: 0.5rem;
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-bottom: 0.25rem;
+            position: relative;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-light);
+            transition: var(--transition);
             font-weight: 500;
         }
 
-        .search-container button:hover {
-            background-color: var(--primary-dark);
+        .nav-link:hover {
+            background-color: var(--primary-light);
+            color: var(--primary);
         }
 
+        .nav-link.active {
+            background-color: var(--primary-light);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .nav-link.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 70%;
+            background-color: var(--primary);
+            border-radius: 0 3px 3px 0;
+        }
+
+        .nav-icon {
+            font-size: 1.25rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        .nav-text {
+            flex: 1;
+        }
+
+        .nav-badge {
+            background-color: var(--primary);
+            color: white;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+        }
+
+        /* Main content con sistema de pestañas */
         main {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+            margin-left: var(--sidebar-width);
+            margin-top: var(--header-height);
+            padding: 2rem;
+            min-height: calc(100vh - var(--header-height));
         }
 
-        .section {
-            display: none;
-            animation: fadeIn 0.5s ease-in;
-        }
-
-        .section.active {
-            display: block;
-        }
-
-        .section-header {
+        .content-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 2rem;
             padding-bottom: 1rem;
-            border-bottom: 2px solid var(--primary-color);
+            border-bottom: 1px solid var(--border);
         }
 
-        .section-title {
-            font-size: 2rem;
-            color: var(--primary-color);
+        .page-title {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
+            color: var(--primary);
         }
 
-        .theme-toggle {
-            background: none;
-            border: none;
-            color: var(--primary-color);
-            font-size: 1.5rem;
+        /* Sistema de pestañas mejorado */
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 1.5rem;
+            overflow-x: auto;
+            padding-bottom: 0.25rem;
+            gap: 0.25rem;
+        }
+
+        .tab {
+            padding: 0.75rem 1.5rem;
             cursor: pointer;
-            padding: 0.5rem;
+            border-radius: 8px 8px 0 0;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: var(--transition);
+            margin-right: 0.25rem;
+            position: relative;
+        }
+
+        .tab:hover {
+            background-color: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .tab.active {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        .tab-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--danger);
+            color: white;
+            font-size: 0.75rem;
+            width: 18px;
+            height: 18px;
             border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .theme-toggle:hover {
-            background-color: rgba(44, 123, 183, 0.1);
-        }
-
+        /* Cards con sistema de prioridad */
         .card {
             background-color: var(--card-bg);
-            border-radius: 8px;
+            border-radius: var(--radius);
             box-shadow: var(--shadow);
             padding: 1.5rem;
             margin-bottom: 1.5rem;
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--border);
+            transition: var(--transition);
         }
 
         .card-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border);
         }
 
         .card-title {
             font-size: 1.3rem;
-            color: var(--primary-color);
+            color: var(--primary);
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: var(--text-color);
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            font-size: 1rem;
-            background-color: var(--card-bg);
-            color: var(--text-color);
-        }
-
-        button {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 500;
-            transition: background-color 0.3s;
-        }
-
-        button:hover {
-            background-color: var(--primary-dark);
-        }
-
-        button.secondary {
-            background-color: var(--secondary-color);
-        }
-
-        button.secondary:hover {
-            background-color: #3d8b40;
-        }
-
-        button.accent {
-            background-color: var(--accent-color);
-        }
-
-        button.accent:hover {
-            background-color: #e68a00;
-        }
-
-        .btn-group {
+        .card-actions {
             display: flex;
             gap: 0.5rem;
-            margin-top: 1rem;
         }
 
-        .result {
-            margin-top: 1rem;
+        /* Sistema de alertas mejorado */
+        .alert {
             padding: 1rem;
-            border-radius: 4px;
-            font-weight: 500;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-left: 4px solid;
         }
 
-        .result.success {
-            background-color: rgba(76, 175, 80, 0.1);
-            border: 1px solid var(--success);
+        .alert-info {
+            background-color: rgba(26, 115, 232, 0.1);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .alert-success {
+            background-color: rgba(52, 168, 83, 0.1);
+            border-color: var(--success);
             color: var(--success);
         }
 
-        .result.warning {
-            background-color: rgba(255, 152, 0, 0.1);
-            border: 1px solid var(--warning);
+        .alert-warning {
+            background-color: rgba(251, 188, 5, 0.1);
+            border-color: var(--warning);
             color: var(--warning);
         }
 
-        .result.danger {
-            background-color: rgba(244, 67, 54, 0.1);
-            border: 1px solid var(--danger);
+        .alert-danger {
+            background-color: rgba(234, 67, 53, 0.1);
+            border-color: var(--danger);
             color: var(--danger);
         }
 
+        /* Sistema de formularios accesibles */
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            background-color: var(--bg-light);
+            color: var(--text);
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+        }
+
+        /* Sistema de botones mejorado */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #2d8e4a;
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--bg-light);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Sistema de grid mejorado */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 1.5rem;
         }
 
-        .disease-card, .medication-card, .protocol-card {
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
+        /* Sistema de tarjetas con prioridad */
+        .priority-card {
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
             overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
         }
 
-        .disease-card:hover, .medication-card:hover, .protocol-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        .priority-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
         }
 
-        .card-content {
-            padding: 1rem;
+        .priority-card.priority-high::before {
+            background-color: var(--danger);
+        }
+
+        .priority-card.priority-medium::before {
+            background-color: var(--warning);
+        }
+
+        .priority-card.priority-low::before {
+            background-color: var(--success);
+        }
+
+        .card-body {
+            padding: 1.25rem;
+            flex: 1;
         }
 
         .card-title-sm {
             font-size: 1.1rem;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .card-text {
-            color: var(--text-color);
-            margin-bottom: 0.5rem;
+            color: var(--text-light);
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
         }
 
+        /* Sistema de badges mejorado */
         .badge {
             display: inline-block;
-            padding: 0.25rem 0.5rem;
-            border-radius: 12px;
-            font-size: 0.8rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
             font-weight: 500;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .badge.primary {
-            background-color: rgba(44, 123, 183, 0.1);
-            color: var(--primary-color);
+        .badge-primary {
+            background-color: var(--primary-light);
+            color: var(--primary);
         }
 
-        .badge.success {
-            background-color: rgba(76, 175, 80, 0.1);
+        .badge-success {
+            background-color: rgba(52, 168, 83, 0.1);
             color: var(--success);
         }
 
-        .badge.warning {
-            background-color: rgba(255, 152, 0, 0.1);
+        .badge-warning {
+            background-color: rgba(251, 188, 5, 0.1);
             color: var(--warning);
         }
 
-        .badge.danger {
-            background-color: rgba(244, 67, 54, 0.1);
+        .badge-danger {
+            background-color: rgba(234, 67, 53, 0.1);
             color: var(--danger);
+        }
+
+        /* Sistema de tablas mejorado */
+        .table-container {
+            overflow-x: auto;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            margin: 1.5rem 0;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 1rem 0;
             background-color: var(--card-bg);
         }
 
         th, td {
-            padding: 0.75rem;
+            padding: 1rem;
             text-align: left;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border);
         }
 
         th {
-            background-color: var(--primary-color);
-            color: white;
+            background-color: var(--primary-light);
+            color: var(--primary);
             font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
         }
 
-        tr:nth-child(even) {
-            background-color: rgba(44, 123, 183, 0.03);
+        tr:hover {
+            background-color: var(--primary-light);
         }
 
-        .pae-item {
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1rem;
-            margin-bottom: 1rem;
+        /* Sistema de carga */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid var(--border);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
         }
 
-        .pae-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
-        .pae-title {
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-
-        .pae-actions {
-            display: flex;
-            gap: 0.5rem;
-        }
-
+        /* Sistema de no resultados */
         .no-results {
             text-align: center;
-            padding: 2rem;
-            color: #666;
-            font-style: italic;
+            padding: 3rem 1rem;
+            color: var(--text-light);
+            border: 2px dashed var(--border);
+            border-radius: var(--radius);
+            margin: 2rem 0;
         }
 
-        .tab-container {
-            margin: 1rem 0;
-        }
-
-        .tabs {
-            display: flex;
-            border-bottom: 1px solid var(--border-color);
+        .no-results-icon {
+            font-size: 3rem;
             margin-bottom: 1rem;
+            color: var(--text-light);
         }
 
-        .tab {
-            padding: 0.75rem 1.5rem;
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-            font-weight: 500;
-        }
-
-        .tab.active {
-            border-bottom-color: var(--primary-color);
-            color: var(--primary-color);
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        footer {
-            background-color: var(--primary-color);
-            color: white;
-            text-align: center;
-            padding: 2rem 1rem;
-            margin-top: 3rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-section a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-        }
-
-        .footer-section a:hover {
-            text-decoration: underline;
-        }
-
-        .copyright {
-            margin-top: 2rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
+        /* Sistema de animaciones */
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -495,46 +683,11 @@
             }
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-                gap: 1rem;
-                align-items: stretch;
-            }
-
-            nav ul {
-                flex-direction: column;
-                display: none;
-            }
-
-            nav ul.show {
-                display: flex;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-                align-self: flex-end;
-            }
-
-            .grid {
-                grid-template-columns: 1fr;
-            }
-
-            .search-container {
-                flex-direction: column;
-            }
-
-            .btn-group {
-                flex-direction: column;
-            }
-
-            button {
-                width: 100%;
-            }
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out;
         }
 
-        /* Accessibility */
+        /* Sistema de accesibilidad */
         .sr-only {
             position: absolute;
             width: 1px;
@@ -547,27 +700,84 @@
             border: 0;
         }
 
-        /* Focus styles for keyboard navigation */
-        button:focus, a:focus, input:focus, select:focus, textarea:focus {
-            outline: 3px solid var(--primary-color);
+        /* Sistema de enfoque */
+        .btn:focus, .nav-link:focus, .form-control:focus, [tabindex="0"]:focus {
+            outline: 3px solid var(--primary);
             outline-offset: 2px;
         }
 
-        /* Print styles */
-        @media print {
-            .mobile-menu-btn, .theme-toggle, .search-container, nav {
-                display: none !important;
+        /* Sistema responsive */
+        @media (max-width: 1200px) {
+            :root {
+                --sidebar-width: 240px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            :root {
+                --sidebar-width: 80px;
             }
             
-            body {
-                background: white !important;
-                color: black !important;
+            .nav-text {
+                display: none;
             }
             
-            .card {
-                box-shadow: none !important;
-                border: 1px solid #ccc !important;
+            .nav-title {
+                padding-left: 0.5rem;
             }
+            
+            .nav-link {
+                justify-content: center;
+                padding: 0.75rem;
+            }
+            
+            .nav-icon {
+                margin: 0;
+            }
+            
+            main {
+                margin-left: var(--sidebar-width);
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --sidebar-width: 100vw;
+                --header-height: 56px;
+            }
+            
+            .sidebar {
+                transform: translateX(-100%);
+                height: 100vh;
+                z-index: 1000;
+                box-shadow: var(--shadow-lg);
+            }
+            
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            
+            .search-container {
+                display: none;
+            }
+            
+            main {
+                margin-left: 0;
+                padding: 1.5rem;
+            }
+            
+            .content-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.75rem; }
         }
     </style>
 </head>
@@ -575,167 +785,502 @@
     <header>
         <div class="header-container">
             <div class="logo">
-                <i>⚕️</i>
-                <span>MediGuide</span>
+                <span class="logo-icon">⚕️</span>
+                <span class="logo-text">MediGuide Pro</span>
             </div>
-            <button class="mobile-menu-btn" aria-label="Menú móvil" aria-expanded="false">
-                <i>☰</i>
-            </button>
-            <nav aria-label="Navegación principal">
-                <ul>
-                    <li><a href="#enciclopedia" class="nav-link active" data-section="enciclopedia">Enciclopedia</a></li>
-                    <li><a href="#calculadora" class="nav-link" data-section="calculadora">Calculadora</a></li>
-                    <li><a href="#protocolos" class="nav-link" data-section="protocolos">Protocolos</a></li>
-                    <li><a href="#pae" class="nav-link" data-section="pae">PAE</a></li>
-                    <li><a href="#medicamentos" class="nav-link" data-section="medicamentos">Medicamentos</a></li>
-                    <li><a href="#referencias" class="nav-link" data-section="referencias">Referencias</a></li>
-                </ul>
-            </nav>
-            <button class="theme-toggle" aria-label="Alternar tema claro/oscuro">
-                <i class="theme-icon">☀️</i>
-            </button>
+            
+            <div class="search-container">
+                <div class="search-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="globalSearch" class="search-input" placeholder="Buscar enfermedades, medicamentos, protocolos..." aria-label="Campo de búsqueda global">
+                    <div id="searchSuggestions" class="search-suggestions"></div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <button id="themeToggle" class="btn" style="padding: 0.5rem; font-size: 1.25rem;">☀️</button>
+                <button id="menuToggle" class="btn" style="padding: 0.5rem;">☰</button>
+            </div>
         </div>
     </header>
 
-    <div class="search-container">
-        <input type="text" id="globalSearch" placeholder="Buscar enfermedades, medicamentos o protocolos..." aria-label="Campo de búsqueda global">
-        <button id="searchBtn">Buscar</button>
-    </div>
+    <aside class="sidebar">
+        <div class="nav-title">Principal</div>
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a href="#dashboard" class="nav-link active" data-section="dashboard">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#enciclopedia" class="nav-link" data-section="enciclopedia">
+                    <span class="nav-icon">📚</span>
+                    <span class="nav-text">Enciclopedia</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#calculadoras" class="nav-link" data-section="calculadoras">
+                    <span class="nav-icon">🧮</span>
+                    <span class="nav-text">Calculadoras</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#protocolos" class="nav-link" data-section="protocolos">
+                    <span class="nav-icon">📋</span>
+                    <span class="nav-text">Protocolos</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#pae" class="nav-link" data-section="pae">
+                    <span class="nav-icon">📋</span>
+                    <span class="nav-text">PAE</span>
+                </a>
+            </li>
+        </ul>
+        
+        <div class="nav-title">Recursos</div>
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a href="#medicamentos" class="nav-link" data-section="medicamentos">
+                    <span class="nav-icon">💊</span>
+                    <span class="nav-text">Medicamentos</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#referencias" class="nav-link" data-section="referencias">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">Referencias</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#herramientas" class="nav-link" data-section="herramientas">
+                    <span class="nav-icon">🛠️</span>
+                    <span class="nav-text">Herramientas</span>
+                </a>
+            </li>
+        </ul>
+        
+        <div class="nav-title">Mi Espacio</div>
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a href="#favoritos" class="nav-link" data-section="favoritos">
+                    <span class="nav-icon">⭐</span>
+                    <span class="nav-text">Favoritos</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#historial" class="nav-link" data-section="historial">
+                    <span class="nav-icon">🕒</span>
+                    <span class="nav-text">Historial</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
 
     <main>
-        <!-- Sección de Enciclopedia de Enfermedades -->
-        <section id="enciclopedia" class="section active">
-            <div class="section-header">
-                <h1 class="section-title"><i>📚</i> Enciclopedia de Enfermedades</h1>
+        <!-- Dashboard mejorado -->
+        <section id="dashboard" class="section active">
+            <div class="content-header">
+                <h1 class="page-title"><span>🏠</span> Dashboard Clínico</h1>
             </div>
-            <div class="card">
-                <div class="form-group">
-                    <label for="diseaseSearch">Buscar enfermedad:</label>
-                    <input type="text" id="diseaseSearch" placeholder="Ingrese el nombre de la enfermedad...">
+            
+            <!-- Alertas de sistema -->
+            <div class="alert alert-warning">
+                <span>⚠️</span>
+                <div>
+                    <strong>Actualización importante:</strong> Nuevos protocolos de manejo de sepsis disponibles en la sección de protocolos.
                 </div>
             </div>
-            <div id="diseaseResults" class="grid">
-                <!-- Los resultados de enfermedades se mostrarán aquí -->
+            
+            <div class="grid">
+                <div class="priority-card priority-high">
+                    <div class="card-body">
+                        <h3 class="card-title-sm"><span>🚨</span> Urgencias</h3>
+                        <p class="card-text">Acceso rápido a protocolos de emergencia y calculadoras críticas.</p>
+                        <a href="#calculadoras" class="btn btn-primary">Acceder</a>
+                    </div>
+                </div>
+                
+                <div class="priority-card priority-medium">
+                    <div class="card-body">
+                        <h3 class="card-title-sm"><span>📚</span> Educación</h3>
+                        <p class="card-text">Recursos educativos actualizados para pacientes y profesionales.</p>
+                        <a href="#enciclopedia" class="btn">Explorar</a>
+                    </div>
+                </div>
+                
+                <div class="priority-card priority-low">
+                    <div class="card-body">
+                        <h3 class="card-title-sm"><span>💊</span> Medicamentos</h3>
+                        <p class="card-text">Base de datos completa con información sobre interacciones y dosis.</p>
+                        <a href="#medicamentos" class="btn">Buscar</a>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Sección de Calculadora Profesional de Salud -->
-        <section id="calculadora" class="section">
-            <div class="section-header">
-                <h1 class="section-title"><i>🧮</i> Calculadora Profesional de Salud</h1>
+        <!-- Sección de Enciclopedia mejorada -->
+        <section id="enciclopedia" class="section">
+            <div class="content-header">
+                <h1 class="page-title"><span>📚</span> Enciclopedia Médica</h1>
             </div>
-            <div class="tab-container">
-                <div class="tabs">
-                    <div class="tab active" data-tab="imc">IMC</div>
-                    <div class="tab" data-tab="dosis">Dosis</div>
-                    <div class="tab" data-tab="ritmo">Ritmo Cardíaco</div>
+            
+            <div class="card">
+                <div class="form-group">
+                    <label for="diseaseSearch" class="form-label">Buscar enfermedad:</label>
+                    <input type="text" id="diseaseSearch" class="form-control" placeholder="Ingrese el nombre de la enfermedad...">
                 </div>
-                <div class="tab-content active" id="imc">
-                    <div class="card">
-                        <div class="card-header">
-                            <h2 class="card-title">Cálculo de IMC (Índice de Masa Corporal)</h2>
-                        </div>
-                        <div class="form-group">
-                            <label for="weight">Peso (kg):</label>
-                            <input type="number" id="weight" placeholder="Ingrese el peso en kg">
-                        </div>
-                        <div class="form-group">
-                            <label for="height">Altura (cm):</label>
-                            <input type="number" id="height" placeholder="Ingrese la altura en cm">
-                        </div>
-                        <button id="calculateBMI">Calcular IMC</button>
-                        <div id="bmiResult" class="result"></div>
-                        <div class="card" style="margin-top: 1rem;">
-                            <h3>Interpretación del IMC:</h3>
+            </div>
+            
+            <div id="diseaseResults" class="grid">
+                <!-- Resultados dinámicos -->
+            </div>
+        </section>
+
+        <!-- Sección de Calculadoras mejorada -->
+        <section id="calculadoras" class="section">
+            <div class="content-header">
+                <h1 class="page-title"><span>🧮</span> Calculadoras Clínicas</h1>
+            </div>
+            
+            <div class="tabs">
+                <div class="tab active" data-tab="imc">IMC</div>
+                <div class="tab" data-tab="dosis">Dosis</div>
+                <div class="tab" data-tab="glasgow">Glasgow</div>
+                <div class="tab" data-tab="apgar">APGAR</div>
+                <div class="tab" data-tab="ritmo">Ritmo Cardíaco</div>
+            </div>
+            
+            <div class="tab-content active" id="imc">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title"><span>⚖️</span> Cálculo de IMC</h2>
+                    </div>
+                    <div class="form-group">
+                        <label for="weight" class="form-label">Peso (kg):</label>
+                        <input type="number" id="weight" class="form-control" placeholder="Ingrese el peso">
+                    </div>
+                    <div class="form-group">
+                        <label for="height" class="form-label">Altura (cm):</label>
+                        <input type="number" id="height" class="form-control" placeholder="Ingrese la altura">
+                    </div>
+                    <button id="calculateBMI" class="btn btn-primary">Calcular IMC</button>
+                    <div id="bmiResult"></div>
+                    
+                    <div class="card" style="margin-top: 1.5rem;">
+                        <h3>Interpretación del IMC:</h3>
+                        <div class="table-container">
                             <table>
                                 <tr>
                                     <th>IMC</th>
                                     <th>Clasificación</th>
+                                    <th>Riesgo Asociado</th>
                                 </tr>
                                 <tr>
                                     <td>Menos de 18.5</td>
                                     <td>Bajo peso</td>
+                                    <td>Desnutrición, osteoporosis</td>
                                 </tr>
                                 <tr>
                                     <td>18.5 - 24.9</td>
                                     <td>Peso normal</td>
+                                    <td>Riesgo promedio</td>
                                 </tr>
                                 <tr>
                                     <td>25.0 - 29.9</td>
                                     <td>Sobrepeso</td>
+                                    <td>Aumentado</td>
                                 </tr>
                                 <tr>
                                     <td>30.0 - 34.9</td>
                                     <td>Obesidad grado I</td>
+                                    <td>Moderado</td>
                                 </tr>
                                 <tr>
                                     <td>35.0 - 39.9</td>
                                     <td>Obesidad grado II</td>
+                                    <td>Severo</td>
                                 </tr>
                                 <tr>
                                     <td>40 o más</td>
                                     <td>Obesidad grado III</td>
+                                    <td>Muy severo</td>
                                 </tr>
                             </table>
                         </div>
                     </div>
                 </div>
-                <div class="tab-content" id="dosis">
-                    <div class="card">
-                        <div class="card-header">
-                            <h2 class="card-title">Cálculo de Dosis de Medicamentos</h2>
-                        </div>
-                        <div class="form-group">
-                            <label for="patientWeight">Peso del paciente (kg):</label>
-                            <input type="number" id="patientWeight" placeholder="Ingrese el peso del paciente">
-                        </div>
-                        <div class="form-group">
-                            <label for="requiredDose">Dosis requerida (mg/kg):</label>
-                            <input type="number" id="requiredDose" placeholder="Ingrese la dosis requerida por kg">
-                        </div>
-                        <div class="form-group">
-                            <label for="concentration">Concentración del medicamento (mg/ml):</label>
-                            <input type="number" id="concentration" placeholder="Ingrese la concentración">
-                        </div>
-                        <button id="calculateDose">Calcular Dosis</button>
-                        <div id="doseResult" class="result"></div>
+            </div>
+            
+            <div class="tab-content" id="dosis">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title"><span>💊</span> Cálculo de Dosis de Medicamentos</h2>
                     </div>
+                    <div class="form-group">
+                        <label for="patientWeight" class="form-label">Peso del paciente (kg):</label>
+                        <input type="number" id="patientWeight" class="form-control" placeholder="Ingrese el peso del paciente">
+                    </div>
+                    <div class="form-group">
+                        <label for="requiredDose" class="form-label">Dosis requerida (mg/kg):</label>
+                        <input type="number" id="requiredDose" class="form-control" placeholder="Ingrese la dosis requerida por kg">
+                    </div>
+                    <div class="form-group">
+                        <label for="concentration" class="form-label">Concentración del medicamento (mg/ml):</label>
+                        <input type="number" id="concentration" class="form-control" placeholder="Ingrese la concentración">
+                    </div>
+                    <div class="form-group">
+                        <label for="medicationType" class="form-label">Tipo de medicamento:</label>
+                        <select id="medicationType" class="form-control">
+                            <option value="">Seleccione un medicamento</option>
+                            <option value="paracetamol">Paracetamol</option>
+                            <option value="ibuprofeno">Ibuprofeno</option>
+                            <option value="amoxicilina">Amoxicilina</option>
+                            <option value="loratadina">Loratadina</option>
+                            <option value="omeprazol">Omeprazol</option>
+                            <option value="metformina">Metformina</option>
+                        </select>
+                    </div>
+                    <button id="calculateDose" class="btn btn-primary">Calcular Dosis</button>
+                    <div id="doseResult"></div>
                 </div>
-                <div class="tab-content" id="ritmo">
-                    <div class="card">
-                        <div class="card-header">
-                            <h2 class="card-title">Cálculo de Ritmo Cardíaco y Presión Arterial</h2>
-                        </div>
-                        <div class="form-group">
-                            <label for="heartRate">Ritmo cardíaco (lpm):</label>
-                            <input type="number" id="heartRate" placeholder="Ingrese el ritmo cardíaco">
-                        </div>
-                        <div class="form-group">
-                            <label for="systolic">Presión arterial sistólica (mmHg):</label>
-                            <input type="number" id="systolic" placeholder="Ingrese la presión sistólica">
-                        </div>
-                        <div class="form-group">
-                            <label for="diastolic">Presión arterial diastólica (mmHg):</label>
-                            <input type="number" id="diastolic" placeholder="Ingrese la presión diastólica">
-                        </div>
-                        <button id="calculateVitals">Evaluar Signos Vitales</button>
-                        <div id="vitalsResult" class="result"></div>
+            </div>
+            
+            <div class="tab-content" id="glasgow">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title"><span>🧠</span> Escala de Coma de Glasgow</h2>
                     </div>
+                    <p>Evalúe la respuesta del paciente en tres categorías:</p>
+                    
+                    <div class="grid">
+                        <div class="card">
+                            <h3>Respuesta Ocular (1-4 puntos)</h3>
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <input type="radio" name="gcs_ocular" value="4"> 4 - Abre los ojos espontáneamente
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <input type="radio" name="gcs_ocular" value="3"> 3 - Abre los ojos al hablarle
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <input type="radio" name="gcs_ocular" value="2"> 2 - Abre los ojos al dolor
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <input type="radio" name="gcs_ocular" value="1"> 1 - No abre los ojos
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <h3>Respuesta Verbal (1-5 puntos)</h3>
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <input type="radio" name="gcs_verbal" value="5"> 5 - Orientado, conversa normalmente
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <input type="radio" name="gcs_verbal" value="4"> 4 - Desorientado, habla incoherente
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <input type="radio" name="gcs_verbal" value="3"> 3 - Palabras inapropiadas
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <input type="radio" name="gcs_verbal" value="2"> 2 - Sonidos incomprensibles
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <input type="radio" name="gcs_verbal" value="1"> 1 - No emite sonidos
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <h3>Respuesta Motora (1-6 puntos)</h3>
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <input type="radio" name="gcs_motor" value="6"> 6 - Obedece órdenes
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <input type="radio" name="gcs_motor" value="5"> 5 - Localiza el dolor
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <input type="radio" name="gcs_motor" value="4"> 4 - Retira al dolor
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <input type="radio" name="gcs_motor" value="3"> 3 - Flexión anormal (decorticación)
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <input type="radio" name="gcs_motor" value="2"> 2 - Extensión anormal (descerebración)
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <input type="radio" name="gcs_motor" value="1"> 1 - No hay respuesta motora
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button id="calculateGCS" class="btn btn-primary" style="margin-top: 1rem;">Calcular Score de Glasgow</button>
+                    <div id="gcsResult"></div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="apgar">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title"><span>👶</span> Escala de Apgar</h2>
+                    </div>
+                    <p>Evaluación del recién nacido a los 1 y 5 minutos de vida:</p>
+                    
+                    <div class="table-container">
+                        <table>
+                            <tr>
+                                <th>Parámetro</th>
+                                <th>0 puntos</th>
+                                <th>1 punto</th>
+                                <th>2 puntos</th>
+                                <th>Valor</th>
+                            </tr>
+                            <tr>
+                                <td>Color</td>
+                                <td>Azul o pálido</td>
+                                <td>Cuerpo rosado, extremidades azules</td>
+                                <td>Rosado en todo el cuerpo</td>
+                                <td>
+                                    <select class="form-control" id="apgar_color">
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Ritmo cardíaco</td>
+                                <td>Ausente</td>
+                                <td>Menos de 100 lpm</td>
+                                <td>Más de 100 lpm</td>
+                                <td>
+                                    <select class="form-control" id="apgar_heart">
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Reflejos</td>
+                                <td>Sin respuesta</td>
+                                <td>Facial (muecas)</td>
+                                <td>Llanto fuerte</td>
+                                <td>
+                                    <select class="form-control" id="apgar_reflex">
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Movimientos</td>
+                                <td>Flácido</td>
+                                <td>Alguna flexión</td>
+                                <td>Activo, buena flexión</td>
+                                <td>
+                                    <select class="form-control" id="apgar_movement">
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Respiración</td>
+                                <td>Ausente</td>
+                                <td>Llanto débil, irregular</td>
+                                <td>Llanto fuerte, regular</td>
+                                <td>
+                                    <select class="form-control" id="apgar_breathing">
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <button id="calculateApgar" class="btn btn-primary" style="margin-top: 1rem;">Calcular Score de Apgar</button>
+                    <div id="apgarResult"></div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="ritmo">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title"><span>❤️</span> Evaluación de Signos Vitales</h2>
+                    </div>
+                    <div class="form-group">
+                        <label for="heartRate" class="form-label">Ritmo cardíaco (lpm):</label>
+                        <input type="number" id="heartRate" class="form-control" placeholder="Ingrese el ritmo cardíaco">
+                    </div>
+                    <div class="form-group">
+                        <label for="systolic" class="form-label">Presión arterial sistólica (mmHg):</label>
+                        <input type="number" id="systolic" class="form-control" placeholder="Ingrese la presión sistólica">
+                    </div>
+                    <div class="form-group">
+                        <label for="diastolic" class="form-label">Presión arterial diastólica (mmHg):</label>
+                        <input type="number" id="diastolic" class="form-control" placeholder="Ingrese la presión diastólica">
+                    </div>
+                    <div class="form-group">
+                        <label for="respiratoryRate" class="form-label">Frecuencia respiratoria (rpm):</label>
+                        <input type="number" id="respiratoryRate" class="form-control" placeholder="Ingrese la frecuencia respiratoria">
+                    </div>
+                    <div class="form-group">
+                        <label for="temperature" class="form-label">Temperatura (°C):</label>
+                        <input type="number" id="temperature" class="form-control" placeholder="Ingrese la temperatura" step="0.1">
+                    </div>
+                    <button id="calculateVitals" class="btn btn-primary">Evaluar Signos Vitales</button>
+                    <div id="vitalsResult"></div>
                 </div>
             </div>
         </section>
 
         <!-- Sección de Protocolos y Procedimientos -->
         <section id="protocolos" class="section">
-            <div class="section-header">
-                <h1 class="section-title"><i>📋</i> Protocolos y Procedimientos</h1>
+            <div class="content-header">
+                <h1 class="page-title"><span>📋</span> Protocolos y Procedimientos</h1>
             </div>
+            
             <div class="card">
                 <div class="form-group">
-                    <label for="protocolSearch">Buscar protocolo:</label>
-                    <input type="text" id="protocolSearch" placeholder="Ingrese el nombre del protocolo...">
+                    <label for="protocolSearch" class="form-label">Buscar protocolo:</label>
+                    <input type="text" id="protocolSearch" class="form-control" placeholder="Ingrese el nombre del protocolo...">
                 </div>
             </div>
+            
             <div id="protocolResults" class="grid">
                 <!-- Los resultados de protocolos se mostrarán aquí -->
             </div>
@@ -743,57 +1288,68 @@
 
         <!-- Sección de Plan de Atención de Enfermería (PAE) -->
         <section id="pae" class="section">
-            <div class="section-header">
-                <h1 class="section-title"><i>📋</i> Plan de Atención de Enfermería (PAE)</h1>
+            <div class="content-header">
+                <h1 class="page-title"><span>📋</span> Plan de Atención de Enfermería (PAE)</h1>
             </div>
+            
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Crear Nuevo PAE</h2>
+                    <h2 class="card-title"><span>📝</span> Crear Nuevo PAE</h2>
                 </div>
                 <div class="form-group">
-                    <label for="paePatient">Nombre del paciente:</label>
-                    <input type="text" id="paePatient" placeholder="Nombre completo del paciente">
+                    <label for="paePatient" class="form-label">Nombre del paciente:</label>
+                    <input type="text" id="paePatient" class="form-control" placeholder="Nombre completo del paciente">
                 </div>
                 <div class="form-group">
-                    <label for="paeDiagnosis">Diagnóstico de enfermería:</label>
-                    <textarea id="paeDiagnosis" rows="3" placeholder="Ingrese el diagnóstico de enfermería"></textarea>
+                    <label for="paeDiagnosis" class="form-label">Diagnóstico de enfermería:</label>
+                    <textarea id="paeDiagnosis" class="form-control" rows="3" placeholder="Ingrese el diagnóstico de enfermería"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="paeObjectives">Objetivos:</label>
-                    <textarea id="paeObjectives" rows="3" placeholder="Ingrese los objetivos del plan de cuidados"></textarea>
+                    <label for="paeObjectives" class="form-label">Objetivos:</label>
+                    <textarea id="paeObjectives" class="form-control" rows="3" placeholder="Ingrese los objetivos del plan de cuidados"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="paeInterventions">Intervenciones:</label>
-                    <textarea id="paeInterventions" rows="3" placeholder="Ingrese las intervenciones de enfermería"></textarea>
+                    <label for="paeInterventions" class="form-label">Intervenciones:</label>
+                    <textarea id="paeInterventions" class="form-control" rows="3" placeholder="Ingrese las intervenciones de enfermería"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="paeEvaluation">Evaluación:</label>
-                    <textarea id="paeEvaluation" rows="3" placeholder="Ingrese los criterios de evaluación"></textarea>
+                    <label for="paeEvaluation" class="form-label">Evaluación:</label>
+                    <textarea id="paeEvaluation" class="form-control" rows="3" placeholder="Ingrese los criterios de evaluación"></textarea>
                 </div>
-                <button id="savePAE">Guardar PAE</button>
+                <button id="savePAE" class="btn btn-primary">Guardar PAE</button>
             </div>
+            
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">PAEs Guardados</h2>
+                    <h2 class="card-title"><span>📚</span> PAEs Guardados</h2>
+                    <div class="card-actions">
+                        <button id="exportPAE" class="btn btn-outline">Exportar</button>
+                    </div>
                 </div>
                 <div id="paeList">
                     <!-- Los PAEs guardados se mostrarán aquí -->
-                    <div class="no-results">No hay PAEs guardados. Cree uno nuevo para comenzar.</div>
+                    <div class="no-results">
+                        <span class="no-results-icon">📋</span>
+                        <h3>No hay PAEs guardados</h3>
+                        <p>Cree un nuevo PAE para comenzar a documentar sus planes de cuidados.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Sección de Buscador de Medicamentos -->
         <section id="medicamentos" class="section">
-            <div class="section-header">
-                <h1 class="section-title"><i>💊</i> Buscador de Medicamentos</h1>
+            <div class="content-header">
+                <h1 class="page-title"><span>💊</span> Buscador de Medicamentos</h1>
             </div>
+            
             <div class="card">
                 <div class="form-group">
-                    <label for="medicationSearch">Buscar medicamento:</label>
-                    <input type="text" id="medicationSearch" placeholder="Ingrese el nombre del medicamento...">
+                    <label for="medicationSearch" class="form-label">Buscar medicamento:</label>
+                    <input type="text" id="medicationSearch" class="form-control" placeholder="Ingrese el nombre del medicamento...">
                 </div>
             </div>
+            
             <div id="medicationResults" class="grid">
                 <!-- Los resultados de medicamentos se mostrarán aquí -->
             </div>
@@ -801,20 +1357,23 @@
 
         <!-- Sección de Herramientas de Referencia Rápida -->
         <section id="referencias" class="section">
-            <div class="section-header">
-                <h1 class="section-title"><i>📊</i> Herramientas de Referencia Rápida</h1>
+            <div class="content-header">
+                <h1 class="page-title"><span>📊</span> Herramientas de Referencia Rápida</h1>
             </div>
-            <div class="tab-container">
-                <div class="tabs">
-                    <div class="tab active" data-tab="vitals">Signos Vitales</div>
-                    <div class="tab" data-tab="lab">Valores de Laboratorio</div>
-                    <div class="tab" data-tab="scales">Escalas Clínicas</div>
-                </div>
-                <div class="tab-content active" id="vitals">
-                    <div class="card">
-                        <div class="card-header">
-                            <h2 class="card-title">Signos Vitales Normales por Edad</h2>
-                        </div>
+            
+            <div class="tabs">
+                <div class="tab active" data-tab="vitals">Signos Vitales</div>
+                <div class="tab" data-tab="lab">Valores de Laboratorio</div>
+                <div class="tab" data-tab="scales">Escalas Clínicas</div>
+                <div class="tab" data-tab="units">Conversión de Unidades</div>
+            </div>
+            
+            <div class="tab-content active" id="vitals">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title"><span>❤️</span> Signos Vitales Normales por Edad</h2>
+                    </div>
+                    <div class="table-container">
                         <table>
                             <tr>
                                 <th>Edad</th>
@@ -875,11 +1434,14 @@
                         </table>
                     </div>
                 </div>
-                <div class="tab-content" id="lab">
-                    <div class="card">
-                        <div class="card-header">
-                            <h2 class="card-title">Valores Normales de Laboratorio</h2>
-                        </div>
+            </div>
+            
+            <div class="tab-content" id="lab">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title"><span>🧪</span> Valores Normales de Laboratorio</h2>
+                    </div>
+                    <div class="table-container">
                         <table>
                             <tr>
                                 <th>Parámetro</th>
@@ -924,22 +1486,22 @@
                             <tr>
                                 <td>Colesterol total</td>
                                 <td>mg/dL</td>
-                                <td><200</td>
+                                <td>&lt;200</td>
                             </tr>
                             <tr>
                                 <td>LDL</td>
                                 <td>mg/dL</td>
-                                <td><100 (óptimo)</td>
+                                <td>&lt;100 (óptimo)</td>
                             </tr>
                             <tr>
                                 <td>HDL</td>
                                 <td>mg/dL</td>
-                                <td>>40 (hombres)<br>>50 (mujeres)</td>
+                                <td>&gt;40 (hombres)<br>&gt;50 (mujeres)</td>
                             </tr>
                             <tr>
                                 <td>Triglicéridos</td>
                                 <td>mg/dL</td>
-                                <td><150</td>
+                                <td>&lt;150</td>
                             </tr>
                             <tr>
                                 <td>Sodio</td>
@@ -969,13 +1531,16 @@
                         </table>
                     </div>
                 </div>
-                <div class="tab-content" id="scales">
-                    <div class="card">
-                        <div class="card-header">
-                            <h2 class="card-title">Escalas Clínicas</h2>
-                        </div>
-                        
-                        <h3>Escala de Glasgow</h3>
+            </div>
+            
+            <div class="tab-content" id="scales">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title"><span>📏</span> Escalas Clínicas</h2>
+                    </div>
+                    
+                    <h3>Escala de Glasgow</h3>
+                    <div class="table-container">
                         <table>
                             <tr>
                                 <th>Respuesta</th>
@@ -1046,8 +1611,10 @@
                                 <td>No hay respuesta motora</td>
                             </tr>
                         </table>
-                        
-                        <h3 style="margin-top: 2rem;">Escala de Apgar</h3>
+                    </div>
+                    
+                    <h3 style="margin-top: 2rem;">Escala de Apgar</h3>
+                    <div class="table-container">
                         <table>
                             <tr>
                                 <th>Parámetro</th>
@@ -1086,40 +1653,239 @@
                                 <td>Llanto fuerte, regular</td>
                             </tr>
                         </table>
-                        <p><strong>Interpretación:</strong> 8-10: Buen estado; 5-7: Depresión leve; 3-4: Depresión moderada; 0-2: Depresión severa.</p>
                     </div>
+                    <p><strong>Interpretación:</strong> 8-10: Buen estado; 5-7: Depresión leve; 3-4: Depresión moderada; 0-2: Depresión severa.</p>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="units">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title"><span>🔄</span> Conversión de Unidades Médicas</h2>
+                    </div>
+                    <div class="grid">
+                        <div class="card">
+                            <h3>Peso</h3>
+                            <div class="form-group">
+                                <label for="weightValue" class="form-label">Valor:</label>
+                                <input type="number" id="weightValue" class="form-control" placeholder="Ingrese el valor">
+                            </div>
+                            <div class="form-group">
+                                <label for="weightFrom" class="form-label">De:</label>
+                                <select id="weightFrom" class="form-control">
+                                    <option value="kg">Kilogramos (kg)</option>
+                                    <option value="g">Gramos (g)</option>
+                                    <option value="lb">Libras (lb)</option>
+                                    <option value="oz">Onzas (oz)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="weightTo" class="form-label">A:</label>
+                                <select id="weightTo" class="form-control">
+                                    <option value="kg">Kilogramos (kg)</option>
+                                    <option value="g">Gramos (g)</option>
+                                    <option value="lb">Libras (lb)</option>
+                                    <option value="oz">Onzas (oz)</option>
+                                </select>
+                            </div>
+                            <button id="convertWeight" class="btn btn-primary">Convertir</button>
+                            <div id="weightResult" style="margin-top: 1rem;"></div>
+                        </div>
+                        
+                        <div class="card">
+                            <h3>Longitud</h3>
+                            <div class="form-group">
+                                <label for="lengthValue" class="form-label">Valor:</label>
+                                <input type="number" id="lengthValue" class="form-control" placeholder="Ingrese el valor">
+                            </div>
+                            <div class="form-group">
+                                <label for="lengthFrom" class="form-label">De:</label>
+                                <select id="lengthFrom" class="form-control">
+                                    <option value="m">Metros (m)</option>
+                                    <option value="cm">Centímetros (cm)</option>
+                                    <option value="mm">Milímetros (mm)</option>
+                                    <option value="in">Pulgadas (in)</option>
+                                    <option value="ft">Pies (ft)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="lengthTo" class="form-label">A:</label>
+                                <select id="lengthTo" class="form-control">
+                                    <option value="m">Metros (m)</option>
+                                    <option value="cm">Centímetros (cm)</option>
+                                    <option value="mm">Milímetros (mm)</option>
+                                    <option value="in">Pulgadas (in)</option>
+                                    <option value="ft">Pies (ft)</option>
+                                </select>
+                            </div>
+                            <button id="convertLength" class="btn btn-primary">Convertir</button>
+                            <div id="lengthResult" style="margin-top: 1rem;"></div>
+                        </div>
+                        
+                        <div class="card">
+                            <h3>Volumen</h3>
+                            <div class="form-group">
+                                <label for="volumeValue" class="form-label">Valor:</label>
+                                <input type="number" id="volumeValue" class="form-control" placeholder="Ingrese el valor">
+                            </div>
+                            <div class="form-group">
+                                <label for="volumeFrom" class="form-label">De:</label>
+                                <select id="volumeFrom" class="form-control">
+                                    <option value="l">Litros (L)</option>
+                                    <option value="ml">Mililitros (mL)</option>
+                                    <option value="oz">Onzas fluidas (fl oz)</option>
+                                    <option value="cup">Tazas (cup)</option>
+                                    <option value="gal">Galones (gal)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="volumeTo" class="form-label">A:</label>
+                                <select id="volumeTo" class="form-control">
+                                    <option value="l">Litros (L)</option>
+                                    <option value="ml">Mililitros (mL)</option>
+                                    <option value="oz">Onzas fluidas (fl oz)</option>
+                                    <option value="cup">Tazas (cup)</option>
+                                    <option value="gal">Galones (gal)</option>
+                                </select>
+                            </div>
+                            <button id="convertVolume" class="btn btn-primary">Convertir</button>
+                            <div id="volumeResult" style="margin-top: 1rem;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Herramientas Avanzadas -->
+        <section id="herramientas" class="section">
+            <div class="content-header">
+                <h1 class="page-title"><span>🛠️</span> Herramientas Avanzadas</h1>
+            </div>
+            
+            <div class="grid">
+                <div class="priority-card priority-high">
+                    <div class="card-body">
+                        <h3 class="card-title-sm"><span>📊</span> Calculadora de Riesgo Cardiovascular</h3>
+                        <p class="card-text">Evalúe el riesgo cardiovascular a 10 años utilizando la escala SCORE o Framingham.</p>
+                        <button class="btn btn-primary">Calcular</button>
+                    </div>
+                </div>
+                
+                <div class="priority-card priority-high">
+                    <div class="card-body">
+                        <h3 class="card-title-sm"><span>💉</span> Calculadora de Dosis Pediátricas</h3>
+                        <p class="card-text">Calcule dosis seguras para pacientes pediátricos basadas en peso y edad.</p>
+                        <button class="btn btn-primary">Calcular</button>
+                    </div>
+                </div>
+                
+                <div class="priority-card priority-medium">
+                    <div class="card-body">
+                        <h3 class="card-title-sm"><span>🌡️</span> Calculadora de Necesidades Calóricas</h3>
+                        <p class="card-text">Determine las necesidades calóricas diarias basadas en el método Harris-Benedict.</p>
+                        <button class="btn btn-primary">Calcular</button>
+                    </div>
+                </div>
+                
+                <div class="priority-card priority-high">
+                    <div class="card-body">
+                        <h3 class="card-title-sm"><span>💊</span> Evaluador de Interacciones Medicamentosas</h3>
+                        <p class="card-text">Verifique posibles interacciones entre múltiples medicamentos que el paciente está tomando.</p>
+                        <button class="btn btn-primary">Evaluar</button>
+                    </div>
+                </div>
+                
+                <div class="priority-card priority-medium">
+                    <div class="card-body">
+                        <h3 class="card-title-sm"><span>📋</span> Generador de Notas Clínicas</h3>
+                        <p class="card-text">Cree notas clínicas estructuradas utilizando el formato SOAP (Subjetivo, Objetivo, Evaluación, Plan).</p>
+                        <button class="btn btn-primary">Crear</button>
+                    </div>
+                </div>
+                
+                <div class="priority-card priority-low">
+                    <div class="card-body">
+                        <h3 class="card-title-sm"><span>📱</span> Plantillas para Historia Clínica</h3>
+                        <p class="card-text">Acceda a plantillas predefinidas para diferentes especialidades médicas y tipos de consulta.</p>
+                        <button class="btn btn-primary">Ver Plantillas</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Favoritos -->
+        <section id="favoritos" class="section">
+            <div class="content-header">
+                <h1 class="page-title"><span>⭐</span> Favoritos</h1>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title"><span>🌟</span> Elementos Guardados</h2>
+                </div>
+                <div id="favoritesList" class="no-results">
+                    <span class="no-results-icon">⭐</span>
+                    <h3>No tiene elementos favoritos</h3>
+                    <p>Agregue elementos a sus favoritos para acceder rápidamente a ellos.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Historial -->
+        <section id="historial" class="section">
+            <div class="content-header">
+                <h1 class="page-title"><span>🕒</span> Historial de Actividad</h1>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title"><span>📋</span> Actividad Reciente</h2>
+                </div>
+                <div id="historyList" class="no-results">
+                    <span class="no-results-icon">🕒</span>
+                    <h3>No hay actividad reciente</h3>
+                    <p>Su historial de actividades se mostrará aquí.</p>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>MediGuide</h3>
-                <p>Una herramienta integral para profesionales de la salud.</p>
+    <footer style="background-color: var(--bg-light); color: var(--text-light); padding: 3rem 1rem 1.5rem; margin-top: 3rem; border-top: 1px solid var(--border);">
+        <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
+            <div>
+                <h3 style="margin-bottom: 1rem; font-size: 1.1rem; color: var(--text);">MediGuide Pro</h3>
+                <p>La herramienta integral para profesionales de la salud. Precisión, rapidez y confiabilidad en cada consulta.</p>
             </div>
-            <div class="footer-section">
-                <h3>Enlaces Rápidos</h3>
-                <ul>
-                    <li><a href="#enciclopedia">Enciclopedia</a></li>
-                    <li><a href="#calculadora">Calculadora</a></li>
-                    <li><a href="#protocolos">Protocolos</a></li>
-                    <li><a href="#pae">PAE</a></li>
+            <div>
+                <h3 style="margin-bottom: 1rem; font-size: 1.1rem; color: var(--text);">Recursos Clínicos</h3>
+                <ul style="list-style: none;">
+                    <li style="margin-bottom: 0.5rem;"><a href="#enciclopedia" style="color: var(--text-light); text-decoration: none;">Enciclopedia Médica</a></li>
+                    <li style="margin-bottom: 0.5rem;"><a href="#calculadoras" style="color: var(--text-light); text-decoration: none;">Calculadoras Clínicas</a></li>
+                    <li style="margin-bottom: 0.5rem;"><a href="#referencias" style="color: var(--text-light); text-decoration: none;">Tablas de Referencia</a></li>
+                    <li style="margin-bottom: 0.5rem;"><a href="#herramientas" style="color: var(--text-light); text-decoration: none;">Herramientas Avanzadas</a></li>
                 </ul>
             </div>
-            <div class="footer-section">
-                <h3>Recursos</h3>
-                <ul>
-                    <li><a href="#medicamentos">Medicamentos</a></li>
-                    <li><a href="#referencias">Referencias</a></li>
-                    <li><a href="#">Guías Clínicas</a></li>
-                    <li><a href="#">Actualizaciones</a></li>
+            <div>
+                <h3 style="margin-bottom: 1rem; font-size: 1.1rem; color: var(--text);">Gestión Clínica</h3>
+                <ul style="list-style: none;">
+                    <li style="margin-bottom: 0.5rem;"><a href="#pae" style="color: var(--text-light); text-decoration: none;">Plan de Atención de Enfermería</a></li>
+                    <li style="margin-bottom: 0.5rem;"><a href="#medicamentos" style="color: var(--text-light); text-decoration: none;">Base de Medicamentos</a></li>
+                    <li style="margin-bottom: 0.5rem;"><a href="#protocolos" style="color: var(--text-light); text-decoration: none;">Protocolos Clínicos</a></li>
+                    <li style="margin-bottom: 0.5rem;"><a href="#favoritos" style="color: var(--text-light); text-decoration: none;">Accesos Rápidos</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 style="margin-bottom: 1rem; font-size: 1.1rem; color: var(--text);">Soporte</h3>
+                <ul style="list-style: none;">
+                    <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--text-light); text-decoration: none;">Centro de Ayuda</a></li>
+                    <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--text-light); text-decoration: none;">Documentación</a></li>
+                    <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--text-light); text-decoration: none;">Actualizaciones</a></li>
+                    <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--text-light); text-decoration: none;">Contacto</a></li>
                 </ul>
             </div>
         </div>
-        <div class="copyright">
-            &copy; 2023 MediGuide - Herramienta Médica Integral. Todos los derechos reservados.
+        <div style="text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.875rem; color: var(--text-light);">
+            &copy; 2023 MediGuide Pro - Herramienta Médica Integral. Versión 2.0. Todos los derechos reservados.
         </div>
     </footer>
 
@@ -1129,50 +1895,82 @@
             {
                 id: 1,
                 name: "Diabetes Mellitus",
-                symptoms: ["Poliuria", "Polidipsia", "Polidipsia", "Pérdida de peso", "Fatiga"],
+                symptoms: ["Poliuria", "Polidipsia", "Pérdida de peso", "Fatiga", "Visión borrosa"],
                 diagnosis: "Glicemia en ayunas ≥ 126 mg/dL, HbA1c ≥ 6.5%, glicemia al azar ≥ 200 mg/dL con síntomas",
                 treatment: "Control dietético, ejercicio, metformina, insulina según necesidad",
-                category: "Endocrinología"
+                category: "Endocrinología",
+                severity: "Alto",
+                prevalence: "Común"
             },
             {
                 id: 2,
                 name: "Hipertensión Arterial",
-                symptoms: ["Asintomática en etapas tempranas", "Cefalea", "Mareos", "Visión borrosa"],
+                symptoms: ["Asintomática en etapas tempranas", "Cefalea", "Mareos", "Visión borrosa", "Palpitaciones"],
                 diagnosis: "Presión arterial sistólica ≥ 140 mmHg y/o diastólica ≥ 90 mmHg en múltiples mediciones",
                 treatment: "Cambios en estilo de vida, IECA, ARA II, diuréticos, betabloqueadores, calcio antagonistas",
-                category: "Cardiología"
+                category: "Cardiología",
+                severity: "Moderado",
+                prevalence: "Muy común"
             },
             {
                 id: 3,
                 name: "Neumonía",
-                symptoms: ["Fiebre", "Tos", "Expectoración", "Dolor torácico", "Disnea"],
+                symptoms: ["Fiebre", "Tos", "Expectoración", "Dolor torácico", "Disnea", "Taquipnea"],
                 diagnosis: "Radiografía de tórax, signos clínicos, análisis de sangre",
                 treatment: "Antibióticos según tipo (amoxicilina, macrólidos, fluoroquinolonas), oxigenoterapia si es necesario",
-                category: "Neumología"
+                category: "Neumología",
+                severity: "Alto",
+                prevalence: "Común"
             },
             {
                 id: 4,
                 name: "Insuficiencia Cardíaca",
-                symptoms: ["Disnea", "Ortopnea", "Disnea paroxística nocturna", "Edema periférico", "Fatiga"],
+                symptoms: ["Disnea", "Ortopnea", "Disnea paroxística nocturna", "Edema periférico", "Fatiga", "Taquicardia"],
                 diagnosis: "Ecocardiograma, BNP, radiografía de tórax, ECG",
                 treatment: "Diuréticos, IECA, betabloqueadores, antagonistas de la aldosterona, digoxina",
-                category: "Cardiología"
+                category: "Cardiología",
+                severity: "Alto",
+                prevalence: "Común"
             },
             {
                 id: 5,
                 name: "Enfermedad Pulmonar Obstructiva Crónica (EPOC)",
-                symptoms: ["Tos crónica", "Expectoración", "Disnea progresiva", "Sibilancias"],
+                symptoms: ["Tos crónica", "Expectoración", "Disnea progresiva", "Sibilancias", "Infecciones respiratorias frecuentes"],
                 diagnosis: "Espirograma con relación VEF1/CVF < 0.7 post broncodilatador",
                 treatment: "Dejar de fumar, broncodilatadores, corticoides inhalados, oxigenoterapia crónica si es necesario",
-                category: "Neumología"
+                category: "Neumología",
+                severity: "Moderado",
+                prevalence: "Común"
             },
             {
                 id: 6,
                 name: "Gastritis",
-                symptoms: ["Dolor epigástrico", "Náuseas", "Vómitos", "Sensación de saciedad precoz"],
+                symptoms: ["Dolor epigástrico", "Náuseas", "Vómitos", "Sensación de saciedad precoz", "Eructos"],
                 diagnosis: "Endoscopia digestiva alta, prueba de ureasa rápida para Helicobacter pylori",
                 treatment: "IBP, triple terapia si hay Helicobacter pylori, evitar AINEs",
-                category: "Gastroenterología"
+                category: "Gastroenterología",
+                severity: "Bajo",
+                prevalence: "Muy común"
+            },
+            {
+                id: 7,
+                name: "Apéndice Agudo",
+                symptoms: ["Dolor abdominal (inicio periumbilical, migración a fosa ilíaca derecha)", "Náuseas", "Vómitos", "Fiebre", "Anorexia"],
+                diagnosis: "Exploración física, análisis de sangre, ecografía o TAC abdominal",
+                treatment: "Apéndicectomía (laparoscópica o abierta), antibióticos",
+                category: "Cirugía General",
+                severity: "Alto",
+                prevalence: "Común"
+            },
+            {
+                id: 8,
+                name: "Colecistitis Aguda",
+                symptoms: ["Dolor en hipocondrio derecho", "Náuseas", "Vómitos", "Fiebre", "Ictericia (en casos avanzados)"],
+                diagnosis: "Exploración física (signo de Murphy positivo), ecografía abdominal, análisis de sangre",
+                treatment: "Ayuno, hidratación, antibióticos, colecistectomía (generalmente laparoscópica)",
+                category: "Cirugía General",
+                severity: "Alto",
+                prevalence: "Común"
             }
         ];
 
@@ -1185,7 +1983,9 @@
                 dosage: "500-1000 mg cada 4-6 horas (máx. 4g/día)",
                 contraindications: ["Hipersensibilidad", "Insuficiencia hepática grave"],
                 sideEffects: ["Náuseas", "Erupción cutánea", "Alteraciones hepáticas en sobredosis"],
-                interactions: ["Alcohol (aumenta toxicidad hepática)", "Warfarina (puede aumentar riesgo de hemorragia)"]
+                interactions: ["Alcohol (aumenta toxicidad hepática)", "Warfarina (puede aumentar riesgo de hemorragia)"],
+                pregnancyCategory: "B",
+                controlledSubstance: false
             },
             {
                 id: 2,
@@ -1195,7 +1995,9 @@
                 dosage: "200-400 mg cada 4-6 horas (máx. 1200mg/día sin prescripción)",
                 contraindications: ["Úlcera péptica activa", "Insuficiencia renal grave", "Asma inducida por AINEs"],
                 sideEffects: ["Dolor abdominal", "Náuseas", "Úlcera péptica", "Retención de líquidos"],
-                interactions: ["Warfarina (aumenta riesgo de hemorragia)", "Litio (aumenta niveles)", "IECA (reduce efecto)"]
+                interactions: ["Warfarina (aumenta riesgo de hemorragia)", "Litio (aumenta niveles)", "IECA (reduce efecto)"],
+                pregnancyCategory: "C",
+                controlledSubstance: false
             },
             {
                 id: 3,
@@ -1205,7 +2007,9 @@
                 dosage: "500 mg cada 8 horas o 875 mg cada 12 horas",
                 contraindications: ["Alergia a penicilinas", "Mononucleosis infecciosa"],
                 sideEffects: ["Diarrea", "Náuseas", "Erupción cutánea", "Candidiasis oral"],
-                interactions: ["Metotrexato (aumenta toxicidad)", "Anticoagulantes (puede aumentar efecto)"]
+                interactions: ["Metotrexato (aumenta toxicidad)", "Anticoagulantes (puede aumentar efecto)"],
+                pregnancyCategory: "B",
+                controlledSubstance: false
             },
             {
                 id: 4,
@@ -1215,7 +2019,9 @@
                 dosage: "10 mg una vez al día",
                 contraindications: ["Hipersensibilidad", "Insuficiencia hepática grave"],
                 sideEffects: ["Cefalea", "Somnolencia (raro)", "Secura de boca"],
-                interactions: ["Eritromicina (aumenta niveles)", "Cetoconazol (aumenta niveles)"]
+                interactions: ["Eritromicina (aumenta niveles)", "Cetoconazol (aumenta niveles)"],
+                pregnancyCategory: "B",
+                controlledSubstance: false
             },
             {
                 id: 5,
@@ -1225,7 +2031,9 @@
                 dosage: "20-40 mg una vez al día antes del desayuno",
                 contraindications: ["Hipersensibilidad", "Concomitancia con atazanavir"],
                 sideEffects: ["Dolor abdominal", "Náuseas", "Diarrea", "Dolor de cabeza"],
-                interactions: ["Warfarina (puede aumentar INR)", "Digoxina (puede aumentar niveles)", "Ketoconazol (disminuye absorción)"]
+                interactions: ["Warfarina (puede aumentar INR)", "Digoxina (puede aumentar niveles)", "Ketoconazol (disminuye absorción)"],
+                pregnancyCategory: "C",
+                controlledSubstance: false
             },
             {
                 id: 6,
@@ -1235,7 +2043,33 @@
                 dosage: "500-1000 mg dos veces al día con las comidas",
                 contraindications: ["Insuficiencia renal (TFG < 30 ml/min)", "Acidosis metabólica", "Insuficiencia hepática grave"],
                 sideEffects: ["Náuseas", "Diarrea", "Dolor abdominal", "Pérdida de apetito"],
-                interactions: ["Contrastes yodados (riesgo de acidosis láctica)", "Alcohol (aumenta riesgo de acidosis láctica)"]
+                interactions: ["Contrastes yodados (riesgo de acidosis láctica)", "Alcohol (aumenta riesgo de acidosis láctica)"],
+                pregnancyCategory: "B",
+                controlledSubstance: false
+            },
+            {
+                id: 7,
+                name: "Atorvastatina",
+                category: "Estatina",
+                indications: ["Hipercolesterolemia", "Prevención cardiovascular"],
+                dosage: "10-80 mg una vez al día",
+                contraindications: ["Enfermedad hepática activa", "Embarazo", "Lactancia"],
+                sideEffects: ["Dolor muscular", "Cefalea", "Náuseas", "Alteraciones hepáticas"],
+                interactions: ["Fibratos (aumenta riesgo de miopatía)", "Itraconazol (aumenta niveles)", "Digoxina (aumenta niveles)"],
+                pregnancyCategory: "X",
+                controlledSubstance: false
+            },
+            {
+                id: 8,
+                name: "Lisinopril",
+                category: "IECA",
+                indications: ["Hipertensión", "Insuficiencia cardíaca", "Protección renal en diabetes"],
+                dosage: "10-40 mg una vez al día",
+                contraindications: ["Angioedema previo con IECA", "Embarazo", "Estenosis de arteria renal bilateral"],
+                sideEffects: ["Tos seca", "Hipotensión", "Hiperkalemia", "Alteraciones renales"],
+                interactions: ["Diuréticos (aumenta hipotensión)", "AINEs (reduce efecto renal)", "Litio (aumenta niveles)"],
+                pregnancyCategory: "D",
+                controlledSubstance: false
             }
         ];
 
@@ -1244,6 +2078,7 @@
                 id: 1,
                 name: "Reanimación Cardiopulmonar (RCP) Básica",
                 category: "Emergencias",
+                severity: "Crítico",
                 steps: [
                     "Verificar seguridad del entorno",
                     "Evaluar respuesta del paciente (toque y habla)",
@@ -1259,12 +2094,13 @@
                 id: 2,
                 name: "Manejo de Hipoglucemia",
                 category: "Endocrinología",
+                severity: "Urgente",
                 steps: [
                     "Evaluar nivel de conciencia del paciente",
                     "Si el paciente está consciente y puede tragar: administrar 15g de carbohidratos simples (4 onzas de jugo, 3-4 tabletas de glucosa, 1 cucharada de miel)",
                     "Reevaluar glucemia a los 15 minutos",
                     "Si persiste hipoglucemia, repetir la dosis",
-                    "Una vez normalizada la glucemia, administrar alimento con carbohidratos complejos",
+                    "Una vez normalizada la glucemia, administrar alimento con carbohidatos complejos",
                     "Si el paciente está inconsciente: administrar glucagón 1 mg IM/SC o dextrosa al 50% 25g IV"
                 ],
                 notes: "Monitorizar glucemia después del tratamiento. Investigar causa de hipoglucemia."
@@ -1273,6 +2109,7 @@
                 id: 3,
                 name: "Control de Hemorragia",
                 category: "Emergencias",
+                severity: "Crítico",
                 steps: [
                     "Asegurar seguridad del entorno",
                     "Aplicar presión directa sobre la herida con gasa estéril",
@@ -1289,6 +2126,7 @@
                 id: 4,
                 name: "Protocolo de Vías Aéreas Difíciles",
                 category: "Anestesiología",
+                severity: "Crítico",
                 steps: [
                     "Evaluar predicción de vía aérea difícil (Mallampati, distancia tiromental, movilidad cervical, etc.)",
                     "Preoxigenar al paciente con oxígeno al 100% durante 3-5 minutos",
@@ -1303,6 +2141,7 @@
                 id: 5,
                 name: "Manejo de Anafilaxia",
                 category: "Alergia/Inmunología",
+                severity: "Crítico",
                 steps: [
                     "Identificar síntomas de anafilaxia (urticaria, angioedema, disnea, hipotensión, etc.)",
                     "Administrar adrenalina 0.3-0.5 mg (1:1000) IM en muslo anterior",
@@ -1314,12 +2153,30 @@
                     "Preparar para reanimación si empeora"
                 ],
                 notes: "La adrenalina es el tratamiento de elección. No retrasar su administración."
+            },
+            {
+                id: 6,
+                name: "Manejo de Infarto Agudo de Miocardio",
+                category: "Cardiología",
+                severity: "Crítico",
+                steps: [
+                    "Reconocer síntomas (dolor torácico opresivo, irradiación, sudoración, náuseas)",
+                    "Realizar ECG en menos de 10 minutos",
+                    "Administrar aspirina 162-325 mg masticable",
+                    "Administrar nitrato sublingual si no hay contraindicaciones",
+                    "Administrar morfina si dolor persiste",
+                    "Considerar trombólisis o intervención coronaria percutánea según disponibilidad y tiempo",
+                    "Monitorizar continuamente"
+                ],
+                notes: "Tiempo es músculo. Minimizar el tiempo puerta-balón."
             }
         ];
 
         // Estado de la aplicación
         let currentTheme = 'light';
         let paeList = [];
+        let favorites = [];
+        let history = [];
 
         // Funciones de utilidad
         function showSection(sectionId) {
@@ -1329,7 +2186,10 @@
             });
             
             // Mostrar la sección seleccionada
-            document.getElementById(sectionId).classList.add('active');
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.classList.add('active');
+            }
             
             // Actualizar la navegación
             document.querySelectorAll('.nav-link').forEach(link => {
@@ -1343,21 +2203,27 @@
             
             // Guardar la sección actual en el historial
             history.pushState(null, null, `#${sectionId}`);
+            
+            // Cerrar el menú móvil en dispositivos pequeños
+            if (window.innerWidth <= 768) {
+                document.querySelector('.sidebar').classList.remove('open');
+                document.querySelector('#menuToggle').setAttribute('aria-expanded', 'false');
+            }
         }
 
         function toggleMobileMenu() {
-            const navUl = document.querySelector('nav ul');
-            const menuBtn = document.querySelector('.mobile-menu-btn');
+            const sidebar = document.querySelector('.sidebar');
+            const menuBtn = document.querySelector('#menuToggle');
             const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
             
-            navUl.classList.toggle('show');
+            sidebar.classList.toggle('open');
             menuBtn.setAttribute('aria-expanded', !isExpanded);
         }
 
         function toggleTheme() {
             const body = document.body;
-            const themeToggle = document.querySelector('.theme-toggle');
-            const themeIcon = document.querySelector('.theme-icon');
+            const themeToggle = document.querySelector('#themeToggle');
+            const themeIcon = document.querySelector('#themeToggle');
             
             if (currentTheme === 'light') {
                 body.classList.add('dark-mode');
@@ -1374,13 +2240,19 @@
         }
 
         function searchItems(query, items, searchFields) {
-            if (!query) return items;
+            if (!query || query.trim() === '') return items;
             
-            const lowerQuery = query.toLowerCase();
+            const lowerQuery = query.toLowerCase().trim();
             return items.filter(item => {
                 return searchFields.some(field => {
-                    if (item[field] && typeof item[field] === 'string') {
-                        return item[field].toLowerCase().includes(lowerQuery);
+                    if (item[field]) {
+                        if (Array.isArray(item[field])) {
+                            return item[field].some(subField => 
+                                subField.toLowerCase().includes(lowerQuery)
+                            );
+                        } else if (typeof item[field] === 'string') {
+                            return item[field].toLowerCase().includes(lowerQuery);
+                        }
                     }
                     return false;
                 });
@@ -1391,18 +2263,32 @@
             const resultsContainer = document.getElementById('diseaseResults');
             
             if (diseases.length === 0) {
-                resultsContainer.innerHTML = '<div class="no-results">No se encontraron enfermedades que coincidan con su búsqueda.</div>';
+                resultsContainer.innerHTML = `
+                    <div class="no-results">
+                        <span class="no-results-icon">📚</span>
+                        <h3>No se encontraron enfermedades</h3>
+                        <p>Intente con otro término de búsqueda o explore otras categorías.</p>
+                    </div>
+                `;
                 return;
             }
             
             resultsContainer.innerHTML = diseases.map(disease => `
-                <div class="disease-card">
-                    <div class="card-content">
-                        <h3 class="card-title-sm">${disease.name}</h3>
+                <div class="priority-card priority-${disease.severity === 'Alto' ? 'high' : disease.severity === 'Moderado' ? 'medium' : 'low'}">
+                    <div class="card-body">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                            <h3 class="card-title-sm">${disease.name}</h3>
+                            <span class="badge badge-${disease.severity === 'Alto' ? 'danger' : disease.severity === 'Moderado' ? 'warning' : 'success'}">
+                                ${disease.severity}
+                            </span>
+                        </div>
                         <p class="card-text"><strong>Síntomas:</strong> ${disease.symptoms.join(', ')}</p>
                         <p class="card-text"><strong>Diagnóstico:</strong> ${disease.diagnosis}</p>
                         <p class="card-text"><strong>Tratamiento:</strong> ${disease.treatment}</p>
-                        <span class="badge badge.primary">${disease.category}</span>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+                            <span class="badge badge-primary">${disease.category}</span>
+                            <span class="badge badge-info">${disease.prevalence}</span>
+                        </div>
                     </div>
                 </div>
             `).join('');
@@ -1412,21 +2298,33 @@
             const resultsContainer = document.getElementById('medicationResults');
             
             if (medications.length === 0) {
-                resultsContainer.innerHTML = '<div class="no-results">No se encontraron medicamentos que coincidan con su búsqueda.</div>';
+                resultsContainer.innerHTML = `
+                    <div class="no-results">
+                        <span class="no-results-icon">💊</span>
+                        <h3>No se encontraron medicamentos</h3>
+                        <p>Intente con otro término de búsqueda o explore otras categorías.</p>
+                    </div>
+                `;
                 return;
             }
             
             resultsContainer.innerHTML = medications.map(medication => `
-                <div class="medication-card">
-                    <div class="card-content">
-                        <h3 class="card-title-sm">${medication.name}</h3>
+                <div class="priority-card priority-${medication.controlledSubstance ? 'high' : 'low'}">
+                    <div class="card-body">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                            <h3 class="card-title-sm">${medication.name}</h3>
+                            ${medication.controlledSubstance ? 
+                                '<span class="badge badge-danger">Controlado</span>' : 
+                                `<span class="badge badge-success">Cat. ${medication.pregnancyCategory}</span>`
+                            }
+                        </div>
                         <p class="card-text"><strong>Categoría:</strong> ${medication.category}</p>
-                        <p class="card-text"><strong>Indicaciones:</strong> ${medication.indications}</p>
+                        <p class="card-text"><strong>Indicaciones:</strong> ${medication.indications.join(', ')}</p>
                         <p class="card-text"><strong>Dosificación:</strong> ${medication.dosage}</p>
-                        <p class="card-text"><strong>Contraindicaciones:</strong> ${medication.contraindications}</p>
+                        <p class="card-text"><strong>Contraindicaciones:</strong> ${medication.contraindications.join(', ')}</p>
                         <p class="card-text"><strong>Efectos secundarios:</strong> ${medication.sideEffects.join(', ')}</p>
                         <p class="card-text"><strong>Interacciones:</strong> ${medication.interactions.join(', ')}</p>
-                        <span class="badge badge.success">${medication.category}</span>
+                        <span class="badge badge-primary">${medication.category}</span>
                     </div>
                 </div>
             `).join('');
@@ -1436,21 +2334,32 @@
             const resultsContainer = document.getElementById('protocolResults');
             
             if (protocols.length === 0) {
-                resultsContainer.innerHTML = '<div class="no-results">No se encontraron protocolos que coincidan con su búsqueda.</div>';
+                resultsContainer.innerHTML = `
+                    <div class="no-results">
+                        <span class="no-results-icon">📋</span>
+                        <h3>No se encontraron protocolos</h3>
+                        <p>Intente con otro término de búsqueda o explore otras categorías.</p>
+                    </div>
+                `;
                 return;
             }
             
             resultsContainer.innerHTML = protocols.map(protocol => `
-                <div class="protocol-card">
-                    <div class="card-content">
-                        <h3 class="card-title-sm">${protocol.name}</h3>
+                <div class="priority-card priority-${protocol.severity === 'Crítico' ? 'high' : 'medium'}">
+                    <div class="card-body">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                            <h3 class="card-title-sm">${protocol.name}</h3>
+                            <span class="badge badge-${protocol.severity === 'Crítico' ? 'danger' : 'warning'}">
+                                ${protocol.severity}
+                            </span>
+                        </div>
                         <p class="card-text"><strong>Categoría:</strong> ${protocol.category}</p>
                         <p class="card-text"><strong>Pasos:</strong></p>
-                        <ol>
+                        <ol style="margin-left: 1.5rem; margin-bottom: 1rem;">
                             ${protocol.steps.map(step => `<li>${step}</li>`).join('')}
                         </ol>
-                        <p class="card-text"><strong>Notas:</strong> ${protocol.notes}</p>
-                        <span class="badge badge.warning">${protocol.category}</span>
+                        <p class="card-text"><strong>Notas importantes:</strong> ${protocol.notes}</p>
+                        <span class="badge badge-primary">${protocol.category}</span>
                     </div>
                 </div>
             `).join('');
@@ -1461,37 +2370,55 @@
             const height = parseFloat(document.getElementById('height').value) / 100; // Convertir a metros
             
             if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
-                document.getElementById('bmiResult').innerHTML = '<div class="result danger">Por favor, ingrese valores válidos para peso y altura.</div>';
+                document.getElementById('bmiResult').innerHTML = `
+                    <div class="alert alert-danger">
+                        <span>⚠️</span>
+                        <div>
+                            <strong>Error:</strong> Por favor, ingrese valores válidos para peso y altura.
+                        </div>
+                    </div>
+                `;
                 return;
             }
             
             const bmi = weight / (height * height);
             let interpretation = '';
             let resultClass = '';
+            let advice = '';
             
             if (bmi < 18.5) {
                 interpretation = 'Bajo peso';
-                resultClass = 'warning';
+                resultClass = 'danger';
+                advice = 'Considere aumentar su ingesta calórica con alimentos nutritivos.';
             } else if (bmi < 25) {
                 interpretation = 'Peso normal';
                 resultClass = 'success';
+                advice = 'Mantenga su estilo de vida saludable.';
             } else if (bmi < 30) {
                 interpretation = 'Sobrepeso';
                 resultClass = 'warning';
+                advice = 'Considere cambios en su dieta y aumentar la actividad física.';
             } else if (bmi < 35) {
                 interpretation = 'Obesidad grado I';
                 resultClass = 'danger';
+                advice = 'Consulte a un profesional de la salud para un plan de manejo.';
             } else if (bmi < 40) {
                 interpretation = 'Obesidad grado II';
                 resultClass = 'danger';
+                advice = 'Es importante buscar atención médica especializada.';
             } else {
                 interpretation = 'Obesidad grado III';
                 resultClass = 'danger';
+                advice = 'Requiere atención médica inmediata y manejo especializado.';
             }
             
             document.getElementById('bmiResult').innerHTML = `
-                <div class="result ${resultClass}">
-                    <strong>IMC:</strong> ${bmi.toFixed(2)} kg/m² - ${interpretation}
+                <div class="alert alert-${resultClass}">
+                    <span>📊</span>
+                    <div>
+                        <strong>IMC:</strong> ${bmi.toFixed(2)} kg/m² - ${interpretation}<br>
+                        <strong>Recomendación:</strong> ${advice}
+                    </div>
                 </div>
             `;
         }
@@ -1500,19 +2427,130 @@
             const weight = parseFloat(document.getElementById('patientWeight').value);
             const dosePerKg = parseFloat(document.getElementById('requiredDose').value);
             const concentration = parseFloat(document.getElementById('concentration').value);
+            const medicationType = document.getElementById('medicationType').value;
             
             if (isNaN(weight) || isNaN(dosePerKg) || isNaN(concentration) || weight <= 0 || dosePerKg <= 0 || concentration <= 0) {
-                document.getElementById('doseResult').innerHTML = '<div class="result danger">Por favor, ingrese valores válidos para todos los campos.</div>';
+                document.getElementById('doseResult').innerHTML = `
+                    <div class="alert alert-danger">
+                        <span>⚠️</span>
+                        <div>
+                            <strong>Error:</strong> Por favor, ingrese valores válidos para todos los campos.
+                        </div>
+                    </div>
+                `;
                 return;
             }
             
             const totalDose = weight * dosePerKg;
             const volume = totalDose / concentration;
             
+            let medicationInfo = '';
+            if (medicationType) {
+                const med = medications.find(m => m.name.toLowerCase() === medicationType);
+                if (med) {
+                    medicationInfo = `<br><strong>Medicamento:</strong> ${med.name} (${med.category})`;
+                }
+            }
+            
             document.getElementById('doseResult').innerHTML = `
-                <div class="result success">
-                    <strong>Dosis total:</strong> ${totalDose.toFixed(2)} mg<br>
-                    <strong>Volume a administrar:</strong> ${volume.toFixed(2)} ml
+                <div class="alert alert-success">
+                    <span>✅</span>
+                    <div>
+                        <strong>Dosis total:</strong> ${totalDose.toFixed(2)} mg${medicationInfo}<br>
+                        <strong>Volumen a administrar:</strong> ${volume.toFixed(2)} ml<br>
+                        <strong>Concentración:</strong> ${concentration} mg/ml
+                    </div>
+                </div>
+            `;
+        }
+
+        function calculateGCS() {
+            const ocular = parseInt(document.querySelector('input[name="gcs_ocular"]:checked')?.value) || 0;
+            const verbal = parseInt(document.querySelector('input[name="gcs_verbal"]:checked')?.value) || 0;
+            const motor = parseInt(document.querySelector('input[name="gcs_motor"]:checked')?.value) || 0;
+            
+            if (ocular === 0 || verbal === 0 || motor === 0) {
+                document.getElementById('gcsResult').innerHTML = `
+                    <div class="alert alert-danger">
+                        <span>⚠️</span>
+                        <div>
+                            <strong>Error:</strong> Por favor, seleccione una opción para cada categoría.
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+            
+            const total = ocular + verbal + motor;
+            let interpretation = '';
+            let resultClass = '';
+            
+            if (total >= 13) {
+                interpretation = 'Conciencia leve o moderadamente alterada';
+                resultClass = 'success';
+            } else if (total >= 9) {
+                interpretation = 'Conciencia moderadamente alterada';
+                resultClass = 'warning';
+            } else {
+                interpretation = 'Conciencia severamente alterada';
+                resultClass = 'danger';
+            }
+            
+            document.getElementById('gcsResult').innerHTML = `
+                <div class="alert alert-${resultClass}">
+                    <span>🧠</span>
+                    <div>
+                        <strong>Score de Glasgow:</strong> ${total}/15 (${ocular}+${verbal}+${motor})<br>
+                        <strong>Interpretación:</strong> ${interpretation}
+                    </div>
+                </div>
+            `;
+        }
+
+        function calculateApgar() {
+            const color = parseInt(document.getElementById('apgar_color').value);
+            const heart = parseInt(document.getElementById('apgar_heart').value);
+            const reflex = parseInt(document.getElementById('apgar_reflex').value);
+            const movement = parseInt(document.getElementById('apgar_movement').value);
+            const breathing = parseInt(document.getElementById('apgar_breathing').value);
+            
+            if (isNaN(color) || isNaN(heart) || isNaN(reflex) || isNaN(movement) || isNaN(breathing)) {
+                document.getElementById('apgarResult').innerHTML = `
+                    <div class="alert alert-danger">
+                        <span>⚠️</span>
+                        <div>
+                            <strong>Error:</strong> Por favor, seleccione un valor para cada parámetro.
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+            
+            const total = color + heart + reflex + movement + breathing;
+            let interpretation = '';
+            let resultClass = '';
+            
+            if (total >= 8) {
+                interpretation = 'Buen estado';
+                resultClass = 'success';
+            } else if (total >= 5) {
+                interpretation = 'Depresión leve';
+                resultClass = 'warning';
+            } else if (total >= 3) {
+                interpretation = 'Depresión moderada';
+                resultClass = 'danger';
+            } else {
+                interpretation = 'Depresión severa';
+                resultClass = 'danger';
+            }
+            
+            document.getElementById('apgarResult').innerHTML = `
+                <div class="alert alert-${resultClass}">
+                    <span>👶</span>
+                    <div>
+                        <strong>Score de Apgar:</strong> ${total}/10 (${color}+${heart}+${reflex}+${movement}+${breathing})<br>
+                        <strong>Interpretación:</strong> ${interpretation}
+                    </div>
                 </div>
             `;
         }
@@ -1521,50 +2559,209 @@
             const heartRate = parseInt(document.getElementById('heartRate').value);
             const systolic = parseInt(document.getElementById('systolic').value);
             const diastolic = parseInt(document.getElementById('diastolic').value);
+            const respiratoryRate = parseInt(document.getElementById('respiratoryRate').value);
+            const temperature = parseFloat(document.getElementById('temperature').value);
             
-            if (isNaN(heartRate) || isNaN(systolic) || isNaN(diastolic)) {
-                document.getElementById('vitalsResult').innerHTML = '<div class="result danger">Por favor, ingrese valores válidos para todos los campos.</div>';
+            if (isNaN(heartRate) || isNaN(systolic) || isNaN(diastolic) || 
+                isNaN(respiratoryRate) || isNaN(temperature)) {
+                document.getElementById('vitalsResult').innerHTML = `
+                    <div class="alert alert-danger">
+                        <span>⚠️</span>
+                        <div>
+                            <strong>Error:</strong> Por favor, ingrese valores válidos para todos los campos.
+                        </div>
+                    </div>
+                `;
                 return;
             }
             
-            let heartRateStatus = '';
-            let heartRateClass = '';
-            let pressureStatus = '';
-            let pressureClass = '';
+            let results = [];
+            let hasCritical = false;
             
             // Evaluar ritmo cardíaco
             if (heartRate < 60) {
-                heartRateStatus = 'Bradycardia';
-                heartRateClass = 'danger';
+                results.push(`<span>⚠️</span> <strong>Ritmo cardíaco:</strong> ${heartRate} lpm - Bradicardia (crítico)`);
+                hasCritical = true;
             } else if (heartRate > 100) {
-                heartRateStatus = 'Taquicardia';
-                heartRateClass = 'danger';
+                results.push(`<span>⚠️</span> <strong>Ritmo cardíaco:</strong> ${heartRate} lpm - Taquicardia`);
             } else {
-                heartRateStatus = 'Normal';
-                heartRateClass = 'success';
+                results.push(`<span>✅</span> <strong>Ritmo cardíaco:</strong> ${heartRate} lpm - Normal`);
             }
             
             // Evaluar presión arterial
             if (systolic < 90 || diastolic < 60) {
-                pressureStatus = 'Hipotensión';
-                pressureClass = 'danger';
+                results.push(`<span>⚠️</span> <strong>Presión arterial:</strong> ${systolic}/${diastolic} mmHg - Hipotensión (crítico)`);
+                hasCritical = true;
             } else if (systolic >= 140 || diastolic >= 90) {
-                pressureStatus = 'Hipertensión';
-                pressureClass = 'danger';
+                results.push(`<span>⚠️</span> <strong>Presión arterial:</strong> ${systolic}/${diastolic} mmHg - Hipertensión`);
             } else if (systolic >= 120 && systolic < 140) {
-                pressureStatus = 'Prehipertensión';
-                pressureClass = 'warning';
+                results.push(`<span>⚠️</span> <strong>Presión arterial:</strong> ${systolic}/${diastolic} mmHg - Prehipertensión`);
             } else {
-                pressureStatus = 'Normal';
-                pressureClass = 'success';
+                results.push(`<span>✅</span> <strong>Presión arterial:</strong> ${systolic}/${diastolic} mmHg - Normal`);
             }
             
+            // Evaluar frecuencia respiratoria
+            if (respiratoryRate < 12) {
+                results.push(`<span>⚠️</span> <strong>Frecuencia respiratoria:</strong> ${respiratoryRate} rpm - Bradipnea`);
+            } else if (respiratoryRate > 20) {
+                results.push(`<span>⚠️</span> <strong>Frecuencia respiratoria:</strong> ${respiratoryRate} rpm - Taquipnea`);
+            } else {
+                results.push(`<span>✅</span> <strong>Frecuencia respiratoria:</strong> ${respiratoryRate} rpm - Normal`);
+            }
+            
+            // Evaluar temperatura
+            if (temperature < 36) {
+                results.push(`<span>⚠️</span> <strong>Temperatura:</strong> ${temperature}°C - Hipotermia`);
+            } else if (temperature > 37.5) {
+                results.push(`<span>⚠️</span> <strong>Temperatura:</strong> ${temperature}°C - Fiebre`);
+            } else {
+                results.push(`<span>✅</span> <strong>Temperatura:</strong> ${temperature}°C - Normal`);
+            }
+            
+            const resultClass = hasCritical ? 'danger' : 'success';
+            
             document.getElementById('vitalsResult').innerHTML = `
-                <div class="result ${heartRateClass}">
-                    <strong>Ritmo cardíaco:</strong> ${heartRate} lpm - ${heartRateStatus}
+                <div class="alert alert-${resultClass}">
+                    ${results.join('<br>')}
                 </div>
-                <div class="result ${pressureClass}" style="margin-top: 0.5rem;">
-                    <strong>Presión arterial:</strong> ${systolic}/${diastolic} mmHg - ${pressureStatus}
+            `;
+        }
+
+        function convertWeight() {
+            const value = parseFloat(document.getElementById('weightValue').value);
+            const from = document.getElementById('weightFrom').value;
+            const to = document.getElementById('weightTo').value;
+            
+            if (isNaN(value)) {
+                document.getElementById('weightResult').innerHTML = `
+                    <div class="alert alert-danger">
+                        <span>⚠️</span>
+                        <div><strong>Error:</strong> Por favor, ingrese un valor válido.</div>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Convertir a kg primero
+            let kg;
+            switch (from) {
+                case 'kg': kg = value; break;
+                case 'g': kg = value / 1000; break;
+                case 'lb': kg = value * 0.453592; break;
+                case 'oz': kg = value * 0.0283495; break;
+                default: kg = value;
+            }
+            
+            // Convertir de kg a la unidad deseada
+            let result;
+            switch (to) {
+                case 'kg': result = kg; break;
+                case 'g': result = kg * 1000; break;
+                case 'lb': result = kg / 0.453592; break;
+                case 'oz': result = kg / 0.0283495; break;
+                default: result = kg;
+            }
+            
+            document.getElementById('weightResult').innerHTML = `
+                <div class="alert alert-success">
+                    <span>🔄</span>
+                    <div>
+                        <strong>Resultado:</strong> ${value} ${from.toUpperCase()} = ${result.toFixed(4)} ${to.toUpperCase()}
+                    </div>
+                </div>
+            `;
+        }
+
+        function convertLength() {
+            const value = parseFloat(document.getElementById('lengthValue').value);
+            const from = document.getElementById('lengthFrom').value;
+            const to = document.getElementById('lengthTo').value;
+            
+            if (isNaN(value)) {
+                document.getElementById('lengthResult').innerHTML = `
+                    <div class="alert alert-danger">
+                        <span>⚠️</span>
+                        <div><strong>Error:</strong> Por favor, ingrese un valor válido.</div>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Convertir a metros primero
+            let m;
+            switch (from) {
+                case 'm': m = value; break;
+                case 'cm': m = value / 100; break;
+                case 'mm': m = value / 1000; break;
+                case 'in': m = value * 0.0254; break;
+                case 'ft': m = value * 0.3048; break;
+                default: m = value;
+            }
+            
+            // Convertir de metros a la unidad deseada
+            let result;
+            switch (to) {
+                case 'm': result = m; break;
+                case 'cm': result = m * 100; break;
+                case 'mm': result = m * 1000; break;
+                case 'in': result = m / 0.0254; break;
+                case 'ft': result = m / 0.3048; break;
+                default: result = m;
+            }
+            
+            document.getElementById('lengthResult').innerHTML = `
+                <div class="alert alert-success">
+                    <span>🔄</span>
+                    <div>
+                        <strong>Resultado:</strong> ${value} ${from.toUpperCase()} = ${result.toFixed(4)} ${to.toUpperCase()}
+                    </div>
+                </div>
+            `;
+        }
+
+        function convertVolume() {
+            const value = parseFloat(document.getElementById('volumeValue').value);
+            const from = document.getElementById('volumeFrom').value;
+            const to = document.getElementById('volumeTo').value;
+            
+            if (isNaN(value)) {
+                document.getElementById('volumeResult').innerHTML = `
+                    <div class="alert alert-danger">
+                        <span>⚠️</span>
+                        <div><strong>Error:</strong> Por favor, ingrese un valor válido.</div>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Convertir a litros primero
+            let l;
+            switch (from) {
+                case 'l': l = value; break;
+                case 'ml': l = value / 1000; break;
+                case 'oz': l = value * 0.0295735; break;
+                case 'cup': l = value * 0.236588; break;
+                case 'gal': l = value * 3.78541; break;
+                default: l = value;
+            }
+            
+            // Convertir de litros a la unidad deseada
+            let result;
+            switch (to) {
+                case 'l': result = l; break;
+                case 'ml': result = l * 1000; break;
+                case 'oz': result = l / 0.0295735; break;
+                case 'cup': result = l / 0.236588; break;
+                case 'gal': result = l / 3.78541; break;
+                default: result = l;
+            }
+            
+            document.getElementById('volumeResult').innerHTML = `
+                <div class="alert alert-success">
+                    <span>🔄</span>
+                    <div>
+                        <strong>Resultado:</strong> ${value} ${from.toUpperCase()} = ${result.toFixed(4)} ${to.toUpperCase()}
+                    </div>
                 </div>
             `;
         }
@@ -1588,7 +2785,8 @@
                 objectives,
                 interventions,
                 evaluation,
-                date: new Date().toLocaleDateString('es-ES')
+                date: new Date().toLocaleDateString('es-ES'),
+                time: new Date().toLocaleTimeString('es-ES')
             };
             
             paeList.unshift(newPAE); // Agregar al inicio de la lista
@@ -1602,7 +2800,7 @@
             document.getElementById('paeInterventions').value = '';
             document.getElementById('paeEvaluation').value = '';
             
-            alert('PAE guardado correctamente.');
+            showNotification('PAE guardado correctamente.', 'success');
         }
 
         function deletePAE(id) {
@@ -1610,40 +2808,65 @@
                 paeList = paeList.filter(pae => pae.id !== id);
                 savePAEList();
                 renderPAEList();
+                showNotification('PAE eliminado correctamente.', 'info');
             }
+        }
+
+        function exportPAE() {
+            if (paeList.length === 0) {
+                showNotification('No hay PAEs para exportar.', 'warning');
+                return;
+            }
+            
+            const exportData = JSON.stringify(paeList, null, 2);
+            const blob = new Blob([exportData], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `PAEs_${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            showNotification('PAEs exportados correctamente.', 'success');
         }
 
         function renderPAEList() {
             const paeListContainer = document.getElementById('paeList');
             
             if (paeList.length === 0) {
-                paeListContainer.innerHTML = '<div class="no-results">No hay PAEs guardados. Cree uno nuevo para comenzar.</div>';
+                paeListContainer.innerHTML = `
+                    <div class="no-results">
+                        <span class="no-results-icon">📋</span>
+                        <h3>No hay PAEs guardados</h3>
+                        <p>Cree un nuevo PAE para comenzar a documentar sus planes de cuidados.</p>
+                    </div>
+                `;
                 return;
             }
             
             paeListContainer.innerHTML = paeList.map(pae => `
-                <div class="pae-item">
-                    <div class="pae-header">
-                        <div class="pae-title">PAE para ${pae.patient} - ${pae.date}</div>
-                        <div class="pae-actions">
-                            <button class="accent" onclick="deletePAE(${pae.id})">Eliminar</button>
+                <div class="card" style="margin-bottom: 1rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);">
+                        <div>
+                            <div style="font-weight: 600; color: var(--primary);">${pae.patient}</div>
+                            <div style="font-size: 0.875rem; color: var(--text-light);">${pae.date} a las ${pae.time}</div>
                         </div>
+                        <button onclick="deletePAE(${pae.id})" style="background: none; border: none; color: var(--danger); cursor: pointer; font-size: 1.25rem;">🗑️</button>
                     </div>
-                    <div class="form-group">
-                        <label>Diagnóstico:</label>
-                        <p>${pae.diagnosis}</p>
+                    <div style="margin-bottom: 0.5rem;">
+                        <strong>Diagnóstico:</strong> ${pae.diagnosis}
                     </div>
-                    <div class="form-group">
-                        <label>Objetivos:</label>
-                        <p>${pae.objectives}</p>
+                    <div style="margin-bottom: 0.5rem;">
+                        <strong>Objetivos:</strong> ${pae.objectives}
                     </div>
-                    <div class="form-group">
-                        <label>Intervenciones:</label>
-                        <p>${pae.interventions}</p>
+                    <div style="margin-bottom: 0.5rem;">
+                        <strong>Intervenciones:</strong> ${pae.interventions}
                     </div>
-                    <div class="form-group">
-                        <label>Evaluación:</label>
-                        <p>${pae.evaluation}</p>
+                    <div>
+                        <strong>Evaluación:</strong> ${pae.evaluation}
                     </div>
                 </div>
             `).join('');
@@ -1671,15 +2894,143 @@
                 currentTheme = savedTheme;
                 if (currentTheme === 'dark') {
                     document.body.classList.add('dark-mode');
-                    document.querySelector('.theme-icon').textContent = '🌙';
+                    document.querySelector('#themeToggle').textContent = '🌙';
                 }
             }
         }
 
-        function globalSearch() {
-            const query = document.getElementById('globalSearch').value.trim();
+        // Sistema de búsqueda con sugerencias
+        const searchSuggestions = document.getElementById('searchSuggestions');
+        const globalSearch = document.getElementById('globalSearch');
+        
+        // Datos de ejemplo para sugerencias
+        const suggestions = [
+            { type: 'enfermedad', text: 'Diabetes Mellitus', icon: '📚' },
+            { type: 'medicamento', text: 'Paracetamol', icon: '💊' },
+            { type: 'protocolo', text: 'RCP Básica', icon: '📋' },
+            { type: 'calculadora', text: 'IMC', icon: '🧮' },
+            { type: 'referencia', text: 'Signos Vitales', icon: '📊' }
+        ];
+        
+        globalSearch.addEventListener('focus', function() {
+            if (suggestions.length > 0) {
+                searchSuggestions.style.display = 'block';
+                searchSuggestions.innerHTML = suggestions.map(sugg => `
+                    <div class="suggestion-item" onclick="selectSuggestion('${sugg.text}')">
+                        <span class="suggestion-icon">${sugg.icon}</span>
+                        <span class="suggestion-text">${sugg.text}</span>
+                        <span class="suggestion-category">${sugg.type}</span>
+                    </div>
+                `).join('');
+            }
+        });
+        
+        globalSearch.addEventListener('blur', function() {
+            setTimeout(() => {
+                searchSuggestions.style.display = 'none';
+            }, 200);
+        });
+        
+        globalSearch.addEventListener('input', function() {
+            if (this.value.length > 0) {
+                searchSuggestions.style.display = 'block';
+            } else {
+                searchSuggestions.style.display = 'none';
+            }
+        });
+        
+        function selectSuggestion(text) {
+            globalSearch.value = text;
+            searchSuggestions.style.display = 'none';
+            // Aquí iría la lógica para buscar el término seleccionado
+            showNotification(`Buscando: ${text}`, 'info');
+        }
+        
+        // Sistema de notificaciones
+        function showNotification(message, type = 'info') {
+            // Eliminar notificaciones existentes
+            const existing = document.querySelectorAll('.notification');
+            existing.forEach(n => n.remove());
+            
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.style.position = 'fixed';
+            notification.style.top = '20px';
+            notification.style.right = '20px';
+            notification.style.padding = '1rem';
+            notification.style.borderRadius = '8px';
+            notification.style.color = 'white';
+            notification.style.zIndex = '1000';
+            notification.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+            notification.style.maxWidth = '300px';
+            notification.style.opacity = '0';
+            notification.style.transition = 'opacity 0.5s';
+            
+            let bgColor;
+            switch(type) {
+                case 'success':
+                    bgColor = '#34a853';
+                    break;
+                case 'warning':
+                    bgColor = '#f9a825';
+                    break;
+                case 'danger':
+                    bgColor = '#ea4335';
+                    break;
+                case 'info':
+                    bgColor = '#1a73e8';
+                    break;
+                default:
+                    bgColor = '#1a73e8';
+            }
+            
+            notification.style.backgroundColor = bgColor;
+            
+            notification.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <span>${type === 'success' ? '✅' : type === 'warning' ? '⚠️' : type === 'danger' ? '❌' : 'ℹ️'}</span>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Animar entrada
+            setTimeout(() => {
+                notification.style.opacity = '1';
+            }, 100);
+            
+            // Animar salida
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 500);
+            }, 3000);
+        }
+        
+        // Sistema de atajos de teclado
+        document.addEventListener('keydown', function(e) {
+            // Ctrl + K para búsqueda
+            if (e.ctrlKey && e.key === 'k') {
+                e.preventDefault();
+                globalSearch.focus();
+            }
+            
+            // Ctrl + / para ayuda
+            if (e.ctrlKey && e.key === '/') {
+                e.preventDefault();
+                showNotification('Atajos de teclado: Ctrl+K para búsqueda, Ctrl+/ para ayuda', 'info');
+            }
+        });
+        
+        // Función para mostrar resultados de búsqueda global
+        function globalSearchFunction() {
+            const query = globalSearch.value.trim();
             if (!query) {
-                alert('Por favor, ingrese un término de búsqueda.');
+                showNotification('Por favor, ingrese un término de búsqueda.', 'warning');
                 return;
             }
             
@@ -1690,19 +3041,23 @@
             
             // Mostrar resultados
             if (diseaseResults.length > 0 || medicationResults.length > 0 || protocolResults.length > 0) {
-                let resultsHtml = '<h2>Resultados de búsqueda para "' + query + '"</h2>';
+                let resultsHtml = `<h2 style="margin-top: 0;">Resultados de búsqueda para "${query}"</h2>`;
                 
                 if (diseaseResults.length > 0) {
-                    resultsHtml += '<h3>Enfermedades</h3>';
+                    resultsHtml += '<h3 style="margin-top: 1.5rem; color: var(--primary);">Enfermedades</h3>';
                     resultsHtml += '<div class="grid">';
-                    resultsHtml += diseaseResults.map(disease => `
-                        <div class="disease-card">
-                            <div class="card-content">
+                    resultsHtml += diseaseResults.slice(0, 3).map(disease => `
+                        <div class="priority-card priority-${disease.severity === 'Alto' ? 'high' : disease.severity === 'Moderado' ? 'medium' : 'low'}">
+                            <div class="card-body">
                                 <h3 class="card-title-sm">${disease.name}</h3>
-                                <p class="card-text"><strong>Síntomas:</strong> ${disease.symptoms.join(', ')}</p>
-                                <p class="card-text"><strong>Diagnóstico:</strong> ${disease.diagnosis}</p>
-                                <p class="card-text"><strong>Tratamiento:</strong> ${disease.treatment}</p>
-                                <span class="badge badge.primary">${disease.category}</span>
+                                <p class="card-text"><strong>Síntomas:</strong> ${disease.symptoms.slice(0, 3).join(', ')}${disease.symptoms.length > 3 ? '...' : ''}</p>
+                                <p class="card-text"><strong>Diagnóstico:</strong> ${disease.diagnosis.substring(0, 100)}${disease.diagnosis.length > 100 ? '...' : ''}</p>
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+                                    <span class="badge badge-primary">${disease.category}</span>
+                                    <span class="badge badge-${disease.severity === 'Alto' ? 'danger' : disease.severity === 'Moderado' ? 'warning' : 'success'}">
+                                        ${disease.severity}
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     `).join('');
@@ -1710,16 +3065,22 @@
                 }
                 
                 if (medicationResults.length > 0) {
-                    resultsHtml += '<h3 style="margin-top: 2rem;">Medicamentos</h3>';
+                    resultsHtml += '<h3 style="margin-top: 2rem; color: var(--primary);">Medicamentos</h3>';
                     resultsHtml += '<div class="grid">';
-                    resultsHtml += medicationResults.map(medication => `
-                        <div class="medication-card">
-                            <div class="card-content">
-                                <h3 class="card-title-sm">${medication.name}</h3>
+                    resultsHtml += medicationResults.slice(0, 3).map(medication => `
+                        <div class="priority-card priority-${medication.controlledSubstance ? 'high' : 'low'}">
+                            <div class="card-body">
+                                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                                    <h3 class="card-title-sm">${medication.name}</h3>
+                                    ${medication.controlledSubstance ? 
+                                        '<span class="badge badge-danger">Controlado</span>' : 
+                                        `<span class="badge badge-success">Cat. ${medication.pregnancyCategory}</span>`
+                                    }
+                                </div>
                                 <p class="card-text"><strong>Categoría:</strong> ${medication.category}</p>
-                                <p class="card-text"><strong>Indicaciones:</strong> ${medication.indications}</p>
+                                <p class="card-text"><strong>Indicaciones:</strong> ${medication.indications.slice(0, 2).join(', ')}${medication.indications.length > 2 ? '...' : ''}</p>
                                 <p class="card-text"><strong>Dosificación:</strong> ${medication.dosage}</p>
-                                <span class="badge badge.success">${medication.category}</span>
+                                <span class="badge badge-primary">${medication.category}</span>
                             </div>
                         </div>
                     `).join('');
@@ -1727,19 +3088,24 @@
                 }
                 
                 if (protocolResults.length > 0) {
-                    resultsHtml += '<h3 style="margin-top: 2rem;">Protocolos</h3>';
+                    resultsHtml += '<h3 style="margin-top: 2rem; color: var(--primary);">Protocolos</h3>';
                     resultsHtml += '<div class="grid">';
-                    resultsHtml += protocolResults.map(protocol => `
-                        <div class="protocol-card">
-                            <div class="card-content">
-                                <h3 class="card-title-sm">${protocol.name}</h3>
+                    resultsHtml += protocolResults.slice(0, 3).map(protocol => `
+                        <div class="priority-card priority-${protocol.severity === 'Crítico' ? 'high' : 'medium'}">
+                            <div class="card-body">
+                                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                                    <h3 class="card-title-sm">${protocol.name}</h3>
+                                    <span class="badge badge-${protocol.severity === 'Crítico' ? 'danger' : 'warning'}">
+                                        ${protocol.severity}
+                                    </span>
+                                </div>
                                 <p class="card-text"><strong>Categoría:</strong> ${protocol.category}</p>
                                 <p class="card-text"><strong>Pasos:</strong></p>
-                                <ol>
-                                    ${protocol.steps.slice(0, 3).map(step => `<li>${step}</li>`).join('')}
-                                    ${protocol.steps.length > 3 ? '<li>...</li>' : ''}
+                                <ol style="margin-left: 1.5rem; margin-bottom: 1rem;">
+                                    ${protocol.steps.slice(0, 2).map(step => `<li>${step.substring(0, 50)}${step.length > 50 ? '...' : ''}</li>`).join('')}
+                                    ${protocol.steps.length > 2 ? '<li>...</li>' : ''}
                                 </ol>
-                                <span class="badge badge.warning">${protocol.category}</span>
+                                <span class="badge badge-primary">${protocol.category}</span>
                             </div>
                         </div>
                     `).join('');
@@ -1758,12 +3124,14 @@
                 modal.style.justifyContent = 'center';
                 modal.style.alignItems = 'center';
                 modal.style.zIndex = '1000';
+                modal.style.overflowY = 'auto';
+                modal.style.padding = '1rem';
                 
                 modal.innerHTML = `
-                    <div style="background: var(--card-bg); border-radius: 8px; padding: 2rem; max-width: 800px; max-height: 80vh; overflow-y: auto; width: 90%; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);">
+                    <div style="background: var(--card-bg); border-radius: 12px; padding: 2rem; max-width: 900px; max-height: 90vh; overflow-y: auto; width: 90%; box-shadow: var(--shadow-lg);">
                         ${resultsHtml}
                         <div style="text-align: center; margin-top: 1.5rem;">
-                            <button id="closeSearchModal" style="padding: 0.75rem 1.5rem; background-color: var(--primary-color); color: white; border: none; border-radius: 4px; cursor: pointer;">Cerrar</button>
+                            <button id="closeSearchModal" style="padding: 0.75rem 1.5rem; background-color: var(--primary); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; font-weight: 500;">Cerrar</button>
                         </div>
                     </div>
                 `;
@@ -1774,7 +3142,7 @@
                     document.body.removeChild(modal);
                 });
             } else {
-                alert('No se encontraron resultados para su búsqueda.');
+                showNotification('No se encontraron resultados para su búsqueda.', 'warning');
             }
         }
 
@@ -1797,20 +3165,19 @@
             });
             
             // Menú móvil
-            document.querySelector('.mobile-menu-btn').addEventListener('click', toggleMobileMenu);
+            document.querySelector('#menuToggle').addEventListener('click', toggleMobileMenu);
             
             // Alternar tema
-            document.querySelector('.theme-toggle').addEventListener('click', toggleTheme);
+            document.querySelector('#themeToggle').addEventListener('click', toggleTheme);
             
             // Búsqueda global
-            document.getElementById('searchBtn').addEventListener('click', globalSearch);
             document.getElementById('globalSearch').addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
-                    globalSearch();
+                    globalSearchFunction();
                 }
             });
             
-            // Búsqueda en secciones específicas
+            // Búsqueda específica en secciones
             document.getElementById('diseaseSearch').addEventListener('input', function() {
                 const query = this.value;
                 const results = searchItems(query, diseases, ['name', 'symptoms', 'diagnosis', 'treatment', 'category']);
@@ -1832,10 +3199,18 @@
             // Calculadoras
             document.getElementById('calculateBMI').addEventListener('click', calculateBMI);
             document.getElementById('calculateDose').addEventListener('click', calculateDose);
+            document.getElementById('calculateGCS').addEventListener('click', calculateGCS);
+            document.getElementById('calculateApgar').addEventListener('click', calculateApgar);
             document.getElementById('calculateVitals').addEventListener('click', calculateVitals);
+            
+            // Conversión de unidades
+            document.getElementById('convertWeight').addEventListener('click', convertWeight);
+            document.getElementById('convertLength').addEventListener('click', convertLength);
+            document.getElementById('convertVolume').addEventListener('click', convertVolume);
             
             // PAE
             document.getElementById('savePAE').addEventListener('click', savePAE);
+            document.getElementById('exportPAE').addEventListener('click', exportPAE);
             
             // Tabs
             document.querySelectorAll('.tab').forEach(tab => {
@@ -1866,13 +3241,24 @@
             if (hash) {
                 showSection(hash);
             }
+            
+            // Inicializar con la primera sección activa si no hay hash
+            if (!hash) {
+                showSection('dashboard');
+            }
+            
+            // Mostrar notificación de bienvenida
+            setTimeout(() => {
+                showNotification('Bienvenido a MediGuide Pro. Use Ctrl+K para búsqueda rápida.', 'success');
+            }, 1000);
         });
 
         // Manejo de errores
         window.addEventListener('error', function(e) {
             console.error('Error en la aplicación:', e.error);
-            // Podría mostrar un mensaje amigable al usuario si es necesario
+            showNotification('Se produjo un error en la aplicación. Por favor, inténtelo de nuevo.', 'danger');
         });
     </script>
 </body>
 </html>
+```
