@@ -1,0 +1,1878 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediGuide - Herramienta Médica Integral</title>
+    <style>
+        :root {
+            --primary-color: #2c7bb7;
+            --primary-dark: #1f5a8a;
+            --secondary-color: #4caf50;
+            --accent-color: #ff9800;
+            --text-color: #333;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --border-color: #e0e0e0;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
+            --info: #2196f3;
+        }
+
+        .dark-mode {
+            --primary-color: #4dabf7;
+            --primary-dark: #339af0;
+            --secondary-color: #51cf66;
+            --accent-color: #fd7e14;
+            --text-color: #e9ecef;
+            --bg-color: #1a1a1a;
+            --card-bg: #2d2d2d;
+            --border-color: #404040;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .logo i {
+            font-size: 1.8rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .search-container {
+            display: flex;
+            gap: 0.5rem;
+            margin: 1rem auto;
+            max-width: 600px;
+        }
+
+        .search-container input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 1rem;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+        }
+
+        .search-container button {
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .search-container button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+        }
+
+        .theme-toggle:hover {
+            background-color: rgba(44, 123, 183, 0.1);
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 1rem;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        button.secondary {
+            background-color: var(--secondary-color);
+        }
+
+        button.secondary:hover {
+            background-color: #3d8b40;
+        }
+
+        button.accent {
+            background-color: var(--accent-color);
+        }
+
+        button.accent:hover {
+            background-color: #e68a00;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .result {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .result.success {
+            background-color: rgba(76, 175, 80, 0.1);
+            border: 1px solid var(--success);
+            color: var(--success);
+        }
+
+        .result.warning {
+            background-color: rgba(255, 152, 0, 0.1);
+            border: 1px solid var(--warning);
+            color: var(--warning);
+        }
+
+        .result.danger {
+            background-color: rgba(244, 67, 54, 0.1);
+            border: 1px solid var(--danger);
+            color: var(--danger);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .disease-card, .medication-card, .protocol-card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .disease-card:hover, .medication-card:hover, .protocol-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-content {
+            padding: 1rem;
+        }
+
+        .card-title-sm {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-text {
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .badge.primary {
+            background-color: rgba(44, 123, 183, 0.1);
+            color: var(--primary-color);
+        }
+
+        .badge.success {
+            background-color: rgba(76, 175, 80, 0.1);
+            color: var(--success);
+        }
+
+        .badge.warning {
+            background-color: rgba(255, 152, 0, 0.1);
+            color: var(--warning);
+        }
+
+        .badge.danger {
+            background-color: rgba(244, 67, 54, 0.1);
+            color: var(--danger);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background-color: var(--card-bg);
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(44, 123, 183, 0.03);
+        }
+
+        .pae-item {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .pae-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .pae-title {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .pae-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        .tab-container {
+            margin: 1rem 0;
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 1rem;
+        }
+
+        .tab {
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            font-weight: 500;
+        }
+
+        .tab.active {
+            border-bottom-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            text-decoration: underline;
+        }
+
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+
+            nav ul {
+                flex-direction: column;
+                display: none;
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                align-self: flex-end;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .search-container {
+                flex-direction: column;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Focus styles for keyboard navigation */
+        button:focus, a:focus, input:focus, select:focus, textarea:focus {
+            outline: 3px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+
+        /* Print styles */
+        @media print {
+            .mobile-menu-btn, .theme-toggle, .search-container, nav {
+                display: none !important;
+            }
+            
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            
+            .card {
+                box-shadow: none !important;
+                border: 1px solid #ccc !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i>⚕️</i>
+                <span>MediGuide</span>
+            </div>
+            <button class="mobile-menu-btn" aria-label="Menú móvil" aria-expanded="false">
+                <i>☰</i>
+            </button>
+            <nav aria-label="Navegación principal">
+                <ul>
+                    <li><a href="#enciclopedia" class="nav-link active" data-section="enciclopedia">Enciclopedia</a></li>
+                    <li><a href="#calculadora" class="nav-link" data-section="calculadora">Calculadora</a></li>
+                    <li><a href="#protocolos" class="nav-link" data-section="protocolos">Protocolos</a></li>
+                    <li><a href="#pae" class="nav-link" data-section="pae">PAE</a></li>
+                    <li><a href="#medicamentos" class="nav-link" data-section="medicamentos">Medicamentos</a></li>
+                    <li><a href="#referencias" class="nav-link" data-section="referencias">Referencias</a></li>
+                </ul>
+            </nav>
+            <button class="theme-toggle" aria-label="Alternar tema claro/oscuro">
+                <i class="theme-icon">☀️</i>
+            </button>
+        </div>
+    </header>
+
+    <div class="search-container">
+        <input type="text" id="globalSearch" placeholder="Buscar enfermedades, medicamentos o protocolos..." aria-label="Campo de búsqueda global">
+        <button id="searchBtn">Buscar</button>
+    </div>
+
+    <main>
+        <!-- Sección de Enciclopedia de Enfermedades -->
+        <section id="enciclopedia" class="section active">
+            <div class="section-header">
+                <h1 class="section-title"><i>📚</i> Enciclopedia de Enfermedades</h1>
+            </div>
+            <div class="card">
+                <div class="form-group">
+                    <label for="diseaseSearch">Buscar enfermedad:</label>
+                    <input type="text" id="diseaseSearch" placeholder="Ingrese el nombre de la enfermedad...">
+                </div>
+            </div>
+            <div id="diseaseResults" class="grid">
+                <!-- Los resultados de enfermedades se mostrarán aquí -->
+            </div>
+        </section>
+
+        <!-- Sección de Calculadora Profesional de Salud -->
+        <section id="calculadora" class="section">
+            <div class="section-header">
+                <h1 class="section-title"><i>🧮</i> Calculadora Profesional de Salud</h1>
+            </div>
+            <div class="tab-container">
+                <div class="tabs">
+                    <div class="tab active" data-tab="imc">IMC</div>
+                    <div class="tab" data-tab="dosis">Dosis</div>
+                    <div class="tab" data-tab="ritmo">Ritmo Cardíaco</div>
+                </div>
+                <div class="tab-content active" id="imc">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Cálculo de IMC (Índice de Masa Corporal)</h2>
+                        </div>
+                        <div class="form-group">
+                            <label for="weight">Peso (kg):</label>
+                            <input type="number" id="weight" placeholder="Ingrese el peso en kg">
+                        </div>
+                        <div class="form-group">
+                            <label for="height">Altura (cm):</label>
+                            <input type="number" id="height" placeholder="Ingrese la altura en cm">
+                        </div>
+                        <button id="calculateBMI">Calcular IMC</button>
+                        <div id="bmiResult" class="result"></div>
+                        <div class="card" style="margin-top: 1rem;">
+                            <h3>Interpretación del IMC:</h3>
+                            <table>
+                                <tr>
+                                    <th>IMC</th>
+                                    <th>Clasificación</th>
+                                </tr>
+                                <tr>
+                                    <td>Menos de 18.5</td>
+                                    <td>Bajo peso</td>
+                                </tr>
+                                <tr>
+                                    <td>18.5 - 24.9</td>
+                                    <td>Peso normal</td>
+                                </tr>
+                                <tr>
+                                    <td>25.0 - 29.9</td>
+                                    <td>Sobrepeso</td>
+                                </tr>
+                                <tr>
+                                    <td>30.0 - 34.9</td>
+                                    <td>Obesidad grado I</td>
+                                </tr>
+                                <tr>
+                                    <td>35.0 - 39.9</td>
+                                    <td>Obesidad grado II</td>
+                                </tr>
+                                <tr>
+                                    <td>40 o más</td>
+                                    <td>Obesidad grado III</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content" id="dosis">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Cálculo de Dosis de Medicamentos</h2>
+                        </div>
+                        <div class="form-group">
+                            <label for="patientWeight">Peso del paciente (kg):</label>
+                            <input type="number" id="patientWeight" placeholder="Ingrese el peso del paciente">
+                        </div>
+                        <div class="form-group">
+                            <label for="requiredDose">Dosis requerida (mg/kg):</label>
+                            <input type="number" id="requiredDose" placeholder="Ingrese la dosis requerida por kg">
+                        </div>
+                        <div class="form-group">
+                            <label for="concentration">Concentración del medicamento (mg/ml):</label>
+                            <input type="number" id="concentration" placeholder="Ingrese la concentración">
+                        </div>
+                        <button id="calculateDose">Calcular Dosis</button>
+                        <div id="doseResult" class="result"></div>
+                    </div>
+                </div>
+                <div class="tab-content" id="ritmo">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Cálculo de Ritmo Cardíaco y Presión Arterial</h2>
+                        </div>
+                        <div class="form-group">
+                            <label for="heartRate">Ritmo cardíaco (lpm):</label>
+                            <input type="number" id="heartRate" placeholder="Ingrese el ritmo cardíaco">
+                        </div>
+                        <div class="form-group">
+                            <label for="systolic">Presión arterial sistólica (mmHg):</label>
+                            <input type="number" id="systolic" placeholder="Ingrese la presión sistólica">
+                        </div>
+                        <div class="form-group">
+                            <label for="diastolic">Presión arterial diastólica (mmHg):</label>
+                            <input type="number" id="diastolic" placeholder="Ingrese la presión diastólica">
+                        </div>
+                        <button id="calculateVitals">Evaluar Signos Vitales</button>
+                        <div id="vitalsResult" class="result"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Protocolos y Procedimientos -->
+        <section id="protocolos" class="section">
+            <div class="section-header">
+                <h1 class="section-title"><i>📋</i> Protocolos y Procedimientos</h1>
+            </div>
+            <div class="card">
+                <div class="form-group">
+                    <label for="protocolSearch">Buscar protocolo:</label>
+                    <input type="text" id="protocolSearch" placeholder="Ingrese el nombre del protocolo...">
+                </div>
+            </div>
+            <div id="protocolResults" class="grid">
+                <!-- Los resultados de protocolos se mostrarán aquí -->
+            </div>
+        </section>
+
+        <!-- Sección de Plan de Atención de Enfermería (PAE) -->
+        <section id="pae" class="section">
+            <div class="section-header">
+                <h1 class="section-title"><i>📋</i> Plan de Atención de Enfermería (PAE)</h1>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Crear Nuevo PAE</h2>
+                </div>
+                <div class="form-group">
+                    <label for="paePatient">Nombre del paciente:</label>
+                    <input type="text" id="paePatient" placeholder="Nombre completo del paciente">
+                </div>
+                <div class="form-group">
+                    <label for="paeDiagnosis">Diagnóstico de enfermería:</label>
+                    <textarea id="paeDiagnosis" rows="3" placeholder="Ingrese el diagnóstico de enfermería"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="paeObjectives">Objetivos:</label>
+                    <textarea id="paeObjectives" rows="3" placeholder="Ingrese los objetivos del plan de cuidados"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="paeInterventions">Intervenciones:</label>
+                    <textarea id="paeInterventions" rows="3" placeholder="Ingrese las intervenciones de enfermería"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="paeEvaluation">Evaluación:</label>
+                    <textarea id="paeEvaluation" rows="3" placeholder="Ingrese los criterios de evaluación"></textarea>
+                </div>
+                <button id="savePAE">Guardar PAE</button>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">PAEs Guardados</h2>
+                </div>
+                <div id="paeList">
+                    <!-- Los PAEs guardados se mostrarán aquí -->
+                    <div class="no-results">No hay PAEs guardados. Cree uno nuevo para comenzar.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Buscador de Medicamentos -->
+        <section id="medicamentos" class="section">
+            <div class="section-header">
+                <h1 class="section-title"><i>💊</i> Buscador de Medicamentos</h1>
+            </div>
+            <div class="card">
+                <div class="form-group">
+                    <label for="medicationSearch">Buscar medicamento:</label>
+                    <input type="text" id="medicationSearch" placeholder="Ingrese el nombre del medicamento...">
+                </div>
+            </div>
+            <div id="medicationResults" class="grid">
+                <!-- Los resultados de medicamentos se mostrarán aquí -->
+            </div>
+        </section>
+
+        <!-- Sección de Herramientas de Referencia Rápida -->
+        <section id="referencias" class="section">
+            <div class="section-header">
+                <h1 class="section-title"><i>📊</i> Herramientas de Referencia Rápida</h1>
+            </div>
+            <div class="tab-container">
+                <div class="tabs">
+                    <div class="tab active" data-tab="vitals">Signos Vitales</div>
+                    <div class="tab" data-tab="lab">Valores de Laboratorio</div>
+                    <div class="tab" data-tab="scales">Escalas Clínicas</div>
+                </div>
+                <div class="tab-content active" id="vitals">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Signos Vitales Normales por Edad</h2>
+                        </div>
+                        <table>
+                            <tr>
+                                <th>Edad</th>
+                                <th>Ritmo Cardíaco (lpm)</th>
+                                <th>Presión Arterial (mmHg)</th>
+                                <th>Frecuencia Respiratoria (rpm)</th>
+                                <th>Temperatura (°C)</th>
+                            </tr>
+                            <tr>
+                                <td>Recién nacido (0-1 mes)</td>
+                                <td>100-160</td>
+                                <td>60-90 / 30-60</td>
+                                <td>30-60</td>
+                                <td>36.5-37.5</td>
+                            </tr>
+                            <tr>
+                                <td>Infante (1-12 meses)</td>
+                                <td>80-140</td>
+                                <td>70-100 / 50-70</td>
+                                <td>24-40</td>
+                                <td>36.5-37.5</td>
+                            </tr>
+                            <tr>
+                                <td>Preescolar (1-5 años)</td>
+                                <td>80-120</td>
+                                <td>80-110 / 50-80</td>
+                                <td>20-30</td>
+                                <td>36.5-37.5</td>
+                            </tr>
+                            <tr>
+                                <td>Escolar (6-12 años)</td>
+                                <td>70-110</td>
+                                <td>85-120 / 55-80</td>
+                                <td>16-24</td>
+                                <td>36.5-37.5</td>
+                            </tr>
+                            <tr>
+                                <td>Adolescente (13-18 años)</td>
+                                <td>60-100</td>
+                                <td>90-120 / 60-80</td>
+                                <td>12-20</td>
+                                <td>36.5-37.5</td>
+                            </tr>
+                            <tr>
+                                <td>Adulto (19-60 años)</td>
+                                <td>60-100</td>
+                                <td>90-120 / 60-80</td>
+                                <td>12-20</td>
+                                <td>36.5-37.5</td>
+                            </tr>
+                            <tr>
+                                <td>Adulto mayor (>60 años)</td>
+                                <td>60-100</td>
+                                <td>90-140 / 60-90</td>
+                                <td>12-20</td>
+                                <td>35.8-36.8</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-content" id="lab">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Valores Normales de Laboratorio</h2>
+                        </div>
+                        <table>
+                            <tr>
+                                <th>Parámetro</th>
+                                <th>Unidades</th>
+                                <th>Valores Normales</th>
+                            </tr>
+                            <tr>
+                                <td>Hemoglobina</td>
+                                <td>g/dL</td>
+                                <td>Hombres: 13.5-17.5<br>Mujeres: 12.0-15.5</td>
+                            </tr>
+                            <tr>
+                                <td>Hematocrito</td>
+                                <td>%</td>
+                                <td>Hombres: 40-50<br>Mujeres: 36-46</td>
+                            </tr>
+                            <tr>
+                                <td>Leucocitos</td>
+                                <td>mm³</td>
+                                <td>4,500-11,000</td>
+                            </tr>
+                            <tr>
+                                <td>Plaquetas</td>
+                                <td>mm³</td>
+                                <td>150,000-450,000</td>
+                            </tr>
+                            <tr>
+                                <td>Glucosa</td>
+                                <td>mg/dL</td>
+                                <td>70-100 (ayunas)</td>
+                            </tr>
+                            <tr>
+                                <td>Urea</td>
+                                <td>mg/dL</td>
+                                <td>10-50</td>
+                            </tr>
+                            <tr>
+                                <td> Creatinina</td>
+                                <td>mg/dL</td>
+                                <td>Hombres: 0.7-1.3<br>Mujeres: 0.6-1.1</td>
+                            </tr>
+                            <tr>
+                                <td>Colesterol total</td>
+                                <td>mg/dL</td>
+                                <td><200</td>
+                            </tr>
+                            <tr>
+                                <td>LDL</td>
+                                <td>mg/dL</td>
+                                <td><100 (óptimo)</td>
+                            </tr>
+                            <tr>
+                                <td>HDL</td>
+                                <td>mg/dL</td>
+                                <td>>40 (hombres)<br>>50 (mujeres)</td>
+                            </tr>
+                            <tr>
+                                <td>Triglicéridos</td>
+                                <td>mg/dL</td>
+                                <td><150</td>
+                            </tr>
+                            <tr>
+                                <td>Sodio</td>
+                                <td>mEq/L</td>
+                                <td>135-145</td>
+                            </tr>
+                            <tr>
+                                <td>Potasio</td>
+                                <td>mEq/L</td>
+                                <td>3.5-5.0</td>
+                            </tr>
+                            <tr>
+                                <td>Calcio</td>
+                                <td>mg/dL</td>
+                                <td>8.5-10.5</td>
+                            </tr>
+                            <tr>
+                                <td>Bilirrubina total</td>
+                                <td>mg/dL</td>
+                                <td>0.3-1.2</td>
+                            </tr>
+                            <tr>
+                                <td>Transaminasas (TGO/TGP)</td>
+                                <td>U/L</td>
+                                <td>5-40</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-content" id="scales">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Escalas Clínicas</h2>
+                        </div>
+                        
+                        <h3>Escala de Glasgow</h3>
+                        <table>
+                            <tr>
+                                <th>Respuesta</th>
+                                <th>Puntos</th>
+                                <th>Descripción</th>
+                            </tr>
+                            <tr>
+                                <td rowspan="4">Ocular</td>
+                                <td>4</td>
+                                <td>Abre los ojos espontáneamente</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Abre los ojos al hablarle</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Abre los ojos al dolor</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>No abre los ojos</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="5">Verbal</td>
+                                <td>5</td>
+                                <td>Orientado, conversa normalmente</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Desorientado, habla incoherente</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Palabras inapropiadas</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Sonidos incomprensibles</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>No emite sonidos</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="6">Motora</td>
+                                <td>6</td>
+                                <td>Obedece órdenes</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Localiza el dolor</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Retira al dolor</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Flexión anormal (decorticación)</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Extensión anormal (descerebración)</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>No hay respuesta motora</td>
+                            </tr>
+                        </table>
+                        
+                        <h3 style="margin-top: 2rem;">Escala de Apgar</h3>
+                        <table>
+                            <tr>
+                                <th>Parámetro</th>
+                                <th>0 puntos</th>
+                                <th>1 punto</th>
+                                <th>2 puntos</th>
+                            </tr>
+                            <tr>
+                                <td>Color</td>
+                                <td>Azul o pálido</td>
+                                <td>Cuerpo rosado, extremidades azules</td>
+                                <td>Rosado en todo el cuerpo</td>
+                            </tr>
+                            <tr>
+                                <td>Ritmo cardíaco</td>
+                                <td>Ausente</td>
+                                <td>Menos de 100 lpm</td>
+                                <td>Más de 100 lpm</td>
+                            </tr>
+                            <tr>
+                                <td>Reflejos</td>
+                                <td>Sin respuesta</td>
+                                <td>Facial (muecas)</td>
+                                <td>Llanto fuerte</td>
+                            </tr>
+                            <tr>
+                                <td>Movimientos</td>
+                                <td>Flácido</td>
+                                <td>Alguna flexión</td>
+                                <td>Activo, buena flexión</td>
+                            </tr>
+                            <tr>
+                                <td>Respiración</td>
+                                <td>Ausente</td>
+                                <td>Llanto débil, irregular</td>
+                                <td>Llanto fuerte, regular</td>
+                            </tr>
+                        </table>
+                        <p><strong>Interpretación:</strong> 8-10: Buen estado; 5-7: Depresión leve; 3-4: Depresión moderada; 0-2: Depresión severa.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>MediGuide</h3>
+                <p>Una herramienta integral para profesionales de la salud.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="#enciclopedia">Enciclopedia</a></li>
+                    <li><a href="#calculadora">Calculadora</a></li>
+                    <li><a href="#protocolos">Protocolos</a></li>
+                    <li><a href="#pae">PAE</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Recursos</h3>
+                <ul>
+                    <li><a href="#medicamentos">Medicamentos</a></li>
+                    <li><a href="#referencias">Referencias</a></li>
+                    <li><a href="#">Guías Clínicas</a></li>
+                    <li><a href="#">Actualizaciones</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2023 MediGuide - Herramienta Médica Integral. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <script>
+        // Datos de ejemplo para la aplicación
+        const diseases = [
+            {
+                id: 1,
+                name: "Diabetes Mellitus",
+                symptoms: ["Poliuria", "Polidipsia", "Polidipsia", "Pérdida de peso", "Fatiga"],
+                diagnosis: "Glicemia en ayunas ≥ 126 mg/dL, HbA1c ≥ 6.5%, glicemia al azar ≥ 200 mg/dL con síntomas",
+                treatment: "Control dietético, ejercicio, metformina, insulina según necesidad",
+                category: "Endocrinología"
+            },
+            {
+                id: 2,
+                name: "Hipertensión Arterial",
+                symptoms: ["Asintomática en etapas tempranas", "Cefalea", "Mareos", "Visión borrosa"],
+                diagnosis: "Presión arterial sistólica ≥ 140 mmHg y/o diastólica ≥ 90 mmHg en múltiples mediciones",
+                treatment: "Cambios en estilo de vida, IECA, ARA II, diuréticos, betabloqueadores, calcio antagonistas",
+                category: "Cardiología"
+            },
+            {
+                id: 3,
+                name: "Neumonía",
+                symptoms: ["Fiebre", "Tos", "Expectoración", "Dolor torácico", "Disnea"],
+                diagnosis: "Radiografía de tórax, signos clínicos, análisis de sangre",
+                treatment: "Antibióticos según tipo (amoxicilina, macrólidos, fluoroquinolonas), oxigenoterapia si es necesario",
+                category: "Neumología"
+            },
+            {
+                id: 4,
+                name: "Insuficiencia Cardíaca",
+                symptoms: ["Disnea", "Ortopnea", "Disnea paroxística nocturna", "Edema periférico", "Fatiga"],
+                diagnosis: "Ecocardiograma, BNP, radiografía de tórax, ECG",
+                treatment: "Diuréticos, IECA, betabloqueadores, antagonistas de la aldosterona, digoxina",
+                category: "Cardiología"
+            },
+            {
+                id: 5,
+                name: "Enfermedad Pulmonar Obstructiva Crónica (EPOC)",
+                symptoms: ["Tos crónica", "Expectoración", "Disnea progresiva", "Sibilancias"],
+                diagnosis: "Espirograma con relación VEF1/CVF < 0.7 post broncodilatador",
+                treatment: "Dejar de fumar, broncodilatadores, corticoides inhalados, oxigenoterapia crónica si es necesario",
+                category: "Neumología"
+            },
+            {
+                id: 6,
+                name: "Gastritis",
+                symptoms: ["Dolor epigástrico", "Náuseas", "Vómitos", "Sensación de saciedad precoz"],
+                diagnosis: "Endoscopia digestiva alta, prueba de ureasa rápida para Helicobacter pylori",
+                treatment: "IBP, triple terapia si hay Helicobacter pylori, evitar AINEs",
+                category: "Gastroenterología"
+            }
+        ];
+
+        const medications = [
+            {
+                id: 1,
+                name: "Paracetamol",
+                category: "Analgésico/Antipirético",
+                indications: ["Dolor leve a moderado", "Fiebre"],
+                dosage: "500-1000 mg cada 4-6 horas (máx. 4g/día)",
+                contraindications: ["Hipersensibilidad", "Insuficiencia hepática grave"],
+                sideEffects: ["Náuseas", "Erupción cutánea", "Alteraciones hepáticas en sobredosis"],
+                interactions: ["Alcohol (aumenta toxicidad hepática)", "Warfarina (puede aumentar riesgo de hemorragia)"]
+            },
+            {
+                id: 2,
+                name: "Ibuprofeno",
+                category: "AINE",
+                indications: ["Dolor", "Inflamación", "Fiebre"],
+                dosage: "200-400 mg cada 4-6 horas (máx. 1200mg/día sin prescripción)",
+                contraindications: ["Úlcera péptica activa", "Insuficiencia renal grave", "Asma inducida por AINEs"],
+                sideEffects: ["Dolor abdominal", "Náuseas", "Úlcera péptica", "Retención de líquidos"],
+                interactions: ["Warfarina (aumenta riesgo de hemorragia)", "Litio (aumenta niveles)", "IECA (reduce efecto)"]
+            },
+            {
+                id: 3,
+                name: "Amoxicilina",
+                category: "Antibiótico (Penicilina)",
+                indications: ["Infecciones bacterianas (otitis, sinusitis, neumonía, etc.)"],
+                dosage: "500 mg cada 8 horas o 875 mg cada 12 horas",
+                contraindications: ["Alergia a penicilinas", "Mononucleosis infecciosa"],
+                sideEffects: ["Diarrea", "Náuseas", "Erupción cutánea", "Candidiasis oral"],
+                interactions: ["Metotrexato (aumenta toxicidad)", "Anticoagulantes (puede aumentar efecto)"]
+            },
+            {
+                id: 4,
+                name: "Loratadina",
+                category: "Antihistamínico",
+                indications: ["Rinitis alérgica", "Urticaria"],
+                dosage: "10 mg una vez al día",
+                contraindications: ["Hipersensibilidad", "Insuficiencia hepática grave"],
+                sideEffects: ["Cefalea", "Somnolencia (raro)", "Secura de boca"],
+                interactions: ["Eritromicina (aumenta niveles)", "Cetoconazol (aumenta niveles)"]
+            },
+            {
+                id: 5,
+                name: "Omeprazol",
+                category: "IBP",
+                indications: ["Enfermedad por reflujo gastroesofágico", "Úlcera péptica", "Síndrome de Zollinger-Ellison"],
+                dosage: "20-40 mg una vez al día antes del desayuno",
+                contraindications: ["Hipersensibilidad", "Concomitancia con atazanavir"],
+                sideEffects: ["Dolor abdominal", "Náuseas", "Diarrea", "Dolor de cabeza"],
+                interactions: ["Warfarina (puede aumentar INR)", "Digoxina (puede aumentar niveles)", "Ketoconazol (disminuye absorción)"]
+            },
+            {
+                id: 6,
+                name: "Metformina",
+                category: "Antidiabético oral",
+                indications: ["Diabetes mellitus tipo 2"],
+                dosage: "500-1000 mg dos veces al día con las comidas",
+                contraindications: ["Insuficiencia renal (TFG < 30 ml/min)", "Acidosis metabólica", "Insuficiencia hepática grave"],
+                sideEffects: ["Náuseas", "Diarrea", "Dolor abdominal", "Pérdida de apetito"],
+                interactions: ["Contrastes yodados (riesgo de acidosis láctica)", "Alcohol (aumenta riesgo de acidosis láctica)"]
+            }
+        ];
+
+        const protocols = [
+            {
+                id: 1,
+                name: "Reanimación Cardiopulmonar (RCP) Básica",
+                category: "Emergencias",
+                steps: [
+                    "Verificar seguridad del entorno",
+                    "Evaluar respuesta del paciente (toque y habla)",
+                    "Activar sistema de respuesta médica de emergencia",
+                    "Evaluar respiración (observar movimiento torácico, escuchar y sentir durante 5-10 segundos)",
+                    "Si no hay respiración normal, iniciar compresiones torácicas (100-120/min, profundidad 5-6 cm)",
+                    "Relación compresión-ventilación: 30:2",
+                    "Continuar hasta que llegue ayuda avanzada o el paciente reaccione"
+                ],
+                notes: "Para adultos, niños y lactantes. En niños y lactantes, usar una o dos manos según tamaño."
+            },
+            {
+                id: 2,
+                name: "Manejo de Hipoglucemia",
+                category: "Endocrinología",
+                steps: [
+                    "Evaluar nivel de conciencia del paciente",
+                    "Si el paciente está consciente y puede tragar: administrar 15g de carbohidratos simples (4 onzas de jugo, 3-4 tabletas de glucosa, 1 cucharada de miel)",
+                    "Reevaluar glucemia a los 15 minutos",
+                    "Si persiste hipoglucemia, repetir la dosis",
+                    "Una vez normalizada la glucemia, administrar alimento con carbohidratos complejos",
+                    "Si el paciente está inconsciente: administrar glucagón 1 mg IM/SC o dextrosa al 50% 25g IV"
+                ],
+                notes: "Monitorizar glucemia después del tratamiento. Investigar causa de hipoglucemia."
+            },
+            {
+                id: 3,
+                name: "Control de Hemorragia",
+                category: "Emergencias",
+                steps: [
+                    "Asegurar seguridad del entorno",
+                    "Aplicar presión directa sobre la herida con gasa estéril",
+                    "Elevar la extremidad por encima del nivel del corazón si es posible",
+                    "Aplicar vendaje compresivo",
+                    "Si persiste hemorragia importante, considerar punto de presión arterial",
+                    "Aplicar torniquete si es hemorragia masiva que no responde a presión directa",
+                    "Monitorizar signos vitales y estado de conciencia",
+                    "Preparar para transfusión sanguínea si es necesario"
+                ],
+                notes: "Documentar hora de aplicación del torniquete. No retirar vendajes empapados, agregar nuevos encima."
+            },
+            {
+                id: 4,
+                name: "Protocolo de Vías Aéreas Difíciles",
+                category: "Anestesiología",
+                steps: [
+                    "Evaluar predicción de vía aérea difícil (Mallampati, distancia tiromental, movilidad cervical, etc.)",
+                    "Preoxigenar al paciente con oxígeno al 100% durante 3-5 minutos",
+                    "Intentar intubación con laringoscopio convencional",
+                    "Si falla, intentar con laringoscopio de hoja curva o recta según necesidad",
+                    "Si persiste dificultad, usar dispositivo de vía aérea supraglótica (LMA)",
+                    "Si no se logra ventilación, realizar cricotirotomía quirúrgica o percutánea"
+                ],
+                notes: "Seguir algoritmo de vía aérea difícil. Tener equipo de rescate disponible."
+            },
+            {
+                id: 5,
+                name: "Manejo de Anafilaxia",
+                category: "Alergia/Inmunología",
+                steps: [
+                    "Identificar síntomas de anafilaxia (urticaria, angioedema, disnea, hipotensión, etc.)",
+                    "Administrar adrenalina 0.3-0.5 mg (1:1000) IM en muslo anterior",
+                    "Administrar oxígeno al 100%",
+                    "Acceso venoso con solución salina normal",
+                    "Administrar antihistamínicos (difenhidramina 25-50 mg IV/IM)",
+                    "Administrar corticosteroides (hidrocortisona 100-200 mg IV)",
+                    "Monitorizar signos vitales continuamente",
+                    "Preparar para reanimación si empeora"
+                ],
+                notes: "La adrenalina es el tratamiento de elección. No retrasar su administración."
+            }
+        ];
+
+        // Estado de la aplicación
+        let currentTheme = 'light';
+        let paeList = [];
+
+        // Funciones de utilidad
+        function showSection(sectionId) {
+            // Ocultar todas las secciones
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Mostrar la sección seleccionada
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Actualizar la navegación
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            const activeLink = document.querySelector(`.nav-link[data-section="${sectionId}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+            
+            // Guardar la sección actual en el historial
+            history.pushState(null, null, `#${sectionId}`);
+        }
+
+        function toggleMobileMenu() {
+            const navUl = document.querySelector('nav ul');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
+            
+            navUl.classList.toggle('show');
+            menuBtn.setAttribute('aria-expanded', !isExpanded);
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const themeToggle = document.querySelector('.theme-toggle');
+            const themeIcon = document.querySelector('.theme-icon');
+            
+            if (currentTheme === 'light') {
+                body.classList.add('dark-mode');
+                themeIcon.textContent = '🌙';
+                currentTheme = 'dark';
+            } else {
+                body.classList.remove('dark-mode');
+                themeIcon.textContent = '☀️';
+                currentTheme = 'light';
+            }
+            
+            // Guardar preferencia de tema
+            localStorage.setItem('mediguide-theme', currentTheme);
+        }
+
+        function searchItems(query, items, searchFields) {
+            if (!query) return items;
+            
+            const lowerQuery = query.toLowerCase();
+            return items.filter(item => {
+                return searchFields.some(field => {
+                    if (item[field] && typeof item[field] === 'string') {
+                        return item[field].toLowerCase().includes(lowerQuery);
+                    }
+                    return false;
+                });
+            });
+        }
+
+        function renderDiseaseResults(diseases) {
+            const resultsContainer = document.getElementById('diseaseResults');
+            
+            if (diseases.length === 0) {
+                resultsContainer.innerHTML = '<div class="no-results">No se encontraron enfermedades que coincidan con su búsqueda.</div>';
+                return;
+            }
+            
+            resultsContainer.innerHTML = diseases.map(disease => `
+                <div class="disease-card">
+                    <div class="card-content">
+                        <h3 class="card-title-sm">${disease.name}</h3>
+                        <p class="card-text"><strong>Síntomas:</strong> ${disease.symptoms.join(', ')}</p>
+                        <p class="card-text"><strong>Diagnóstico:</strong> ${disease.diagnosis}</p>
+                        <p class="card-text"><strong>Tratamiento:</strong> ${disease.treatment}</p>
+                        <span class="badge badge.primary">${disease.category}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderMedicationResults(medications) {
+            const resultsContainer = document.getElementById('medicationResults');
+            
+            if (medications.length === 0) {
+                resultsContainer.innerHTML = '<div class="no-results">No se encontraron medicamentos que coincidan con su búsqueda.</div>';
+                return;
+            }
+            
+            resultsContainer.innerHTML = medications.map(medication => `
+                <div class="medication-card">
+                    <div class="card-content">
+                        <h3 class="card-title-sm">${medication.name}</h3>
+                        <p class="card-text"><strong>Categoría:</strong> ${medication.category}</p>
+                        <p class="card-text"><strong>Indicaciones:</strong> ${medication.indications}</p>
+                        <p class="card-text"><strong>Dosificación:</strong> ${medication.dosage}</p>
+                        <p class="card-text"><strong>Contraindicaciones:</strong> ${medication.contraindications}</p>
+                        <p class="card-text"><strong>Efectos secundarios:</strong> ${medication.sideEffects.join(', ')}</p>
+                        <p class="card-text"><strong>Interacciones:</strong> ${medication.interactions.join(', ')}</p>
+                        <span class="badge badge.success">${medication.category}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderProtocolResults(protocols) {
+            const resultsContainer = document.getElementById('protocolResults');
+            
+            if (protocols.length === 0) {
+                resultsContainer.innerHTML = '<div class="no-results">No se encontraron protocolos que coincidan con su búsqueda.</div>';
+                return;
+            }
+            
+            resultsContainer.innerHTML = protocols.map(protocol => `
+                <div class="protocol-card">
+                    <div class="card-content">
+                        <h3 class="card-title-sm">${protocol.name}</h3>
+                        <p class="card-text"><strong>Categoría:</strong> ${protocol.category}</p>
+                        <p class="card-text"><strong>Pasos:</strong></p>
+                        <ol>
+                            ${protocol.steps.map(step => `<li>${step}</li>`).join('')}
+                        </ol>
+                        <p class="card-text"><strong>Notas:</strong> ${protocol.notes}</p>
+                        <span class="badge badge.warning">${protocol.category}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function calculateBMI() {
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value) / 100; // Convertir a metros
+            
+            if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
+                document.getElementById('bmiResult').innerHTML = '<div class="result danger">Por favor, ingrese valores válidos para peso y altura.</div>';
+                return;
+            }
+            
+            const bmi = weight / (height * height);
+            let interpretation = '';
+            let resultClass = '';
+            
+            if (bmi < 18.5) {
+                interpretation = 'Bajo peso';
+                resultClass = 'warning';
+            } else if (bmi < 25) {
+                interpretation = 'Peso normal';
+                resultClass = 'success';
+            } else if (bmi < 30) {
+                interpretation = 'Sobrepeso';
+                resultClass = 'warning';
+            } else if (bmi < 35) {
+                interpretation = 'Obesidad grado I';
+                resultClass = 'danger';
+            } else if (bmi < 40) {
+                interpretation = 'Obesidad grado II';
+                resultClass = 'danger';
+            } else {
+                interpretation = 'Obesidad grado III';
+                resultClass = 'danger';
+            }
+            
+            document.getElementById('bmiResult').innerHTML = `
+                <div class="result ${resultClass}">
+                    <strong>IMC:</strong> ${bmi.toFixed(2)} kg/m² - ${interpretation}
+                </div>
+            `;
+        }
+
+        function calculateDose() {
+            const weight = parseFloat(document.getElementById('patientWeight').value);
+            const dosePerKg = parseFloat(document.getElementById('requiredDose').value);
+            const concentration = parseFloat(document.getElementById('concentration').value);
+            
+            if (isNaN(weight) || isNaN(dosePerKg) || isNaN(concentration) || weight <= 0 || dosePerKg <= 0 || concentration <= 0) {
+                document.getElementById('doseResult').innerHTML = '<div class="result danger">Por favor, ingrese valores válidos para todos los campos.</div>';
+                return;
+            }
+            
+            const totalDose = weight * dosePerKg;
+            const volume = totalDose / concentration;
+            
+            document.getElementById('doseResult').innerHTML = `
+                <div class="result success">
+                    <strong>Dosis total:</strong> ${totalDose.toFixed(2)} mg<br>
+                    <strong>Volume a administrar:</strong> ${volume.toFixed(2)} ml
+                </div>
+            `;
+        }
+
+        function calculateVitals() {
+            const heartRate = parseInt(document.getElementById('heartRate').value);
+            const systolic = parseInt(document.getElementById('systolic').value);
+            const diastolic = parseInt(document.getElementById('diastolic').value);
+            
+            if (isNaN(heartRate) || isNaN(systolic) || isNaN(diastolic)) {
+                document.getElementById('vitalsResult').innerHTML = '<div class="result danger">Por favor, ingrese valores válidos para todos los campos.</div>';
+                return;
+            }
+            
+            let heartRateStatus = '';
+            let heartRateClass = '';
+            let pressureStatus = '';
+            let pressureClass = '';
+            
+            // Evaluar ritmo cardíaco
+            if (heartRate < 60) {
+                heartRateStatus = 'Bradycardia';
+                heartRateClass = 'danger';
+            } else if (heartRate > 100) {
+                heartRateStatus = 'Taquicardia';
+                heartRateClass = 'danger';
+            } else {
+                heartRateStatus = 'Normal';
+                heartRateClass = 'success';
+            }
+            
+            // Evaluar presión arterial
+            if (systolic < 90 || diastolic < 60) {
+                pressureStatus = 'Hipotensión';
+                pressureClass = 'danger';
+            } else if (systolic >= 140 || diastolic >= 90) {
+                pressureStatus = 'Hipertensión';
+                pressureClass = 'danger';
+            } else if (systolic >= 120 && systolic < 140) {
+                pressureStatus = 'Prehipertensión';
+                pressureClass = 'warning';
+            } else {
+                pressureStatus = 'Normal';
+                pressureClass = 'success';
+            }
+            
+            document.getElementById('vitalsResult').innerHTML = `
+                <div class="result ${heartRateClass}">
+                    <strong>Ritmo cardíaco:</strong> ${heartRate} lpm - ${heartRateStatus}
+                </div>
+                <div class="result ${pressureClass}" style="margin-top: 0.5rem;">
+                    <strong>Presión arterial:</strong> ${systolic}/${diastolic} mmHg - ${pressureStatus}
+                </div>
+            `;
+        }
+
+        function savePAE() {
+            const patient = document.getElementById('paePatient').value.trim();
+            const diagnosis = document.getElementById('paeDiagnosis').value.trim();
+            const objectives = document.getElementById('paeObjectives').value.trim();
+            const interventions = document.getElementById('paeInterventions').value.trim();
+            const evaluation = document.getElementById('paeEvaluation').value.trim();
+            
+            if (!patient || !diagnosis || !objectives || !interventions || !evaluation) {
+                alert('Por favor, complete todos los campos del PAE.');
+                return;
+            }
+            
+            const newPAE = {
+                id: Date.now(),
+                patient,
+                diagnosis,
+                objectives,
+                interventions,
+                evaluation,
+                date: new Date().toLocaleDateString('es-ES')
+            };
+            
+            paeList.unshift(newPAE); // Agregar al inicio de la lista
+            savePAEList();
+            renderPAEList();
+            
+            // Limpiar el formulario
+            document.getElementById('paePatient').value = '';
+            document.getElementById('paeDiagnosis').value = '';
+            document.getElementById('paeObjectives').value = '';
+            document.getElementById('paeInterventions').value = '';
+            document.getElementById('paeEvaluation').value = '';
+            
+            alert('PAE guardado correctamente.');
+        }
+
+        function deletePAE(id) {
+            if (confirm('¿Está seguro de que desea eliminar este PAE?')) {
+                paeList = paeList.filter(pae => pae.id !== id);
+                savePAEList();
+                renderPAEList();
+            }
+        }
+
+        function renderPAEList() {
+            const paeListContainer = document.getElementById('paeList');
+            
+            if (paeList.length === 0) {
+                paeListContainer.innerHTML = '<div class="no-results">No hay PAEs guardados. Cree uno nuevo para comenzar.</div>';
+                return;
+            }
+            
+            paeListContainer.innerHTML = paeList.map(pae => `
+                <div class="pae-item">
+                    <div class="pae-header">
+                        <div class="pae-title">PAE para ${pae.patient} - ${pae.date}</div>
+                        <div class="pae-actions">
+                            <button class="accent" onclick="deletePAE(${pae.id})">Eliminar</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Diagnóstico:</label>
+                        <p>${pae.diagnosis}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Objetivos:</label>
+                        <p>${pae.objectives}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Intervenciones:</label>
+                        <p>${pae.interventions}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Evaluación:</label>
+                        <p>${pae.evaluation}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function savePAEList() {
+            localStorage.setItem('mediguide-pae', JSON.stringify(paeList));
+        }
+
+        function loadPAEList() {
+            const saved = localStorage.getItem('mediguide-pae');
+            if (saved) {
+                try {
+                    paeList = JSON.parse(saved);
+                    renderPAEList();
+                } catch (e) {
+                    console.error('Error al cargar PAEs:', e);
+                }
+            }
+        }
+
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('mediguide-theme');
+            if (savedTheme) {
+                currentTheme = savedTheme;
+                if (currentTheme === 'dark') {
+                    document.body.classList.add('dark-mode');
+                    document.querySelector('.theme-icon').textContent = '🌙';
+                }
+            }
+        }
+
+        function globalSearch() {
+            const query = document.getElementById('globalSearch').value.trim();
+            if (!query) {
+                alert('Por favor, ingrese un término de búsqueda.');
+                return;
+            }
+            
+            // Buscar en todas las categorías
+            const diseaseResults = searchItems(query, diseases, ['name', 'symptoms', 'diagnosis', 'treatment', 'category']);
+            const medicationResults = searchItems(query, medications, ['name', 'indications', 'dosage', 'contraindications', 'sideEffects', 'interactions', 'category']);
+            const protocolResults = searchItems(query, protocols, ['name', 'steps', 'notes', 'category']);
+            
+            // Mostrar resultados
+            if (diseaseResults.length > 0 || medicationResults.length > 0 || protocolResults.length > 0) {
+                let resultsHtml = '<h2>Resultados de búsqueda para "' + query + '"</h2>';
+                
+                if (diseaseResults.length > 0) {
+                    resultsHtml += '<h3>Enfermedades</h3>';
+                    resultsHtml += '<div class="grid">';
+                    resultsHtml += diseaseResults.map(disease => `
+                        <div class="disease-card">
+                            <div class="card-content">
+                                <h3 class="card-title-sm">${disease.name}</h3>
+                                <p class="card-text"><strong>Síntomas:</strong> ${disease.symptoms.join(', ')}</p>
+                                <p class="card-text"><strong>Diagnóstico:</strong> ${disease.diagnosis}</p>
+                                <p class="card-text"><strong>Tratamiento:</strong> ${disease.treatment}</p>
+                                <span class="badge badge.primary">${disease.category}</span>
+                            </div>
+                        </div>
+                    `).join('');
+                    resultsHtml += '</div>';
+                }
+                
+                if (medicationResults.length > 0) {
+                    resultsHtml += '<h3 style="margin-top: 2rem;">Medicamentos</h3>';
+                    resultsHtml += '<div class="grid">';
+                    resultsHtml += medicationResults.map(medication => `
+                        <div class="medication-card">
+                            <div class="card-content">
+                                <h3 class="card-title-sm">${medication.name}</h3>
+                                <p class="card-text"><strong>Categoría:</strong> ${medication.category}</p>
+                                <p class="card-text"><strong>Indicaciones:</strong> ${medication.indications}</p>
+                                <p class="card-text"><strong>Dosificación:</strong> ${medication.dosage}</p>
+                                <span class="badge badge.success">${medication.category}</span>
+                            </div>
+                        </div>
+                    `).join('');
+                    resultsHtml += '</div>';
+                }
+                
+                if (protocolResults.length > 0) {
+                    resultsHtml += '<h3 style="margin-top: 2rem;">Protocolos</h3>';
+                    resultsHtml += '<div class="grid">';
+                    resultsHtml += protocolResults.map(protocol => `
+                        <div class="protocol-card">
+                            <div class="card-content">
+                                <h3 class="card-title-sm">${protocol.name}</h3>
+                                <p class="card-text"><strong>Categoría:</strong> ${protocol.category}</p>
+                                <p class="card-text"><strong>Pasos:</strong></p>
+                                <ol>
+                                    ${protocol.steps.slice(0, 3).map(step => `<li>${step}</li>`).join('')}
+                                    ${protocol.steps.length > 3 ? '<li>...</li>' : ''}
+                                </ol>
+                                <span class="badge badge.warning">${protocol.category}</span>
+                            </div>
+                        </div>
+                    `).join('');
+                    resultsHtml += '</div>';
+                }
+                
+                // Crear un modal para mostrar los resultados
+                const modal = document.createElement('div');
+                modal.style.position = 'fixed';
+                modal.style.top = '0';
+                modal.style.left = '0';
+                modal.style.width = '100%';
+                modal.style.height = '100%';
+                modal.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+                modal.style.display = 'flex';
+                modal.style.justifyContent = 'center';
+                modal.style.alignItems = 'center';
+                modal.style.zIndex = '1000';
+                
+                modal.innerHTML = `
+                    <div style="background: var(--card-bg); border-radius: 8px; padding: 2rem; max-width: 800px; max-height: 80vh; overflow-y: auto; width: 90%; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);">
+                        ${resultsHtml}
+                        <div style="text-align: center; margin-top: 1.5rem;">
+                            <button id="closeSearchModal" style="padding: 0.75rem 1.5rem; background-color: var(--primary-color); color: white; border: none; border-radius: 4px; cursor: pointer;">Cerrar</button>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(modal);
+                
+                document.getElementById('closeSearchModal').addEventListener('click', () => {
+                    document.body.removeChild(modal);
+                });
+            } else {
+                alert('No se encontraron resultados para su búsqueda.');
+            }
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cargar datos iniciales
+            renderDiseaseResults(diseases);
+            renderMedicationResults(medications);
+            renderProtocolResults(protocols);
+            loadPAEList();
+            loadTheme();
+            
+            // Navegación
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionId = this.getAttribute('data-section');
+                    showSection(sectionId);
+                });
+            });
+            
+            // Menú móvil
+            document.querySelector('.mobile-menu-btn').addEventListener('click', toggleMobileMenu);
+            
+            // Alternar tema
+            document.querySelector('.theme-toggle').addEventListener('click', toggleTheme);
+            
+            // Búsqueda global
+            document.getElementById('searchBtn').addEventListener('click', globalSearch);
+            document.getElementById('globalSearch').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    globalSearch();
+                }
+            });
+            
+            // Búsqueda en secciones específicas
+            document.getElementById('diseaseSearch').addEventListener('input', function() {
+                const query = this.value;
+                const results = searchItems(query, diseases, ['name', 'symptoms', 'diagnosis', 'treatment', 'category']);
+                renderDiseaseResults(results);
+            });
+            
+            document.getElementById('medicationSearch').addEventListener('input', function() {
+                const query = this.value;
+                const results = searchItems(query, medications, ['name', 'indications', 'dosage', 'contraindications', 'sideEffects', 'interactions', 'category']);
+                renderMedicationResults(results);
+            });
+            
+            document.getElementById('protocolSearch').addEventListener('input', function() {
+                const query = this.value;
+                const results = searchItems(query, protocols, ['name', 'steps', 'notes', 'category']);
+                renderProtocolResults(results);
+            });
+            
+            // Calculadoras
+            document.getElementById('calculateBMI').addEventListener('click', calculateBMI);
+            document.getElementById('calculateDose').addEventListener('click', calculateDose);
+            document.getElementById('calculateVitals').addEventListener('click', calculateVitals);
+            
+            // PAE
+            document.getElementById('savePAE').addEventListener('click', savePAE);
+            
+            // Tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remover clase active de todos los tabs y contenidos
+                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                    
+                    // Añadir clase active al tab clickeado
+                    this.classList.add('active');
+                    
+                    // Mostrar el contenido correspondiente
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // Manejo del historial del navegador
+            window.addEventListener('popstate', function() {
+                const hash = window.location.hash.substring(1);
+                if (hash) {
+                    showSection(hash);
+                }
+            });
+            
+            // Mostrar sección inicial basada en el hash
+            const hash = window.location.hash.substring(1);
+            if (hash) {
+                showSection(hash);
+            }
+        });
+
+        // Manejo de errores
+        window.addEventListener('error', function(e) {
+            console.error('Error en la aplicación:', e.error);
+            // Podría mostrar un mensaje amigable al usuario si es necesario
+        });
+    </script>
+</body>
+</html>
