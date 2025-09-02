@@ -1,3 +1,5 @@
+You're right, the code has several critical issues that prevent it from working properly. Let me create a simplified, functional version that will work on GitHub Pages:
+
 ```html
 <!DOCTYPE html>
 <html lang="es">
@@ -194,7 +196,7 @@
         }
         
         .user-profile {
-            display: none;
+            display: flex;
             align-items: center;
             gap: var(--spacer-sm);
             background: var(--surface-container);
@@ -203,10 +205,6 @@
             border: 1px solid var(--outline);
             cursor: pointer;
             transition: var(--transition);
-        }
-        
-        .user-profile.active {
-            display: flex;
         }
         
         .user-profile:hover {
@@ -976,28 +974,10 @@
             <button id="btn-recetas"><span class="material-symbols-outlined">inventory</span>Recetas</button>
             <button id="btn-educacion"><span class="material-symbols-outlined">book_4</span>Educación</button>
             <button id="btn-calculadoras"><span class="material-symbols-outlined">calculate</span>Calculadoras</button>
-            <button id="btn-login"><span class="material-symbols-outlined">login</span>Iniciar Sesión</button>
         </nav>
         
-        <!-- Página de Inicio de Sesión -->
-        <div class="page active" id="page-login">
-            <div style="max-width: 400px; margin: 5rem auto; padding: var(--spacer-xl); background: var(--surface); border-radius: var(--shapes-corner-xl); box-shadow: var(--elevation-2);">
-                <h2 style="color: var(--clinico-primary); font-family: var(--font); margin-bottom: var(--spacer-lg); text-align: center;">Iniciar Sesión</h2>
-                <div class="form-group">
-                    <label for="email">Correo Electrónico</label>
-                    <input type="email" id="email" placeholder="su.correo@hospital.com">
-                </div>
-                <div class="form-group">
-                    <label for="password">Contraseña</label>
-                    <input type="password" id="password" placeholder="••••••••">
-                </div>
-                <button class="btn-primary" id="loginBtn" style="width: 100%; margin-top: var(--spacer-xl);"><span class="material-symbols-outlined">login</span>Iniciar Sesión</button>
-                <p style="text-align: center; margin-top: var(--spacer-md); color: var(--on-surface-variant);">¿No tiene cuenta? <a href="#" style="color: var(--clinico-primary); text-decoration: none;" id="registerLink">Regístrese aquí</a></p>
-            </div>
-        </div>
-        
         <!-- Dashboard Principal -->
-        <div class="page" id="page-dashboard">
+        <div class="page active" id="page-dashboard">
             <div class="glass-home">
                 <h1 class="glass-title">Bienvenido de vuelta, <span id="welcomeName">Dr. Pérez</span></h1>
                 <p class="glass-subtitle">Hoy tiene 3 consultas programadas y 2 pacientes con seguimiento pendiente. El paciente Juan Pérez requiere evaluación de su estado inmunológico por VIH.</p>
@@ -1107,10 +1087,47 @@
             </div>
             
             <div class="dashboard-grid" id="pacientesGrid">
-                <!-- Los pacientes se cargarán dinámicamente -->
+                <div class="dashboard-card">
+                    <div class="dashboard-card-header">
+                        <h3 class="dashboard-card-title">María López Fernández</h3>
+                        <div class="level-badge">68</div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: auto 1fr; gap: var(--spacer-sm);">
+                        <span style="font-weight: 500;">Género:</span><span>Femenino</span>
+                        <span style="font-weight: 500;">Diagnóstico:</span><span>Diabetes tipo 2, Hipertensión</span>
+                        <span style="font-weight: 500;">Última visita:</span><span>15/03/2024</span>
+                    </div>
+                    <button class="btn-secondary" style="margin-top: var(--spacer-md);">Ver historia completa</button>
+                </div>
+                
+                <div class="dashboard-card">
+                    <div class="dashboard-card-header">
+                        <h3 class="dashboard-card-title">Carlos Ruiz Martínez</h3>
+                        <div class="level-badge">72</div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: auto 1fr; gap: var(--spacer-sm);">
+                        <span style="font-weight: 500;">Género:</span><span>Masculino</span>
+                        <span style="font-weight: 500;">Diagnóstico:</span><span>Insuficiencia cardíaca, FA</span>
+                        <span style="font-weight: 500;">Última visita:</span><span>14/03/2024</span>
+                    </div>
+                    <button class="btn-secondary" style="margin-top: var(--spacer-md);">Ver historia completa</button>
+                </div>
+                
+                <div class="dashboard-card">
+                    <div class="dashboard-card-header">
+                        <h3 class="dashboard-card-title">Ana Sánchez Gómez</h3>
+                        <div class="level-badge">55</div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: auto 1fr; gap: var(--spacer-sm);">
+                        <span style="font-weight: 500;">Género:</span><span>Femenino</span>
+                        <span style="font-weight: 500;">Diagnóstico:</span><span>Artritis reumatoide</span>
+                        <span style="font-weight: 500;">Última visita:</span><span>12/03/2024</span>
+                    </div>
+                    <button class="btn-secondary" style="margin-top: var(--spacer-md);">Ver historia completa</button>
+                </div>
             </div>
             
-            <button class="btn-primary" style="margin-top: var(--spacer-xl);" id="btnNuevoPaciente">
+            <button class="btn-primary" style="margin-top: var(--spacer-xl);">
                 <span class="material-symbols-outlined">add</span>Agregar Nuevo Paciente
             </button>
         </div>
@@ -1183,7 +1200,7 @@
                 <textarea id="notas-signos" rows="4" placeholder="Observaciones adicionales..."></textarea>
             </div>
             
-            <button class="btn-primary" style="margin-top: var(--spacer-xl);" id="guardarSignos">
+            <button class="btn-primary" style="margin-top: var(--spacer-xl);">
                 <span class="material-symbols-outlined">save</span>Guardar Signos Vitales
             </button>
             
@@ -1194,8 +1211,21 @@
                         <span class="material-symbols-outlined">history</span>
                     </div>
                 </div>
-                <div class="timeline" id="timelineSignos">
-                    <!-- Los registros se cargarán dinámicamente -->
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">15/03/2024 10:30</div>
+                        <div class="timeline-content">
+                            <h4 style="margin: 0 0 var(--spacer-xs) 0;">Signos Vitales Registrados</h4>
+                            <p style="margin: 0;"><strong>TA:</strong> 126/82 mmHg | <strong>FC:</strong> 78 lpm | <strong>Temp:</strong> 36.8°C | <strong>SpO2:</strong> 98%</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">14/03/2024 09:15</div>
+                        <div class="timeline-content">
+                            <h4 style="margin: 0 0 var(--spacer-xs) 0;">Signos Vitales Registrados</h4>
+                            <p style="margin: 0;"><strong>TA:</strong> 130/85 mmHg | <strong>FC:</strong> 82 lpm | <strong>Temp:</strong> 36.5°C | <strong>SpO2:</strong> 97%</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1210,14 +1240,7 @@
             
             <div class="form-group">
                 <label for="medicamento">Medicamento</label>
-                <input type="text" id="medicamento" placeholder="Nombre del medicamento" list="medicamentosList">
-                <datalist id="medicamentosList">
-                    <option value="Losartan">
-                    <option value="Metformina">
-                    <option value="Aspirina">
-                    <option value="Paracetamol">
-                    <option value="Omeprazol">
-                </datalist>
+                <input type="text" id="medicamento" placeholder="Nombre del medicamento">
             </div>
             
             <div class="form-row">
@@ -1264,12 +1287,20 @@
             <div id="receta-lista" style="margin-top: var(--spacer-xl);">
                 <h3 style="color: var(--clinico-primary); font-family: var(--font); margin-bottom: var(--spacer-md);">Receta Actual</h3>
                 <div id="listaMedicamentos">
-                    <!-- Los medicamentos se cargarán dinámicamente -->
+                    <div class="medication-card">
+                        <h4>Metformina</h4>
+                        <p>850 mg cada 12 horas. Para el control de la diabetes mellitus tipo 2.</p>
+                        <div class="medication-meta">
+                            <span>Iniciado: 15/01/2023</span>
+                            <span>Duración: Continua</span>
+                            <span>Prescriptor: Dr. Pérez</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             
             <div style="display: flex; gap: var(--spacer-md); margin-top: var(--spacer-xl);">
-                <button class="btn-primary" id="agregarMedicamento"><span class="material-symbols-outlined">add</span>Agregar Medicamento</button>
+                <button class="btn-primary"><span class="material-symbols-outlined">add</span>Agregar Medicamento</button>
                 <button class="btn-secondary"><span class="material-symbols-outlined">print</span>Imprimir Receta</button>
                 <button class="btn-secondary"><span class="material-symbols-outlined">download</span>Descargar PDF</button>
             </div>
@@ -1281,7 +1312,6 @@
                 <div class="tab active" data-tab="guias">Guías Clínicas</div>
                 <div class="tab" data-tab="protocolos">Protocolos</div>
                 <div class="tab" data-tab="pacientes">Material para Pacientes</div>
-                <div class="tab" data-tab="farmacologia">Farmacología</div>
             </div>
             
             <div class="tab-content active" id="tab-guias">
@@ -1305,26 +1335,6 @@
                         <span>PDF</span>
                     </div>
                     <button class="btn-secondary" onclick="window.open('https://academic.oup.com/eurheartj/article/44/39/4065/7225235', '_blank')">Descargar guía</button>
-                </div>
-                <div class="medication-card">
-                    <h4>Guía de Práctica Clínica sobre Hipertensión Arterial</h4>
-                    <p>Actualización de las guías JNC 9. Estratificación de riesgo y algoritmo de tratamiento.</p>
-                    <div class="medication-meta">
-                        <span>JNC</span>
-                        <span>38 páginas</span>
-                        <span>PDF</span>
-                    </div>
-                    <button class="btn-secondary" onclick="window.open('https://jamanetwork.com/journals/jama/fullarticle/2570875', '_blank')">Descargar guía</button>
-                </div>
-                <div class="medication-card">
-                    <h4>Guía de Manejo de Infecciones del Tracto Urinario</h4>
-                    <p>Recomendaciones para diagnóstico, tratamiento y prevención de ITUs en adultos y población geriátrica.</p>
-                    <div class="medication-meta">
-                        <span>IDSA</span>
-                        <span>34 páginas</span>
-                        <span>PDF</span>
-                    </div>
-                    <button class="btn-secondary" onclick="window.open('https://www.idsociety.org/practice-guideline/care-of-patients-with-an-infectious-disease/', '_blank')">Descargar guía</button>
                 </div>
             </div>
             
@@ -1350,26 +1360,6 @@
                     </div>
                     <button class="btn-secondary" onclick="window.open('https://www.cdc.gov/antibiotic-use/clinicalguidelines.html', '_blank')">Descargar protocolo</button>
                 </div>
-                <div class="medication-card">
-                    <h4>Protocolo de Manejo del Dolor Agudo y Crónico</h4>
-                    <p>Escalas de valoración y algoritmo de tratamiento según intensidad y tipo de dolor.</p>
-                    <div class="medication-meta">
-                        <span>Dolor</span>
-                        <span>18 páginas</span>
-                        <span>PDF</span>
-                    </div>
-                    <button class="btn-secondary" onclick="window.open('https://www.guideline.gov/summaries/summary/55292', '_blank')">Descargar protocolo</button>
-                </div>
-                <div class="medication-card">
-                    <h4>Protocolo de Reanimación Cardiopulmonar (RCP)</h4>
-                    <p>Guía actualizada según recomendaciones AHA 2023 para RCP en adultos, niños y lactantes.</p>
-                    <div class="medication-meta">
-                        <span>Urgencias</span>
-                        <span>16 páginas</span>
-                        <span>PDF</span>
-                    </div>
-                    <button class="btn-secondary" onclick="window.open('https://cpr.heart.org/en/resuscitation-science/cpr-guidelines-and-recommendations', '_blank')">Descargar protocolo</button>
-                </div>
             </div>
             
             <div class="tab-content" id="tab-pacientes">
@@ -1394,70 +1384,6 @@
                     </div>
                     <button class="btn-secondary" onclick="window.open('https://www.myplate.gov/', '_blank')">Descargar material</button>
                 </div>
-                <div class="medication-card">
-                    <h4>Guía de Actividad Física</h4>
-                    <p>Recomendaciones de ejercicio según condición clínica y nivel de capacidad física.</p>
-                    <div class="medication-meta">
-                        <span>Ejercicio</span>
-                        <span>14 páginas</span>
-                        <span>PDF</span>
-                    </div>
-                    <button class="btn-secondary" onclick="window.open('https://www.cdc.gov/physical-activity/basics/index.htm', '_blank')">Descargar material</button>
-                </div>
-                <div class="medication-card">
-                    <h4>Guía de Manejo del Estrés y Ansiedad</h4>
-                    <p>Técnicas de relajación, mindfulness y recomendaciones para el manejo del estrés diario.</p>
-                    <div class="medication-meta">
-                        <span>Salud Mental</span>
-                        <span>12 páginas</span>
-                        <span>PDF</span>
-                    </div>
-                    <button class="btn-secondary" onclick="window.open('https://www.apa.org/topics/stress', '_blank')">Descargar material</button>
-                </div>
-            </div>
-            
-            <div class="tab-content" id="tab-farmacologia">
-                <h3 style="color: var(--clinico-primary); font-family: var(--font); margin-bottom: var(--spacer-lg);">Recursos de Farmacología</h3>
-                <div class="medication-card">
-                    <h4>Manual de Farmacología Clínica</h4>
-                    <p>Guía rápida de dosificación, interacciones y efectos adversos de medicamentos de uso común.</p>
-                    <div class="medication-meta">
-                        <span>Farmacología</span>
-                        <span>68 páginas</span>
-                        <span>PDF</span>
-                    </div>
-                    <button class="btn-secondary" onclick="window.open('https://www.ncbi.nlm.nih.gov/books/NBK556074/', '_blank')">Descargar manual</button>
-                </div>
-                <div class="medication-card">
-                    <h4>Guía de Antibióticos</h4>
-                    <p>Spectro de actividad, dosificación en insuficiencia renal y consideraciones especiales.</p>
-                    <div class="medication-meta">
-                        <span>Antibióticos</span>
-                        <span>32 páginas</span>
-                        <span>PDF</span>
-                    </div>
-                    <button class="btn-secondary" onclick="window.open('https://www.rxlist.com/', '_blank')">Descargar guía</button>
-                </div>
-                <div class="medication-card">
-                    <h4>Interacciones Medicamentosas Comunes</h4>
-                    <p>Guía de las interacciones más relevantes en la práctica clínica diaria.</p>
-                    <div class="medication-meta">
-                        <span>Interacciones</span>
-                        <span>26 páginas</span>
-                        <span>PDF</span>
-                    </div>
-                    <button class="btn-secondary" onclick="window.open('https://www.drugs.com/drug_interactions.html', '_blank')">Descargar guía</button>
-                </div>
-                <div class="medication-card">
-                    <h4>Guía de Anticoagulantes</h4>
-                    <p>Manejo de anticoagulantes orales, monitoreo, reversión y manejo de complicaciones.</p>
-                    <div class="medication-meta">
-                        <span>Hematología</span>
-                        <span>28 páginas</span>
-                        <span>PDF</span>
-                    </div>
-                    <button class="btn-secondary" onclick="window.open('https://www.acc.org/latest-in-cardiology/clinical-trials/2020/11/16/16/24/2020-acc-aha-guideline-for-the-management-of-atrial-fibrillation', '_blank')">Descargar guía</button>
-                </div>
             </div>
         </div>
         
@@ -1467,8 +1393,6 @@
                 <div class="tab active" data-tab="vih">VIH</div>
                 <div class="tab" data-tab="cardiovascular">Cardiovascular</div>
                 <div class="tab" data-tab="renal">Renal</div>
-                <div class="tab" data-tab="hepatico">Hepático</div>
-                <div class="tab" data-tab="nutricion">Nutrición</div>
             </div>
             
             <div class="tab-content active" id="tab-vih">
@@ -1512,7 +1436,7 @@
             </div>
             
             <div class="tab-content" id="tab-cardiovascular">
-                <h3 style="color: var(--clinico-primary); font-family: var(--font); margin-bottom: var(--spacer-lg);">Calculadoras Cardiovasculares</h3>
+                <h3 style="color: var(--clinico-primary); font-family: var(--font); margin-bottom: var(--spacer-lg);">Calculadora de IMC</h3>
                 <div class="form-row">
                     <div class="form-group">
                         <label for="imc-peso">Peso (kg)</label>
@@ -1529,24 +1453,6 @@
                     <h4>Resultado del IMC</h4>
                     <p><strong>Valor de IMC:</strong> <span id="valor-imc"></span></p>
                     <p><strong>Categoría:</strong> <span id="categoria-imc"></span></p>
-                </div>
-                
-                <div class="form-row" style="margin-top: var(--spacer-xl);">
-                    <div class="form-group">
-                        <label for="sistolica-presion">Presión Sistólica (mmHg)</label>
-                        <input type="number" id="sistolica-presion" placeholder="Ej: 132">
-                    </div>
-                    <div class="form-group">
-                        <label for="diastolica-presion">Presión Diastólica (mmHg)</label>
-                        <input type="number" id="diastolica-presion" placeholder="Ej: 85">
-                    </div>
-                </div>
-                <button class="btn-primary" id="calcular-presion"><span class="material-symbols-outlined">calculate</span>Clasificar Hipertensión</button>
-                
-                <div class="calculator-result" style="margin-top: var(--spacer-xl); display: none;" id="resultado-presion">
-                    <h4>Resultado de la Clasificación</h4>
-                    <p><strong>Clasificación:</strong> <span id="clasificacion-presion"></span></p>
-                    <p><strong>Interpretación:</strong> <span id="interpretacion-presion"></span></p>
                 </div>
             </div>
             
@@ -1583,184 +1489,10 @@
                     <p><strong>Clasificación:</strong> <span id="clasificacion-fg"></span></p>
                 </div>
             </div>
-            
-            <div class="tab-content" id="tab-hepatico">
-                <h3 style="color: var(--clinico-primary); font-family: var(--font); margin-bottom: var(--spacer-lg);">Calculadora de Child-Pugh</h3>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="bilirrubina-input">Bilirrubina total (mg/dL)</label>
-                        <input type="number" id="bilirrubina-input" step="0.1" placeholder="Ej: 1.8">
-                    </div>
-                    <div class="form-group">
-                        <label for="albumina-input">Albúmina (g/dL)</label>
-                        <input type="number" id="albumina-input" step="0.1" placeholder="Ej: 3.6">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="inr-input">INR</label>
-                        <input type="number" id="inr-input" step="0.1" placeholder="Ej: 1.2">
-                    </div>
-                    <div class="form-group">
-                        <label for="ascitis-input">Ascitis</label>
-                        <select id="ascitis-input">
-                            <option value="1">Ausente (1 punto)</option>
-                            <option value="2">Leve/Moderada (2 puntos)</option>
-                            <option value="3">Refractaria (3 puntos)</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="encefalopatia-input">Encefalopatía hepática</label>
-                    <select id="encefalopatia-input">
-                        <option value="1">Ausente (1 punto)</option>
-                        <option value="2">Leve (2 puntos)</option>
-                        <option value="3">Moderada/Severa (3 puntos)</option>
-                    </select>
-                </div>
-                <button class="btn-primary" id="calcular-child-pugh"><span class="material-symbols-outlined">calculate</span>Calcular Puntuación Child-Pugh</button>
-                
-                <div class="calculator-result" style="margin-top: var(--spacer-xl); display: none;" id="resultado-child-pugh">
-                    <h4>Resultado de la Puntuación Child-Pugh</h4>
-                    <p><strong>Puntuación total:</strong> <span id="puntuacion-child-pugh"></span></p>
-                    <p><strong>Clasificación:</strong> <span id="clasificacion-child-pugh"></span></p>
-                </div>
-            </div>
-            
-            <div class="tab-content" id="tab-nutricion">
-                <h3 style="color: var(--clinico-primary); font-family: var(--font); margin-bottom: var(--spacer-lg);">Calculadoras Nutricionales</h3>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="peso-actual-input">Peso Actual (kg)</label>
-                        <input type="number" id="peso-actual-input" step="0.1" placeholder="Ej: 70">
-                    </div>
-                    <div class="form-group">
-                        <label for="peso-habitual-input">Peso Habitual (kg)</label>
-                        <input type="number" id="peso-habitual-input" step="0.1" placeholder="Ej: 72">
-                    </div>
-                </div>
-                <button class="btn-primary" id="calcular-perdida-peso"><span class="material-symbols-outlined">calculate</span>Calcular Pérdida de Peso</button>
-                
-                <div class="calculator-result" style="margin-top: var(--spacer-xl); display: none;" id="resultado-perdida-peso">
-                    <h4>Resultado de la Pérdida de Peso</h4>
-                    <p><strong>Porcentaje de pérdida:</strong> <span id="porcentaje-perdida-peso"></span>%</p>
-                    <p><strong>Interpretación:</strong> <span id="interpretacion-perdida-peso"></span></p>
-                </div>
-            </div>
         </div>
         
         <!-- Paneles Modales -->
         <div class="modal-backdrop"></div>
-        
-        <!-- Panel de Nuevo Paciente -->
-        <section class="panel" id="panel-nuevo-paciente">
-            <button class="close-btn" title="Cerrar" onclick="document.getElementById('panel-nuevo-paciente').classList.remove('active'); document.querySelector('.modal-backdrop').classList.remove('active');">&times;</button>
-            <h2><span class="material-symbols-outlined">person_add</span>Registrar Nuevo Paciente</h2>
-            
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="nuevo-nombre">Nombre completo</label>
-                    <input type="text" id="nuevo-nombre">
-                </div>
-                <div class="form-group">
-                    <label for="nuevo-edad">Edad</label>
-                    <input type="number" id="nuevo-edad">
-                </div>
-            </div>
-            
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="nuevo-genero">Género</label>
-                    <select id="nuevo-genero">
-                        <option value="masculino">Masculino</option>
-                        <option value="femenino">Femenino</option>
-                        <option value="otro">Otro</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="nuevo-telefono">Teléfono</label>
-                    <input type="tel" id="nuevo-telefono">
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label for="nuevo-email">Email</label>
-                <input type="email" id="nuevo-email">
-            </div>
-            
-            <div class="form-group">
-                <label for="nuevo-direccion">Dirección</label>
-                <textarea id="nuevo-direccion" rows="3"></textarea>
-            </div>
-            
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="nuevo-antecedentes">Antecedentes Médicos</label>
-                    <textarea id="nuevo-antecedentes" rows="3" placeholder="Enfermedades, cirugías, alergias..."></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="nuevo-medicamentos">Medicamentos Actuales</label>
-                    <textarea id="nuevo-medicamentos" rows="3" placeholder="Lista de medicamentos que toma actualmente"></textarea>
-                </div>
-            </div>
-            
-            <button class="btn-primary" id="guardar-nuevo-paciente"><span class="material-symbols-outlined">save</span>Guardar Paciente</button>
-        </section>
-        
-        <!-- Panel de Edición de Paciente -->
-        <section class="panel" id="panel-editar-paciente">
-            <button class="close-btn" title="Cerrar" onclick="document.getElementById('panel-editar-paciente').classList.remove('active'); document.querySelector('.modal-backdrop').classList.remove('active');">&times;</button>
-            <h2><span class="material-symbols-outlined">edit</span>Editar Paciente</h2>
-            
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="editar-nombre">Nombre completo</label>
-                    <input type="text" id="editar-nombre">
-                </div>
-                <div class="form-group">
-                    <label for="editar-edad">Edad</label>
-                    <input type="number" id="editar-edad">
-                </div>
-            </div>
-            
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="editar-genero">Género</label>
-                    <select id="editar-genero">
-                        <option value="masculino">Masculino</option>
-                        <option value="femenino">Femenino</option>
-                        <option value="otro">Otro</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="editar-telefono">Teléfono</label>
-                    <input type="tel" id="editar-telefono">
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label for="editar-email">Email</label>
-                <input type="email" id="editar-email">
-            </div>
-            
-            <div class="form-group">
-                <label for="editar-direccion">Dirección</label>
-                <textarea id="editar-direccion" rows="3"></textarea>
-            </div>
-            
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="editar-antecedentes">Antecedentes Médicos</label>
-                    <textarea id="editar-antecedentes" rows="3" placeholder="Enfermedades, cirugías, alergias..."></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="editar-medicamentos">Medicamentos Actuales</label>
-                    <textarea id="editar-medicamentos" rows="3" placeholder="Lista de medicamentos que toma actualmente"></textarea>
-                </div>
-            </div>
-            
-            <button class="btn-primary" id="guardar-edicion-paciente"><span class="material-symbols-outlined">save</span>Guardar Cambios</button>
-        </section>
         
         <!-- Panel de Historia Clínica -->
         <section class="panel" id="panel-historia">
@@ -1775,16 +1507,6 @@
             </div>
             
             <div class="tab-content active" id="tab-resumen">
-                <div class="form-group">
-                    <label for="paciente-historias">Seleccionar paciente</label>
-                    <select id="paciente-historias">
-                        <option value="">Seleccionar paciente...</option>
-                        <option value="1" selected>María López Fernández</option>
-                        <option value="2">Carlos Ruiz Martínez</option>
-                        <option value="3">Ana Sánchez Gómez</option>
-                    </select>
-                </div>
-                
                 <div class="dashboard-grid">
                     <div class="dashboard-card">
                         <div class="dashboard-card-header">
@@ -1794,11 +1516,11 @@
                             </div>
                         </div>
                         <div style="display: grid; grid-template-columns: auto 1fr; gap: var(--spacer-sm);">
-                            <span style="font-weight: 500;">Nombre:</span><span id="info-nombre">María López Fernández</span>
-                            <span style="font-weight: 500;">Edad:</span><span id="info-edad">68 años</span>
-                            <span style="font-weight: 500;">Género:</span><span id="info-genero">Femenino</span>
-                            <span style="font-weight: 500;">Teléfono:</span><span id="info-telefono">+34 612 345 678</span>
-                            <span style="font-weight: 500;">Email:</span><span id="info-email">maria.lopez@email.com</span>
+                            <span style="font-weight: 500;">Nombre:</span><span>María López Fernández</span>
+                            <span style="font-weight: 500;">Edad:</span><span>68 años</span>
+                            <span style="font-weight: 500;">Género:</span><span>Femenino</span>
+                            <span style="font-weight: 500;">Teléfono:</span><span>+34 612 345 678</span>
+                            <span style="font-weight: 500;">Email:</span><span>maria.lopez@email.com</span>
                         </div>
                     </div>
                     
@@ -1810,10 +1532,10 @@
                             </div>
                         </div>
                         <div style="display: grid; grid-template-columns: auto 1fr; gap: var(--spacer-sm);">
-                            <span style="font-weight: 500;">Alergias:</span><span id="info-alergias">Penicilina</span>
-                            <span style="font-weight: 500;">Enfermedades:</span><span id="info-enfermedades">Diabetes tipo 2, Hipertensión arterial</span>
-                            <span style="font-weight: 500;">Cirugías:</span><span id="info-cirugias">Colecistectomía (2015)</span>
-                            <span style="font-weight: 500;">Medicamentos:</span><span id="info-medicamentos">Metformina, Losartan, Tri-zevuvir</span>
+                            <span style="font-weight: 500;">Alergias:</span><span>Penicilina</span>
+                            <span style="font-weight: 500;">Enfermedades:</span><span>Diabetes tipo 2, Hipertensión arterial</span>
+                            <span style="font-weight: 500;">Cirugías:</span><span>Colecistectomía (2015)</span>
+                            <span style="font-weight: 500;">Medicamentos:</span><span>Metformina, Losartan</span>
                         </div>
                     </div>
                 </div>
@@ -1831,8 +1553,21 @@
                             <th>Estado</th>
                         </tr>
                     </thead>
-                    <tbody id="tabla-diagnosticos">
-                        <!-- Los diagnósticos se cargarán dinámicamente -->
+                    <tbody>
+                        <tr>
+                            <td>15/01/2023</td>
+                            <td>E11.9</td>
+                            <td>Diabetes mellitus tipo 2</td>
+                            <td>Crónico</td>
+                            <td>Activo</td>
+                        </tr>
+                        <tr>
+                            <td>15/01/2023</td>
+                            <td>I10</td>
+                            <td>Hipertensión esencial</td>
+                            <td>Crónico</td>
+                            <td>Activo</td>
+                        </tr>
                     </tbody>
                 </div>
                 <button class="btn-primary" style="margin-top: var(--spacer-xl);"><span class="material-symbols-outlined">add</span>Agregar diagnóstico</button>
@@ -1854,15 +1589,6 @@
                     <p>50 mg cada 24 horas. Para el control de la hipertensión arterial.</p>
                     <div class="medication-meta">
                         <span>Iniciado: 15/01/2023</span>
-                        <span>Duración: Continua</span>
-                        <span>Prescriptor: Dr. Pérez</span>
-                    </div>
-                </div>
-                <div class="medication-card">
-                    <h4>Tri-zevuvir</h4>
-                    <p>1 comprimido al día. Tratamiento antirretroviral para VIH.</p>
-                    <div class="medication-meta">
-                        <span>Iniciado: 15/01/2024</span>
                         <span>Duración: Continua</span>
                         <span>Prescriptor: Dr. Pérez</span>
                     </div>
@@ -1902,809 +1628,35 @@
             </div>
         </section>
         
-        <!-- Panel de Interacciones -->
-        <section class="panel" id="panel-interacciones">
-            <button class="close-btn" title="Cerrar" onclick="document.getElementById('panel-interacciones').classList.remove('active'); document.querySelector('.modal-backdrop').classList.remove('active');">&times;</button>
-            <h2><span class="material-symbols-outlined">warning</span> Interacciones Medicamentosas</h2>
-            
-            <div class="search-box">
-                <input type="text" placeholder="Buscar medicamento o interacción...">
-            </div>
-            
-            <div class="tabs">
-                <div class="tab active" data-tab="categorias">Por Categorías</div>
-                <div class="tab" data-tab="busqueda">Búsqueda Avanzada</div>
-                <div class="tab" data-tab="favoritos">Favoritos</div>
-            </div>
-            
-            <div class="tab-content active" id="tab-categorias">
-                <h3>Interacciones por Categorías</h3>
-                <div class="interaction-grid">
-                    <div class="interaction-category">
-                        <h3>Cardiología</h3>
-                        <div class="interaction-item">
-                            <h4>Warfarina + AINEs</h4>
-                            <p><span class="fatal">FATAL:</span> Aumento del riesgo de hemorragia gastrointestinal.</p>
-                        </div>
-                        <div class="interaction-item">
-                            <h4>IECA + Espironolactona</h4>
-                            <p><span class="moderate">MODERADA:</span> Riesgo de hiperkalemia.</p>
-                        </div>
-                    </div>
-                    <div class="interaction-category">
-                        <h3>Endocrinología</h3>
-                        <div class="interaction-item">
-                            <h4>Metformina + Contraste yodado</h4>
-                            <p><span class="moderate">MODERADA:</span> Riesgo de acidosis láctica.</p>
-                        </div>
-                        <div class="interaction-item">
-                            <h4>Insulina + Betabloqueantes</h4>
-                            <p><span class="moderate">MODERADA:</span> Enmascaramiento de hipoglucemia.</p>
-                        </div>
-                    </div>
-                    <div class="interaction-category">
-                        <h3>Psiquiatría</h3>
-                        <div class="interaction-item">
-                            <h4>ISRS + IMAO</h4>
-                            <p><span class="fatal">FATAL:</span> Riesgo de síndrome serotoninérgico.</p>
-                        </div>
-                        <div class="interaction-item">
-                            <h4>Benzodiacepinas + Opioides</h4>
-                            <p><span class="fatal">FATAL:</span> Depresión respiratoria severa.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="tab-content" id="tab-busqueda">
-                <h3>Búsqueda de Interacciones</h3>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="medicamento1">Medicamento 1</label>
-                        <input type="text" id="medicamento1" placeholder="Nombre del medicamento" list="medicamentosList">
-                    </div>
-                    <div class="form-group">
-                        <label for="medicamento2">Medicamento 2</label>
-                        <input type="text" id="medicamento2" placeholder="Nombre del medicamento" list="medicamentosList">
-                    </div>
-                </div>
-                <button class="btn-primary">Verificar interacción</button>
-                
-                <div class="calculator-result" style="margin-top: var(--spacer-xl); display: none;" id="resultado-interaccion">
-                    <h4>Resultado de la interacción</h4>
-                    <p id="detalle-interaccion"></p>
-                </div>
-            </div>
-            
-            <div class="tab-content" id="tab-favoritos">
-                <h3>Interacciones Favoritas</h3>
-                <p>Guarde aquí las interacciones que consulta frecuentemente.</p>
-                <div class="interaction-item">
-                    <h4>Warfarina + AINEs</h4>
-                    <p><span class="fatal">FATAL:</span> Aumento del riesgo de hemorragia gastrointestinal.</p>
-                </div>
-                <div class="interaction-item">
-                    <h4>Metformina + Contraste yodado</h4>
-                    <p><span class="moderate">MODERADA:</span> Riesgo de acidosis láctica.</p>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Panel de Combinador de Medicamentos -->
-        <section class="panel" id="panel-combinador">
-            <button class="close-btn" title="Cerrar" onclick="document.getElementById('panel-combinador').classList.remove('active'); document.querySelector('.modal-backdrop').classList.remove('active');">&times;</button>
-            <h2><span class="material-symbols-outlined">science</span> Combinador de Medicamentos</h2>
-            
-            <div class="vih-info">
-                <h3 style="margin: 0 0 var(--spacer-sm) 0;">Herramienta de verificación de interacciones</h3>
-                <p>Ingrese hasta 5 medicamentos para verificar interacciones entre ellos.</p>
-            </div>
-            
-            <div class="form-group">
-                <label for="combinador-paciente">Paciente (opcional)</label>
-                <select id="combinador-paciente">
-                    <option value="">Seleccionar paciente...</option>
-                    <option value="1">María López Fernández</option>
-                    <option value="2">Carlos Ruiz Martínez</option>
-                    <option value="3">Ana Sánchez Gómez</option>
-                </select>
-            </div>
-            
-            <div id="medicamentos-combinador">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Medicamento 1</label>
-                        <input type="text" placeholder="Nombre del medicamento" list="medicamentosList">
-                    </div>
-                    <div class="form-group">
-                        <label>Dosis</label>
-                        <input type="text" placeholder="Ej: 50 mg cada 24h">
-                    </div>
-                </div>
-            </div>
-            
-            <button class="btn-secondary" id="agregar-medicamento"><span class="material-symbols-outlined">add</span>Agregar otro medicamento</button>
-            <button class="btn-primary" style="margin-top: var(--spacer-xl);">Verificar interacciones</button>
-            
-            <div class="calculator-result" style="margin-top: var(--spacer-xl); display: none;" id="resultado-combinador">
-                <h4>Resultado del análisis</h4>
-                <div id="detalle-combinador"></div>
-            </div>
-        </section>
-        
-        <!-- Panel de Información de Medicamentos -->
-        <section class="panel" id="panel-medicamentos">
-            <button class="close-btn" title="Cerrar" onclick="document.getElementById('panel-medicamentos').classList.remove('active'); document.querySelector('.modal-backdrop').classList.remove('active');">&times;</button>
-            <h2><span class="material-symbols-outlined">pill</span>Información de Medicamentos</h2>
-            
-            <div class="search-box">
-                <input type="text" placeholder="Buscar medicamento..." id="searchMedicamentos">
-            </div>
-            
-            <div class="tabs">
-                <div class="tab active" data-tab="todos">Todos</div>
-                <div class="tab" data-tab="cardiologia">Cardiología</div>
-                <div class="tab" data-tab="endocrinologia">Endocrinología</div>
-                <div class="tab" data-tab="neurologia">Neurología</div>
-            </div>
-            
-            <div class="tab-content active" id="tab-todos">
-                <div class="medication-card">
-                    <h4>Losartan</h4>
-                    <p><strong>Nombre comercial:</strong> Cozaar</p>
-                    <p><strong>Categoría:</strong> Antihipertensivo (Bloqueador de receptores de angiotensina II)</p>
-                    <p><strong>Indicaciones:</strong> Hipertensión arterial, protección renal en diabetes tipo 2</p>
-                    <p><strong>Dosis habitual:</strong> 50 mg una vez al día, ajustable a 100 mg si es necesario</p>
-                    <p><strong>Efectos adversos comunes:</strong> Mareo, hipotensión, hiperkalemia, disfunción renal</p>
-                    <button class="btn-secondary" onclick="window.open('https://www.accessdata.fda.gov/drugsatfda_docs/label/2018/020525s038lbl.pdf', '_blank')">Ficha técnica completa</button>
-                </div>
-                <div class="medication-card">
-                    <h4>Metformina</h4>
-                    <p><strong>Nombre comercial:</strong> Glucophage</p>
-                    <p><strong>Categoría:</strong> Antidiabético (Biguanida)</p>
-                    <p><strong>Indicaciones:</strong> Diabetes tipo 2, síndrome de ovario poliquístico</p>
-                    <p><strong>Dosis habitual:</strong> 500-850 mg dos veces al día, con las comidas</p>
-                    <p><strong>Efectos adversos comunes:</strong> Náuseas, diarrea, pérdida de apetito, sabor metálico</p>
-                    <button class="btn-secondary" onclick="window.open('https://www.accessdata.fda.gov/drugsatfda_docs/label/2012/020357s023lbl.pdf', '_blank')">Ficha técnica completa</button>
-                </div>
-                <div class="medication-card">
-                    <h4>Aspirina</h4>
-                    <p><strong>Nombre comercial:</strong> Bayaspirina</p>
-                    <p><strong>Categoría:</strong> Antiagregante, antiinflamatorio no esteroideo (AINE)</p>
-                    <p><strong>Indicaciones:</strong> Prevención cardiovascular, dolor leve, fiebre</p>
-                    <p><strong>Dosis habitual:</strong> 75-100 mg una vez al día para prevención cardiovascular</p>
-                    <p><strong>Efectos adversos comunes:</strong> Irritación gástrica, riesgo de hemorragia gastrointestinal</p>
-                    <button class="btn-secondary" onclick="window.open('https://www.accessdata.fda.gov/drugsatfda_docs/label/2017/005803s060lbl.pdf', '_blank')">Ficha técnica completa</button>
-                </div>
-            </div>
-            
-            <div class="tab-content" id="tab-cardiologia">
-                <div class="medication-card">
-                    <h4>Losartan</h4>
-                    <p><strong>Nombre comercial:</strong> Cozaar</p>
-                    <p><strong>Categoría:</strong> Antihipertensivo (Bloqueador de receptores de angiotensina II)</p>
-                    <p><strong>Indicaciones:</strong> Hipertensión arterial, protección renal en diabetes tipo 2</p>
-                    <p><strong>Dosis habitual:</strong> 50 mg una vez al día, ajustable a 100 mg si es necesario</p>
-                    <p><strong>Efectos adversos comunes:</strong> Mareo, hipotensión, hiperkalemia, disfunción renal</p>
-                    <button class="btn-secondary" onclick="window.open('https://www.accessdata.fda.gov/drugsatfda_docs/label/2018/020525s038lbl.pdf', '_blank')">Ficha técnica completa</button>
-                </div>
-                <div class="medication-card">
-                    <h4>Atorvastatina</h4>
-                    <p><strong>Nombre comercial:</strong> Lipitor</p>
-                    <p><strong>Categoría:</strong> Estatina (hipolipemiante)</p>
-                    <p><strong>Indicaciones:</strong> Hipercolesterolemia, prevención cardiovascular</p>
-                    <p><strong>Dosis habitual:</strong> 10-80 mg una vez al día</p>
-                    <p><strong>Efectos adversos comunes:</strong> Dolor muscular, elevación de enzimas hepáticas, diabetes</p>
-                    <button class="btn-secondary" onclick="window.open('https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/020702s081lbl.pdf', '_blank')">Ficha técnica completa</button>
-                </div>
-            </div>
-            
-            <div class="tab-content" id="tab-endocrinologia">
-                <div class="medication-card">
-                    <h4>Metformina</h4>
-                    <p><strong>Nombre comercial:</strong> Glucophage</p>
-                    <p><strong>Categoría:</strong> Antidiabético (Biguanida)</p>
-                    <p><strong>Indicaciones:</strong> Diabetes tipo 2, síndrome de ovario poliquístico</p>
-                    <p><strong>Dosis habitual:</strong> 500-850 mg dos veces al día, con las comidas</p>
-                    <p><strong>Efectos adversos comunes:</strong> Náuseas, diarrea, pérdida de apetito, sabor metálico</p>
-                    <button class="btn-secondary" onclick="window.open('https://www.accessdata.fda.gov/drugsatfda_docs/label/2012/020357s023lbl.pdf', '_blank')">Ficha técnica completa</button>
-                </div>
-                <div class="medication-card">
-                    <h4>Levotiroxina</h4>
-                    <p><strong>Nombre comercial:</strong> Eutirox</p>
-                    <p><strong>Categoría:</strong> Hormona tiroidea</p>
-                    <p><strong>Indicaciones:</strong> Hipotiroidismo, bocio</p>
-                    <p><strong>Dosis habitual:</strong> 1.6 mcg/kg/día, ajustada según TSH</p>
-                    <p><strong>Efectos adversos comunes:</strong> Palpitaciones, insomnio, pérdida de peso, osteoporosis con dosis altas</p>
-                    <button class="btn-secondary" onclick="window.open('https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/022416s034lbl.pdf', '_blank')">Ficha técnica completa</button>
-                </div>
-            </div>
-            
-            <div class="tab-content" id="tab-neurologia">
-                <div class="medication-card">
-                    <h4>Levetiracetam</h4>
-                    <p><strong>Nombre comercial:</strong> Keppra</p>
-                    <p><strong>Categoría:</strong> Anticonvulsivante</p>
-                    <p><strong>Indicaciones:</strong> Epilepsia, convulsiones parciales y generalizadas</p>
-                    <p><strong>Dosis habitual:</strong> 1000-3000 mg/día en dos dosis</p>
-                    <p><strong>Efectos adversos comunes:</strong> Somnolencia, mareo, infecciones nasofaríngeas</p>
-                    <button class="btn-secondary" onclick="window.open('https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/021235s041lbl.pdf', '_blank')">Ficha técnica completa</button>
-                </div>
-                <div class="medication-card">
-                    <h4>Carbamazepina</h4>
-                    <p><strong>Nombre comercial:</strong> Tegretol</p>
-                    <p><strong>Categoría:</strong> Anticonvulsivante, estabilizador del estado de ánimo</p>
-                    <p><strong>Indicaciones:</strong> Epilepsia, neuralgia del trigémino, trastorno bipolar</p>
-                    <p><strong>Dosis habitual:</strong> 200-1200 mg/día en dosis divididas</p>
-                    <p><strong>Efectos adversos comunes:</strong> Mareo, nistagmo, ataxia, leucopenia</p>
-                    <button class="btn-secondary" onclick="window.open('https://www.accessdata.fda.gov/drugsatfda_docs/label/2017/017443s046lbl.pdf', '_blank')">Ficha técnica completa</button>
-                </div>
-            </div>
-        </section>
-        
         <script>
-            // Estado de la aplicación
-            let currentUser = null;
-            let pacientes = [];
-            let medicamentos = [];
-            let diagnosticos = [];
-            
-            // Base de datos simulada
-            const db = {
-                usuarios: [
-                    { email: 'dr.perez@hospital.com', password: '123456', nombre: 'Dr. Juan Pérez', especialidad: 'Cardiólogo' },
-                    { email: 'dr.gomez@hospital.com', password: '123456', nombre: 'Dra. María Gómez', especialidad: 'Endocrinóloga' }
-                ],
-                
-                pacientes: [
-                    {
-                        id: 1,
-                        nombre: "María López Fernández",
-                        edad: 68,
-                        genero: "femenino",
-                        telefono: "+34 612 345 678",
-                        email: "maria.lopez@email.com",
-                        direccion: "Calle Principal 123, Madrid",
-                        antecedentes: "Diabetes tipo 2, Hipertensión arterial, Colecistectomía (2015)",
-                        medicamentos: "Metformina, Losartan, Tri-zevuvir",
-                        diagnosticos: [
-                            { fecha: "15/01/2023", codigo: "E11.9", diagnostico: "Diabetes mellitus tipo 2", tipo: "Crónico", estado: "Activo" },
-                            { fecha: "15/01/2023", codigo: "I10", diagnostico: "Hipertensión esencial", tipo: "Crónico", estado: "Activo" },
-                            { fecha: "20/05/2023", codigo: "B20", diagnostico: "Infección por VIH", tipo: "Crónico", estado: "Activo" }
-                        ],
-                        signos: [
-                            { fecha: "15/03/2024 10:30", sistolica: 126, diastolica: 82, fc: 78, temp: 36.8, spo2: 98, fr: 16 },
-                            { fecha: "14/03/2024 09:15", sistolica: 130, diastolica: 85, fc: 82, temp: 36.5, spo2: 97, fr: 18 }
-                        ]
-                    },
-                    {
-                        id: 2,
-                        nombre: "Carlos Ruiz Martínez",
-                        edad: 72,
-                        genero: "masculino",
-                        telefono: "+34 623 456 789",
-                        email: "carlos.ruiz@email.com",
-                        direccion: "Avenida Central 456, Barcelona",
-                        antecedentes: "Insuficiencia cardíaca, Fibrilación auricular, Infarto de miocardio (2020)",
-                        medicamentos: "Digoxina, Furosemida, Apixaban",
-                        diagnosticos: [
-                            { fecha: "10/02/2023", codigo: "I50.9", diagnostico: "Insuficiencia cardíaca no especificada", tipo: "Crónico", estado: "Activo" },
-                            { fecha: "10/02/2023", codigo: "I48.9", diagnostico: "Fibrilación auricular", tipo: "Crónico", estado: "Activo" }
-                        ],
-                        signos: [
-                            { fecha: "15/03/2024 11:00", sistolica: 140, diastolica: 90, fc: 85, temp: 36.6, spo2: 96, fr: 18 },
-                            { fecha: "13/03/2024 10:00", sistolica: 145, diastolica: 92, fc: 88, temp: 36.7, spo2: 95, fr: 20 }
-                        ]
-                    },
-                    {
-                        id: 3,
-                        nombre: "Ana Sánchez Gómez",
-                        edad: 55,
-                        genero: "femenino",
-                        telefono: "+34 634 567 890",
-                        email: "ana.sanchez@email.com",
-                        direccion: "Plaza Mayor 789, Valencia",
-                        antecedentes: "Artritis reumatoide, Osteoporosis",
-                        medicamentos: "Metotrexato, Calcio, Vitamina D",
-                        diagnosticos: [
-                            { fecha: "05/06/2022", codigo: "M05.9", diagnostico: "Artritis reumatoide no especificada", tipo: "Crónico", estado: "Activo" },
-                            { fecha: "05/06/2022", codigo: "M81.0", diagnostico: "Osteoporosis sin fractura patológica actual", tipo: "Crónico", estado: "Activo" }
-                        ],
-                        signos: [
-                            { fecha: "15/03/2024 09:30", sistolica: 128, diastolica: 84, fc: 75, temp: 36.9, spo2: 98, fr: 16 },
-                            { fecha: "12/03/2024 09:00", sistolica: 130, diastolica: 86, fc: 76, temp: 36.8, spo2: 97, fr: 16 }
-                        ]
-                    }
-                ],
-                
-                medicamentos: [
-                    { 
-                        nombre: "Losartan", 
-                        nombreComercial: "Cozaar", 
-                        categoria: "Antihipertensivo", 
-                        laboratorio: "MSD", 
-                        forma: "Comprimido 50 mg",
-                        indicaciones: "Hipertensión arterial, protección renal en diabetes tipo 2",
-                        dosisHabitual: "50 mg una vez al día, ajustable a 100 mg si es necesario",
-                        efectosAdversos: "Mareo, hipotensión, hiperkalemia, disfunción renal"
-                    },
-                    { 
-                        nombre: "Metformina", 
-                        nombreComercial: "Glucophage", 
-                        categoria: "Antidiabético", 
-                        laboratorio: "Bago", 
-                        forma: "Comprimido 850 mg",
-                        indicaciones: "Diabetes tipo 2, síndrome de ovario poliquístico",
-                        dosisHabitual: "500-850 mg dos veces al día, con las comidas",
-                        efectosAdversos: "Náuseas, diarrea, pérdida de apetito, sabor metálico"
-                    },
-                    { 
-                        nombre: "Aspirina", 
-                        nombreComercial: "Bayaspirina", 
-                        categoria: "Antiagregante", 
-                        laboratorio: "Bayer", 
-                        forma: "Comprimido 100 mg",
-                        indicaciones: "Prevención cardiovascular, dolor leve, fiebre",
-                        dosisHabitual: "75-100 mg una vez al día para prevención cardiovascular",
-                        efectosAdversos: "Irritación gástrica, riesgo de hemorragia gastrointestinal"
-                    },
-                    { 
-                        nombre: "Paracetamol", 
-                        nombreComercial: "Dolores", 
-                        categoria: "Analgésico", 
-                        laboratorio: "Dolores", 
-                        forma: "Comprimido 500 mg",
-                        indicaciones: "Dolor leve a moderado, fiebre",
-                        dosisHabitual: "500-1000 mg cada 4-6 horas, máximo 4000 mg/día",
-                        efectosAdversos: "Daño hepático con sobredosis"
-                    },
-                    { 
-                        nombre: "Omeprazol", 
-                        nombreComercial: "Losec", 
-                        categoria: "Inhibidor de bomba de protones", 
-                        laboratorio: "AstraZeneca", 
-                        forma: "Cápsula 20 mg",
-                        indicaciones: "Enfermedad por reflujo gastroesofágico, úlcera péptica",
-                        dosisHabitual: "20 mg una vez al día",
-                        efectosAdversos: "Dolor de cabeza, diarrea, náuseas"
-                    },
-                    { 
-                        nombre: "Digoxina", 
-                        nombreComercial: "Lanoxin", 
-                        categoria: "Cardiotónico", 
-                        laboratorio: "Roemmers", 
-                        forma: "Comprimido 0.25 mg",
-                        indicaciones: "Insuficiencia cardíaca, fibrilación auricular",
-                        dosisHabitual: "0.125-0.25 mg una vez al día",
-                        efectosAdversos: "Náuseas, vómitos, arritmias, visión borrosa"
-                    },
-                    { 
-                        nombre: "Furosemida", 
-                        nombreComercial: "Lasix", 
-                        categoria: "Diurético", 
-                        laboratorio: "Roemmers", 
-                        forma: "Comprimido 40 mg",
-                        indicaciones: "Edema por insuficiencia cardíaca, hipertensión",
-                        dosisHabitual: "20-80 mg una vez al día",
-                        efectosAdversos: "Deshidratación, hipotensión, hipopotasemia"
-                    },
-                    { 
-                        nombre: "Apixaban", 
-                        nombreComercial: "Eliquis", 
-                        categoria: "Anticoagulante", 
-                        laboratorio: "Bristol-Myers Squibb", 
-                        forma: "Comprimido 5 mg",
-                        indicaciones: "Prevención de accidente cerebrovascular en FA, trombosis venosa",
-                        dosisHabitual: "5 mg dos veces al día",
-                        efectosAdversos: "Riesgo de hemorragia, anemia"
-                    },
-                    { 
-                        nombre: "Metotrexato", 
-                        nombreComercial: "Trexall", 
-                        categoria: "Inmunosupresor", 
-                        laboratorio: "Pfizer", 
-                        forma: "Comprimido 2.5 mg",
-                        indicaciones: "Artritis reumatoide, psoriasis, cáncer",
-                        dosisHabitual: "7.5-25 mg una vez a la semana",
-                        efectosAdversos: "Mucositis, hepatotoxicidad, mielosupresión"
-                    },
-                    { 
-                        nombre: "Calcio", 
-                        nombreComercial: "Calciosan", 
-                        categoria: "Suplemento", 
-                        laboratorio: "Sanofi", 
-                        forma: "Cápsula 500 mg",
-                        indicaciones: "Osteoporosis, deficiencia de calcio",
-                        dosisHabitual: "1000-1200 mg/día",
-                        efectosAdversos: "Estreñimiento, cálculos renales"
-                    },
-                    { 
-                        nombre: "Vitamina D", 
-                        nombreComercial: "Decodrate", 
-                        categoria: "Suplemento", 
-                        laboratorio: "Roche", 
-                        forma: "Cápsula 1000 UI",
-                        indicaciones: "Deficiencia de vitamina D, osteoporosis",
-                        dosisHabitual: "800-2000 UI/día",
-                        efectosAdversos: "Hipercalcemia con dosis altas"
-                    },
-                    { 
-                        nombre: "Tri-zevuvir", 
-                        nombreComercial: "Truvada", 
-                        categoria: "Antirretroviral", 
-                        laboratorio: "Gilead", 
-                        forma: "Comprimido",
-                        indicaciones: "Tratamiento y prevención de VIH",
-                        dosisHabitual: "1 comprimido al día",
-                        efectosAdversos: "Náuseas, dolor de cabeza, disfunción renal"
-                    },
-                    { 
-                        nombre: "Atorvastatina", 
-                        nombreComercial: "Lipitor", 
-                        categoria: "Estatinas", 
-                        laboratorio: "Pfizer", 
-                        forma: "Comprimido 20 mg",
-                        indicaciones: "Hipercolesterolemia, prevención cardiovascular",
-                        dosisHabitual: "10-80 mg una vez al día",
-                        efectosAdversos: "Dolor muscular, elevación de enzimas hepáticas"
-                    },
-                    { 
-                        nombre: "Levotiroxina", 
-                        nombreComercial: "Eutirox", 
-                        categoria: "Hormona tiroidea", 
-                        laboratorio: "Merck", 
-                        forma: "Comprimido 50 mcg",
-                        indicaciones: "Hipotiroidismo, bocio",
-                        dosisHabitual: "1.6 mcg/kg/día, ajustada según TSH",
-                        efectosAdversos: "Palpitaciones, insomnio, pérdida de peso"
-                    },
-                    { 
-                        nombre: "Levetiracetam", 
-                        nombreComercial: "Keppra", 
-                        categoria: "Anticonvulsivante", 
-                        laboratorio: "UCB", 
-                        forma: "Comprimido 500 mg",
-                        indicaciones: "Epilepsia, convulsiones",
-                        dosisHabitual: "1000-3000 mg/día en dos dosis",
-                        efectosAdversos: "Somnolencia, mareo, infecciones nasofaríngeas"
-                    },
-                    { 
-                        nombre: "Carbamazepina", 
-                        nombreComercial: "Tegretol", 
-                        categoria: "Anticonvulsivante", 
-                        laboratorio: "Novartis", 
-                        forma: "Comprimido 200 mg",
-                        indicaciones: "Epilepsia, neuralgia del trigémino",
-                        dosisHabitual: "200-1200 mg/día en dosis divididas",
-                        efectosAdversos: "Mareo, nistagmo, ataxia, leucopenia"
-                    }
-                ],
-                
-                interacciones: [
-                    {
-                        medicamento1: "Warfarina",
-                        medicamento2: "AINEs",
-                        severidad: "fatal",
-                        descripcion: "Aumento significativo del riesgo de hemorragia gastrointestinal. Los AINEs inhiben la agregación plaquetaria y dañan la mucosa gástrica, potenciando el efecto anticoagulante de la warfarina."
-                    },
-                    {
-                        medicamento1: "IECA",
-                        medicamento2: "Espironolactona",
-                        severidad: "moderate",
-                        descripcion: "Riesgo de hiperkalemia grave. Ambos medicamentos reducen la excreción de potasio, lo que puede llevar a niveles peligrosos, especialmente en pacientes con insuficiencia renal."
-                    },
-                    {
-                        medicamento1: "Digoxina",
-                        medicamento2: "Verapamilo",
-                        severidad: "moderate",
-                        descripcion: "El verapamilo aumenta los niveles séricos de digoxina al reducir su eliminación renal y aumentar su absorción, lo que puede llevar a toxicidad digitálica con náuseas, vómitos y arritmias."
-                    },
-                    {
-                        medicamento1: "Metformina",
-                        medicamento2: "Contraste yodado",
-                        severidad: "moderate",
-                        descripcion: "Riesgo de acidosis láctica. El contraste yodado puede causar nefropatía por contraste, reduciendo la eliminación de metformina y aumentando el riesgo de acidosis láctica, especialmente en pacientes con función renal comprometida."
-                    },
-                    {
-                        medicamento1: "Insulina",
-                        medicamento2: "Betabloqueantes",
-                        severidad: "moderate",
-                        descripcion: "Los betabloqueantes enmascaran los síntomas de hipoglucemia (taquicardia, temblores), dificultando el reconocimiento de niveles bajos de glucosa, lo que puede llevar a hipoglucemias graves no reconocidas."
-                    },
-                    {
-                        medicamento1: "ISRS",
-                        medicamento2: "IMAO",
-                        severidad: "fatal",
-                        descripcion: "Riesgo extremo de síndrome serotoninérgico, una condición potencialmente mortal caracterizada por hipertermia, rigidez muscular, taquicardia, alteraciones del estado mental y convulsiones."
-                    },
-                    {
-                        medicamento1: "Benzodiacepinas",
-                        medicamento2: "Opioides",
-                        severidad: "fatal",
-                        descripcion: "Depresión respiratoria severa y sinérgica. Ambos depresores del SNC potencian mutuamente sus efectos, aumentando significativamente el riesgo de apnea, hipoxia e insuficiencia respiratoria."
-                    },
-                    {
-                        medicamento1: "Metotrexato",
-                        medicamento2: "NSAIDs",
-                        severidad: "moderate",
-                        descripcion: "Aumento del riesgo de toxicidad por metotrexato. Los AINEs reducen la excreción renal de metotrexato, elevando sus niveles séricos y aumentando el riesgo de mielosupresión, mucositis y hepatotoxicidad."
-                    },
-                    {
-                        medicamento1: "Atorvastatina",
-                        medicamento2: "Macrólidos",
-                        severidad: "moderate",
-                        descripcion: "Los macrólidos (como la eritromicina) inhiben el metabolismo de las estatinas vía CYP3A4, aumentando significativamente sus niveles séricos y el riesgo de rabdomiólisis."
-                    },
-                    {
-                        medicamento1: "Levotiroxina",
-                        medicamento2: "Calcio",
-                        severidad: "moderate",
-                        descripcion: "El calcio reduce significativamente la absorción intestinal de levotiroxina. Debe administrarse con al menos 4 horas de separación para evitar la interferencia en el control del hipotiroidismo."
-                    }
-                ]
-            };
-            
-            // Funciones de autenticación
-            function login(email, password) {
-                const usuario = db.usuarios.find(u => u.email === email && u.password === password);
-                if (usuario) {
-                    currentUser = usuario;
-                    showPage('page-dashboard');
-                    document.getElementById('userProfile').classList.add('active');
-                    document.getElementById('userName').textContent = usuario.nombre;
-                    document.getElementById('userSpecialty').textContent = usuario.especialidad;
-                    document.getElementById('welcomeName').textContent = usuario.nombre.replace('Dr. ', '').replace('Dra. ', '');
-                    document.getElementById('btn-login').style.display = 'none';
-                    return true;
-                }
-                return false;
-            }
-            
-            // Funciones de navegación
-            function showPage(pageId) {
-                document.querySelectorAll('.page').forEach(page => {
-                    page.classList.remove('active');
-                });
-                document.getElementById(pageId).classList.add('active');
-            }
-            
             // Inicialización
             document.addEventListener('DOMContentLoaded', function() {
-                // Cargar medicamentos en el datalist
-                const datalist = document.getElementById('medicamentosList');
-                db.medicamentos.forEach(med => {
-                    const option = document.createElement('option');
-                    option.value = med.nombre;
-                    datalist.appendChild(option);
-                });
-                
-                // Evento de inicio de sesión
-                document.getElementById('loginBtn').addEventListener('click', () => {
-                    const email = document.getElementById('email').value;
-                    const password = document.getElementById('password').value;
-                    
-                    if (login(email, password)) {
-                        showPage('page-dashboard');
-                    } else {
-                        alert('Credenciales incorrectas. Use dr.perez@hospital.com / 123456');
-                    }
-                });
-                
-                // Enlace de registro
-                document.getElementById('registerLink').addEventListener('click', (e) => {
-                    e.preventDefault();
-                    alert('Funcionalidad de registro no implementada en esta versión de demostración.');
-                });
+                // Inicializar gráficos
+                initCharts();
                 
                 // Navegación
                 document.getElementById('btn-dashboard').addEventListener('click', () => {
-                    if (currentUser) showPage('page-dashboard');
+                    showPage('page-dashboard');
                 });
                 
                 document.getElementById('btn-pacientes').addEventListener('click', () => {
-                    if (currentUser) {
-                        showPage('page-pacientes');
-                        renderPacientes();
-                    }
+                    showPage('page-pacientes');
                 });
                 
                 document.getElementById('btn-signos').addEventListener('click', () => {
-                    if (currentUser) showPage('page-signos');
+                    showPage('page-signos');
                 });
                 
                 document.getElementById('btn-recetas').addEventListener('click', () => {
-                    if (currentUser) showPage('page-recetas');
+                    showPage('page-recetas');
                 });
                 
                 document.getElementById('btn-educacion').addEventListener('click', () => {
-                    if (currentUser) showPage('page-educacion');
+                    showPage('page-educacion');
                 });
                 
                 document.getElementById('btn-calculadoras').addEventListener('click', () => {
-                    if (currentUser) showPage('page-calculadoras');
-                });
-                
-                // Botón de nuevo paciente
-                document.getElementById('btnNuevoPaciente').addEventListener('click', () => {
-                    document.getElementById('panel-nuevo-paciente').classList.add('active');
-                    document.querySelector('.modal-backdrop').classList.add('active');
-                });
-                
-                // Guardar nuevo paciente
-                document.getElementById('guardar-nuevo-paciente').addEventListener('click', () => {
-                    const nombre = document.getElementById('nuevo-nombre').value;
-                    const edad = document.getElementById('nuevo-edad').value;
-                    const genero = document.getElementById('nuevo-genero').value;
-                    const telefono = document.getElementById('nuevo-telefono').value;
-                    const email = document.getElementById('nuevo-email').value;
-                    const direccion = document.getElementById('nuevo-direccion').value;
-                    const antecedentes = document.getElementById('nuevo-antecedentes').value;
-                    const medicamentos = document.getElementById('nuevo-medicamentos').value;
-                    
-                    if (!nombre || !edad) {
-                        alert('Por favor, complete al menos el nombre y la edad');
-                        return;
-                    }
-                    
-                    const nuevoPaciente = {
-                        id: db.pacientes.length + 1,
-                        nombre,
-                        edad: parseInt(edad),
-                        genero,
-                        telefono,
-                        email,
-                        direccion,
-                        antecedentes,
-                        medicamentos,
-                        diagnosticos: [],
-                        signos: []
-                    };
-                    
-                    db.pacientes.push(nuevoPaciente);
-                    renderPacientes();
-                    
-                    // Cerrar panel
-                    document.getElementById('panel-nuevo-paciente').classList.remove('active');
-                    document.querySelector('.modal-backdrop').classList.remove('active');
-                    
-                    // Limpiar formulario
-                    document.getElementById('nuevo-nombre').value = '';
-                    document.getElementById('nuevo-edad').value = '';
-                    document.getElementById('nuevo-telefono').value = '';
-                    document.getElementById('nuevo-email').value = '';
-                    document.getElementById('nuevo-direccion').value = '';
-                    document.getElementById('nuevo-antecedentes').value = '';
-                    document.getElementById('nuevo-medicamentos').value = '';
-                    
-                    alert('Paciente registrado correctamente');
-                });
-                
-                // Buscar pacientes
-                document.getElementById('searchPacientes').addEventListener('input', () => {
-                    renderPacientes();
-                });
-                
-                // Cálculo de IMC
-                document.getElementById('talla').addEventListener('change', () => {
-                    const peso = parseFloat(document.getElementById('peso').value);
-                    const talla = parseFloat(document.getElementById('talla').value) / 100;
-                    if (peso && talla) {
-                        const imc = peso / (talla * talla);
-                        document.getElementById('imc').value = imc.toFixed(1);
-                    }
-                });
-                
-                document.getElementById('peso').addEventListener('change', () => {
-                    const peso = parseFloat(document.getElementById('peso').value);
-                    const talla = parseFloat(document.getElementById('talla').value) / 100;
-                    if (peso && talla) {
-                        const imc = peso / (talla * talla);
-                        document.getElementById('imc').value = imc.toFixed(1);
-                    }
-                });
-                
-                // Guardar signos vitales
-                document.getElementById('guardarSignos').addEventListener('click', () => {
-                    const fecha = document.getElementById('fecha-signos').value;
-                    const temperatura = document.getElementById('temperatura').value;
-                    const sistolica = document.getElementById('sistolica').value;
-                    const diastolica = document.getElementById('diastolica').value;
-                    const fc = document.getElementById('fc').value;
-                    const fr = document.getElementById('fr').value;
-                    const spo2 = document.getElementById('spo2').value;
-                    const peso = document.getElementById('peso').value;
-                    const talla = document.getElementById('talla').value;
-                    const imc = document.getElementById('imc').value;
-                    const notas = document.getElementById('notas-signos').value;
-                    
-                    if (!fecha || !sistolica || !diastolica) {
-                        alert('Por favor, complete al menos la fecha y la presión arterial');
-                        return;
-                    }
-                    
-                    // Aquí se guardarían los datos en la base de datos
-                    console.log('Signos vitales guardados:', { fecha, temperatura, sistolica, diastolica, fc, fr, spo2, peso, talla, imc, notas });
-                    alert('Signos vitales guardados correctamente');
-                    
-                    // Limpiar formulario
-                    document.getElementById('fecha-signos').value = '';
-                    document.getElementById('temperatura').value = '';
-                    document.getElementById('sistolica').value = '';
-                    document.getElementById('diastolica').value = '';
-                    document.getElementById('fc').value = '';
-                    document.getElementById('fr').value = '';
-                    document.getElementById('spo2').value = '';
-                    document.getElementById('peso').value = '';
-                    document.getElementById('talla').value = '';
-                    document.getElementById('imc').value = '';
-                    document.getElementById('notas-signos').value = '';
-                    
-                    // Actualizar historial
-                    renderHistorialSignos();
-                });
-                
-                // Agregar medicamento a receta
-                document.getElementById('agregarMedicamento').addEventListener('click', () => {
-                    const medicamento = document.getElementById('medicamento').value;
-                    const dosis = document.getElementById('dosis').value;
-                    const via = document.getElementById('via').value;
-                    const frecuencia = document.getElementById('frecuencia').value;
-                    const duracion = document.getElementById('duracion').value;
-                    const indicaciones = document.getElementById('indicaciones').value;
-                    
-                    if (!medicamento || !dosis) {
-                        alert('Por favor, complete al menos el medicamento y la dosis');
-                        return;
-                    }
-                    
-                    // Verificar interacciones antes de agregar
-                    const pacienteSeleccionado = document.querySelector('#selectorRecetas .patient-pill.active').textContent;
-                    const paciente = db.pacientes.find(p => p.nombre.includes(pacienteSeleccionado.split(' ')[0]));
-                    
-                    if (paciente && paciente.medicamentos) {
-                        const medicamentosActuales = paciente.medicamentos.split(', ').map(m => m.trim());
-                        
-                        for (let medActual of medicamentosActuales) {
-                            const interaccion = db.interacciones.find(i => 
-                                (i.medicamento1.toLowerCase() === medicamento.toLowerCase() && i.medicamento2.toLowerCase() === medActual.toLowerCase()) ||
-                                (i.medicamento1.toLowerCase() === medActual.toLowerCase() && i.medicamento2.toLowerCase() === medicamento.toLowerCase())
-                            );
-                            
-                            if (interaccion) {
-                                const confirmacion = confirm(`ADVERTENCIA: Posible interacción entre ${medicamento} y ${medActual}.\n\n${interaccion.severidad.toUpperCase()}: ${interaccion.descripcion}\n\n¿Desea continuar de todas formas?`);
-                                if (!confirmacion) {
-                                    return;
-                                }
-                            }
-                        }
-                    }
-                    
-                    const medicamentoCard = document.createElement('div');
-                    medicamentoCard.className = 'medication-card';
-                    medicamentoCard.innerHTML = `
-                        <h4>${medicamento}</h4>
-                        <p>${dosis}, vía ${via}, ${frecuencia}, durante ${duracion} días</p>
-                        <p><strong>Indicaciones:</strong> ${indicaciones}</p>
-                        <div class="medication-meta">
-                            <span>Prescrito: ${new Date().toLocaleDateString()}</span>
-                            <span>Estado: Activo</span>
-                        </div>
-                        <button class="btn-secondary eliminar-medicamento" style="margin-top: var(--spacer-md);">Eliminar</button>
-                    `;
-                    
-                    document.getElementById('listaMedicamentos').appendChild(medicamentoCard);
-                    
-                    // Evento para eliminar medicamento
-                    medicamentoCard.querySelector('.eliminar-medicamento').addEventListener('click', () => {
-                        medicamentoCard.remove();
-                    });
-                    
-                    // Limpiar formulario
-                    document.getElementById('medicamento').value = '';
-                    document.getElementById('dosis').value = '';
-                    document.getElementById('frecuencia').value = 'una_vez';
-                    document.getElementById('duracion').value = '';
-                    document.getElementById('indicaciones').value = '';
+                    showPage('page-calculadoras');
                 });
                 
                 // Funcionalidad de pestañas en paneles
@@ -2748,93 +1700,159 @@
                     document.querySelector('.modal-backdrop').classList.remove('active');
                 });
                 
-                // Inicializar gráficos
-                initCharts();
+                // Calculadoras médicas
+                document.getElementById('calcular-estado-vih').addEventListener('click', () => {
+                    const cd4 = parseInt(document.getElementById('cd4-input').value);
+                    const cargaViral = parseInt(document.getElementById('carga-viral-input').value);
+                    const sintomas = document.getElementById('sintomas-input').value;
+                    const enTratamiento = document.getElementById('tratamiento-input').value;
+                    
+                    if (!cd4 || !cargaViral) {
+                        alert('Por favor, complete todos los campos');
+                        return;
+                    }
+                    
+                    let estado = '';
+                    let explicacion = '';
+                    let recomendaciones = [];
+                    
+                    if (cd4 > 500 && cargaViral < 50) {
+                        estado = 'ÓPTIMO';
+                        explicacion = 'Excelente control virológico y respuesta inmunológica.';
+                        recomendaciones = [
+                            'Continuar con el tratamiento actual',
+                            'Mantener seguimiento cada 6 meses',
+                            'Promover adherencia al tratamiento'
+                        ];
+                    } else if (cd4 >= 350 && cargaViral < 200) {
+                        estado = 'ESTABLE';
+                        explicacion = 'Control virológico adecuado y respuesta inmunológica aceptable.';
+                        recomendaciones = [
+                            'Continuar con el tratamiento actual',
+                            'Monitorizar posibles efectos secundarios',
+                            'Reforzar adherencia al tratamiento'
+                        ];
+                    } else if (cd4 >= 200 && cd4 < 350) {
+                        estado = 'NECESITA ATENCIÓN';
+                        explicacion = 'Inmunosupresión moderada. Se requiere evaluación cuidadosa.';
+                        recomendaciones = [
+                            'Evaluar adherencia al tratamiento',
+                            'Considerar posibles interacciones medicamentosas',
+                            'Descartar comorbilidades'
+                        ];
+                    } else {
+                        estado = 'CRÍTICO';
+                        explicacion = 'Inmunosupresión severa y alto riesgo de complicaciones.';
+                        recomendaciones = [
+                            'Evaluación médica urgente',
+                            'Considerar cambio de regimen antirretroviral',
+                            'Descartar infecciones oportunistas'
+                        ];
+                    }
+                    
+                    // Ajustar según síntomas
+                    if (sintomas === 'moderados') {
+                        estado += ' | CON SÍNTOMAS MODERADOS';
+                        recomendaciones.push('Manejo sintomático de las manifestaciones presentes');
+                    } else if (sintomas === 'severos') {
+                        estado += ' | CON SÍNTOMAS SEVEROS';
+                        recomendaciones.push('Evaluación urgente para descartar infecciones oportunistas');
+                    }
+                    
+                    // Ajustar si no está en tratamiento
+                    if (enTratamiento === 'no') {
+                        estado += ' | SIN TRATAMIENTO';
+                        recomendaciones.unshift('Iniciar tratamiento antirretroviral lo antes posible');
+                    }
+                    
+                    // Mostrar resultados
+                    document.getElementById('estado-inmunologico').textContent = estado;
+                    document.getElementById('explicacion-estado').textContent = explicacion;
+                    const listaRecomendaciones = document.getElementById('lista-recomendaciones');
+                    listaRecomendaciones.innerHTML = '';
+                    recomendaciones.forEach(recomendacion => {
+                        const li = document.createElement('li');
+                        li.textContent = recomendacion;
+                        listaRecomendaciones.appendChild(li);
+                    });
+                    
+                    document.getElementById('resultado-calculadora-vih').style.display = 'block';
+                });
+                
+                // Calculadora IMC
+                document.getElementById('calcular-imc').addEventListener('click', () => {
+                    const peso = parseFloat(document.getElementById('imc-peso').value);
+                    const altura = parseFloat(document.getElementById('imc-altura').value) / 100; // Convertir a metros
+                    
+                    if (!peso || !altura) {
+                        alert('Por favor, complete todos los campos');
+                        return;
+                    }
+                    
+                    const imc = peso / (altura * altura);
+                    let categoria = '';
+                    
+                    if (imc < 18.5) {
+                        categoria = 'Bajo peso';
+                    } else if (imc < 25) {
+                        categoria = 'Peso normal';
+                    } else if (imc < 30) {
+                        categoria = 'Sobrepeso';
+                    } else if (imc < 35) {
+                        categoria = 'Obesidad grado I';
+                    } else if (imc < 40) {
+                        categoria = 'Obesidad grado II';
+                    } else {
+                        categoria = 'Obesidad grado III (mórbida)';
+                    }
+                    
+                    document.getElementById('valor-imc').textContent = imc.toFixed(1);
+                    document.getElementById('categoria-imc').textContent = categoria;
+                    document.getElementById('resultado-imc').style.display = 'block';
+                });
+                
+                // Calculadora de filtrado glomerular
+                document.getElementById('calcular-fg').addEventListener('click', () => {
+                    const creatinina = parseFloat(document.getElementById('creatinina-input').value);
+                    const edad = parseInt(document.getElementById('edad-renal').value);
+                    const peso = parseFloat(document.getElementById('peso-renal').value);
+                    const genero = document.getElementById('genero-renal').value;
+                    
+                    if (!creatinina || !edad || !peso) {
+                        alert('Por favor, complete todos los campos');
+                        return;
+                    }
+                    
+                    let fg = 0;
+                    if (genero === 'hombre') {
+                        fg = ((140 - edad) * peso) / (72 * creatinina);
+                    } else {
+                        fg = ((140 - edad) * peso * 0.85) / (72 * creatinina);
+                    }
+                    
+                    let clasificacion = '';
+                    if (fg >= 90) {
+                        clasificacion = 'Función renal normal';
+                    } else if (fg >= 60) {
+                        clasificacion = 'Daño renal leve (G2-G3a)';
+                    } else if (fg >= 30) {
+                        clasificacion = 'Enfermedad renal moderada a severa (G3b-G4)';
+                    } else {
+                        clasificacion = 'Insuficiencia renal terminal (G5)';
+                    }
+                    
+                    document.getElementById('valor-fg').textContent = fg.toFixed(0);
+                    document.getElementById('clasificacion-fg').textContent = clasificacion;
+                    document.getElementById('resultado-fg').style.display = 'block';
+                });
             });
             
             // Funciones auxiliares
-            function renderPacientes() {
-                const grid = document.getElementById('pacientesGrid');
-                grid.innerHTML = '';
-                
-                const searchTerm = document.getElementById('searchPacientes').value.toLowerCase();
-                const pacientesFiltrados = db.pacientes.filter(p => 
-                    p.nombre.toLowerCase().includes(searchTerm) ||
-                    p.diagnosticos.some(d => d.diagnostico.toLowerCase().includes(searchTerm)) ||
-                    p.medicamentos.toLowerCase().includes(searchTerm)
-                );
-                
-                pacientesFiltrados.forEach(paciente => {
-                    const card = document.createElement('div');
-                    card.className = 'dashboard-card';
-                    card.innerHTML = `
-                        <div class="dashboard-card-header">
-                            <h3 class="dashboard-card-title">${paciente.nombre}</h3>
-                            <div class="level-badge">${paciente.edad}</div>
-                        </div>
-                        <div style="display: grid; grid-template-columns: auto 1fr; gap: var(--spacer-sm);">
-                            <span style="font-weight: 500;">Género:</span><span>${paciente.genero === 'masculino' ? 'Masculino' : paciente.genero === 'femenino' ? 'Femenino' : 'Otro'}</span>
-                            <span style="font-weight: 500;">Diagnóstico:</span><span>${paciente.diagnosticos.length > 0 ? paciente.diagnosticos[0].diagnostico : 'Sin diagnóstico'}</span>
-                            <span style="font-weight: 500;">Última visita:</span><span>${paciente.signos.length > 0 ? paciente.signos[0].fecha : 'Sin registros'}</span>
-                        </div>
-                        <button class="btn-secondary ver-historia" style="margin-top: var(--spacer-md);">Ver historia completa</button>
-                    `;
-                    
-                    card.querySelector('.ver-historia').addEventListener('click', () => {
-                        // Aquí se abriría la historia clínica del paciente
-                        document.getElementById('panel-historia').classList.add('active');
-                        document.querySelector('.modal-backdrop').classList.add('active');
-                        
-                        // Actualizar información del paciente en el panel
-                        document.getElementById('info-nombre').textContent = paciente.nombre;
-                        document.getElementById('info-edad').textContent = `${paciente.edad} años`;
-                        document.getElementById('info-genero').textContent = paciente.genero === 'masculino' ? 'Masculino' : paciente.genero === 'femenino' ? 'Femenino' : 'Otro';
-                        document.getElementById('info-telefono').textContent = paciente.telefono;
-                        document.getElementById('info-email').textContent = paciente.email;
-                        document.getElementById('info-alergias').textContent = paciente.antecedentes.includes('alergia') ? paciente.antecedentes : 'Ninguna';
-                        document.getElementById('info-enfermedades').textContent = paciente.antecedentes;
-                        document.getElementById('info-cirugias').textContent = paciente.antecedentes.includes('cirugía') ? paciente.antecedentes : 'Ninguna';
-                        document.getElementById('info-medicamentos').textContent = paciente.medicamentos;
-                        
-                        // Actualizar tabla de diagnósticos
-                        const tablaDiagnosticos = document.getElementById('tabla-diagnosticos');
-                        tablaDiagnosticos.innerHTML = '';
-                        paciente.diagnosticos.forEach(diag => {
-                            const row = document.createElement('tr');
-                            row.innerHTML = `
-                                <td>${diag.fecha}</td>
-                                <td>${diag.codigo}</td>
-                                <td>${diag.diagnostico}</td>
-                                <td>${diag.tipo}</td>
-                                <td>${diag.estado}</td>
-                            `;
-                            tablaDiagnosticos.appendChild(row);
-                        });
-                    });
-                    
-                    grid.appendChild(card);
+            function showPage(pageId) {
+                document.querySelectorAll('.page').forEach(page => {
+                    page.classList.remove('active');
                 });
-            }
-            
-            function renderHistorialSignos() {
-                const timeline = document.getElementById('timelineSignos');
-                timeline.innerHTML = '';
-                
-                // Usamos datos del paciente actual (por simplicidad)
-                const paciente = db.pacientes[0];
-                
-                paciente.signos.forEach(signo => {
-                    const item = document.createElement('div');
-                    item.className = 'timeline-item';
-                    item.innerHTML = `
-                        <div class="timeline-date">${signo.fecha}</div>
-                        <div class="timeline-content">
-                            <h4 style="margin: 0 0 var(--spacer-xs) 0;">Signos Vitales Registrados</h4>
-                            <p style="margin: 0;"><strong>TA:</strong> ${signo.sistolica}/${signo.diastolica} mmHg | <strong>FC:</strong> ${signo.fc} lpm | <strong>Temp:</strong> ${signo.temp}°C | <strong>SpO2:</strong> ${signo.spo2}%</p>
-                        </div>
-                    `;
-                    timeline.appendChild(item);
-                });
+                document.getElementById(pageId).classList.add('active');
             }
             
             function initCharts() {
@@ -2890,410 +1908,7 @@
                         }
                     }
                 });
-                
-                // Event listener para cambiar el tipo de gráfica de signos vitales
-                document.getElementById('tipo-grafica').addEventListener('change', function() {
-                    const tipo = this.value;
-                    let nuevosDatos = [];
-                    let label = '';
-                    let color = '';
-                    
-                    switch(tipo) {
-                        case 'presion':
-                            nuevosDatos = [126, 130, 135, 128, 132];
-                            label = 'Presión Sistólica (mmHg)';
-                            color = '#1a73e8';
-                            break;
-                        case 'fc':
-                            nuevosDatos = [78, 82, 85, 80, 79];
-                            label = 'Frecuencia Cardíaca (lpm)';
-                            color = '#ea4335';
-                            break;
-                        case 'temp':
-                            nuevosDatos = [36.8, 36.5, 37.1, 36.7, 36.9];
-                            label = 'Temperatura (°C)';
-                            color = '#fbbc04';
-                            break;
-                        case 'spo2':
-                            nuevosDatos = [98, 97, 96, 97, 98];
-                            label = 'Saturación de Oxígeno (%)';
-                            color = '#34a853';
-                            break;
-                    }
-                    
-                    // Actualizar el gráfico (simplificado para demostración)
-                    alert(`Gráfico actualizado para mostrar ${label}`);
-                });
             }
-            
-            // Calculadoras médicas
-            document.getElementById('calcular-estado-vih').addEventListener('click', () => {
-                const cd4 = parseInt(document.getElementById('cd4-input').value);
-                const cargaViral = parseInt(document.getElementById('carga-viral-input').value);
-                const sintomas = document.getElementById('sintomas-input').value;
-                const enTratamiento = document.getElementById('tratamiento-input').value;
-                
-                if (!cd4 || !cargaViral) {
-                    alert('Por favor, complete todos los campos');
-                    return;
-                }
-                
-                let estado = '';
-                let explicacion = '';
-                let recomendaciones = [];
-                
-                if (cd4 > 500 && cargaViral < 50) {
-                    estado = 'ÓPTIMO';
-                    explicacion = 'Excelente control virológico y respuesta inmunológica.';
-                    recomendaciones = [
-                        'Continuar con el tratamiento actual',
-                        'Mantener seguimiento cada 6 meses',
-                        'Promover adherencia al tratamiento'
-                    ];
-                } else if (cd4 >= 350 && cargaViral < 200) {
-                    estado = 'ESTABLE';
-                    explicacion = 'Control virológico adecuado y respuesta inmunológica aceptable.';
-                    recomendaciones = [
-                        'Continuar con el tratamiento actual',
-                        'Monitorizar posibles efectos secundarios',
-                        'Reforzar adherencia al tratamiento'
-                    ];
-                } else if (cd4 >= 200 && cd4 < 350) {
-                    estado = 'NECESITA ATENCIÓN';
-                    explicacion = 'Inmunosupresión moderada. Se requiere evaluación cuidadosa.';
-                    recomendaciones = [
-                        'Evaluar adherencia al tratamiento',
-                        'Considerar posibles interacciones medicamentosas',
-                        'Descartar comorbilidades'
-                    ];
-                } else {
-                    estado = 'CRÍTICO';
-                    explicacion = 'Inmunosupresión severa y alto riesgo de complicaciones.';
-                    recomendaciones = [
-                        'Evaluación médica urgente',
-                        'Considerar cambio de regimen antirretroviral',
-                        'Descartar infecciones oportunistas'
-                    ];
-                }
-                
-                // Ajustar según síntomas
-                if (sintomas === 'moderados') {
-                    estado += ' | CON SÍNTOMAS MODERADOS';
-                    recomendaciones.push('Manejo sintomático de las manifestaciones presentes');
-                } else if (sintomas === 'severos') {
-                    estado += ' | CON SÍNTOMAS SEVEROS';
-                    recomendaciones.push('Evaluación urgente para descartar infecciones oportunistas');
-                }
-                
-                // Ajustar si no está en tratamiento
-                if (enTratamiento === 'no') {
-                    estado += ' | SIN TRATAMIENTO';
-                    recomendaciones.unshift('Iniciar tratamiento antirretroviral lo antes posible');
-                }
-                
-                // Mostrar resultados
-                document.getElementById('estado-inmunologico').textContent = estado;
-                document.getElementById('explicacion-estado').textContent = explicacion;
-                const listaRecomendaciones = document.getElementById('lista-recomendaciones');
-                listaRecomendaciones.innerHTML = '';
-                recomendaciones.forEach(recomendacion => {
-                    const li = document.createElement('li');
-                    li.textContent = recomendacion;
-                    listaRecomendaciones.appendChild(li);
-                });
-                
-                document.getElementById('resultado-calculadora-vih').style.display = 'block';
-            });
-            
-            // Calculadora IMC
-            document.getElementById('calcular-imc').addEventListener('click', () => {
-                const peso = parseFloat(document.getElementById('imc-peso').value);
-                const altura = parseFloat(document.getElementById('imc-altura').value) / 100; // Convertir a metros
-                
-                if (!peso || !altura) {
-                    alert('Por favor, complete todos los campos');
-                    return;
-                }
-                
-                const imc = peso / (altura * altura);
-                let categoria = '';
-                
-                if (imc < 18.5) {
-                    categoria = 'Bajo peso';
-                } else if (imc < 25) {
-                    categoria = 'Peso normal';
-                } else if (imc < 30) {
-                    categoria = 'Sobrepeso';
-                } else if (imc < 35) {
-                    categoria = 'Obesidad grado I';
-                } else if (imc < 40) {
-                    categoria = 'Obesidad grado II';
-                } else {
-                    categoria = 'Obesidad grado III (mórbida)';
-                }
-                
-                document.getElementById('valor-imc').textContent = imc.toFixed(1);
-                document.getElementById('categoria-imc').textContent = categoria;
-                document.getElementById('resultado-imc').style.display = 'block';
-            });
-            
-            // Calculadora de presión arterial
-            document.getElementById('calcular-presion').addEventListener('click', () => {
-                const sistolica = parseInt(document.getElementById('sistolica-presion').value);
-                const diastolica = parseInt(document.getElementById('diastolica-presion').value);
-                
-                if (!sistolica || !diastolica) {
-                    alert('Por favor, complete todos los campos');
-                    return;
-                }
-                
-                let clasificacion = '';
-                let interpretacion = '';
-                
-                if (sistolica < 120 && diastolica < 80) {
-                    clasificacion = 'Presión normal';
-                    interpretacion = 'Su presión arterial está en el rango normal. Mantenga hábitos saludables.';
-                } else if (sistolica < 130 && diastolica < 85) {
-                    clasificacion = 'Prehipertensión';
-                    interpretacion = 'Presión arterial en el límite superior del rango normal. Recomendado seguimiento y cambios en estilo de vida.';
-                } else if (sistolica < 140 || diastolica < 90) {
-                    clasificacion = 'Hipertensión grado 1';
-                    interpretacion = 'Evaluar necesidad de tratamiento farmacológico. Implementar cambios en estilo de vida.';
-                } else if (sistolica < 160 || diastolica < 100) {
-                    clasificacion = 'Hipertensión grado 2';
-                    interpretacion = 'Se recomienda tratamiento farmacológico junto con cambios en estilo de vida.';
-                } else {
-                    clasificacion = 'Hipertensión grado 3';
-                    interpretacion = 'Hipertensión severa. Requiere tratamiento farmacológico inmediato y seguimiento cercano.';
-                }
-                
-                document.getElementById('clasificacion-presion').textContent = clasificacion;
-                document.getElementById('interpretacion-presion').textContent = interpretacion;
-                document.getElementById('resultado-presion').style.display = 'block';
-            });
-            
-            // Calculadora de filtrado glomerular
-            document.getElementById('calcular-fg').addEventListener('click', () => {
-                const creatinina = parseFloat(document.getElementById('creatinina-input').value);
-                const edad = parseInt(document.getElementById('edad-renal').value);
-                const peso = parseFloat(document.getElementById('peso-renal').value);
-                const genero = document.getElementById('genero-renal').value;
-                
-                if (!creatinina || !edad || !peso) {
-                    alert('Por favor, complete todos los campos');
-                    return;
-                }
-                
-                let fg = 0;
-                if (genero === 'hombre') {
-                    fg = ((140 - edad) * peso) / (72 * creatinina);
-                } else {
-                    fg = ((140 - edad) * peso * 0.85) / (72 * creatinina);
-                }
-                
-                let clasificacion = '';
-                if (fg >= 90) {
-                    clasificacion = 'Función renal normal';
-                } else if (fg >= 60) {
-                    clasificacion = 'Daño renal leve (G2-G3a)';
-                } else if (fg >= 30) {
-                    clasificacion = 'Enfermedad renal moderada a severa (G3b-G4)';
-                } else {
-                    clasificacion = 'Insuficiencia renal terminal (G5)';
-                }
-                
-                document.getElementById('valor-fg').textContent = fg.toFixed(0);
-                document.getElementById('clasificacion-fg').textContent = clasificacion;
-                document.getElementById('resultado-fg').style.display = 'block';
-            });
-            
-            // Calculadora de Child-Pugh
-            document.getElementById('calcular-child-pugh').addEventListener('click', () => {
-                const bilirrubina = parseFloat(document.getElementById('bilirrubina-input').value);
-                const albumina = parseFloat(document.getElementById('albumina-input').value);
-                const inr = parseFloat(document.getElementById('inr-input').value);
-                const ascitis = parseInt(document.getElementById('ascitis-input').value);
-                const encefalopatia = parseInt(document.getElementById('encefalopatia-input').value);
-                
-                if (!bilirrubina || !albumina || !inr) {
-                    alert('Por favor, complete todos los campos');
-                    return;
-                }
-                
-                // Puntuación según valores
-                let puntosBilirrubina = 0;
-                if (bilirrubina < 2) puntosBilirrubina = 1;
-                else if (bilirrubina < 3) puntosBilirrubina = 2;
-                else puntosBilirrubina = 3;
-                
-                let puntosAlbumina = 0;
-                if (albumina > 3.5) puntosAlbumina = 1;
-                else if (albumina > 2.8) puntosAlbumina = 2;
-                else puntosAlbumina = 3;
-                
-                let puntosInr = 0;
-                if (inr < 1.7) puntosInr = 1;
-                else if (inr < 2.3) puntosInr = 2;
-                else puntosInr = 3;
-                
-                const total = puntosBilirrubina + puntosAlbumina + puntosInr + ascitis + encefalopatia;
-                
-                let clasificacion = '';
-                if (total <= 6) {
-                    clasificacion = 'Child-Pugh A (Enfermedad hepática compensada)';
-                } else if (total <= 9) {
-                    clasificacion = 'Child-Pugh B (Enfermedad hepática descompensada)';
-                } else {
-                    clasificacion = 'Child-Pugh C (Enfermedad hepática avanzada)';
-                }
-                
-                document.getElementById('puntuacion-child-pugh').textContent = total;
-                document.getElementById('clasificacion-child-pugh').textContent = clasificacion;
-                document.getElementById('resultado-child-pugh').style.display = 'block';
-            });
-            
-            // Calculadora de pérdida de peso
-            document.getElementById('calcular-perdida-peso').addEventListener('click', () => {
-                const pesoActual = parseFloat(document.getElementById('peso-actual-input').value);
-                const pesoHabitual = parseFloat(document.getElementById('peso-habitual-input').value);
-                
-                if (!pesoActual || !pesoHabitual) {
-                    alert('Por favor, complete todos los campos');
-                    return;
-                }
-                
-                const porcentaje = ((pesoHabitual - pesoActual) / pesoHabitual) * 100;
-                const perdidaRedondeada = porcentaje.toFixed(1);
-                let interpretacion = '';
-                
-                if (porcentaje < 5) {
-                    interpretacion = 'Pérdida de peso insignificante.';
-                } else if (porcentaje < 10) {
-                    interpretacion = 'Pérdida de peso moderada. Monitorizar.';
-                } else {
-                    interpretacion = 'Pérdida de peso significativa. Evaluar causas y considerar intervención nutricional.';
-                }
-                
-                document.getElementById('porcentaje-perdida-peso').textContent = perdidaRedondeada;
-                document.getElementById('interpretacion-perdida-peso').textContent = interpretacion;
-                document.getElementById('resultado-perdida-peso').style.display = 'block';
-            });
-            
-            // Verificación de interacciones medicamentosas
-            document.querySelector('#tab-busqueda .btn-primary').addEventListener('click', () => {
-                const med1 = document.getElementById('medicamento1').value.trim().toLowerCase();
-                const med2 = document.getElementById('medicamento2').value.trim().toLowerCase();
-                
-                if (!med1 || !med2) {
-                    alert('Por favor, ingrese los nombres de dos medicamentos');
-                    return;
-                }
-                
-                // Buscar interacción
-                const interaccion = db.interacciones.find(i => 
-                    (i.medicamento1.toLowerCase() === med1 && i.medicamento2.toLowerCase() === med2) ||
-                    (i.medicamento1.toLowerCase() === med2 && i.medicamento2.toLowerCase() === med1)
-                );
-                
-                const resultadoDiv = document.getElementById('resultado-interaccion');
-                const detalleInteraccion = document.getElementById('detalle-interaccion');
-                
-                if (interaccion) {
-                    const severidadClass = interaccion.severidad === 'fatal' ? 'fatal' : 
-                                         interaccion.severidad === 'moderate' ? 'moderate' : 'leve';
-                    detalleInteraccion.innerHTML = `<span class="${severidadClass}">${interaccion.severidad.toUpperCase()}:</span> ${interaccion.descripcion}`;
-                } else {
-                    detalleInteraccion.innerHTML = `No se encontraron interacciones significativas entre <strong>${med1}</strong> y <strong>${med2}</strong>.<br>Siempre consulte con un farmacéutico para una evaluación completa.`;
-                }
-                
-                resultadoDiv.style.display = 'block';
-            });
-            
-            // Agregar medicamento al combinador
-            document.getElementById('agregar-medicamento').addEventListener('click', () => {
-                const contenedor = document.getElementById('medicamentos-combinador');
-                const numMedicamentos = contenedor.querySelectorAll('.form-row').length;
-                
-                if (numMedicamentos >= 5) {
-                    alert('Máximo 5 medicamentos permitidos');
-                    return;
-                }
-                
-                const nuevoMedicamento = document.createElement('div');
-                nuevoMedicamento.className = 'form-row';
-                nuevoMedicamento.innerHTML = `
-                    <div class="form-group">
-                        <label>Medicamento ${numMedicamentos + 1}</label>
-                        <input type="text" placeholder="Nombre del medicamento" list="medicamentosList">
-                    </div>
-                    <div class="form-group">
-                        <label>Dosis</label>
-                        <input type="text" placeholder="Ej: 50 mg cada 24h">
-                    </div>
-                `;
-                
-                contenedor.appendChild(nuevoMedicamento);
-            });
-            
-            // Combinador de medicamentos
-            document.querySelector('#panel-combinador .btn-primary').addEventListener('click', () => {
-                const inputs = document.querySelectorAll('#medicamentos-combinador input[type="text"]');
-                const medicamentos = [];
-                
-                // Recoger nombres de medicamentos (cada par de inputs: nombre y dosis)
-                for (let i = 0; i < inputs.length; i += 2) {
-                    if (inputs[i].value.trim()) {
-                        medicamentos.push(inputs[i].value.trim());
-                    }
-                }
-                
-                if (medicamentos.length < 2) {
-                    alert('Ingrese al menos 2 medicamentos');
-                    return;
-                }
-                
-                // Buscar interacciones entre todos los medicamentos
-                const interaccionesEncontradas = [];
-                for (let i = 0; i < medicamentos.length; i++) {
-                    for (let j = i + 1; j < medicamentos.length; j++) {
-                        const med1 = medicamentos[i].toLowerCase();
-                        const med2 = medicamentos[j].toLowerCase();
-                        
-                        const interaccion = db.interacciones.find(i => 
-                            (i.medicamento1.toLowerCase() === med1 && i.medicamento2.toLowerCase() === med2) ||
-                            (i.medicamento1.toLowerCase() === med2 && i.medicamento2.toLowerCase() === med1)
-                        );
-                        
-                        if (interaccion) {
-                            interaccionesEncontradas.push(interaccion);
-                        }
-                    }
-                }
-                
-                const resultadoDiv = document.getElementById('resultado-combinador');
-                const detalleCombinador = document.getElementById('detalle-combinador');
-                
-                if (interaccionesEncontradas.length > 0) {
-                    detalleCombinador.innerHTML = '<h4>Interacciones encontradas:</h4>';
-                    interaccionesEncontradas.forEach(interaccion => {
-                        const severidadClass = interaccion.severidad === 'fatal' ? 'fatal' : 
-                                             interaccion.severidad === 'moderate' ? 'moderate' : 'leve';
-                        detalleCombinador.innerHTML += `
-                            <div class="interaction-item">
-                                <h4>${interaccion.medicamento1} + ${interaccion.medicamento2}</h4>
-                                <p><span class="${severidadClass}">${interaccion.severidad.toUpperCase()}:</span> ${interaccion.descripcion}</p>
-                            </div>
-                        `;
-                    });
-                } else {
-                    detalleCombinador.innerHTML = `
-                        <p>No se encontraron interacciones significativas entre los medicamentos ingresados.</p>
-                        <p>Recuerde que esta es una herramienta de screening y no reemplaza la evaluación de un profesional.</p>
-                    `;
-                }
-                
-                resultadoDiv.style.display = 'block';
-            });
         </script>
     </div>
 </body>
