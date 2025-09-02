@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Enfermería DAVID · Final Full — procedimientos, PAE, combinador fármacos, enfermedades, RCP, PWA.">
     <title>Enfermería DAVID · Final Full</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --bg: linear-gradient(180deg, #e0f7fa, #b2ebf2);
-            --glass: rgba(255, 255, 255, 0.7);
-            --glass-2: rgba(255, 255, 255, 0.15);
+            --glass: rgba(255, 255, 255, 0.85);
+            --glass-2: rgba(255, 255, 255, 0.2);
             --accent: #26a69a;
             --accent-2: #4db6ac;
             --primary-blue: #1a73e8;
@@ -29,30 +30,36 @@
             --danger: #e57373;
             --card-radius: 16px;
             --shadow: 0 10px 30px rgba(38, 166, 154, 0.15);
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.15);
             --tap: 48px;
-            --font: 'Roboto', system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-            --maxwidth: 1100px;
+            --font: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+            --maxwidth: 1200px;
             --border: #b2ebf2;
+            --border-light: #e0e0e0;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         :root[data-theme="dark"] {
             --bg: linear-gradient(180deg, #0a232f, #08313a);
-            --glass: rgba(16, 52, 64, 0.75);
-            --glass-2: rgba(255, 255, 255, 0.05);
+            --glass: rgba(16, 52, 64, 0.85);
+            --glass-2: rgba(255, 255, 255, 0.08);
             --accent: #4db6ac;
             --accent-2: #26a69a;
-            --text-dark: #ffffff;
-            --text-light: #e0f7fa;
+            --text-dark: #e0f7fa;
+            --text-light: #ffffff;
             --muted: #8caab5;
             --border: #006064;
+            --border-light: #1e3a4a;
             --background-light: #0a232f;
+            --primary-blue-lighter: #0a1f2c;
         }
         
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            transition: background-color 0.3s, color 0.3s;
+            transition: var(--transition);
         }
         
         html, body {
@@ -74,47 +81,64 @@
             display: flex;
             flex-direction: column;
             background: var(--glass);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
             border-radius: var(--card-radius);
             box-shadow: var(--shadow);
             overflow: hidden;
+            position: relative;
         }
         
         header {
-            padding: 16px;
-            background: rgba(255, 255, 255, 0.9);
+            padding: 16px 24px;
+            background: rgba(255, 255, 255, 0.95);
             border-bottom: 1px solid var(--border);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
         
         header h1 {
-            font-size: 1.5rem;
-            font-weight: 500;
+            font-size: 1.6rem;
+            font-weight: 600;
             color: var(--accent);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+        }
+        
+        .brand-icon {
+            font-size: 1.8rem;
+            color: var(--accent);
+        }
+        
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
         
         .theme-toggle {
             background: none;
             border: none;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             cursor: pointer;
             color: var(--accent);
             padding: 8px;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: var(--transition);
         }
         
         .theme-toggle:hover {
             background: var(--glass-2);
+            transform: rotate(30deg);
         }
         
         .container {
@@ -124,63 +148,90 @@
         }
         
         .sidebar {
-            width: 280px;
+            width: 300px;
             background: var(--glass);
             border-right: 1px solid var(--border);
             padding: 16px;
             overflow-y: auto;
+            transition: var(--transition);
+        }
+        
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 0;
+            margin-bottom: 16px;
+            border-bottom: 1px solid var(--border-light);
+        }
+        
+        .sidebar-header h3 {
+            font-size: 1.1rem;
+            color: var(--accent);
+            font-weight: 600;
         }
         
         .cat-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 8px;
+            gap: 10px;
         }
         
         .cat-btn {
-            padding: 12px 16px;
+            padding: 14px 18px;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             background: var(--glass-2);
             color: var(--text-dark);
             font-weight: 500;
             cursor: pointer;
             text-align: left;
-            transition: all 0.2s;
+            transition: var(--transition);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
         
         .cat-btn:hover {
             background: var(--accent-2);
             color: white;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(38, 166, 154, 0.2);
         }
         
-        .cat-btn.full {
-            grid-column: span 2;
+        .cat-btn.active {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 6px 16px rgba(38, 166, 154, 0.2);
         }
         
-        .cat-btn[data-cat="higiene"]::before { content: "🧴"; }
-        .cat-btn[data-cat="curaciones"]::before { content: "🩹"; }
-        .cat-btn[data-cat="farmaco"]::before { content: "💊"; }
-        .cat-btn[data-cat="emergencias"]::before { content: "🚨"; }
-        .cat-btn[data-cat="movilizacion"]::before { content: "🦽"; }
-        .cat-btn[data-cat="nutricion"]::before { content: "🥗"; }
-        .cat-btn[data-cat="infeccion"]::before { content: "🦠"; }
-        .cat-btn[data-cat="medicamentos"]::before { content: "📋"; }
-        .cat-btn[data-cat="enfermedades"]::before { content: "🏥"; }
-        .cat-btn[data-cat="pae"]::before { content: "📋"; }
-        .cat-btn[data-cat="rcp"]::before { content: "❤️"; }
-        .cat-btn[data-cat="calculadoras"]::before { content: "🧮"; }
-        .cat-btn[data-cat="recursos"]::before { content: "📚"; }
-        .cat-btn[data-cat="pacientes"]::before { content: "👥"; }
+        .cat-btn i {
+            font-size: 1.4rem;
+            width: 24px;
+            text-align: center;
+        }
+        
+        .cat-btn[data-cat="higiene"] i { color: #4CAF50; }
+        .cat-btn[data-cat="curaciones"] i { color: #2196F3; }
+        .cat-btn[data-cat="farmaco"] i { color: #9C27B0; }
+        .cat-btn[data-cat="emergencias"] i { color: #F44336; }
+        .cat-btn[data-cat="movilizacion"] i { color: #FF9800; }
+        .cat-btn[data-cat="nutricion"] i { color: #8D6E63; }
+        .cat-btn[data-cat="infeccion"] i { color: #795548; }
+        .cat-btn[data-cat="medicamentos"] i { color: #009688; }
+        .cat-btn[data-cat="enfermedades"] i { color: #607D8B; }
+        .cat-btn[data-cat="pae"] i { color: #3F51B5; }
+        .cat-btn[data-cat="rcp"] i { color: #E91E63; }
+        .cat-btn[data-cat="calculadoras"] i { color: #FF5722; }
+        .cat-btn[data-cat="recursos"] i { color: #00BCD4; }
+        .cat-btn[data-cat="pacientes"] i { color: #673AB7; }
         
         .small {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: var(--muted);
             margin-top: 8px;
+            line-height: 1.4;
         }
         
         main {
@@ -193,29 +244,42 @@
         .search-container {
             display: flex;
             gap: 8px;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
+            position: sticky;
+            top: 80px;
+            background: var(--background-light);
+            padding: 8px 0;
+            z-index: 50;
         }
         
         .input {
             flex: 1;
-            padding: 12px 16px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
+            padding: 14px 18px;
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
             font-family: var(--font);
             font-size: 1rem;
             background: white;
             color: var(--text-dark);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(38, 166, 154, 0.2);
         }
         
         .btn {
-            padding: 12px 16px;
+            padding: 14px 18px;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             cursor: pointer;
             font-weight: 500;
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
         
         .btn.primary {
@@ -225,6 +289,8 @@
         
         .btn.primary:hover {
             background: var(--accent-2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(38, 166, 154, 0.3);
         }
         
         .btn.secondary {
@@ -234,6 +300,8 @@
         
         .btn.secondary:hover {
             background: var(--primary-blue-darker);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
         }
         
         .btn.ghost {
@@ -244,44 +312,77 @@
         
         .btn.ghost:hover {
             background: var(--glass-2);
+            transform: translateY(-2px);
+        }
+        
+        .btn.small {
+            padding: 8px 12px;
+            font-size: 0.9rem;
         }
         
         .content-area {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 20px;
         }
         
         .category-card {
             background: white;
-            border-radius: 12px;
-            padding: 16px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+        }
+        
+        .category-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
         }
         
         .category-card h2 {
             color: var(--accent);
-            margin-bottom: 12px;
-            font-size: 1.3rem;
+            margin-bottom: 16px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .category-card h2 i {
+            font-size: 1.5rem;
         }
         
         .category-card h3 {
             color: var(--accent-2);
-            margin: 12px 0 8px 0;
-            font-size: 1.1rem;
+            margin: 16px 0 10px 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .category-card h4 {
             color: var(--primary-blue);
-            margin: 8px 0 4px 0;
-            font-size: 1rem;
+            margin: 10px 0 6px 0;
+            font-size: 1.1rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
         
         .procedure {
-            margin-bottom: 16px;
-            padding-bottom: 16px;
-            border-bottom: 1px dashed var(--border);
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-light);
+            transition: var(--transition);
+        }
+        
+        .procedure:hover {
+            border-bottom-color: var(--accent-2);
         }
         
         .procedure:last-child {
@@ -292,58 +393,119 @@
         
         .procedure h3 {
             color: var(--accent-2);
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .procedure h3 i {
+            font-size: 1.2rem;
+            color: var(--accent);
         }
         
         .procedure p {
-            margin: 4px 0;
+            margin: 5px 0;
             color: var(--text-dark);
+            line-height: 1.5;
         }
         
         .procedure .summary {
             font-style: italic;
             color: var(--muted);
-            margin-bottom: 8px;
-        }
-        
-        .materials, .steps, .notes {
-            margin: 8px 0;
-        }
-        
-        .materials ul, .steps ol {
-            margin: 8px 0;
-            padding-left: 20px;
-        }
-        
-        .materials li, .steps li {
-            margin: 4px 0;
-        }
-        
-        .notes {
+            margin-bottom: 10px;
+            padding: 12px;
             background: var(--primary-blue-lighter);
-            padding: 8px 12px;
             border-radius: 8px;
             border-left: 4px solid var(--primary-blue);
         }
         
+        .materials, .steps, .notes {
+            margin: 10px 0;
+        }
+        
+        .materials ul, .steps ol {
+            margin: 8px 0;
+            padding-left: 24px;
+        }
+        
+        .materials li, .steps li {
+            margin: 5px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        
+        .materials li::before, .steps li::before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+            margin-top: 6px;
+        }
+        
+        .steps li::before {
+            content: counter(step);
+            counter-increment: step;
+            background: var(--accent);
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-top: 4px;
+        }
+        
+        .notes {
+            background: var(--primary-blue-lighter);
+            padding: 14px 18px;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-blue);
+            margin: 12px 0;
+            font-size: 0.95rem;
+        }
+        
+        .notes i {
+            color: var(--primary-blue);
+            margin-right: 8px;
+        }
+        
         .disease-panel {
             background: white;
-            border-radius: 12px;
-            padding: 16px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            border: 1px solid var(--border);
-            margin-top: 16px;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            margin-top: 20px;
+            transition: var(--transition);
         }
         
         .disease-panel h2 {
             color: var(--accent);
-            margin-bottom: 12px;
+            margin-bottom: 16px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .disease-panel h2 i {
+            font-size: 1.5rem;
         }
         
         .disease-item {
-            margin-bottom: 16px;
-            padding-bottom: 16px;
-            border-bottom: 1px dashed var(--border);
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-light);
+            transition: var(--transition);
+        }
+        
+        .disease-item:hover {
+            border-bottom-color: var(--accent-2);
         }
         
         .disease-item:last-child {
@@ -354,26 +516,38 @@
         
         .disease-item strong {
             color: var(--accent-2);
+            font-size: 1.1rem;
         }
         
         .disease-item .small {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--muted);
-            margin-top: 4px;
+            margin-top: 6px;
+            line-height: 1.5;
         }
         
         .med-combo {
             background: white;
-            border-radius: 12px;
-            padding: 16px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            border: 1px solid var(--border);
-            margin-top: 16px;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            margin-top: 20px;
+            transition: var(--transition);
         }
         
         .med-combo h2 {
             color: var(--accent);
-            margin-bottom: 16px;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .med-combo h2 i {
+            font-size: 1.5rem;
         }
         
         .form-row {
@@ -393,28 +567,44 @@
             margin-bottom: 8px;
             font-weight: 500;
             color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .form-group label i {
+            color: var(--accent);
+            font-size: 1.1rem;
         }
         
         select.form-control, input.form-control {
             width: 100%;
-            padding: 12px 16px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
+            padding: 14px 18px;
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
             font-family: var(--font);
             font-size: 1rem;
             background: white;
             color: var(--text-dark);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        select.form-control:focus, input.form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(38, 166, 154, 0.2);
         }
         
         .interactions-warning {
             background: #fff3cd;
             border: 1px solid #ffeaa7;
-            border-radius: 8px;
-            padding: 12px 16px;
+            border-radius: 12px;
+            padding: 16px;
             margin: 16px 0;
             display: flex;
-            align-items: center;
-            gap: 8px;
+            align-items: flex-start;
+            gap: 12px;
+            animation: fadeIn 0.3s ease;
         }
         
         .interactions-warning.danger {
@@ -429,46 +619,93 @@
             color: #155724;
         }
         
+        .interactions-warning i {
+            font-size: 1.5rem;
+            margin-top: 2px;
+        }
+        
+        .interactions-warning.danger i {
+            color: #c82333;
+        }
+        
+        .interactions-warning.success i {
+            color: #218838;
+        }
+        
         .interactions-list {
-            margin: 8px 0 0 28px;
+            margin: 8px 0 0 40px;
+            flex: 1;
         }
         
         .interactions-list li {
-            margin: 4px 0;
+            margin: 6px 0;
+            padding: 4px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .interactions-list li:last-child {
+            border-bottom: none;
         }
         
         .pae-form {
             background: white;
-            border-radius: 12px;
-            padding: 16px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            border: 1px solid var(--border);
-            margin-top: 16px;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            margin-top: 20px;
+            transition: var(--transition);
         }
         
         .pae-form h2 {
             color: var(--accent);
-            margin-bottom: 16px;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .pae-form h2 i {
+            font-size: 1.5rem;
         }
         
         .rcp-guide {
             background: white;
-            border-radius: 12px;
-            padding: 16px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            border: 1px solid var(--border);
-            margin-top: 16px;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            margin-top: 20px;
+            transition: var(--transition);
         }
         
         .rcp-guide h2 {
             color: var(--accent);
-            margin-bottom: 16px;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .rcp-guide h2 i {
+            font-size: 1.5rem;
         }
         
         .rcp-step {
-            margin-bottom: 16px;
-            padding-left: 28px;
+            margin-bottom: 20px;
+            padding-left: 32px;
             position: relative;
+            transition: var(--transition);
+        }
+        
+        .rcp-step:hover {
+            background: var(--primary-blue-lighter);
+            border-radius: 8px;
+            padding: 12px 16px 12px 48px;
         }
         
         .rcp-step::before {
@@ -476,62 +713,90 @@
             position: absolute;
             left: 0;
             top: 0;
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             background: var(--accent);
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             font-weight: bold;
+            z-index: 1;
         }
         
         .score-result {
             background: white;
-            border-radius: 12px;
-            padding: 16px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            border: 1px solid var(--border);
-            margin-top: 16px;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            margin-top: 20px;
             text-align: center;
+            transition: var(--transition);
+        }
+        
+        .score-result h3 {
+            color: var(--accent);
+            margin-bottom: 16px;
+            font-size: 1.3rem;
         }
         
         .score-value {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: bold;
             color: var(--accent);
             margin: 16px 0;
+            text-shadow: 0 2px 4px rgba(38, 166, 154, 0.2);
         }
         
         .score-category {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 500;
             color: var(--accent-2);
         }
         
         .tab-container {
-            margin-top: 16px;
+            margin-top: 20px;
         }
         
         .tabs {
             display: flex;
-            border-bottom: 1px solid var(--border);
-            margin-bottom: 16px;
+            border-bottom: 1px solid var(--border-light);
+            margin-bottom: 20px;
+            border-radius: 12px 12px 0 0;
+            overflow: hidden;
         }
         
         .tab {
-            padding: 12px 16px;
+            padding: 14px 20px;
             cursor: pointer;
             font-weight: 500;
             color: var(--muted);
             border-bottom: 3px solid transparent;
+            transition: var(--transition);
+            background: var(--glass-2);
+        }
+        
+        .tab:first-child {
+            border-radius: 12px 0 0 0;
+        }
+        
+        .tab:last-child {
+            border-radius: 0 12px 0 0;
+        }
+        
+        .tab:hover {
+            background: var(--accent-2);
+            color: white;
         }
         
         .tab.active {
             color: var(--accent);
             border-bottom: 3px solid var(--accent);
+            background: rgba(38, 166, 154, 0.1);
+            font-weight: 600;
         }
         
         .tab-content {
@@ -544,44 +809,92 @@
         
         .calculator-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 20px;
-            margin-top: 16px;
+            margin-top: 20px;
         }
         
         .calculator-form {
             background: white;
-            border-radius: 12px;
-            padding: 16px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+        }
+        
+        .calculator-form:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
         }
         
         .calculator-form h3 {
             color: var(--accent);
-            margin-bottom: 16px;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .calculator-form h3 i {
+            font-size: 1.4rem;
         }
         
         .patient-list {
             background: white;
-            border-radius: 12px;
-            padding: 16px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            border: 1px solid var(--border);
-            margin-top: 16px;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            margin-top: 20px;
+            transition: var(--transition);
         }
         
         .patient-list h2 {
             color: var(--accent);
-            margin-bottom: 16px;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .patient-list h2 i {
+            font-size: 1.5rem;
         }
         
         .patient-card {
             background: var(--primary-blue-lighter);
-            border-radius: 8px;
-            padding: 12px;
-            margin-bottom: 8px;
-            border-left: 4px solid var(--primary-blue);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border-left: 5px solid var(--primary-blue);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .patient-card:hover {
+            transform: translateX(6px);
+            background: rgba(26, 115, 232, 0.15);
+        }
+        
+        .patient-card::after {
+            content: "→";
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .patient-card:hover::after {
+            opacity: 1;
         }
         
         .patient-card:last-child {
@@ -590,35 +903,71 @@
         
         .patient-card h3 {
             color: var(--primary-blue-darker);
-            margin-bottom: 4px;
+            margin-bottom: 6px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .patient-card h3 i {
+            color: var(--primary-blue);
+            font-size: 1.2rem;
         }
         
         .patient-card p {
-            margin: 2px 0;
-            font-size: 0.9rem;
+            margin: 3px 0;
+            font-size: 0.95rem;
             color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .patient-card p i {
+            color: var(--muted);
+            font-size: 1rem;
+            width: 20px;
+            text-align: center;
         }
         
         .resource-panel {
             background: white;
-            border-radius: 12px;
-            padding: 16px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            border: 1px solid var(--border);
-            margin-top: 16px;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            margin-top: 20px;
+            transition: var(--transition);
         }
         
         .resource-panel h2 {
             color: var(--accent);
-            margin-bottom: 16px;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .resource-panel h2 i {
+            font-size: 1.5rem;
         }
         
         .resource-card {
             background: var(--primary-blue-lighter);
-            border-radius: 8px;
-            padding: 12px;
-            margin-bottom: 8px;
-            border-left: 4px solid var(--primary-blue);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border-left: 5px solid var(--primary-blue);
+            transition: var(--transition);
+        }
+        
+        .resource-card:hover {
+            transform: translateX(6px);
+            background: rgba(26, 115, 232, 0.15);
         }
         
         .resource-card:last-child {
@@ -627,13 +976,106 @@
         
         .resource-card h3 {
             color: var(--primary-blue-darker);
-            margin-bottom: 4px;
+            margin-bottom: 6px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .resource-card h3 i {
+            color: var(--primary-blue);
+            font-size: 1.2rem;
         }
         
         .resource-card p {
-            margin: 2px 0;
-            font-size: 0.9rem;
+            margin: 3px 0;
+            font-size: 0.95rem;
             color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .resource-card p i {
+            color: var(--muted);
+            font-size: 1rem;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .welcome-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+        
+        .welcome-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .welcome-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .welcome-card i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+        
+        .welcome-card h3 {
+            color: var(--accent);
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+        }
+        
+        .welcome-card p {
+            color: var(--muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .rcp-controls {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .rcp-timer {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin: 16px 0;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            background: rgba(38, 166, 154, 0.1);
+            padding: 12px;
+            border-radius: 12px;
+            border: 2px solid var(--accent);
+        }
+        
+        .rcp-state {
+            font-size: 0.95rem;
+            color: var(--muted);
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         @media (max-width: 768px) {
@@ -643,9 +1085,11 @@
             
             .sidebar {
                 width: 100%;
-                max-height: 200px;
+                max-height: 240px;
                 border-right: none;
                 border-bottom: 1px solid var(--border);
+                position: relative;
+                z-index: 60;
             }
             
             .form-row {
@@ -659,35 +1103,125 @@
             .calculator-container {
                 grid-template-columns: 1fr;
             }
+            
+            .welcome-actions {
+                grid-template-columns: 1fr;
+            }
+            
+            .rcp-controls {
+                flex-direction: column;
+            }
+            
+            header {
+                padding: 16px;
+            }
+            
+            .search-container {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .app {
+                border-radius: 12px;
+            }
+            
+            .category-card, .disease-panel, .med-combo, .pae-form, .rcp-guide, .patient-list, .resource-panel {
+                border-radius: 12px;
+                padding: 16px;
+            }
+            
+            .cat-btn {
+                padding: 12px 16px;
+                font-size: 0.95rem;
+            }
+            
+            .input, .btn {
+                font-size: 0.95rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="app">
         <header>
-            <h1>🏥 Enfermería DAVID · Final Full</h1>
-            <button class="theme-toggle" id="themeToggle">🌓</button>
+            <h1><i class="fas fa-hospital-alt brand-icon"></i> Enfermería DAVID · Final Full</h1>
+            <div class="controls">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
         </header>
         
         <div class="container">
             <nav class="sidebar" id="sidebar" aria-label="Categorías">
-                <div class="cat-grid" role="navigation">
-                    <button class="cat-btn" data-cat="higiene">Higiene</button>
-                    <button class="cat-btn" data-cat="curaciones">Curaciones</button>
-                    <button class="cat-btn" data-cat="farmaco">Farmacología</button>
-                    <button class="cat-btn" data-cat="emergencias">Emergencias</button>
-                    <button class="cat-btn" data-cat="movilizacion">Movilización</button>
-                    <button class="cat-btn" data-cat="nutricion">Nutrición</button>
-                    <button class="cat-btn" data-cat="infeccion">Control infección</button>
-                    <button class="cat-btn" data-cat="medicamentos">Medicamentos</button>
-                    <button class="cat-btn" data-cat="enfermedades">Enfermedades</button>
-                    <button class="cat-btn" data-cat="pae">PAE</button>
-                    <button class="cat-btn" data-cat="rcp">RCP</button>
-                    <button class="cat-btn" data-cat="calculadoras">Calculadoras</button>
-                    <button class="cat-btn" data-cat="recursos">Recursos</button>
-                    <button class="cat-btn" data-cat="pacientes">Pacientes</button>
+                <div class="sidebar-header">
+                    <i class="fas fa-list"></i>
+                    <h3>Categorías</h3>
                 </div>
-                <div style="margin-top:10px" class="small">
+                <div class="cat-grid" role="navigation">
+                    <button class="cat-btn" data-cat="higiene">
+                        <i class="fas fa-soap"></i>
+                        Higiene
+                    </button>
+                    <button class="cat-btn" data-cat="curaciones">
+                        <i class="fas fa-band-aid"></i>
+                        Curaciones
+                    </button>
+                    <button class="cat-btn" data-cat="farmaco">
+                        <i class="fas fa-pills"></i>
+                        Farmacología
+                    </button>
+                    <button class="cat-btn" data-cat="emergencias">
+                        <i class="fas fa-ambulance"></i>
+                        Emergencias
+                    </button>
+                    <button class="cat-btn" data-cat="movilizacion">
+                        <i class="fas fa-wheelchair"></i>
+                        Movilización
+                    </button>
+                    <button class="cat-btn" data-cat="nutricion">
+                        <i class="fas fa-utensils"></i>
+                        Nutrición
+                    </button>
+                    <button class="cat-btn" data-cat="infeccion">
+                        <i class="fas fa-virus"></i>
+                        Control infección
+                    </button>
+                    <button class="cat-btn" data-cat="medicamentos">
+                        <i class="fas fa-prescription-bottle-alt"></i>
+                        Medicamentos
+                    </button>
+                    <button class="cat-btn" data-cat="enfermedades">
+                        <i class="fas fa-notes-medical"></i>
+                        Enfermedades
+                    </button>
+                    <button class="cat-btn" data-cat="pae">
+                        <i class="fas fa-clipboard-list"></i>
+                        PAE
+                    </button>
+                    <button class="cat-btn" data-cat="rcp">
+                        <i class="fas fa-heartbeat"></i>
+                        RCP
+                    </button>
+                    <button class="cat-btn" data-cat="calculadoras">
+                        <i class="fas fa-calculator"></i>
+                        Calculadoras
+                    </button>
+                    <button class="cat-btn" data-cat="recursos">
+                        <i class="fas fa-book"></i>
+                        Recursos
+                    </button>
+                    <button class="cat-btn" data-cat="pacientes">
+                        <i class="fas fa-users"></i>
+                        Pacientes
+                    </button>
+                </div>
+                <div class="small">
                     Toque una categoría. Cada botón abre sub-funciones y procedimientos.
                 </div>
             </nav>
@@ -695,78 +1229,106 @@
             <main class="panel" id="mainPanel" aria-live="polite">
                 <div class="search-container">
                     <input id="globalSearch" class="input" placeholder="Buscar procedimiento/enfermedad/medicamento..." aria-label="Buscar">
-                    <button id="searchBtn" class="btn primary">Buscar</button>
-                    <button id="openAllBtn" class="btn secondary">Abrir Todo</button>
+                    <button id="searchBtn" class="btn primary">
+                        <i class="fas fa-search"></i> Buscar
+                    </button>
+                    <button id="openAllBtn" class="btn secondary">
+                        <i class="fas fa-expand"></i> Abrir Todo
+                    </button>
                 </div>
                 
                 <div class="content-area" id="contentArea">
                     <div class="category-card">
-                        <h2>Bienvenido a Enfermería DAVID</h2>
+                        <h2><i class="fas fa-home"></i> Bienvenido a Enfermería DAVID</h2>
                         <p>Seleccione una categoría del menú lateral para acceder a procedimientos, guías clínicas, combinador de fármacos, enfermedades y más.</p>
                         <p>Esta aplicación proporciona acceso rápido a información esencial para profesionales de enfermería y salud.</p>
+                        
+                        <div class="welcome-actions">
+                            <div class="welcome-card" id="quickRcpCard">
+                                <i class="fas fa-heartbeat"></i>
+                                <h3>Guía Rápida de RCP</h3>
+                                <p>Acceda rápidamente a los pasos esenciales de la reanimación cardiopulmonar</p>
+                            </div>
+                            <div class="welcome-card" id="quickMedCard">
+                                <i class="fas fa-prescription-bottle-alt"></i>
+                                <h3>Combinador de Fármacos</h3>
+                                <p>Verifique interacciones medicamentosas peligrosas en segundos</p>
+                            </div>
+                            <div class="welcome-card" id="quickPaeCard">
+                                <i class="fas fa-clipboard-list"></i>
+                                <h3>Crear PAE</h3>
+                                <p>Genere planes de atención de enfermería personalizados</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
                 <!-- Panel de enfermedades -->
                 <div class="disease-panel" id="diseasePanel" style="display:none;">
-                    <h2>Enfermedades</h2>
+                    <h2><i class="fas fa-notes-medical"></i> Enfermedades</h2>
                     <div id="diseaseResults"></div>
-                    <div style="margin-top:8px">
-                        <button id="wikiFetchBtn" class="btn primary">Buscar en Wikipedia</button>
-                        <div id="wikiOutput" class="small" style="margin-top:8px"></div>
+                    <div style="margin-top:12px">
+                        <button id="wikiFetchBtn" class="btn primary">
+                            <i class="fas fa-wikipedia-w"></i> Buscar en Wikipedia
+                        </button>
+                        <div id="wikiOutput" class="small" style="margin-top:10px"></div>
                     </div>
                 </div>
                 
                 <!-- Combinador de fármacos -->
                 <div class="med-combo" id="medCombo" style="display:none;">
-                    <h2>Combinador de Fármacos</h2>
+                    <h2><i class="fas fa-prescription-bottle-alt"></i> Combinador de Fármacos</h2>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="medSearchBox">Buscar fármaco</label>
+                            <label for="medSearchBox"><i class="fas fa-search"></i> Buscar fármaco</label>
                             <input type="text" id="medSearchBox" class="form-control" placeholder="Buscar fármaco...">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="medSelectA">Medicamento A</label>
+                            <label for="medSelectA"><i class="fas fa-capsules"></i> Medicamento A</label>
                             <select id="medSelectA" class="form-control">
                                 <option value="">Seleccionar...</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="medSelectB">Medicamento B</label>
+                            <label for="medSelectB"><i class="fas fa-capsules"></i> Medicamento B</label>
                             <select id="medSelectB" class="form-control">
                                 <option value="">Seleccionar...</option>
                             </select>
                         </div>
                     </div>
-                    <button id="checkInteractionsBtn" class="btn primary">Verificar Interacciones</button>
-                    <div id="medAlert" style="margin-top:16px;"></div>
-                    <details style="margin-top:6px">
-                        <summary class="small">Lista 'Nunca combinar' (críticas)</summary>
-                        <div id="neverList" style="margin-top:8px;max-height:260px;overflow:auto"></div>
+                    <button id="checkInteractionsBtn" class="btn primary">
+                        <i class="fas fa-exchange-alt"></i> Verificar Interacciones
+                    </button>
+                    <div id="medAlert" style="margin-top:20px;"></div>
+                    <details style="margin-top:10px">
+                        <summary class="small">
+                            <i class="fas fa-exclamation-triangle"></i> Lista 'Nunca combinar' (críticas)
+                        </summary>
+                        <div id="neverList" style="margin-top:10px;max-height:280px;overflow:auto"></div>
                     </details>
                 </div>
                 
                 <!-- Formulario PAE -->
                 <div class="pae-form" id="paeForm" style="display:none;">
-                    <h2>Plan de Atención de Enfermería (PAE)</h2>
+                    <h2><i class="fas fa-clipboard-list"></i> Plan de Atención de Enfermería (PAE)</h2>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="patientName">Nombre del Paciente</label>
+                            <label for="patientName"><i class="fas fa-user"></i> Nombre del Paciente</label>
                             <input type="text" id="patientName" class="form-control" placeholder="Nombre completo">
                         </div>
                         <div class="form-group">
-                            <label for="patientAge">Edad</label>
+                            <label for="patientAge"><i class="fas fa-birthday-cake"></i> Edad</label>
                             <input type="number" id="patientAge" class="form-control" placeholder="Años">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="diagnosis">Diagnóstico Médico</label>
+                        <label for="diagnosis"><i class="fas fa-diagnoses"></i> Diagnóstico Médico</label>
                         <input type="text" id="diagnosis" class="form-control" placeholder="Diagnóstico principal">
                     </div>
                     <div class="form-group">
-                        <label for="nursingDiagnosis">Diagnóstico de Enfermería</label>
+                        <label for="nursingDiagnosis"><i class="fas fa-stethoscope"></i> Diagnóstico de Enfermería</label>
                         <select id="nursingDiagnosis" class="form-control">
                             <option value="">Seleccionar diagnóstico...</option>
                             <option value="dolor">Dolor agudo</option>
@@ -775,43 +1337,51 @@
                             <option value="integridad-cutanea">Riesgo de deterioro de la integridad cutánea</option>
                             <option value="nutricion">Desequilibrio de la nutrición</option>
                             <option value="ansiedad">Ansiedad</option>
+                            <option value="movilidad">Alteración de la movilidad física</option>
+                            <option value="perfusión">Riesgo de perfusión tisular ineficaz</option>
                         </select>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="goals">Objetivos</label>
+                            <label for="goals"><i class="fas fa-bullseye"></i> Objetivos</label>
                             <textarea id="goals" class="form-control" rows="3" placeholder="Objetivos a alcanzar..."></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="interventions">Intervenciones</label>
+                            <label for="interventions"><i class="fas fa-hand-holding-medical"></i> Intervenciones</label>
                             <textarea id="interventions" class="form-control" rows="3" placeholder="Intervenciones de enfermería..."></textarea>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="pae_name">Nombre del PAE</label>
+                            <label for="pae_name"><i class="fas fa-file-signature"></i> Nombre del PAE</label>
                             <input type="text" id="pae_name" class="form-control" placeholder="Nombre del plan">
                         </div>
                         <div class="form-group">
-                            <label for="pae_diag">Diagnóstico</label>
+                            <label for="pae_diag"><i class="fas fa-diagnoses"></i> Diagnóstico</label>
                             <input type="text" id="pae_diag" class="form-control" placeholder="Diagnóstico principal">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="pae_plan">Plan de Cuidados</label>
+                        <label for="pae_plan"><i class="fas fa-clipboard"></i> Plan de Cuidados</label>
                         <textarea id="pae_plan" class="form-control" rows="4" placeholder="Describa el plan de cuidados..."></textarea>
                     </div>
-                    <div style="margin-top:16px;display:flex;gap:8px">
-                        <button id="generatePaeBtn" class="btn primary">Generar PAE</button>
-                        <button id="savePaeBtn" class="btn secondary">Guardar PAE</button>
-                        <button id="exportPaeBtn" class="btn ghost">Exportar</button>
+                    <div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap">
+                        <button id="generatePaeBtn" class="btn primary">
+                            <i class="fas fa-magic"></i> Generar PAE
+                        </button>
+                        <button id="savePaeBtn" class="btn secondary">
+                            <i class="fas fa-save"></i> Guardar PAE
+                        </button>
+                        <button id="exportPaeBtn" class="btn ghost">
+                            <i class="fas fa-file-export"></i> Exportar
+                        </button>
                     </div>
-                    <div id="paeMsg" class="small" style="margin-top:8px"></div>
+                    <div id="paeMsg" class="small" style="margin-top:10px"></div>
                 </div>
                 
                 <!-- Guía de RCP -->
                 <div class="rcp-guide" id="rcpGuide" style="display:none;">
-                    <h2>RCP Básica (Adulto)</h2>
+                    <h2><i class="fas fa-heartbeat"></i> RCP Básica (Adulto)</h2>
                     <div class="rcp-step" data-step="1">
                         <strong>Verificar seguridad del entorno</strong>
                         <p>Asegúrese de que el área es segura para usted y el paciente antes de intervenir.</p>
@@ -840,91 +1410,105 @@
                         <strong>Continuar RCP</strong>
                         <p>Continúe con ciclos de 30:2 (30 compresiones, 2 ventilaciones) hasta que llegue ayuda o el paciente reaccione.</p>
                     </div>
-                    <div style="margin-top:16px">
-                        <button id="rcpStart" class="btn primary">Iniciar RCP</button>
-                        <button id="rcpStop" class="btn ghost">Detener</button>
-                        <div id="rcpState" class="small" style="margin-top:8px">Estado: detenido</div>
-                        <div id="rcpTimer" style="font-weight:700;margin-top:6px">00:00</div>
+                    <div class="rcp-controls">
+                        <div class="rcp-state" id="rcpState">Estado: detenido</div>
+                        <div class="rcp-timer" id="rcpTimer">00:00</div>
+                        <button id="rcpStart" class="btn primary">
+                            <i class="fas fa-play"></i> Iniciar RCP
+                        </button>
+                        <button id="rcpStop" class="btn ghost">
+                            <i class="fas fa-stop"></i> Detener
+                        </button>
                     </div>
                 </div>
                 
                 <!-- Calculadoras -->
                 <div class="calculator-container" id="calculadoras" style="display:none;">
                     <div class="calculator-form">
-                        <h3>IMC (Índice de Masa Corporal)</h3>
+                        <h3><i class="fas fa-weight"></i> IMC (Índice de Masa Corporal)</h3>
                         <div class="form-group">
-                            <label for="imc_weight">Peso (kg)</label>
+                            <label for="imc_weight"><i class="fas fa-weight-hanging"></i> Peso (kg)</label>
                             <input type="number" id="imc_weight" class="form-control" placeholder="Ej: 70">
                         </div>
                         <div class="form-group">
-                            <label for="imc_height">Altura (cm)</label>
+                            <label for="imc_height"><i class="fas fa-ruler-vertical"></i> Altura (cm)</label>
                             <input type="number" id="imc_height" class="form-control" placeholder="Ej: 170">
                         </div>
-                        <button id="calculateImc" class="btn primary" style="margin-top:16px;">Calcular IMC</button>
-                        <div id="imc-result" style="margin-top:16px;display:none;">
+                        <button id="calculateImc" class="btn primary" style="margin-top:20px;">
+                            <i class="fas fa-calculator"></i> Calcular IMC
+                        </button>
+                        <div id="imc-result" style="margin-top:20px;display:none;">
                             <div class="score-value" id="imc-value"></div>
                             <div class="score-category" id="imc-category"></div>
                         </div>
                     </div>
                     
                     <div class="calculator-form">
-                        <h3>Filtración Glomerular (CKD-EPI)</h3>
+                        <h3><i class="fas fa-filter"></i> Filtración Glomerular (CKD-EPI)</h3>
                         <div class="form-group">
-                            <label for="creatinine">Creatinina (mg/dL)</label>
+                            <label for="creatinine"><i class="fas fa-vial"></i> Creatinina (mg/dL)</label>
                             <input type="number" id="creatinine" class="form-control" placeholder="Ej: 1.0">
                         </div>
                         <div class="form-group">
-                            <label>Sexo</label>
+                            <label><i class="fas fa-venus-mars"></i> Sexo</label>
                             <div style="display:flex;gap:16px;margin-top:8px;">
-                                <label style="display:flex;align-items:center;gap:4px;">
-                                    <input type="radio" name="sex" value="male" checked> Hombre
+                                <label style="display:flex;align-items:center;gap:6px;">
+                                    <input type="radio" name="sex" value="male" checked> 
+                                    <i class="fas fa-male"></i> Hombre
                                 </label>
-                                <label style="display:flex;align-items:center;gap:4px;">
-                                    <input type="radio" name="sex" value="female"> Mujer
+                                <label style="display:flex;align-items:center;gap:6px;">
+                                    <input type="radio" name="sex" value="female"> 
+                                    <i class="fas fa-female"></i> Mujer
                                 </label>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="age">Edad</label>
+                            <label for="age"><i class="fas fa-birthday-cake"></i> Edad</label>
                             <input type="number" id="age" class="form-control" placeholder="Ej: 45">
                         </div>
-                        <button id="calculateFiltration" class="btn primary" style="margin-top:16px;">Calcular Filtración</button>
-                        <div id="filtration-result" style="margin-top:16px;display:none;">
+                        <button id="calculateFiltration" class="btn primary" style="margin-top:20px;">
+                            <i class="fas fa-calculator"></i> Calcular Filtración
+                        </button>
+                        <div id="filtration-result" style="margin-top:20px;display:none;">
                             <div class="score-value" id="filtration-value"></div>
                             <div class="score-category" id="filtration-category"></div>
                         </div>
                     </div>
                     
                     <div class="calculator-form">
-                        <h3>SCORE (Riesgo Cardiovascular)</h3>
+                        <h3><i class="fas fa-heart"></i> SCORE (Riesgo Cardiovascular)</h3>
                         <div class="form-group">
-                            <label for="score_age">Edad</label>
+                            <label for="score_age"><i class="fas fa-birthday-cake"></i> Edad</label>
                             <input type="number" id="score_age" class="form-control" placeholder="Ej: 55">
                         </div>
                         <div class="form-group">
-                            <label for="total-cholesterol">Colesterol total (mg/dL)</label>
+                            <label for="total-cholesterol"><i class="fas fa-vial"></i> Colesterol total (mg/dL)</label>
                             <input type="number" id="total-cholesterol" class="form-control" placeholder="Ej: 220">
                         </div>
                         <div class="form-group">
-                            <label for="hdl-cholesterol">HDL Colesterol (mg/dL)</label>
+                            <label for="hdl-cholesterol"><i class="fas fa-vial"></i> HDL Colesterol (mg/dL)</label>
                             <input type="number" id="hdl-cholesterol" class="form-control" placeholder="Ej: 50">
                         </div>
                         <div class="form-group">
-                            <label for="systolic-pressure">Presión sistólica (mmHg)</label>
+                            <label for="systolic-pressure"><i class="fas fa-heartbeat"></i> Presión sistólica (mmHg)</label>
                             <input type="number" id="systolic-pressure" class="form-control" placeholder="Ej: 140">
                         </div>
                         <div class="form-group">
-                            <label style="display:flex;align-items:center;gap:8px;">
-                                <input type="checkbox" id="smoker"> Fumador
+                            <label style="display:flex;align-items:center;gap:10px;">
+                                <input type="checkbox" id="smoker"> 
+                                <i class="fas fa-smoking"></i> Fumador
                             </label>
                         </div>
                         <div class="form-group">
-                            <label style="display:flex;align-items:center;gap:8px;">
-                                <input type="checkbox" id="diabetes"> Diabetes
+                            <label style="display:flex;align-items:center;gap:10px;">
+                                <input type="checkbox" id="diabetes"> 
+                                <i class="fas fa-diabetes"></i> Diabetes
                             </label>
                         </div>
-                        <button id="calculateScore" class="btn primary" style="margin-top:16px;">Calcular SCORE</button>
-                        <div id="score-result" style="margin-top:16px;display:none;">
+                        <button id="calculateScore" class="btn primary" style="margin-top:20px;">
+                            <i class="fas fa-calculator"></i> Calcular SCORE
+                        </button>
+                        <div id="score-result" style="margin-top:20px;display:none;">
                             <div class="score-value" id="score-value"></div>
                             <div class="score-category" id="score-category"></div>
                         </div>
@@ -933,47 +1517,54 @@
                 
                 <!-- Lista de pacientes -->
                 <div class="patient-list" id="pacientes" style="display:none;">
-                    <h2>Pacientes</h2>
+                    <h2><i class="fas fa-users"></i> Gestión de Pacientes</h2>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="patient-search">Buscar paciente</label>
+                            <label for="patient-search"><i class="fas fa-search"></i> Buscar paciente</label>
                             <input type="text" id="patient-search" class="form-control" placeholder="Nombre del paciente...">
                         </div>
                         <div class="form-group">
-                            <label for="patient-specialty">Especialidad</label>
+                            <label for="patient-specialty"><i class="fas fa-stethoscope"></i> Especialidad</label>
                             <select id="patient-specialty" class="form-control">
                                 <option value="">Todas</option>
                                 <option value="Cardiología">Cardiología</option>
                                 <option value="Neumología">Neumología</option>
                                 <option value="Endocrinología">Endocrinología</option>
                                 <option value="Neurología">Neurología</option>
+                                <option value="Oncología">Oncología</option>
+                                <option value="Nefrología">Nefrología</option>
                             </select>
                         </div>
                     </div>
-                    <button id="addPatientBtn" class="btn primary" style="margin-top:8px;">Agregar Paciente</button>
+                    <button id="addPatientBtn" class="btn primary" style="margin-top:10px;">
+                        <i class="fas fa-plus"></i> Agregar Paciente
+                    </button>
                     <div id="patients-container"></div>
                 </div>
                 
                 <!-- Recursos educativos -->
                 <div class="resource-panel" id="recursos" style="display:none;">
-                    <h2>Recursos Educativos</h2>
+                    <h2><i class="fas fa-book"></i> Recursos Educativos</h2>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="resource-search">Buscar recurso</label>
+                            <label for="resource-search"><i class="fas fa-search"></i> Buscar recurso</label>
                             <input type="text" id="resource-search" class="form-control" placeholder="Título o etiqueta...">
                         </div>
                         <div class="form-group">
-                            <label for="resource-category">Categoría</label>
+                            <label for="resource-category"><i class="fas fa-tags"></i> Categoría</label>
                             <select id="resource-category" class="form-control">
                                 <option value="">Todas</option>
                                 <option value="Protocolos">Protocolos</option>
                                 <option value="Guías">Guías</option>
                                 <option value="Videos">Videos</option>
                                 <option value="Imágenes">Imágenes</option>
+                                <option value="Artículos">Artículos</option>
                             </select>
                         </div>
                     </div>
-                    <button id="addResourceBtn" class="btn primary" style="margin-top:8px;">Agregar Recurso</button>
+                    <button id="addResourceBtn" class="btn primary" style="margin-top:10px;">
+                        <i class="fas fa-plus"></i> Agregar Recurso
+                    </button>
                     <div id="resources-container"></div>
                 </div>
             </main>
@@ -989,13 +1580,26 @@
         // Theme toggle functionality
         const themeToggle = $('themeToggle');
         const html = document.documentElement;
+        const themeIcon = themeToggle.querySelector('i');
         
         // Check for saved theme preference or use preferred color scheme
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme) {
             html.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
         } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             html.setAttribute('data-theme', 'dark');
+            updateThemeIcon('dark');
+        } else {
+            updateThemeIcon('light');
+        }
+        
+        function updateThemeIcon(theme) {
+            if (theme === 'dark') {
+                themeIcon.className = 'fas fa-sun';
+            } else {
+                themeIcon.className = 'fas fa-moon';
+            }
         }
         
         themeToggle.addEventListener('click', () => {
@@ -1003,6 +1607,7 @@
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             html.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
         });
         
         // Procedimientos de enfermería
@@ -1401,7 +2006,7 @@
             { a: 'warfarina', b: 'ibuprofeno', reason: 'Aumento del riesgo de hemorragia', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK545235/' },
             { a: 'paracetamol', b: 'alcohol', reason: 'Hepatotoxicidad severa', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK547703/' },
             { a: 'ciprofloxacina', b: 'antiácidos', reason: 'Disminución de absorción', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK538340/' },
-            { a: 'metformina', b: 'contraste iodado', reason: 'Riesgo de acidosis láctica', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK538272/' },
+            { a: 'metformina', b: 'contraste iodado', reason: 'Riesgo de acidosis láctica', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK537272/' },
             { a: 'sertralina', b: 'fenelzina', reason: 'Síndrome serotoninérgico', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK537281/' },
             { a: 'simvastatina', b: 'eritromicina', reason: 'Miopatía severa', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK537092/' },
             { a: 'gemfibrozil', b: 'statinas', reason: 'Rabdomiólisis', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK537290/' },
@@ -1624,17 +2229,29 @@
             calculadoras.style.display = 'none';
             pacientes.style.display = 'none';
             recursos.style.display = 'none';
+            
+            // Remove active state from all buttons
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
         }
         
         function renderCategory(cat) {
             clearContent();
+            
+            // Add active state to the selected button
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                if (btn.getAttribute('data-cat') === cat) {
+                    btn.classList.add('active');
+                }
+            });
             
             if (PROCEDURES[cat]) {
                 const categoryCard = document.createElement('div');
                 categoryCard.className = 'category-card';
                 
                 const h2 = document.createElement('h2');
-                h2.textContent = getCatTitle(cat);
+                h2.innerHTML = `<i class="fas fa-folder-open"></i> ${getCatTitle(cat)}`;
                 categoryCard.appendChild(h2);
                 
                 PROCEDURES[cat].forEach(proc => {
@@ -1642,13 +2259,13 @@
                     procedure.className = 'procedure';
                     
                     const h3 = document.createElement('h3');
-                    h3.textContent = proc.title;
+                    h3.innerHTML = `<i class="fas fa-file-medical"></i> ${proc.title}`;
                     procedure.appendChild(h3);
                     
                     if (proc.summary) {
                         const summary = document.createElement('p');
                         summary.className = 'summary';
-                        summary.textContent = proc.summary;
+                        summary.innerHTML = `<i class="fas fa-info-circle"></i> ${proc.summary}`;
                         procedure.appendChild(summary);
                     }
                     
@@ -1656,8 +2273,8 @@
                         const materials = document.createElement('div');
                         materials.className = 'materials';
                         
-                        const materialsLabel = document.createElement('h3');
-                        materialsLabel.textContent = 'Materiales:';
+                        const materialsLabel = document.createElement('h4');
+                        materialsLabel.innerHTML = `<i class="fas fa-box-open"></i> Materiales:`;
                         materials.appendChild(materialsLabel);
                         
                         const ul = document.createElement('ul');
@@ -1674,11 +2291,12 @@
                         const steps = document.createElement('div');
                         steps.className = 'steps';
                         
-                        const stepsLabel = document.createElement('h3');
-                        stepsLabel.textContent = 'Pasos:';
+                        const stepsLabel = document.createElement('h4');
+                        stepsLabel.innerHTML = `<i class="fas fa-list-ol"></i> Pasos:`;
                         steps.appendChild(stepsLabel);
                         
                         const ol = document.createElement('ol');
+                        ol.style.counterReset = 'step';
                         proc.steps.forEach(step => {
                             const li = document.createElement('li');
                             li.textContent = step;
@@ -1691,7 +2309,7 @@
                     if (proc.notes) {
                         const notes = document.createElement('div');
                         notes.className = 'notes';
-                        notes.textContent = proc.notes;
+                        notes.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ${proc.notes}`;
                         procedure.appendChild(notes);
                     }
                     
@@ -1779,7 +2397,7 @@
             if (dHits.length) {
                 const card = document.createElement('div');
                 card.className = 'category-card';
-                card.innerHTML = `<h2>Enfermedades encontradas</h2>`;
+                card.innerHTML = `<h2><i class="fas fa-notes-medical"></i> Enfermedades encontradas</h2>`;
                 
                 dHits.forEach(d => {
                     const diseaseItem = document.createElement('div');
@@ -1796,7 +2414,7 @@
             if (mHits.length) {
                 const card = document.createElement('div');
                 card.className = 'category-card';
-                card.innerHTML = `<h2>Medicamentos encontrados</h2><div class="small">${mHits.join(', ')}</div>`;
+                card.innerHTML = `<h2><i class="fas fa-pills"></i> Medicamentos encontrados</h2><div class="small">${mHits.join(', ')}</div>`;
                 contentArea.appendChild(card);
             }
             
@@ -1807,7 +2425,7 @@
             if (pHits.length) {
                 const card = document.createElement('div');
                 card.className = 'category-card';
-                card.innerHTML = `<h2>Pacientes encontrados</h2>`;
+                card.innerHTML = `<h2><i class="fas fa-users"></i> Pacientes encontrados</h2>`;
                 
                 pHits.forEach(p => {
                     const patientItem = document.createElement('div');
@@ -1823,7 +2441,7 @@
             if (results.length > 0) {
                 const card = document.createElement('div');
                 card.className = 'category-card';
-                card.innerHTML = `<h2>Resultados de búsqueda</h2>`;
+                card.innerHTML = `<h2><i class="fas fa-search"></i> Resultados de búsqueda</h2>`;
                 
                 results.forEach(r => {
                     const proc = r.p;
@@ -1831,13 +2449,13 @@
                     procedure.className = 'procedure';
                     
                     const h3 = document.createElement('h3');
-                    h3.textContent = proc.title;
+                    h3.innerHTML = `<i class="fas fa-file-medical"></i> ${proc.title}`;
                     procedure.appendChild(h3);
                     
                     if (proc.summary) {
                         const summary = document.createElement('p');
                         summary.className = 'summary';
-                        summary.textContent = proc.summary;
+                        summary.innerHTML = `<i class="fas fa-info-circle"></i> ${proc.summary}`;
                         procedure.appendChild(summary);
                     }
                     
@@ -1850,7 +2468,7 @@
             if (results.length === 0 && dHits.length === 0 && mHits.length === 0 && pHits.length === 0) {
                 const card = document.createElement('div');
                 card.className = 'category-card';
-                card.innerHTML = `<h2>No se encontraron resultados</h2><p>No se encontró información relacionada con "${q}". Intente con otro término de búsqueda.</p>`;
+                card.innerHTML = `<h2><i class="fas fa-exclamation-triangle"></i> No se encontraron resultados</h2><p>No se encontró información relacionada con "${q}". Intente con otro término de búsqueda.</p>`;
                 contentArea.appendChild(card);
             }
         });
@@ -1893,9 +2511,9 @@
             
             // Populate never list
             $('neverList').innerHTML = NEVER_COMBINE.map(n => 
-                `<div style="margin-bottom:8px">
-                    <strong>${n.a} + ${n.b}</strong>
-                    <div class="small">${n.reason} <a href="${n.ref}" target="_blank" rel="noopener">ref</a></div>
+                `<div style="margin-bottom:10px;padding:8px;background:rgba(232,232,232,0.4);border-radius:8px">
+                    <strong style="color:#c62828">${n.a} + ${n.b}</strong>
+                    <div class="small">${n.reason} <a href="${n.ref}" target="_blank" rel="noopener" style="color:#1565c0"><i class="fas fa-external-link-alt"></i></a></div>
                 </div>`
             ).join('');
             
@@ -1918,12 +2536,12 @@
             const out = $('medAlert');
             
             if (!a || !b) {
-                out.innerHTML = '<span style="color:var(--danger)">Seleccione dos fármacos</span>';
+                out.innerHTML = '<div class="interactions-warning danger"><i class="fas fa-exclamation-triangle"></i> <span>Seleccione dos fármacos</span></div>';
                 return;
             }
             
             if (a === b) {
-                out.innerHTML = '<span style="color:green">Mismo medicamento seleccionado — cuidado con duplicidad terapéutica.</span>';
+                out.innerHTML = '<div class="interactions-warning success"><i class="fas fa-check-circle"></i> <span>Mismo medicamento seleccionado — cuidado con duplicidad terapéutica.</span></div>';
                 return;
             }
             
@@ -1933,14 +2551,19 @@
             );
             
             if (hits.length) {
-                out.innerHTML = hits.map(h => 
-                    `<div style="color:var(--danger)">
-                        <strong>${h.reason}</strong>
-                        <div class="small">${h.a.toUpperCase()} + ${h.b.toUpperCase()}</div>
-                    </div>`
-                ).join('');
+                out.innerHTML = `
+                    <div class="interactions-warning danger">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div>
+                            <strong>Interacciones Peligrosas Detectadas:</strong>
+                            <ul class="interactions-list">
+                                ${hits.map(h => `<li><strong>${h.reason}</strong> (${h.a.toUpperCase()} + ${h.b.toUpperCase()}) <a href="${h.ref}" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i></a></li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                `;
             } else {
-                out.innerHTML = '<span style="color:green">No se detectaron interacciones críticas en la base local. Consulte monografías especializadas para interacciones completas.</span>';
+                out.innerHTML = '<div class="interactions-warning success"><i class="fas fa-check-circle"></i> <span>No se detectaron interacciones peligrosas conocidas entre estos medicamentos.</span></div>';
             }
         });
         
@@ -1969,37 +2592,39 @@
             const paeCard = document.createElement('div');
             paeCard.className = 'category-card';
             paeCard.innerHTML = `
-                <h2>Plan de Atención de Enfermería (PAE)</h2>
+                <h2><i class="fas fa-clipboard-list"></i> Plan de Atención de Enfermería (PAE)</h2>
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Paciente:</label>
+                        <label><i class="fas fa-user"></i> Paciente:</label>
                         <p>${patientName}, ${patientAge} años</p>
                     </div>
                     <div class="form-group">
-                        <label>Diagnóstico Médico:</label>
+                        <label><i class="fas fa-diagnoses"></i> Diagnóstico Médico:</label>
                         <p>${diagnosis}</p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Diagnóstico de Enfermería:</label>
+                    <label><i class="fas fa-stethoscope"></i> Diagnóstico de Enfermería:</label>
                     <p>${$('nursingDiagnosis').options[$('nursingDiagnosis').selectedIndex].text}</p>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Objetivos:</label>
+                        <label><i class="fas fa-bullseye"></i> Objetivos:</label>
                         <p>${goals}</p>
                     </div>
                     <div class="form-group">
-                        <label>Intervenciones:</label>
+                        <label><i class="fas fa-hand-holding-medical"></i> Intervenciones:</label>
                         <p>${interventions}</p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Fecha:</label>
+                    <label><i class="far fa-calendar-alt"></i> Fecha:</label>
                     <p>${new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
                 </div>
-                <div style="margin-top:16px;text-align:center;">
-                    <button id="printPaeBtn" class="btn primary">Imprimir PAE</button>
+                <div style="margin-top:20px;text-align:center;">
+                    <button id="printPaeBtn" class="btn primary">
+                        <i class="fas fa-print"></i> Imprimir PAE
+                    </button>
                 </div>
             `;
             
@@ -2069,7 +2694,7 @@
                 const ss = String(rcpSeconds%60).padStart(2,'0');
                 $('rcpTimer').textContent = `${mm}:${ss}`;
                 if(rcpSeconds % 120 === 0) {
-                    if(navigator.vibrate) navigator.vibrate(600);
+                    if(navigator.vibrate) navigator.vibrate([200,100,200]);
                     alert('Cambio de reanimador recomendado (cada 2 min).');
                 }
             }, 1000);
@@ -2089,7 +2714,7 @@
         // Show calculadoras
         function showCalculadoras() {
             clearContent();
-            calculadoras.style.display = 'flex';
+            calculadoras.style.display = 'grid';
         }
         
         // Calculate IMC
@@ -2225,18 +2850,18 @@
             });
             
             if (filteredPatients.length === 0) {
-                container.innerHTML = '<p>No se encontraron pacientes.</p>';
+                container.innerHTML = '<p class="small">No se encontraron pacientes.</p>';
                 return;
             }
             
             container.innerHTML = filteredPatients.map(p => 
                 `<div class="patient-card">
-                    <h3>${p.nombre}</h3>
-                    <p>Edad: ${p.edad} años</p>
-                    <p>Diagnóstico: ${p.diagnosticoPrincipal}</p>
-                    <p>Especialidad: ${p.especialidad}</p>
-                    <p>Riesgo cardiovascular: ${p.riesgoCardiovascular}</p>
-                    <p>Alergias: ${p.alergias.length > 0 ? p.alergias.join(', ') : 'Ninguna'}</p>
+                    <h3><i class="fas fa-user"></i> ${p.nombre}</h3>
+                    <p><i class="fas fa-birthday-cake"></i> Edad: ${p.edad} años</p>
+                    <p><i class="fas fa-diagnoses"></i> Diagnóstico: ${p.diagnosticoPrincipal}</p>
+                    <p><i class="fas fa-stethoscope"></i> Especialidad: ${p.especialidad}</p>
+                    <p><i class="fas fa-heartbeat"></i> Riesgo cardiovascular: ${p.riesgoCardiovascular}</p>
+                    <p><i class="fas fa-allergies"></i> Alergias: ${p.alergias.length > 0 ? p.alergias.join(', ') : 'Ninguna'}</p>
                 </div>`
             ).join('');
         }
@@ -2271,18 +2896,20 @@
             });
             
             if (filteredResources.length === 0) {
-                container.innerHTML = '<p>No se encontraron recursos.</p>';
+                container.innerHTML = '<p class="small">No se encontraron recursos.</p>';
                 return;
             }
             
             container.innerHTML = filteredResources.map(r => 
                 `<div class="resource-card">
-                    <h3>${r.titulo}</h3>
-                    <p>Categoría: ${r.categoria}</p>
-                    <p>Tipo: ${r.tipo}</p>
-                    <p>Etiquetas: ${r.etiquetas.join(', ')}</p>
+                    <h3><i class="fas fa-book"></i> ${r.titulo}</h3>
+                    <p><i class="fas fa-tags"></i> Categoría: ${r.categoria}</p>
+                    <p><i class="fas fa-file"></i> Tipo: ${r.tipo}</p>
+                    <p><i class="fas fa-tags"></i> Etiquetas: ${r.etiquetas.join(', ')}</p>
                     <p>${r.descripcion}</p>
-                    <a href="${r.url}" target="_blank" class="btn primary" style="margin-top:8px;">Abrir Recurso</a>
+                    <a href="${r.url}" target="_blank" class="btn primary" style="margin-top:10px;">
+                        <i class="fas fa-external-link-alt"></i> Abrir Recurso
+                    </a>
                 </div>`
             ).join('');
         }
@@ -2308,15 +2935,28 @@
                 const url = `https://es.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(q)}`;
                 const res = await fetch(url);
                 if(!res.ok) { 
-                    $('wikiOutput').textContent = 'No encontrado en Wikipedia.'; 
+                    $('wikiOutput').textContent = 'No encontrado en Wikipedia.';
                     return; 
                 }
                 const data = await res.json();
-                $('wikiOutput').innerHTML = `<strong>${data.title}</strong><div class="small">${data.extract}</div><div style="margin-top:6px"><a href="${data.content_urls?.desktop?.page||'#'}" target="_blank">Leer en Wikipedia</a></div>`;
-                diseasePanel.style.display = '';
+                $('wikiOutput').innerHTML = `<strong>${data.title}</strong><div class="small">${data.extract}</div><div style="margin-top:8px"><a href="${data.content_urls?.desktop?.page||'#'}" target="_blank" class="btn small"><i class="fas fa-external-link-alt"></i> Leer en Wikipedia</a></div>`;
+                diseasePanel.style.display = 'block';
             } catch(e) {
                 $('wikiOutput').textContent = 'Error al buscar en Wikipedia.';
             }
+        });
+        
+        // Quick action buttons
+        $('quickRcpCard').addEventListener('click', () => {
+            document.querySelector('[data-cat="rcp"]').click();
+        });
+        
+        $('quickMedCard').addEventListener('click', () => {
+            document.querySelector('[data-cat="medicamentos"]').click();
+        });
+        
+        $('quickPaeCard').addEventListener('click', () => {
+            document.querySelector('[data-cat="pae"]').click();
         });
         
         // Add keyboard shortcuts
@@ -2342,30 +2982,43 @@
             const welcomeCard = document.createElement('div');
             welcomeCard.className = 'category-card';
             welcomeCard.innerHTML = `
-                <h2>Bienvenido a Enfermería DAVID</h2>
+                <h2><i class="fas fa-home"></i> Bienvenido a Enfermería DAVID</h2>
                 <p>Seleccione una categoría del menú lateral para acceder a procedimientos, guías clínicas, combinador de fármacos, enfermedades y más.</p>
                 <p>Esta aplicación proporciona acceso rápido a información esencial para profesionales de enfermería y salud.</p>
-                <div class="form-row" style="margin-top:16px;">
-                    <div class="form-group">
-                        <button id="quickRcpBtn" class="btn primary" style="width:100%;">🚀 Guía Rápida de RCP</button>
+                
+                <div class="welcome-actions">
+                    <div class="welcome-card" id="quickRcpCard">
+                        <i class="fas fa-heartbeat"></i>
+                        <h3>Guía Rápida de RCP</h3>
+                        <p>Acceda rápidamente a los pasos esenciales de la reanimación cardiopulmonar</p>
                     </div>
-                    <div class="form-group">
-                        <button id="quickMedBtn" class="btn secondary" style="width:100%;">💊 Combinador de Fármacos</button>
+                    <div class="welcome-card" id="quickMedCard">
+                        <i class="fas fa-prescription-bottle-alt"></i>
+                        <h3>Combinador de Fármacos</h3>
+                        <p>Verifique interacciones medicamentosas peligrosas en segundos</p>
+                    </div>
+                    <div class="welcome-card" id="quickPaeCard">
+                        <i class="fas fa-clipboard-list"></i>
+                        <h3>Crear PAE</h3>
+                        <p>Genere planes de atención de enfermería personalizados</p>
                     </div>
                 </div>
             `;
             contentArea.appendChild(welcomeCard);
             
-            // Quick action buttons
-            $('quickRcpBtn').addEventListener('click', () => {
+            // Initialize quick action buttons
+            $('quickRcpCard').addEventListener('click', () => {
                 document.querySelector('[data-cat="rcp"]').click();
             });
             
-            $('quickMedBtn').addEventListener('click', () => {
+            $('quickMedCard').addEventListener('click', () => {
                 document.querySelector('[data-cat="medicamentos"]').click();
+            });
+            
+            $('quickPaeCard').addEventListener('click', () => {
+                document.querySelector('[data-cat="pae"]').click();
             });
         });
     </script>
 </body>
 </html>
-```
