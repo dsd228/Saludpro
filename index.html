@@ -1,10 +1,9 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SaludPro - Ecosistema Médico Integral</title>
+    <title>SaludPro - Asistente Clínico Inteligente</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Material+Symbols+Outlined" rel="stylesheet">
@@ -252,6 +251,334 @@
             margin-bottom: 20px;
             padding-bottom: 15px;
             border-bottom: 1px solid #eee;
+        }
+        
+        /* Consultorio Virtual */
+        .consultorio-container {
+            background-color: var(--background-light);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-medium);
+        }
+        
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .search-box input {
+            flex-grow: 1;
+            padding: 12px 15px;
+            border-radius: var(--border-radius);
+            border: 1px solid #ccc;
+            font-size: 1em;
+            transition: var(--transition-fast);
+        }
+        
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+        }
+        
+        .search-box button {
+            padding: 12px 20px;
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition-fast);
+        }
+        
+        .search-box button:hover {
+            background-color: var(--primary-blue-darker);
+        }
+        
+        .suggestions-container {
+            max-height: 200px;
+            overflow-y: auto;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: var(--border-radius);
+            margin-top: 5px;
+            box-shadow: var(--shadow-medium);
+            display: none;
+        }
+        
+        .suggestion-item {
+            padding: 10px 15px;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+            transition: var(--transition-fast);
+        }
+        
+        .suggestion-item:hover {
+            background-color: var(--primary-blue-lighter);
+            color: var(--primary-blue);
+        }
+        
+        .suggestion-item:last-child {
+            border-bottom: none;
+        }
+        
+        .suggestion-highlight {
+            font-weight: 500;
+            color: var(--primary-blue);
+        }
+        
+        /* Resultados de búsqueda */
+        .search-results {
+            margin-top: 20px;
+        }
+        
+        .result-item {
+            background-color: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-medium);
+            margin-bottom: 20px;
+            border: 1px solid #eee;
+            transition: var(--transition-slow);
+        }
+        
+        .result-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary-blue);
+        }
+        
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .result-title {
+            margin: 0;
+            color: var(--primary-blue);
+            font-size: 1.3em;
+        }
+        
+        .result-type {
+            background-color: var(--primary-blue-lighter);
+            color: var(--primary-blue);
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 500;
+        }
+        
+        .result-content {
+            margin-bottom: 15px;
+        }
+        
+        .result-content h4 {
+            color: var(--primary-blue);
+            margin: 15px 0 10px 0;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .result-content p {
+            margin: 5px 0;
+            line-height: 1.6;
+        }
+        
+        .result-content ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .result-content li {
+            margin-bottom: 5px;
+        }
+        
+        .result-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .result-actions button {
+            padding: 8px 12px;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition-fast);
+            font-size: 0.9em;
+        }
+        
+        .result-actions button .material-symbols-outlined {
+            margin-right: 5px;
+            font-size: 1.1em;
+        }
+        
+        .btn-detail {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+        
+        .btn-detail:hover {
+            background-color: var(--primary-blue-darker);
+        }
+        
+        .btn-protocol {
+            background-color: var(--accent-teal);
+            color: white;
+        }
+        
+        .btn-protocol:hover {
+            background-color: #00695c;
+        }
+        
+        .btn-images {
+            background-color: var(--accent-purple);
+            color: white;
+        }
+        
+        .btn-images:hover {
+            background-color: #6a1b9a;
+        }
+        
+        .btn-expert {
+            background-color: var(--warning-yellow);
+            color: var(--text-dark);
+        }
+        
+        .btn-expert:hover {
+            background-color: #e59e00;
+        }
+        
+        /* Imágenes educativas */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .image-item {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            position: relative;
+            height: 120px;
+        }
+        
+        .image-item:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-medium);
+        }
+        
+        .image-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .image-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 5px;
+            font-size: 0.8em;
+            text-align: center;
+        }
+        
+        /* Lightbox para imágenes */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: var(--z-modal);
+            opacity: 0;
+            animation: fadeInOverlay 0.3s ease-out forwards;
+        }
+        
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: var(--border-radius);
+        }
+        
+        .lightbox-caption {
+            position: absolute;
+            bottom: -30px;
+            left: 0;
+            right: 0;
+            color: white;
+            text-align: center;
+            font-size: 0.9em;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 2em;
+            cursor: pointer;
+            background: rgba(0,0,0,0.5);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-fast);
+        }
+        
+        .lightbox-close:hover {
+            background: rgba(0,0,0,0.8);
+        }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        
+        .lightbox-nav button {
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+        
+        .lightbox-nav button:hover {
+            background: rgba(0,0,0,0.8);
         }
         
         /* Dashboard Specific Styles */
@@ -1160,6 +1487,14 @@
             .chart-controls {
                 flex-direction: column;
             }
+            
+            .search-box {
+                flex-direction: column;
+            }
+            
+            .result-actions {
+                flex-wrap: wrap;
+            }
         }
         
         @media (max-width: 480px) {
@@ -1203,6 +1538,10 @@
                 width: 35px;
                 height: 35px;
             }
+            
+            .result-actions button {
+                flex: 1;
+            }
         }
     </style>
 </head>
@@ -1212,7 +1551,7 @@
             <span class="material-symbols-outlined app-icon">local_hospital</span>
             <h1>SaludPro</h1>
         </div>
-        <div class="subtitle">Ecosistema Médico Integral</div>
+        <div class="subtitle">Asistente Clínico Inteligente</div>
         <div class="header-controls">
             <button id="theme-toggle" class="theme-toggle" title="Cambiar tema">
                 <span class="material-symbols-outlined">dark_mode</span>
@@ -1226,6 +1565,7 @@
     <nav>
         <ul>
             <li><a href="#dashboard" data-section="dashboard" class="active"><span class="material-symbols-outlined">dashboard</span> Dashboard</a></li>
+            <li><a href="#consultorio" data-section="consultorio"><span class="material-symbols-outlined">search</span> Consultorio Virtual</a></li>
             <li><a href="#pacientes" data-section="pacientes"><span class="material-symbols-outlined">people</span> Pacientes</a></li>
             <li><a href="#personal" data-section="personal"><span class="material-symbols-outlined">groups</span> Personal</a></li>
             <li><a href="#recursos" data-section="recursos"><span class="material-symbols-outlined">library_books</span> Recursos</a></li>
@@ -1300,6 +1640,30 @@
                 <h3>Recomendaciones de IA</h3>
                 <p><strong>Basado en los datos del paciente:</strong> Se sugiere considerar ajuste en medicación antihipertensiva para paciente Ana García, considerando tendencia a descenso de PA en últimos controles.</p>
                 <p><strong>Alerta de riesgo:</strong> Paciente Carlos Martínez presenta perfil lipídico con LDL elevado, considerar intensificación de tratamiento estatínico.</p>
+            </div>
+        </section>
+        
+        <!-- Consultorio Virtual -->
+        <section id="consultorio" class="page">
+            <div class="page-header">
+                <h2>Consultorio Virtual</h2>
+            </div>
+            <div class="consultorio-container">
+                <div class="search-box">
+                    <input type="text" id="search-query" placeholder="¿Qué desea consultar? (síntomas, enfermedades, medicamentos, protocolos...)">
+                    <button id="search-button"><span class="material-symbols-outlined">search</span> Buscar</button>
+                </div>
+                <div id="suggestions-container" class="suggestions-container"></div>
+            </div>
+            <div id="search-results" class="search-results">
+                <p>Busque información médica relevante utilizando el cuadro de búsqueda superior.</p>
+                <div class="chart-container" style="margin-top: 30px;">
+                    <h3>Consulta Reciente</h3>
+                    <p><strong>Término:</strong> Cefalea intensa, fotofobia, fiebre</p>
+                    <p><strong>Diagnósticos sugeridos:</strong> Meningitis bacteriana, Migraña con aura, Encefalitis</p>
+                    <p><strong>Pruebas recomendadas:</strong> Punción lumbar, Tomografía computarizada, Resonancia magnética</p>
+                    <button class="btn btn-primary" onclick="showExampleSearch()">Ver ejemplo de búsqueda</button>
+                </div>
             </div>
         </section>
         
@@ -1751,6 +2115,19 @@
             <!-- El contenido del modal se cargará aquí -->
         </div>
     </div>
+    
+    <!-- Lightbox para imágenes -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <img id="lightbox-image" src="" alt="Imagen ampliada">
+            <div id="lightbox-caption" class="lightbox-caption"></div>
+        </div>
+        <div class="lightbox-nav">
+            <button id="lightbox-prev" class="lightbox-nav-btn"><span class="material-symbols-outlined">arrow_back</span></button>
+            <button id="lightbox-next" class="lightbox-nav-btn"><span class="material-symbols-outlined">arrow_forward</span></button>
+        </div>
+        <div id="lightbox-close" class="lightbox-close"><span class="material-symbols-outlined">close</span></div>
+    </div>
 
     <script>
         // Datos simulados de pacientes
@@ -1949,6 +2326,294 @@
             }
         ];
 
+        // Base de conocimiento médica ampliada
+        const medicalKnowledgeBase = {
+            diseases: [
+                {
+                    id: "d-001",
+                    nombre: "Esclerosis Múltiple",
+                    codigoCIE10: "G35",
+                    etiologia: "Enfermedad autoinmune donde el sistema inmunológico ataca la mielina, la cubierta protectora de los nervios, en el sistema nervioso central.",
+                    fisiopatologia: "La inflamación autoinmune conduce a la desmielinización de las fibras nerviosas, lo que interrumpe la transmisión de señales nerviosas entre el cerebro y otras partes del cuerpo.",
+                    epidemiologia: "Afecta a aproximadamente 2.8 millones de personas en todo el mundo. Más común en mujeres que en hombres (3:1), generalmente diagnosticada entre los 20 y 40 años.",
+                    presentacionClinica: [
+                        "Fatiga extrema",
+                        "Debilidad muscular",
+                        "Entumecimiento u hormigueo",
+                        "Problemas de visión (neuritis óptica)",
+                        "Problemas de equilibrio y coordinación",
+                        "Espasmos musculares",
+                        "Problemas cognitivos (dificultad para concentrarse, memoria)"
+                    ],
+                    diagnostico: "Basado en criterios de McDonald, que requieren evidencia de lesiones en diferentes partes del sistema nervioso central (diseminación en el espacio) y en diferentes momentos (diseminación en el tiempo), generalmente confirmadas por resonancia magnética (RM) y estudios del líquido cefalorraquídeo.",
+                    diagnosticosDiferenciales: [
+                        "Neuromielitis óptica",
+                        "Síndrome de Guillain-Barré",
+                        "Enfermedad de Lyme",
+                        "Tumores del sistema nervioso central",
+                        "Deficiencia de vitamina B12"
+                    ],
+                    clasificacion: "Forma recurrente-remitente (RRMS), progresiva primaria (PPMS), progresiva secundaria (SPMS), progresiva activa, progresiva no activa.",
+                    tratamientos: [
+                        "Interferón beta (reduce la frecuencia de brotes)",
+                        "Glatiramer acetato",
+                        "Terapias de células B (Ocrelizumab)",
+                        "Inmunosupresores (Mitoxantrona)",
+                        "Terapias para síntomas específicos (fatiga, espasmos, depresión)"
+                    ],
+                    protocolos: ["Guía de práctica clínica de la Asociación Americana de Esclerosis Múltiple"],
+                    pronostico: "Variable. La mayoría de los pacientes tienen una esperanza de vida cercana a la normal, pero con discapacidad progresiva. El curso depende del tipo y de la respuesta al tratamiento.",
+                    educacionPaciente: "La esclerosis múltiple es una condición crónica del sistema nervioso. Aunque no tiene cura, hay tratamientos que pueden ralentizar su progreso y manejar los síntomas. Es importante mantener un estilo de vida saludable.",
+                    recursosAdicionales: ["https://www.nationalmssociety.org/", "https://www.msif.org/"],
+                    imagenes: [
+                        { url: "https://placehold.co/400x300/1a73e8/ffffff?text=RM+Esclerosis+Múltiple", descripcion: "Lesiones desmielinizantes en la resonancia magnética cerebral" },
+                        { url: "https://placehold.co/400x300/34a853/ffffff?text=Marcha+en+EM", descripcion: "Paciente con esclerosis múltiple mostrando dificultad de marcha" }
+                    ]
+                },
+                {
+                    id: "d-002",
+                    nombre: "Meningitis Bacteriana",
+                    codigoCIE10: "G00.9",
+                    etiologia: "Infección bacteriana del sistema nervioso central, comúnmente causada por Streptococcus pneumoniae, Neisseria meningitidis o Haemophilus influenzae tipo b.",
+                    fisiopatologia: "Las bacterias ingresan al sistema nervioso central, provocando inflamación de las meninges (membranas que rodean el cerebro y la médula espinal), lo que aumenta la presión intracraneal y puede dañar el tejido cerebral.",
+                    epidemiologia: "Incide principalmente en niños pequeños, adolescentes y adultos jóvenes. La incidencia ha disminuido gracias a las vacunas.",
+                    presentacionClinica: [
+                        "Cefalea intensa",
+                        "Fotofobia (sensibilidad a la luz)",
+                        "Fiebre alta",
+                        "Rigidez de nuca",
+                        "Náuseas y vómitos",
+                        "Confusión mental",
+                        "Convulsiones"
+                    ],
+                    diagnostico: "Diagnóstico definitivo mediante punción lumbar y análisis del líquido cefalorraquídeo (LCR): elevación de células (predominio de neutrófilos), proteínas elevadas, glucosa baja. Cultivo del LCR para identificar el patógeno.",
+                    diagnosticosDiferenciales: [
+                        "Meningitis viral",
+                        "Encefalitis",
+                        "Absceso cerebral",
+                        "Hemorragia subaracnoidea",
+                        "Sepsis"
+                    ],
+                    clasificacion: "Aguda (progresión rápida) o subaguda (progresión más lenta).",
+                    tratamientos: [
+                        "Antibióticos de amplio espectro intravenosos (Ceftriaxona, Vancomicina) iniciados de inmediato",
+                        "Dexametasona (para reducir la inflamación y las secuelas neurológicas)",
+                        "Soporte vital (manejo de la presión intracraneal, hidratación)"
+                    ],
+                    protocolos: ["Protocolo de manejo de meningitis bacteriana en adultos y pediatría"],
+                    pronostico: "Grave, con mortalidad del 10-15%. Los sobrevivientes pueden tener secuelas neurológicas permanentes (sordera, convulsiones, discapacidad cognitiva).",
+                    educacionPaciente: "La meningitis bacteriana es una emergencia médica. Requiere tratamiento inmediato con antibióticos. La vacunación es clave para la prevención.",
+                    recursosAdicionales: ["https://www.cdc.gov/meningitis/index.html"],
+                    imagenes: [
+                        { url: "https://placehold.co/400x300/ea4335/ffffff?text=RM+Meningitis", descripcion: "Imágenes de resonancia magnética mostrando inflamación de las meninges" },
+                        { url: "https://placehold.co/400x300/f9ab00/ffffff?text=Signo+Kernig", descripcion: "Signo de Kernig positivo en un paciente con meningitis" }
+                    ]
+                },
+                {
+                    id: "d-003",
+                    nombre: "Diabetes Mellitus Tipo 2",
+                    codigoCIE10: "E11.9",
+                    etiologia: "Resistencia a la insulina combinada con una deficiencia relativa de insulina. Factores de riesgo: obesidad, sedentarismo, antecedentes familiares, edad avanzada.",
+                    fisiopatologia: "Las células del cuerpo no responden adecuadamente a la insulina (resistencia), lo que lleva a una producción inadecuada de insulina por parte del páncreas, resultando en hiperglucemia crónica.",
+                    epidemiologia: "La forma más común de diabetes, representa el 90-95% de todos los casos. Prevalencia creciente globalmente, asociada a la epidemia de obesidad.",
+                    presentacionClinica: [
+                        "Poliuria (orinar con frecuencia)",
+                        "Polidipsia (sed excesiva)",
+                        "Polidipsia (hambre excesiva)",
+                        "Pérdida de peso inexplicable",
+                        "Visión borrosa",
+                        "Fatiga",
+                        "Heridas que sanan lentamente"
+                    ],
+                    diagnostico: "Basado en niveles elevados de glucosa en sangre: glucosa plasmática en ayunas ≥126 mg/dL, glucosa plasmática al azar ≥200 mg/dL con síntomas, HbA1c ≥6.5%.",
+                    diagnosticosDiferenciales: [
+                        "Diabetes Mellitus Tipo 1",
+                        "Diabetes secundaria (por medicamentos, enfermedades del páncreas)",
+                        "Diabetes insípida"
+                    ],
+                    clasificacion: "Por gravedad del control glucémico, presencia de complicaciones micro/macrovasculares.",
+                    tratamientos: [
+                        "Modificación del estilo de vida (dieta, ejercicio)",
+                        "Metformina (primera línea)",
+                        "Sulfonilureas",
+                        "Inhibidores de DPP-4",
+                        "Análogos del GLP-1",
+                        "Insulina (en etapas avanzadas)"
+                    ],
+                    protocolos: ["Guías de la Asociación Americana de Diabetes (ADA)"],
+                    pronostico: "Cronica progresiva. Buen control glucémico reduce significativamente el riesgo de complicaciones como nefropatía, retinopatía, neuropatía y enfermedad cardiovascular.",
+                    educacionPaciente: "La diabetes tipo 2 se puede manejar con dieta, ejercicio y medicamentos. Es crucial controlar la glucosa, la presión arterial y el colesterol para prevenir complicaciones.",
+                    recursosAdicionales: ["https://www.diabetes.org/"],
+                    imagenes: [
+                        { url: "https://placehold.co/400x300/34a853/ffffff?text=Glucosa+en+Sangre", descripcion: "Gráfico de niveles de glucosa en sangre a lo largo del día" },
+                        { url: "https://placehold.co/400x300/1a73e8/ffffff?text=Pie+Diabético", descripcion: "Complicaciones del pie diabético" }
+                    ]
+                },
+                {
+                    id: "d-004",
+                    nombre: "Parkinson",
+                    codigoCIE10: "G20",
+                    etiologia: "Degeneración progresiva de las neuronas dopaminérgicas en la sustancia negra del cerebro. La causa exacta es desconocida, factores genéticos y ambientales juegan un papel.",
+                    fisiopatologia: "La pérdida de neuronas productoras de dopamina en la sustancia negra pars compacta conduce a un desequilibrio en los circuitos del ganglio basal, resultando en los síntomas motores característicos.",
+                    epidemiologia: "Afecta a aproximadamente 1% de la población mayor de 60 años. Ligeramente más común en hombres.",
+                    presentacionClinica: [
+                        "Temblor de reposo (mano, pierna, mandíbula)",
+                        "Bradicinesia (lentitud de movimientos)",
+                        "Rigidez muscular",
+                        "Postura encorvada",
+                        "Problemas de equilibrio y marcha (falta de balanceo de brazos, arrastre de pies)",
+                        "Alteraciones del habla y escritura"
+                    ],
+                    diagnostico: "Diagnóstico clínico basado en la historia y el examen físico. No hay una prueba definitiva. Criterios de diagnóstico de la UK Parkinson's Disease Society Brain Bank.",
+                    diagnosticosDiferenciales: [
+                        "Parkinsonismo secundario (por medicamentos, traumatismo)",
+                        "Parálisis supranuclear progresiva",
+                        "Atrofia multisistémica",
+                        "Temblor esencial"
+                    ],
+                    clasificacion: "Por etapa (escala de Hoehn y Yahr), por tipo de presentación (temblor-dominante, akinético-rígido).",
+                    tratamientos: [
+                        "Levodopa/Carbidopa (tratamiento más eficaz)",
+                        "Agonistas dopaminérgicos (Pramipexol, Ropinirol)",
+                        "Inhibidores de la COMT (Entacapona)",
+                        "Inhibidores de la MAO-B (Selegilina)",
+                        "Terapia con ejercicio y rehabilitación"
+                    ],
+                    protocolos: ["Guías de práctica clínica para el manejo del Parkinson"],
+                    pronostico: "Progresivo. No curable, pero los tratamientos pueden controlar los síntomas durante muchos años. La esperanza de vida puede reducirse ligeramente.",
+                    educacionPaciente: "El Parkinson es una enfermedad neurodegenerativa que afecta el movimiento. Aunque no tiene cura, hay tratamientos que pueden mejorar significativamente la calidad de vida.",
+                    recursosAdicionales: ["https://www.parkinson.org/"],
+                    imagenes: [
+                        { url: "https://placehold.co/400x300/ea4335/ffffff?text=RM+Parkinson", descripcion: "Resonancia magnética cerebral en Parkinson" },
+                        { url: "https://placehold.co/400x300/f9ab00/ffffff?text=Marcha+Parkinson", descripcion: "Característica marcha en pacientes con Parkinson" }
+                    ]
+                }
+            ],
+            treatments: [
+                {
+                    id: "t-001",
+                    nombre: "Metformina",
+                    indicaciones: ["Diabetes Mellitus Tipo 2", "Síndrome de ovario poliquístico"],
+                    mecanismoAccion: "Disminuye la producción de glucosa por el hígado (gluconeogénesis) y mejora la sensibilidad a la insulina en los músculos.",
+                    farmacocinetica: "Biodisponibilidad del 50-60%. No se metaboliza. Se excreta inalterada por los riñones.",
+                    efectosAdversos: [
+                        "Gastrointestinales (diarrea, náuseas, dolor abdominal) - comunes",
+                        "Deficiencia de vitamina B12 - a largo plazo",
+                        "Acidosis láctica - rara pero grave"
+                    ],
+                    interacciones: [
+                        "Contraste yodado (riesgo de acidosis láctica)",
+                        "Alcohol (aumenta el riesgo de acidosis láctica)"
+                    ],
+                    contraindicaciones: ["Insuficiencia renal (TFG <30 ml/min)", "Acidosis metabólica", "Insuficiencia hepática grave"],
+                    dosis: "Dosis inicial típica: 500mg dos veces al día. Dosis máxima: 2000-2550mg/día.",
+                    viaAdministracion: "Oral"
+                },
+                {
+                    id: "t-002",
+                    nombre: "Losartán",
+                    indicaciones: ["Hipertensión Arterial", "Nefropatía diabética en pacientes con diabetes tipo 2"],
+                    mecanismoAccion: "Antagonista del receptor de angiotensina II (ARA II). Bloquea el efecto de la angiotensina II, un potente vasoconstrictor, lo que provoca vasodilatación y disminución de la presión arterial.",
+                    farmacocinetica: "Biodisponibilidad del 33%. Se metaboliza en el hígado. Efecto máximo a las 6 semanas.",
+                    efectosAdversos: [
+                        "Hipotensión",
+                        "Hiperkalemia",
+                        "Tos (menos frecuente que con IECA)",
+                        "Dolor de espalda"
+                    ],
+                    interacciones: [
+                        "Potencia el efecto de otros antihipertensivos",
+                        "Aumenta el riesgo de hipotensión con diuréticos",
+                        "Aumenta el riesgo de hiperkalemia con suplementos de potasio o espironolactona"
+                    ],
+                    contraindicaciones: ["Embarazo", "Hipersensibilidad", "Estenosis de la arteria renal bilateral"],
+                    dosis: "Dosis inicial: 50mg una vez al día. Dosis de mantenimiento: 50-100mg/día.",
+                    viaAdministracion: "Oral"
+                }
+            ],
+            drugs: [
+                {
+                    id: "dr-001",
+                    nombre: "Metformina",
+                    laboratorio: "Merck",
+                    precio: 12.80,
+                    contraindicaciones: ["Insuficiencia renal", "Acidosis metabólica"],
+                    interacciones: {
+                        "Contraste yodado": { severidad: "fatal", descripcion: "Riesgo muy alto de acidosis láctica." },
+                        "Alcohol": { severidad: "moderada", descripcion: "Aumenta el riesgo de acidosis láctica." }
+                    },
+                    efectosSecundarios: ["Diarrea", "Náuseas", "Dolor abdominal", "Deficiencia de vitamina B12"],
+                    mecanismoAccion: "Disminuye la producción de glucosa por el hígado y mejora la sensibilidad a la insulina."
+                },
+                {
+                    id: "dr-002",
+                    nombre: "Losartán",
+                    laboratorio: "MSD",
+                    precio: 15.50,
+                    contraindicaciones: ["Embarazo", "Hipersensibilidad"],
+                    interacciones: {
+                        "Aspirina": { severidad: "leve", descripcion: "Puede aumentar levemente el riesgo de sangrado." },
+                        "Furosemida": { severidad: "moderada", descripcion: "Puede potenciar el efecto hipotensor." }
+                    },
+                    efectosSecundarios: ["Hipotensión", "Hiperkalemia", "Tos", "Dolor de espalda"],
+                    mecanismoAccion: "Antagonista del receptor de angiotensina II, causa vasodilatación."
+                }
+            ],
+            protocols: [
+                {
+                    id: "p-001",
+                    nombre: "Manejo de Meningitis Bacteriana en Adultos",
+                    area: "Infectología/Neurología",
+                    descripcion: "Protocolo basado en evidencia para el diagnóstico y tratamiento inmediato de meningitis bacteriana.",
+                    pasos: [
+                        "1. Sospecha clínica: Cefalea intensa, fiebre, rigidez de nuca, fotofobia.",
+                        "2. Estudios inmediatos: Hemograma, función renal, glucemia, cultivos de sangre.",
+                        "3. Imágenes: Tomografía computarizada (TC) de cráneo si hay signos de herniación o antecedente de lesión cerebral.",
+                        "4. Punción lumbar: Si la TC es normal o no está indicada, realizar punción lumbar para análisis del LCR.",
+                        "5. Tratamiento empírico inmediato: Ceftriaxona 2g IV cada 12h + Vancomicina 15mg/kg IV cada 12h + Dexametasona 10mg IV cada 6h.",
+                        "6. Ajustar tratamiento según cultivo del LCR.",
+                        "7. Soporte vital y monitoreo neurológico."
+                    ],
+                    referencias: ["IDSA Guidelines", "UpToDate"]
+                },
+                {
+                    id: "p-002",
+                    nombre: "Diagnóstico de Esclerosis Múltiple (Criterios McDonald 2017)",
+                    area: "Neurología",
+                    descripcion: "Criterios internacionales para el diagnóstico de esclerosis múltiple.",
+                    pasos: [
+                        "1. Demostrar diseminación en el espacio (DIS): ≥1 lesión en al menos 2 de las 4 áreas características del SNC (periventricular, juxtacortical, infratentorial, médula espinal).",
+                        "2. Demostrar diseminación en el tiempo (DIT): ≥1 lesión gadolinio-positiva nueva en relación con una escaneo previo, o una nueva lesión T2 o gadolinio-positiva en un escaneo posterior.",
+                        "3. Excluir diagnósticos alternativos más probables."
+                    ],
+                    referencias: ["Lancet Neurology 2018"]
+                }
+            ],
+            medicalProcedures: [
+                {
+                    id: "pr-001",
+                    nombre: "Punción Lumbar",
+                    indicaciones: ["Diagnóstico de meningitis", "Diagnóstico de hemorragia subaracnoidea", "Medición de presión del LCR", "Administración de medicamentos (quimioterapia, anestesia espinal)"],
+                    contraindicaciones: ["Infección en el sitio de punción", "Trastornos de coagulación no corregidos", "Presión intracraneal muy elevada (riesgo de herniación)"],
+                    riesgos: ["Dolor de cabeza post-punción", "Infección", "Hemorragia", "Daño nervioso"]
+                }
+            ],
+            medicalTests: [
+                {
+                    id: "te-001",
+                    nombre: "Resonancia Magnética (RM) Cerebral",
+                    indicaciones: ["Evaluación de tumores", "Diagnóstico de esclerosis múltiple", "Evaluación de accidente cerebrovascular", "Investigación de epilepsia", "Evaluación de trauma craneal"],
+                    interpretacion: "Permite visualizar con gran detalle el tejido cerebral. Las lesiones desmielinizantes en EM aparecen como hiperintensidades en secuencias T2/FLAIR. Los tumores pueden realzarse con contraste."
+                },
+                {
+                    id: "te-002",
+                    nombre: "Punción Lumbar",
+                    indicaciones: ["Diagnóstico de meningitis", "Diagnóstico de hemorragia subaracnoidea", "Medición de presión del LCR"],
+                    interpretacion: "El LCR normal es claro e incoloro. En meningitis bacteriana: turbio, elevación de células (neutrófilos), proteínas elevadas, glucosa baja. En meningitis viral: líquido claro, linfocitos elevados, proteínas levemente elevadas, glucosa normal."
+                }
+            ]
+        };
+
         // Datos simulados de medicamentos e interacciones
         const medicamentosDB = {
             "Losartán": {
@@ -2031,7 +2696,11 @@
                 resourceCategory: ''
             },
             theme: 'light',
-            activeChart: 'pressure'
+            activeChart: 'pressure',
+            searchQuery: '',
+            searchResults: [],
+            currentImageIndex: 0,
+            imageGallery: []
         };
 
         // --- Lógica de la aplicación ---
@@ -2049,6 +2718,7 @@
             setupVitalSigns();
             setupPrescriptions();
             setupThemeToggle();
+            setupConsultorioVirtual();
         });
 
         function initializeApp() {
@@ -2861,6 +3531,668 @@
             }
         });
 
+        // --- Consultorio Virtual ---
+        function setupConsultorioVirtual() {
+            const searchInput = document.getElementById('search-query');
+            const suggestionsContainer = document.getElementById('suggestions-container');
+            const searchButton = document.getElementById('search-button');
+            const searchResults = document.getElementById('search-results');
+            
+            // Sugerencias comunes
+            const commonSuggestions = [
+                "cefalea intensa, fotofobia, fiebre",
+                "diabetes mellitus tipo 2",
+                "metformina mecanismo de acción",
+                "protocolo de meningitis bacteriana",
+                "esclerosis múltiple diagnóstico",
+                "parkinson tratamiento"
+            ];
+            
+            // Mostrar sugerencias al enfocar o escribir
+            searchInput.addEventListener('focus', showSuggestions);
+            searchInput.addEventListener('input', showSuggestions);
+            
+            function showSuggestions() {
+                const query = searchInput.value.toLowerCase().trim();
+                if (query === '') {
+                    suggestionsContainer.style.display = 'none';
+                    return;
+                }
+                
+                const filteredSuggestions = commonSuggestions.filter(suggestion => 
+                    suggestion.toLowerCase().includes(query)
+                );
+                
+                if (filteredSuggestions.length > 0) {
+                    suggestionsContainer.innerHTML = '';
+                    filteredSuggestions.forEach(suggestion => {
+                        const div = document.createElement('div');
+                        div.className = 'suggestion-item';
+                        const highlightIndex = suggestion.toLowerCase().indexOf(query);
+                        if (highlightIndex !== -1) {
+                            div.innerHTML = suggestion.substring(0, highlightIndex) + 
+                                `<span class="suggestion-highlight">${suggestion.substring(highlightIndex, highlightIndex + query.length)}</span>` + 
+                                suggestion.substring(highlightIndex + query.length);
+                        } else {
+                            div.textContent = suggestion;
+                        }
+                        div.addEventListener('click', () => {
+                            searchInput.value = suggestion;
+                            suggestionsContainer.style.display = 'none';
+                            performSearch(suggestion);
+                        });
+                        suggestionsContainer.appendChild(div);
+                    });
+                    suggestionsContainer.style.display = 'block';
+                } else {
+                    suggestionsContainer.style.display = 'none';
+                }
+            }
+            
+            // Ocultar sugerencias al hacer clic fuera
+            document.addEventListener('click', (e) => {
+                if (!searchInput.contains(e.target) && !suggestionsContainer.contains(e.target)) {
+                    suggestionsContainer.style.display = 'none';
+                }
+            });
+            
+            // Realizar búsqueda al hacer clic en el botón
+            searchButton.addEventListener('click', () => {
+                const query = searchInput.value.trim();
+                if (query) {
+                    performSearch(query);
+                }
+            });
+            
+            // Realizar búsqueda al presionar Enter
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    const query = searchInput.value.trim();
+                    if (query) {
+                        performSearch(query);
+                    }
+                }
+            });
+        }
+
+        function performSearch(query) {
+            const resultsContainer = document.getElementById('search-results');
+            resultsContainer.innerHTML = '<p>Buscando información para: <strong>' + query + '</strong></p>';
+            
+            // Simular un retraso para dar sensación de búsqueda
+            setTimeout(() => {
+                const results = searchKnowledgeBase(query);
+                displaySearchResults(results, query);
+            }, 500);
+        }
+
+        function searchKnowledgeBase(query) {
+            const terms = query.toLowerCase().split(/\s+/);
+            const results = [];
+            
+            // Buscar en enfermedades
+            medicalKnowledgeBase.diseases.forEach(disease => {
+                let score = 0;
+                const diseaseText = `${disease.nombre} ${disease.codigoCIE10} ${disease.etiologia} ${disease.fisiopatologia} ${disease.presentacionClinica.join(' ')} ${disease.diagnostico} ${disease.tratamientos.join(' ')} ${disease.pronostico}`.toLowerCase();
+                
+                terms.forEach(term => {
+                    if (diseaseText.includes(term)) {
+                        score += 1;
+                    }
+                });
+                
+                if (score > 0) {
+                    results.push({
+                        type: 'disease',
+                        data: disease,
+                        relevance: score
+                    });
+                }
+            });
+            
+            // Buscar en tratamientos
+            medicalKnowledgeBase.treatments.forEach(treatment => {
+                let score = 0;
+                const treatmentText = `${treatment.nombre} ${treatment.indicaciones.join(' ')} ${treatment.mecanismoAccion} ${treatment.efectosAdversos.join(' ')} ${treatment.interacciones.join(' ')}`.toLowerCase();
+                
+                terms.forEach(term => {
+                    if (treatmentText.includes(term)) {
+                        score += 1;
+                    }
+                });
+                
+                if (score > 0) {
+                    results.push({
+                        type: 'treatment',
+                        data: treatment,
+                        relevance: score
+                    });
+                }
+            });
+            
+            // Buscar en fármacos
+            medicalKnowledgeBase.drugs.forEach(drug => {
+                let score = 0;
+                const drugText = `${drug.nombre} ${drug.laboratorio} ${drug.mecanismoAccion} ${drug.efectosSecundarios.join(' ')} ${drug.contraindicaciones.join(' ')}`.toLowerCase();
+                
+                terms.forEach(term => {
+                    if (drugText.includes(term)) {
+                        score += 1;
+                    }
+                });
+                
+                if (score > 0) {
+                    results.push({
+                        type: 'drug',
+                        data: drug,
+                        relevance: score
+                    });
+                }
+            });
+            
+            // Buscar en protocolos
+            medicalKnowledgeBase.protocols.forEach(protocol => {
+                let score = 0;
+                const protocolText = `${protocol.nombre} ${protocol.area} ${protocol.descripcion} ${protocol.pasos.join(' ')} ${protocol.referencias.join(' ')}`.toLowerCase();
+                
+                terms.forEach(term => {
+                    if (protocolText.includes(term)) {
+                        score += 1;
+                    }
+                });
+                
+                if (score > 0) {
+                    results.push({
+                        type: 'protocol',
+                        data: protocol,
+                        relevance: score
+                    });
+                }
+            });
+            
+            // Buscar en procedimientos
+            medicalKnowledgeBase.medicalProcedures.forEach(procedure => {
+                let score = 0;
+                const procedureText = `${procedure.nombre} ${procedure.indicaciones.join(' ')} ${procedure.contraindicaciones.join(' ')} ${procedure.riesgos.join(' ')}`.toLowerCase();
+                
+                terms.forEach(term => {
+                    if (procedureText.includes(term)) {
+                        score += 1;
+                    }
+                });
+                
+                if (score > 0) {
+                    results.push({
+                        type: 'procedure',
+                        data: procedure,
+                        relevance: score
+                    });
+                }
+            });
+            
+            // Buscar en pruebas médicas
+            medicalKnowledgeBase.medicalTests.forEach(test => {
+                let score = 0;
+                const testText = `${test.nombre} ${test.indicaciones.join(' ')} ${test.interpretacion}`.toLowerCase();
+                
+                terms.forEach(term => {
+                    if (testText.includes(term)) {
+                        score += 1;
+                    }
+                });
+                
+                if (score > 0) {
+                    results.push({
+                        type: 'test',
+                        data: test,
+                        relevance: score
+                    });
+                }
+            });
+            
+            // Ordenar por relevancia
+            return results.sort((a, b) => b.relevance - a.relevance);
+        }
+
+        function displaySearchResults(results, originalQuery) {
+            const resultsContainer = document.getElementById('search-results');
+            
+            if (results.length === 0) {
+                resultsContainer.innerHTML = `
+                    <div class="alert-card">
+                        <span class="material-symbols-outlined alert-icon">search_off</span>
+                        <div>
+                            <strong>No se encontraron resultados</strong> para "${originalQuery}". Por favor, intente con términos más específicos.
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+            
+            resultsContainer.innerHTML = `<p><strong>Resultados para:</strong> "${originalQuery}"</p>`;
+            
+            results.forEach(result => {
+                const resultItem = document.createElement('div');
+                resultItem.className = 'result-item';
+                
+                let title, type, contentHtml;
+                
+                switch(result.type) {
+                    case 'disease':
+                        title = result.data.nombre;
+                        type = 'Enfermedad';
+                        contentHtml = `
+                            <h4>Código CIE-10</h4>
+                            <p>${result.data.codigoCIE10}</p>
+                            <h4>Etiología</h4>
+                            <p>${result.data.etiologia}</p>
+                            <h4>Fisiopatología</h4>
+                            <p>${result.data.fisiopatologia}</p>
+                            <h4>Presentación Clínica</h4>
+                            <ul>
+                                ${result.data.presentacionClinica.map(sintoma => `<li>${sintoma}</li>`).join('')}
+                            </ul>
+                            <h4>Diagnóstico</h4>
+                            <p>${result.data.diagnostico}</p>
+                            <h4>Tratamientos</h4>
+                            <ul>
+                                ${result.data.tratamientos.map(trat => `<li>${trat}</li>`).join('')}
+                            </ul>
+                            <h4>Pronóstico</h4>
+                            <p>${result.data.pronostico}</p>
+                        `;
+                        break;
+                        
+                    case 'treatment':
+                        title = result.data.nombre;
+                        type = 'Tratamiento';
+                        contentHtml = `
+                            <h4>Indicaciones</h4>
+                            <ul>
+                                ${result.data.indicaciones.map(ind => `<li>${ind}</li>`).join('')}
+                            </ul>
+                            <h4>Mecanismo de Acción</h4>
+                            <p>${result.data.mecanismoAccion}</p>
+                            <h4>Farmacocinética</h4>
+                            <p>${result.data.farmacocinetica || 'Información no disponible'}</p>
+                            <h4>Efectos Adversos</h4>
+                            <ul>
+                                ${result.data.efectosAdversos.map(efecto => `<li>${efecto}</li>`).join('')}
+                            </ul>
+                            <h4>Contraindicaciones</h4>
+                            <p>${result.data.contraindicaciones.join(', ')}</p>
+                            <h4>Dosis</h4>
+                            <p>${result.data.dosis}</p>
+                        `;
+                        break;
+                        
+                    case 'drug':
+                        title = result.data.nombre;
+                        type = 'Fármaco';
+                        contentHtml = `
+                            <h4>Laboratorio</h4>
+                            <p>${result.data.laboratorio}</p>
+                            <h4>Precio</h4>
+                            <p>$${result.data.precio}</p>
+                            <h4>Mecanismo de Acción</h4>
+                            <p>${result.data.mecanismoAccion}</p>
+                            <h4>Contraindicaciones</h4>
+                            <p>${result.data.contraindicaciones.join(', ')}</p>
+                            <h4>Efectos Secundarios</h4>
+                            <ul>
+                                ${result.data.efectosSecundarios.map(efecto => `<li>${efecto}</li>`).join('')}
+                            </ul>
+                        `;
+                        break;
+                        
+                    case 'protocol':
+                        title = result.data.nombre;
+                        type = 'Protocolo';
+                        contentHtml = `
+                            <h4>Área</h4>
+                            <p>${result.data.area}</p>
+                            <h4>Descripción</h4>
+                            <p>${result.data.descripcion}</p>
+                            <h4>Pasos</h4>
+                            <ol>
+                                ${result.data.pasos.map(paso => `<li>${paso}</li>`).join('')}
+                            </ol>
+                            <h4>Referencias</h4>
+                            <p>${result.data.referencias.join(', ')}</p>
+                        `;
+                        break;
+                        
+                    case 'procedure':
+                        title = result.data.nombre;
+                        type = 'Procedimiento';
+                        contentHtml = `
+                            <h4>Indicaciones</h4>
+                            <ul>
+                                ${result.data.indicaciones.map(ind => `<li>${ind}</li>`).join('')}
+                            </ul>
+                            <h4>Contraindicaciones</h4>
+                            <ul>
+                                ${result.data.contraindicaciones.map(cont => `<li>${cont}</li>`).join('')}
+                            </ul>
+                            <h4>Riesgos</h4>
+                            <ul>
+                                ${result.data.riesgos.map(riesgo => `<li>${riesgo}</li>`).join('')}
+                            </ul>
+                        `;
+                        break;
+                        
+                    case 'test':
+                        title = result.data.nombre;
+                        type = 'Prueba Médica';
+                        contentHtml = `
+                            <h4>Indicaciones</h4>
+                            <ul>
+                                ${result.data.indicaciones.map(ind => `<li>${ind}</li>`).join('')}
+                            </ul>
+                            <h4>Interpretación</h4>
+                            <p>${result.data.interpretacion}</p>
+                        `;
+                        break;
+                }
+                
+                resultItem.innerHTML = `
+                    <div class="result-header">
+                        <h3 class="result-title">${title}</h3>
+                        <span class="result-type">${type}</span>
+                    </div>
+                    <div class="result-content">
+                        ${contentHtml}
+                    </div>
+                    <div class="result-actions">
+                        <button class="btn btn-detail" onclick="showDetail('${result.type}', ${result.data.id})">
+                            <span class="material-symbols-outlined">info</span> Detalles
+                        </button>
+                        ${result.data.imagenes ? `
+                        <button class="btn btn-images" onclick="showImages(${JSON.stringify(result.data.imagenes)})">
+                            <span class="material-symbols-outlined">image</span> Imágenes
+                        </button>
+                        ` : ''}
+                        ${result.type === 'disease' || result.type === 'protocol' ? `
+                        <button class="btn btn-protocol" onclick="showProtocol('${result.type}', ${result.data.id})">
+                            <span class="material-symbols-outlined">description</span> Protocolo
+                        </button>
+                        ` : ''}
+                        <button class="btn btn-expert" onclick="getExpertOpinion('${result.type}', '${result.data.nombre}')">
+                            <span class="material-symbols-outlined">psychology</span> Segunda Opinión
+                        </button>
+                    </div>
+                `;
+                
+                resultsContainer.appendChild(resultItem);
+            });
+        }
+
+        function showDetail(type, id) {
+            const data = medicalKnowledgeBase[type + 's'].find(item => item.id === id);
+            if (!data) return;
+            
+            let content = `
+                <div class="modal-header">
+                    <h2><span class="material-symbols-outlined">info</span> Detalles de ${data.nombre}</h2>
+                    <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+                </div>
+                <div class="modal-tab-content active">
+            `;
+            
+            switch(type) {
+                case 'disease':
+                    content += `
+                        <h3>Código CIE-10: ${data.codigoCIE10}</h3>
+                        <h4>Etiología</h4>
+                        <p>${data.etiologia}</p>
+                        <h4>Fisiopatología</h4>
+                        <p>${data.fisiopatologia}</p>
+                        <h4>Epidemiología</h4>
+                        <p>${data.epidemiologia}</p>
+                        <h4>Presentación Clínica</h4>
+                        <ul>
+                            ${data.presentacionClinica.map(sintoma => `<li>${sintoma}</li>`).join('')}
+                        </ul>
+                        <h4>Diagnóstico</h4>
+                        <p>${data.diagnostico}</p>
+                        <h4>Diagnósticos Diferenciales</h4>
+                        <ul>
+                            ${data.diagnosticosDiferenciales.map(diag => `<li>${diag}</li>`).join('')}
+                        </ul>
+                        <h4>Clasificación</h4>
+                        <p>${data.clasificacion}</p>
+                        <h4>Tratamientos</h4>
+                        <ul>
+                            ${data.tratamientos.map(trat => `<li>${trat}</li>`).join('')}
+                        </ul>
+                        <h4>Pronóstico</h4>
+                        <p>${data.pronostico}</p>
+                        <h4>Educación para el Paciente</h4>
+                        <p>${data.educacionPaciente}</p>
+                        <h4>Recursos Adicionales</h4>
+                        <ul>
+                            ${data.recursosAdicionales.map(recurso => `<li><a href="${recurso}" target="_blank">${recurso}</a></li>`).join('')}
+                        </ul>
+                    `;
+                    break;
+                    
+                case 'treatment':
+                    content += `
+                        <h3>Indicaciones</h3>
+                        <ul>
+                            ${data.indicaciones.map(ind => `<li>${ind}</li>`).join('')}
+                        </ul>
+                        <h4>Mecanismo de Acción</h4>
+                        <p>${data.mecanismoAccion}</p>
+                        <h4>Farmacocinética/Farmacodinámica</h4>
+                        <p>${data.farmacocinetica}</p>
+                        <h4>Efectos Adversos</h4>
+                        <ul>
+                            ${data.efectosAdversos.map(efecto => `<li>${efecto}</li>`).join('')}
+                        </ul>
+                        <h4>Interacciones</h4>
+                        <ul>
+                            ${data.interacciones.map(inter => `<li>${inter}</li>`).join('')}
+                        </ul>
+                        <h4>Contraindicaciones</h4>
+                        <p>${data.contraindicaciones.join(', ')}</p>
+                        <h4>Dosis</h4>
+                        <p>${data.dosis}</p>
+                        <h4>Vía de Administración</h4>
+                        <p>${data.viaAdministracion}</p>
+                    `;
+                    break;
+                    
+                case 'drug':
+                    content += `
+                        <h3>Laboratorio: ${data.laboratorio}</h3>
+                        <h3>Precio: $${data.precio}</h3>
+                        <h4>Mecanismo de Acción</h4>
+                        <p>${data.mecanismoAccion}</p>
+                        <h4>Contraindicaciones</h4>
+                        <p>${data.contraindicaciones.join(', ')}</p>
+                        <h4>Efectos Secundarios</h4>
+                        <ul>
+                            ${data.efectosSecundarios.map(efecto => `<li>${efecto}</li>`).join('')}
+                        </ul>
+                        <h4>Interacciones</h4>
+                        <ul>
+                            ${Object.keys(data.interacciones).map(inter => {
+                                const interData = data.interacciones[inter];
+                                return `<li><strong>${inter}:</strong> ${interData.descripcion} (<span class="severity-${interData.severidad}">${interData.severidad}</span>)</li>`;
+                            }).join('')}
+                        </ul>
+                    `;
+                    break;
+                    
+                case 'protocol':
+                    content += `
+                        <h3>Área: ${data.area}</h3>
+                        <h4>Descripción</h4>
+                        <p>${data.descripcion}</p>
+                        <h4>Pasos</h4>
+                        <ol>
+                            ${data.pasos.map(paso => `<li>${paso}</li>`).join('')}
+                        </ol>
+                        <h4>Referencias</h4>
+                        <p>${data.referencias.join(', ')}</p>
+                    `;
+                    break;
+                    
+                case 'procedure':
+                    content += `
+                        <h4>Indicaciones</h4>
+                        <ul>
+                            ${data.indicaciones.map(ind => `<li>${ind}</li>`).join('')}
+                        </ul>
+                        <h4>Contraindicaciones</h4>
+                        <ul>
+                            ${data.contraindicaciones.map(cont => `<li>${cont}</li>`).join('')}
+                        </ul>
+                        <h4>Riesgos</h4>
+                        <ul>
+                            ${data.riesgos.map(riesgo => `<li>${riesgo}</li>`).join('')}
+                        </ul>
+                    `;
+                    break;
+                    
+                case 'test':
+                    content += `
+                        <h4>Indicaciones</h4>
+                        <ul>
+                            ${data.indicaciones.map(ind => `<li>${ind}</li>`).join('')}
+                        </ul>
+                        <h4>Interpretación</h4>
+                        <p>${data.interpretacion}</p>
+                    `;
+                    break;
+            }
+            
+            content += `
+                </div>
+            `;
+            
+            showModal('Detalles', content);
+        }
+
+        function showImages(images) {
+            APP_STATE.imageGallery = images;
+            APP_STATE.currentImageIndex = 0;
+            
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightbox-image');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+            
+            lightboxImage.src = images[0].url;
+            lightboxCaption.textContent = images[0].descripcion;
+            
+            lightbox.style.display = 'flex';
+        }
+
+        function showProtocol(type, id) {
+            let protocol = null;
+            
+            if (type === 'disease') {
+                const disease = medicalKnowledgeBase.diseases.find(d => d.id === id);
+                if (disease && disease.protocolos && disease.protocolos.length > 0) {
+                    // Buscar el protocolo correspondiente
+                    protocol = medicalKnowledgeBase.protocols.find(p => p.nombre === disease.protocolos[0]);
+                }
+            } else if (type === 'protocol') {
+                protocol = medicalKnowledgeBase.protocols.find(p => p.id === id);
+            }
+            
+            if (!protocol) {
+                alert('Protocolo no encontrado.');
+                return;
+            }
+            
+            const content = `
+                <div class="modal-header">
+                    <h2><span class="material-symbols-outlined">description</span> ${protocol.nombre}</h2>
+                    <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+                </div>
+                <div class="modal-tab-content active">
+                    <p><strong>Área:</strong> ${protocol.area}</p>
+                    <p><strong>Descripción:</strong> ${protocol.descripcion}</p>
+                    <h4>Pasos</h4>
+                    <ol>
+                        ${protocol.pasos.map(paso => `<li>${paso}</li>`).join('')}
+                    </ol>
+                    <h4>Referencias</h4>
+                    <p>${protocol.referencias.join(', ')}</p>
+                </div>
+            `;
+            
+            showModal('Protocolo', content);
+        }
+
+        function getExpertOpinion(type, name) {
+            const opinion = `
+                <div class="modal-header">
+                    <h2><span class="material-symbols-outlined">psychology</span> Segunda Opinión</h2>
+                    <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+                </div>
+                <div class="modal-tab-content active">
+                    <div class="alert-card">
+                        <span class="material-symbols-outlined alert-icon">lightbulb</span>
+                        <div>
+                            <strong>Recomendación del Experto:</strong> Para ${name}, se recomienda considerar ${type === 'disease' ? 'un enfoque multidisciplinario con seguimiento regular' : 'la evaluación de alternativas terapéuticas según el perfil del paciente'}.
+                        </div>
+                    </div>
+                    <p>Como profesional con experiencia, le sugiero:</p>
+                    <ul>
+                        <li>Evaluar cuidadosamente el perfil de riesgo del paciente antes de iniciar cualquier tratamiento.</li>
+                        <li>Considerar siempre las contraindicaciones y posibles interacciones medicamentosas.</li>
+                        <li>Mantener una comunicación clara con el paciente sobre el diagnóstico y plan de tratamiento.</li>
+                        <li>Revisar regularmente la literatura científica más reciente sobre el tema.</li>
+                    </ul>
+                    <p>Recuerde que esta es una sugerencia simulada. La toma de decisiones clínica debe basarse en el juicio profesional y la evaluación completa del paciente.</p>
+                </div>
+            `;
+            
+            showModal('Segunda Opinión', opinion);
+        }
+
+        function showExampleSearch() {
+            const exampleQuery = "cefalea intensa, fotofobia, fiebre";
+            document.getElementById('search-query').value = exampleQuery;
+            performSearch(exampleQuery);
+        }
+
+        // Lightbox para imágenes
+        document.getElementById('lightbox-close')?.addEventListener('click', () => {
+            document.getElementById('lightbox').style.display = 'none';
+        });
+        
+        document.getElementById('lightbox')?.addEventListener('click', (e) => {
+            if (e.target.id === 'lightbox') {
+                document.getElementById('lightbox').style.display = 'none';
+            }
+        });
+        
+        document.getElementById('lightbox-next')?.addEventListener('click', () => {
+            if (APP_STATE.imageGallery.length > 0) {
+                APP_STATE.currentImageIndex = (APP_STATE.currentImageIndex + 1) % APP_STATE.imageGallery.length;
+                updateLightboxImage();
+            }
+        });
+        
+        document.getElementById('lightbox-prev')?.addEventListener('click', () => {
+            if (APP_STATE.imageGallery.length > 0) {
+                APP_STATE.currentImageIndex = (APP_STATE.currentImageIndex - 1 + APP_STATE.imageGallery.length) % APP_STATE.imageGallery.length;
+                updateLightboxImage();
+            }
+        });
+        
+        function updateLightboxImage() {
+            const lightboxImage = document.getElementById('lightbox-image');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+            const image = APP_STATE.imageGallery[APP_STATE.currentImageIndex];
+            lightboxImage.src = image.url;
+            lightboxCaption.textContent = image.descripcion;
+        }
+
         // --- Funcionalidades CRUD ---
         document.querySelector('.btn-add-patient')?.addEventListener('click', () => {
             const modalContent = `
@@ -3405,7 +4737,7 @@
                 labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
                 datasets: [{
                     label: 'Presión Arterial (Sistólica)',
-                    data: [130, 128, 125, 122, 120, 118],
+                     [130, 128, 125, 122, 120, 118],
                     borderColor: '#1a73e8',
                     backgroundColor: 'rgba(26, 115, 232, 0.1)',
                     fill: true,
@@ -3481,7 +4813,7 @@
                         labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
                         datasets: [{
                             label: 'Frecuencia Cardíaca',
-                            data: [75, 74, 73, 72, 71, 70],
+                             [75, 74, 73, 72, 71, 70],
                             borderColor: '#1a73e8',
                             backgroundColor: 'rgba(26, 115, 232, 0.1)',
                             fill: true,
@@ -3498,7 +4830,7 @@
                         labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
                         datasets: [{
                             label: 'Temperatura',
-                            data: [36.8, 36.7, 36.6, 36.7, 36.6, 36.5],
+                             [36.8, 36.7, 36.6, 36.7, 36.6, 36.5],
                             borderColor: '#f9ab00',
                             backgroundColor: 'rgba(249, 171, 0, 0.1)',
                             fill: true,
@@ -3582,7 +4914,7 @@
                     pointRadius: 4
                 }, {
                     label: 'Presión Arterial Diastólica',
-                    data: [85, 82, 80],
+                     [85, 82, 80],
                     borderColor: '#34a853',
                     backgroundColor: 'rgba(52, 168, 83, 0.1)',
                     fill: true,
@@ -4033,4 +5365,3 @@
     </script>
 </body>
 </html>
-```
