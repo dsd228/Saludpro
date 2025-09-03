@@ -7,236 +7,305 @@
     <title>EduMed · Plataforma de Educación Clínica</title>
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Open+Sans:wght@300;400;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --primary: #4285f4;
-            --primary-dark: #3367d6;
-            --primary-light: #e8f0fe;
-            --secondary: #34a853;
-            --secondary-dark: #2d9147;
-            --warning: #fbbc05;
-            --danger: #ea4335;
-            --text: #202124;
-            --text-light: #5f6368;
-            --text-lighter: #70757a;
-            --bg: #f8f9fa;
-            --bg-light: #ffffff;
-            --border: #dadce0;
-            --border-light: #e8eaed;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
-            --shadow: 0 3px 6px rgba(0,0,0,0.16);
-            --shadow-lg: 0 10px 20px rgba(0,0,0,0.19);
-            --radius: 8px;
-            --radius-lg: 12px;
+            --bg: linear-gradient(135deg, #0f172a, #1e293b, #334155);
+            --glass: rgba(15, 23, 42, 0.95);
+            --glass-2: rgba(30, 41, 59, 0.8);
+            --accent: #3b82f6;
+            --accent-2: #2563eb;
+            --accent-3: #1d4ed8;
+            --primary-blue: #2563eb;
+            --primary-blue-darker: #1d4ed8;
+            --primary-blue-lighter: rgba(37, 99, 235, 0.1);
+            --success-green: #10b981;
+            --warning-yellow: #f59e0b;
+            --alert-red: #ef4444;
+            --text-light: #e2e8f0;
+            --text-dark: #0f172a;
+            --muted: #94a3b8;
+            --danger: #ef4444;
+            --card-radius: 24px;
+            --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --shadow-sm: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 35px 60px -15px rgba(0, 0, 0, 0.2);
+            --shadow-inset: inset 0 1px 2px rgba(255, 255, 255, 0.1);
+            --tap: 48px;
+            --font: 'Inter', 'Roboto', system-ui, -apple-system, "Segoe UI", sans-serif;
+            --font-heading: 'Inter', 'Open Sans', system-ui, sans-serif;
+            --maxwidth: 1600px;
+            --border: rgba(148, 163, 184, 0.3);
+            --border-light: rgba(148, 163, 184, 0.2);
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --transition-fast: all 0.15s ease;
-            --header-height: 64px;
-            --sidebar-width: 280px;
+            --z-header: 100;
+            --z-sidebar: 90;
+            --z-modal: 200;
+            --gradient-primary: linear-gradient(135deg, #3b82f6, #2563eb);
+            --gradient-secondary: linear-gradient(135deg, #60a5fa, #3b82f6);
+            --gradient-success: linear-gradient(135deg, #10b981, #059669);
+            --gradient-warning: linear-gradient(135deg, #f59e0b, #d97706);
+            --gradient-danger: linear-gradient(135deg, #ef4444, #dc2626);
+            --gradient-info: linear-gradient(135deg, #06b6d4, #0891b2);
         }
 
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            transition: var(--transition);
         }
 
-        body {
-            font-family: 'Roboto', 'Open Sans', system-ui, sans-serif;
-            color: var(--text);
-            background-color: var(--bg);
-            line-height: 1.6;
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: var(--font);
+            background: var(--bg);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            display: flex;
+            justify-content: center;
+            padding: 16px;
+            color: var(--text-dark);
             overflow-x: hidden;
         }
 
-        /* Header Styles */
-        header {
-            height: var(--header-height);
-            background: white;
-            box-shadow: var(--shadow-sm);
+        .app {
+            width: 100%;
+            max-width: var(--maxwidth);
+            height: calc(100vh - 32px);
             display: flex;
-            align-items: center;
-            padding: 0 20px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid var(--border);
+            flex-direction: column;
+            background: var(--glass);
+            backdrop-filter: blur(24px);
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            position: relative;
+            border: 1px solid var(--border);
+            border-bottom-width: 2px;
         }
 
-        .header-content {
+        header {
+            padding: 24px 32px;
+            background: rgba(15, 23, 42, 0.98);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
+            position: sticky;
+            top: 0;
+            z-index: var(--z-header);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        header h1 {
+            font-size: 1.9rem;
             font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        .logo i {
-            font-size: 1.8rem;
-        }
-
-        .search-box {
-            flex: 1;
-            max-width: 600px;
-            margin: 0 32px;
-            position: relative;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 12px 20px;
-            padding-left: 45px;
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            font-size: 14px;
-            outline: none;
-            transition: var(--transition);
-            background-color: #f1f3f4;
-        }
-
-        .search-input:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-lighter);
-        }
-
-        .user-actions {
+            color: var(--text-light);
             display: flex;
             align-items: center;
             gap: 16px;
+            letter-spacing: -0.8px;
+            text-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
         }
 
-        .btn {
-            padding: 8px 16px;
-            border: none;
-            border-radius: 4px;
-            font-size: 14px;
-            cursor: pointer;
-            display: inline-flex;
+        .brand-icon {
+            font-size: 2.2rem;
+            color: var(--accent);
+            text-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
+        }
+
+        .controls {
+            display: flex;
             align-items: center;
-            gap: 8px;
-            transition: var(--transition);
-            font-weight: 500;
+            gap: 18px;
         }
 
-        .btn-primary {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-1px);
-        }
-
-        .user-avatar {
-            width: 40px;
-            height: 40px;
+        .theme-toggle {
+            background: var(--glass-2);
+            border: none;
+            font-size: 1.6rem;
+            cursor: pointer;
+            color: var(--text-light);
+            padding: 14px;
             border-radius: 50%;
-            background: var(--primary);
-            color: white;
+            width: 56px;
+            height: 56px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 500;
-            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            transform: scale(1);
         }
 
-        /* Layout */
+        .theme-toggle:hover {
+            background: var(--accent-2);
+            transform: translateY(-3px) rotate(10deg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .theme-toggle:active {
+            transform: translateY(-1px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: var(--glass-2);
+            border: none;
+            font-size: 1.6rem;
+            cursor: pointer;
+            color: var(--text-light);
+            padding: 14px;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .mobile-menu-btn:hover {
+            background: var(--accent-2);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
         .container {
             display: flex;
-            min-height: calc(100vh - var(--header-height));
+            flex: 1;
+            overflow: hidden;
         }
 
-        /* Sidebar */
         .sidebar {
-            width: var(--sidebar-width);
-            background: white;
+            width: 340px;
+            background: var(--glass);
             border-right: 1px solid var(--border);
-            padding: 24px 0;
-            position: sticky;
-            top: var(--header-height);
-            height: calc(100vh - var(--header-height));
+            padding: 24px;
             overflow-y: auto;
+            transition: var(--transition);
+            position: relative;
+            z-index: var(--z-sidebar);
+            box-shadow: var(--shadow-sm);
+            border-right-width: 2px;
         }
 
         .sidebar-header {
-            padding: 0 24px 16px;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            color: var(--text-lighter);
-            font-weight: 600;
-            border-bottom: 1px solid var(--border-light);
-        }
-
-        .category-list {
-            list-style: none;
-        }
-
-        .category-item {
-            margin: 4px 0;
-        }
-
-        .category-link {
             display: flex;
             align-items: center;
             gap: 14px;
-            padding: 12px 24px;
-            text-decoration: none;
+            padding: 18px 0;
+            margin-bottom: 28px;
+            border-bottom: 1px solid var(--border-light);
+            color: var(--accent);
+        }
+
+        .sidebar-header h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+        }
+
+        .cat-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        .cat-btn {
+            padding: 20px 24px;
+            border: none;
+            border-radius: 18px;
+            background: var(--glass-2);
             color: var(--text-light);
-            transition: var(--transition);
-            border-left: 3px solid transparent;
-            font-size: 14px;
-        }
-
-        .category-link:hover, .category-link.active {
-            background-color: var(--primary-light);
-            color: var(--primary);
-            border-left-color: var(--primary);
             font-weight: 500;
+            cursor: pointer;
+            text-align: left;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            position: relative;
+            overflow: hidden;
+            font-size: 1.05rem;
+            font-family: var(--font);
         }
 
-        .category-link i {
-            width: 20px;
+        .cat-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: transparent;
+            transition: var(--transition);
+        }
+
+        .cat-btn:hover {
+            background: var(--accent-2);
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .cat-btn:hover::before {
+            background: var(--accent);
+        }
+
+        .cat-btn.active {
+            background: var(--accent-2);
+            color: white;
+            box-shadow: var(--shadow-md);
+            font-weight: 600;
+            transform: translateY(-2px);
+        }
+
+        .cat-btn.active::before {
+            background: var(--accent);
+        }
+
+        .cat-btn i {
+            font-size: 1.7rem;
+            width: 32px;
             text-align: center;
-            font-size: 1.2rem;
+            transition: var(--transition);
         }
 
-        /* Main Content */
+        .cat-btn[data-cat="higiene"] i { color: #4ade80; }
+        .cat-btn[data-cat="curaciones"] i { color: #3b82f6; }
+        .cat-btn[data-cat="farmaco"] i { color: #8b5cf6; }
+        .cat-btn[data-cat="emergencias"] i { color: #ef4444; }
+        .cat-btn[data-cat="movilizacion"] i { color: #f59e0b; }
+        .cat-btn[data-cat="rcp"] i { color: #06b6d4; }
+        .cat-btn[data-cat="pae"] i { color: #10b981; }
+        .cat-btn[data-cat="recursos"] i { color: #64748b; }
+
         main {
             flex: 1;
-            padding: 24px;
-            background: var(--bg);
+            padding: 32px;
+            overflow-y: auto;
+            background: var(--glass);
         }
 
         .page-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
             padding-bottom: 16px;
             border-bottom: 1px solid var(--border-light);
         }
@@ -247,11 +316,11 @@
             gap: 12px;
             font-size: 24px;
             font-weight: 500;
-            color: var(--text);
+            color: var(--text-light);
         }
 
         .page-title i {
-            color: var(--primary);
+            color: var(--accent);
         }
 
         .action-buttons {
@@ -259,850 +328,1385 @@
             gap: 12px;
         }
 
-        /* Cards */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 32px;
-        }
-
-        .card {
-            background: white;
-            border-radius: var(--radius);
+        .btn {
+            padding: 18px 24px;
+            border: none;
+            border-radius: 18px;
+            cursor: pointer;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--font);
+            font-weight: 500;
             box-shadow: var(--shadow-sm);
-            overflow: hidden;
+            font-size: 1.1rem;
             transition: var(--transition);
-            border: 1px solid var(--border-light);
         }
 
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow);
-        }
-
-        .card-image {
-            height: 160px;
-            overflow: hidden;
-        }
-
-        .card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .card:hover .card-image img {
-            transform: scale(1.05);
-        }
-
-        .card-body {
-            padding: 16px;
-        }
-
-        .card-title {
-            font-size: 18px;
-            font-weight: 500;
-            margin-bottom: 8px;
-            color: var(--text);
-        }
-
-        .card-specialty {
-            display: inline-block;
-            background: var(--primary-light);
-            color: var(--primary);
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: 500;
-            margin-bottom: 8px;
-        }
-
-        .card-summary {
-            color: var(--text-light);
-            font-size: 14px;
-            line-height: 1.5;
-            margin-bottom: 12px;
-        }
-
-        .card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 12px;
-            border-top: 1px solid var(--border-light);
-            margin-top: 12px;
-            font-size: 13px;
-            color: var(--text-lighter);
-        }
-
-        .source-link {
-            color: var(--primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .source-link:hover {
-            text-decoration: underline;
-        }
-
-        /* Detailed Article */
-        .article {
-            background: white;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-sm);
-            overflow: hidden;
-            margin-bottom: 24px;
-            border: 1px solid var(--border-light);
-        }
-
-        .article-header {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        .btn.primary {
+            background: var(--gradient-primary);
             color: white;
-            padding: 20px 24px;
-            font-size: 20px;
-            font-weight: 500;
+            border: 1px solid rgba(37, 99, 235, 0.3);
         }
 
-        .article-body {
-            padding: 24px;
+        .btn.primary:hover {
+            background: var(--gradient-secondary);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
         }
 
-        .section {
-            margin-bottom: 24px;
+        .btn.primary:active {
+            transform: translateY(-2px);
         }
 
-        .section-title {
-            font-size: 18px;
-            font-weight: 500;
-            color: var(--primary);
-            margin-bottom: 12px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid var(--primary-light);
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        .btn.secondary {
+            background: var(--gradient-secondary);
+            color: white;
+            border: 1px solid rgba(59, 130, 246, 0.3);
         }
 
-        .section-title i {
+        .btn.secondary:hover {
+            background: var(--primary-blue-darker);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .search-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .input {
+            width: 100%;
+            padding: 18px 24px;
+            padding-left: 52px;
+            border: 1px solid var(--border-light);
+            border-radius: 18px;
+            font-family: var(--font);
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-light);
+            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-light);
+        }
+
+        .input::placeholder {
+            color: rgba(226, 232, 240, 0.7);
+        }
+
+        .input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--muted);
             font-size: 1.2rem;
         }
 
-        .content-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 16px;
-        }
-
-        .info-item {
-            background: var(--bg-light);
-            padding: 16px;
-            border-radius: var(--radius);
+        .search-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--glass);
             border: 1px solid var(--border-light);
+            border-top: none;
+            border-radius: 0 0 18px 18px;
+            box-shadow: var(--shadow-md);
+            z-index: 100;
+            max-height: 300px;
+            overflow-y: auto;
         }
 
-        .info-label {
-            font-weight: 500;
+        .suggestion-item {
+            padding: 16px 24px;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border-light);
             color: var(--text-light);
-            margin-bottom: 8px;
+            transition: var(--transition);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
         }
 
-        .info-value {
-            line-height: 1.6;
-            color: var(--text);
+        .suggestion-item:hover {
+            background: var(--accent-2);
+            color: white;
         }
 
-        .steps-list {
-            counter-reset: step-counter;
-            list-style: none;
+        .suggestion-item:last-child {
+            border-bottom: none;
         }
 
-        .steps-list li {
-            counter-increment: step-counter;
-            position: relative;
-            padding: 12px 16px 12px 52px;
-            margin-bottom: 8px;
-            background: var(--bg-light);
-            border-radius: var(--radius);
+        .suggestion-item i {
+            color: var(--muted);
+            font-size: 1.1rem;
+        }
+
+        .category-card {
+            background: var(--glass-2);
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            margin-top: 28px;
+            transition: var(--transition);
+            backdrop-filter: blur(12px);
             border: 1px solid var(--border-light);
         }
 
-        .steps-list li::before {
-            content: counter(step-counter);
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .category-card h2 {
+            color: var(--accent);
+            margin-bottom: 24px;
+            font-size: 1.7rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            letter-spacing: -0.8px;
+        }
+
+        .category-card h2 i {
+            font-size: 1.8rem;
+        }
+
+        .category-card h3 {
+            color: var(--accent-2);
+            margin: 24px 0 14px 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .category-card h4 {
+            color: var(--primary-blue);
+            margin: 14px 0 10px 0;
+            font-size: 1.2rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .procedure {
+            margin-bottom: 28px;
+            padding-bottom: 28px;
+            border-bottom: 1px solid var(--border-light);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .procedure::after {
+            content: '';
             position: absolute;
-            left: 16px;
-            top: 50%;
-            transform: translateY(-50%);
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+
+        .procedure:hover::after {
+            width: 100%;
+        }
+
+        .procedure:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .procedure h3 {
+            color: var(--accent-2);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .procedure h3 i {
+            font-size: 1.4rem;
+            color: var(--accent);
+        }
+
+        .procedure p {
+            margin: 8px 0;
+            color: var(--text-light);
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        .procedure .summary {
+            font-style: italic;
+            color: var(--muted);
+            margin-bottom: 14px;
+            padding: 20px;
+            background: var(--primary-blue-lighter);
+            border-radius: 14px;
+            border-left: 5px solid var(--primary-blue);
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .procedure .summary i {
+            color: var(--primary-blue);
+            margin-right: 10px;
+        }
+
+        .materials, .steps, .notes {
+            margin: 14px 0;
+        }
+
+        .materials ul, .steps ol {
+            margin: 12px 0;
+            padding-left: 32px;
+        }
+
+        .materials li, .steps li {
+            margin: 8px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .materials li::before, .steps li::before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+            margin-top: 6px;
+            font-size: 1.3rem;
+        }
+
+        .steps li::before {
+            content: counter(step);
+            counter-increment: step;
+            background: var(--accent);
+            color: white;
             width: 28px;
             height: 28px;
-            background: var(--primary);
-            color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 12px;
+            font-size: 1rem;
             font-weight: bold;
+            margin-top: 4px;
         }
 
-        .references {
-            background: #f8f9fa;
+        .notes {
+            background: var(--primary-blue-lighter);
+            padding: 22px 26px;
+            border-radius: 16px;
+            border-left: 5px solid var(--primary-blue);
+            margin: 16px 0;
+            font-size: 1.02rem;
             border: 1px solid var(--border-light);
-            border-radius: var(--radius);
-            padding: 16px;
-            margin-top: 16px;
+            box-shadow: var(--shadow-sm);
         }
 
-        .references h4 {
-            color: var(--text-light);
-            margin-bottom: 8px;
+        .notes i {
+            color: var(--primary-blue);
+            margin-right: 12px;
+        }
+
+        .source-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(59, 130, 246, 0.15);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-left: 8px;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .source-badge i {
+            font-size: 0.9rem;
+        }
+
+        .source-badge.wiki {
+            background: rgba(234, 234, 234, 0.2);
+            color: #000000;
+            border-color: rgba(234, 234, 234, 0.4);
+        }
+
+        .source-badge.fda {
+            background: rgba(220, 38, 38, 0.15);
+            color: var(--alert-red);
+            border-color: rgba(220, 38, 38, 0.3);
+        }
+
+        .source-badge.who {
+            background: rgba(0, 153, 255, 0.15);
+            color: #0099ff;
+            border-color: rgba(0, 153, 255, 0.3);
+        }
+
+        .source-reference {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-top: 8px;
             display: flex;
             align-items: center;
             gap: 8px;
+            font-style: italic;
         }
 
-        .references ul {
-            list-style: none;
-        }
-
-        .references li {
-            margin: 6px 0;
-            font-size: 14px;
-        }
-
-        .references a {
-            color: var(--primary);
+        .source-reference a {
+            color: var(--accent);
             text-decoration: none;
         }
 
-        .references a:hover {
+        .source-reference a:hover {
             text-decoration: underline;
         }
 
-        /* Special Alert */
-        .alert {
-            background: #fff8e1;
-            border-left: 4px solid #ffc107;
-            padding: 16px;
-            border-radius: 4px;
-            margin: 16px 0;
-            font-size: 14px;
+        .resource-panel {
+            background: var(--glass-2);
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            margin-top: 28px;
+            transition: var(--transition);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-light);
         }
 
-        .alert-title {
-            font-weight: 500;
-            color: #ff8f00;
-            margin-bottom: 8px;
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .resource-card {
+            background: var(--glass-2);
+            border-radius: 18px;
+            padding: 24px;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .resource-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .resource-card h3 {
+            color: var(--accent);
+            margin-bottom: 16px;
+            font-size: 1.3rem;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
         }
 
-        /* Responsive */
+        .resource-card h3 i {
+            font-size: 1.5rem;
+        }
+
+        .resource-card p {
+            margin: 6px 0;
+            font-size: 1.02rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .resource-card p i {
+            color: var(--muted);
+            font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        .resource-card a {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 12px 18px;
+            background: var(--gradient-secondary);
+            color: white;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            font-size: 1.02rem;
+        }
+
+        .resource-card a:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-sm);
+        }
+
         @media (max-width: 1200px) {
-            :root {
-                --sidebar-width: 240px;
+            .app {
+                border-radius: 18px;
+            }
+            .category-card, .resource-panel {
+                border-radius: 18px;
+                padding: 28px;
             }
         }
 
-        @media (max-width: 992px) {
-            .sidebar {
-                width: 100%;
-                position: relative;
-                height: auto;
-                border-right: none;
-                border-bottom: 1px solid var(--border);
+        @media (max-width: 1024px) {
+            .app {
+                border-radius: 16px;
             }
-            .container {
-                flex-direction: column;
-            }
-            main {
-                margin-top: 0;
+            .category-card, .resource-panel {
+                border-radius: 16px;
+                padding: 24px;
             }
         }
 
         @media (max-width: 768px) {
-            .search-box {
-                display: none;
-            }
-            .page-header {
+            .container {
                 flex-direction: column;
-                align-items: flex-start;
-                gap: 16px;
             }
-            .action-buttons {
+            .sidebar {
                 width: 100%;
-                justify-content: space-between;
+                max-height: 320px;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                position: relative;
+                z-index: 60;
+            }
+            .mobile-menu-btn {
+                display: flex;
+            }
+            .sidebar.hidden-mobile {
+                display: none;
             }
         }
 
-        /* Animation */
+        @media (max-width: 480px) {
+            .app {
+                border-radius: 14px;
+            }
+            .category-card, .resource-panel {
+                border-radius: 14px;
+                padding: 18px;
+            }
+            .cat-btn {
+                padding: 16px 20px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Animations */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .card {
-            animation: fadeIn 0.3s ease-out;
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-60px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .card:nth-child(2) { animation-delay: 0.1s; }
-        .card:nth-child(3) { animation-delay: 0.2s; }
-        .card:nth-child(4) { animation-delay: 0.3s; }
+        .notification-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 400px;
+        }
+
+        .notification {
+            padding: 20px 24px;
+            border-radius: 16px;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            animation: fadeIn 0.4s ease;
+            border: 1px solid var(--border);
+        }
+
+        .notification-success {
+            background: rgba(16, 185, 129, 0.22);
+            border-color: rgba(16, 185, 129, 0.38);
+            color: var(--success-green);
+        }
+
+        .notification-error {
+            background: rgba(239, 68, 68, 0.22);
+            border-color: rgba(239, 68, 68, 0.38);
+            color: var(--alert-red);
+        }
+
+        .notification-info {
+            background: rgba(59, 130, 246, 0.22);
+            border-color: rgba(59, 130, 246, 0.38);
+            color: var(--accent);
+        }
+
+        .notification-icon {
+            font-size: 1.5rem;
+        }
+
+        .notification-content {
+            flex: 1;
+        }
+
+        .close-notification {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--muted);
+            padding: 4px;
+        }
+
+        .close-notification:hover {
+            color: white;
+        }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <a href="#" class="logo">
-                <i class="fas fa-heartbeat"></i>
+    <div class="app">
+        <header>
+            <h1>
+                <i class="fas fa-heartbeat brand-icon"></i>
                 EduMed
-            </a>
-            <div class="search-box">
-                <i class="fas fa-search search-icon"></i>
-                <input type="text" class="search-input" placeholder="Buscar procedimientos, enfermedades, medicamentos...">
-            </div>
-            <div class="user-actions">
-                <button class="btn btn-primary">
-                    <i class="fas fa-plus"></i>
-                    Nuevo Contenido
+            </h1>
+            <div class="controls">
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="searchInput" class="input" placeholder="Buscar procedimientos, enfermedades, medicamentos...">
+                    <div id="searchSuggestions" class="search-suggestions" style="display: none;">
+                        <!-- Suggestions will be added here by JavaScript -->
+                    </div>
+                </div>
+                <button id="themeToggle" class="theme-toggle">
+                    <i class="fas fa-moon"></i>
                 </button>
-                <div class="user-avatar">JD</div>
+                <button id="mobileMenuBtn" class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <div class="container">
-        <aside class="sidebar">
-            <div class="sidebar-header">Especialidades Médicas</div>
-            <ul class="category-list">
-                <li class="category-item">
-                    <a href="#" class="category-link active" data-category="curaciones">
+        <div class="container">
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <i class="fas fa-th-large"></i>
+                    <h3>Funcionalidades</h3>
+                </div>
+                <div class="cat-grid" role="navigation">
+                    <button class="cat-btn active" data-cat="curaciones">
                         <i class="fas fa-band-aid"></i>
                         <span>Curaciones Avanzadas</span>
-                    </a>
-                </li>
-                <li class="category-item">
-                    <a href="#" class="category-link" data-category="cardiologia">
+                    </button>
+                    <button class="cat-btn" data-cat="cardiologia">
                         <i class="fas fa-heart"></i>
                         <span>Cardiología</span>
-                    </a>
-                </li>
-                <li class="category-item">
-                    <a href="#" class="category-link" data-category="neumologia">
+                    </button>
+                    <button class="cat-btn" data-cat="neumologia">
                         <i class="fas fa-lungs"></i>
                         <span>Neumología</span>
-                    </a>
-                </li>
-                <li class="category-item">
-                    <a href="#" class="category-link" data-category="endocrinologia">
+                    </button>
+                    <button class="cat-btn" data-cat="endocrinologia">
                         <i class="fas fa-brain"></i>
                         <span>Endocrinología</span>
-                    </a>
-                </li>
-                <li class="category-item">
-                    <a href="#" class="category-link" data-category="neurologia">
+                    </button>
+                    <button class="cat-btn" data-cat="neurologia">
                         <i class="fas fa-head-side-brain"></i>
                         <span>Neurología</span>
-                    </a>
-                </li>
-                <li class="category-item">
-                    <a href="#" class="category-link" data-category="oncologia">
+                    </button>
+                    <button class="cat-btn" data-cat="oncologia">
                         <i class="fas fa-dna"></i>
                         <span>Oncología</span>
-                    </a>
-                </li>
-                <li class="category-item">
-                    <a href="#" class="category-link" data-category="nephrologia">
+                    </button>
+                    <button class="cat-btn" data-cat="nephrologia">
                         <i class="fas fa-kidneys"></i>
                         <span>Nefrología</span>
-                    </a>
-                </li>
-                <li class="category-item">
-                    <a href="#" class="category-link" data-category="gastroenterologia">
+                    </button>
+                    <button class="cat-btn" data-cat="gastroenterologia">
                         <i class="fas fa-stomach"></i>
                         <span>Gastroenterología</span>
-                    </a>
-                </li>
-                <li class="category-item">
-                    <a href="#" class="category-link" data-category="reumatologia">
+                    </button>
+                    <button class="cat-btn" data-cat="reumatologia">
                         <i class="fas fa-bone"></i>
                         <span>Reumatología</span>
-                    </a>
-                </li>
-                <li class="category-item">
-                    <a href="#" class="category-link" data-category="emergencias">
+                    </button>
+                    <button class="cat-btn" data-cat="emergencias">
                         <i class="fas fa-ambulance"></i>
                         <span>Emergencias Médicas</span>
-                    </a>
-                </li>
-                <li class="category-item">
-                    <a href="#" class="category-link" data-category="farmacologia">
+                    </button>
+                    <button class="cat-btn" data-cat="farmacologia">
                         <i class="fas fa-pills"></i>
                         <span>Farmacología</span>
-                    </a>
-                </li>
-                <li class="category-item">
-                    <a href="#" class="category-link" data-category="nutricion">
+                    </button>
+                    <button class="cat-btn" data-cat="nutricion">
                         <i class="fas fa-apple-alt"></i>
                         <span>Nutrición Clínica</span>
-                    </a>
-                </li>
-                <li class="category-item">
-                    <a href="#" class="category-link" data-category="infecciones">
+                    </button>
+                    <button class="cat-btn" data-cat="infecciones">
                         <i class="fas fa-virus"></i>
                         <span>Control de Infecciones</span>
-                    </a>
-                </li>
-                <li class="category-item">
-                    <a href="#" class="category-link" data-category="movilizacion">
+                    </button>
+                    <button class="cat-btn" data-cat="movilizacion">
                         <i class="fas fa-wheelchair"></i>
                         <span>Movilización Pacientes</span>
-                    </a>
-                </li>
-                <li class="category-item">
-                    <a href="#" class="category-link" data-category="rcp">
+                    </button>
+                    <button class="cat-btn" data-cat="rcp">
                         <i class="fas fa-heartbeat"></i>
                         <span>RCP Integral</span>
-                    </a>
-                </li>
-            </ul>
-        </aside>
-
-        <main>
-            <!-- Curaciones Avanzadas -->
-            <div class="page-header">
-                <h1 class="page-title">
-                    <i class="fas fa-band-aid"></i>
-                    Curaciones Avanzadas
-                </h1>
-                <div class="action-buttons">
-                    <button class="btn btn-primary">
-                        <i class="fas fa-plus"></i>
-                        Nuevo Procedimiento
                     </button>
                 </div>
-            </div>
+            </aside>
 
-            <div class="card-grid">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="https://placehold.co/400x200/4285f4/white?text=Curación+Quirúrgica" alt="Curación de herida quirúrgica">
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Curación de Herida Quirúrgica</h3>
-                        <span class="card-specialty">Cirugía General</span>
-                        <p class="card-summary">Protocolo estandarizado para el cuidado postoperatorio de heridas quirúrgicas con enfoque en prevención de infecciones y promoción de la cicatrización óptima.</p>
-                        <div class="card-footer">
-                            <span class="source-link">
-                                <i class="fas fa-book"></i>
-                                CDC Guidelines 2023
-                            </span>
+            <main id="mainContent">
+                <!-- Curaciones Avanzadas Content -->
+                <div id="curaciones" class="category-content active">
+                    <div class="page-header">
+                        <h1 class="page-title">
+                            <i class="fas fa-band-aid"></i>
+                            Curaciones Avanzadas
+                        </h1>
+                        <div class="action-buttons">
+                            <button class="btn primary">
+                                <i class="fas fa-plus"></i>
+                                Nuevo Procedimiento
+                            </button>
                         </div>
                     </div>
-                </div>
 
-                <div class="card">
-                    <div class="card-image">
-                        <img src="https://placehold.co/400x200/34a853/white?text=Úlceras+por+Presión" alt="Manejo de úlceras por presión">
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Manejo de Úlceras por Presión</h3>
-                        <span class="card-specialty">Enfermería Clínica</span>
-                        <p class="card-summary">Estrategias preventivas y terapéuticas para el tratamiento de lesiones por presión en pacientes con movilidad reducida o encamados.</p>
-                        <div class="card-footer">
-                            <span class="source-link">
+                    <div class="category-card">
+                        <h2>
+                            <i class="fas fa-band-aid"></i>
+                            Técnicas de Curación y Cuidado de Heridas
+                        </h2>
+                        <p>Esta sección proporciona protocolos estandarizados para el cuidado de heridas en entornos clínicos, basados en evidencia científica actualizada y guías de práctica clínica reconocidas internacionalmente.</p>
+                        
+                        <div class="procedure">
+                            <h3>
+                                <i class="fas fa-syringe"></i>
+                                Curación de Herida Quirúrgica
+                            </h3>
+                            <p class="summary">
+                                <i class="fas fa-info-circle"></i>
+                                Protocolo estandarizado para el cuidado postoperatorio de heridas quirúrgicas con enfoque en prevención de infecciones y promoción de la cicatrización óptima.
+                            </p>
+                            
+                            <div class="materials">
+                                <h4>
+                                    <i class="fas fa-box-open"></i>
+                                    Materiales Necesarios
+                                </h4>
+                                <ul>
+                                    <li>Guantes estériles y no estériles</li>
+                                    <li>Gasas estériles</li>
+                                    <li>Solución salina fisiológica</li>
+                                    <li>Antiséptico (povidona yodada o clorhexidina)</li>
+                                    <li>Apósito estéril</li>
+                                    <li>Tijeras estériles</li>
+                                    <li>Bandeja estéril</li>
+                                    <li>Pinzas estériles</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="steps">
+                                <h4>
+                                    <i class="fas fa-step-forward"></i>
+                                    Pasos del Procedimiento
+                                </h4>
+                                <ol>
+                                    <li>Lavado de manos y colocación de guantes no estériles</li>
+                                    <li>Preparar el área de trabajo con todos los materiales necesarios</li>
+                                    <li>Retirar el apósito anterior con técnica aséptica</li>
+                                    <li>Evaluar características de la herida (tamaño, profundidad, secreción)</li>
+                                    <li>Limpiar la herida con solución salina fisiológica de centro a periferia</li>
+                                    <li>Aplicar antiséptico si está indicado y no hay contraindicaciones</li>
+                                    <li>Colocar gasas estériles o material de relleno si es necesario</li>
+                                    <li>Colocar nuevo apósito estéril y fijarlo adecuadamente</li>
+                                    <li>Retirar guantes y realizar higiene de manos</li>
+                                    <li>Documentar el procedimiento y características de la herida</li>
+                                </ol>
+                            </div>
+                            
+                            <div class="notes">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <strong>Consideraciones Importantes:</strong> Observar signos de infección: enrojecimiento, calor, dolor, edema, secreción purulenta. Mantener registro detallado del proceso de cicatrización. Cambiar el apósito según indicación médica o si hay signos de saturación.
+                            </div>
+                            
+                            <div class="source-reference">
                                 <i class="fas fa-book"></i>
-                                NIH Clinical Guidelines
-                            </span>
+                                Basado en las <strong>Guías del CDC 2023</strong> para la prevención de infecciones del sitio quirúrgico.
+                                <span class="source-badge">
+                                    <i class="fas fa-shield-alt"></i>
+                                    CDC Guidelines
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <div class="card">
-                    <div class="card-image">
-                        <img src="https://placehold.co/400x200/ea4335/white?text=Heridas+Crónicas" alt="Tratamiento de heridas crónicas">
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Tratamiento de Heridas Crónicas</h3>
-                        <span class="card-specialty">Dermatología</span>
-                        <p class="card-summary">Enfoque multidisciplinario para el manejo de heridas que no cicatrizan adecuadamente después de 4-6 semanas de tratamiento convencional.</p>
-                        <div class="card-footer">
-                            <span class="source-link">
+                        <div class="procedure">
+                            <h3>
+                                <i class="fas fa-bed"></i>
+                                Manejo de Úlceras por Presión
+                            </h3>
+                            <p class="summary">
+                                <i class="fas fa-info-circle"></i>
+                                Estrategias preventivas y terapéuticas para el tratamiento de lesiones por presión en pacientes con movilidad reducida o encamados.
+                            </p>
+                            
+                            <div class="materials">
+                                <h4>
+                                    <i class="fas fa-box-open"></i>
+                                    Materiales Necesarios
+                                </h4>
+                                <ul>
+                                    <li>Guantes estériles</li>
+                                    <li>Gasas hidrocoloides o alginato</li>
+                                    <li>Solución de limpieza específica para úlceras</li>
+                                    <li>Apósitos especiales para úlceras por presión</li>
+                                    <li>Medidor de presión (para evaluación)</li>
+                                    <li>Herramienta de clasificación (Escala de Braden)</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="steps">
+                                <h4>
+                                    <i class="fas fa-step-forward"></i>
+                                    Pasos del Procedimiento
+                                </h4>
+                                <ol>
+                                    <li>Evaluar el riesgo del paciente usando la Escala de Braden</li>
+                                    <li>Inspeccionar áreas de riesgo (sacra, talones, isquiones)</li>
+                                    <li>Clasificar la úlcera según su estadio (I-IV)</li>
+                                    <li>Limpiar la herida con solución específica</li>
+                                    <li>Aplicar apósito adecuado según el estadio y características</li>
+                                    <li>Documentar tamaño, profundidad, tejidos presentes y bordes</li>
+                                    <li>Implementar medidas preventivas (cambios de posición, colchones especiales)</li>
+                                </ol>
+                            </div>
+                            
+                            <div class="notes">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <strong>Consideraciones Importantes:</strong> Las úlceras por presión son consideradas eventos adversos evitables. La prevención es más efectiva que el tratamiento. Los pacientes críticos requieren evaluación cada 8-12 horas.
+                            </div>
+                            
+                            <div class="source-reference">
                                 <i class="fas fa-book"></i>
-                                WHO Wound Care
-                            </span>
+                                Basado en las <strong>Guías del NIH</strong> para el manejo de lesiones por presión.
+                                <span class="source-badge">
+                                    <i class="fas fa-flask"></i>
+                                    NIH Guidelines
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <div class="card">
-                    <div class="card-image">
-                        <img src="https://placehold.co/400x200/9c27b0/white?text=Terapia+VAC" alt="Terapia de presión negativa">
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Terapia de Presión Negativa (VAC)</h3>
-                        <span class="card-specialty">Cirugía Plástica</span>
-                        <p class="card-summary">Uso de dispositivos de vacío para promover la cicatrización de heridas complejas, grandes defectos tisulares y heridas con infección.</p>
-                        <div class="card-footer">
-                            <span class="source-link">
+                        <div class="procedure">
+                            <h3>
+                                <i class="fas fa-wind"></i>
+                                Terapia de Presión Negativa (VAC)
+                            </h3>
+                            <p class="summary">
+                                <i class="fas fa-info-circle"></i>
+                                Uso de dispositivos de vacío para promover la cicatrización de heridas complejas, grandes defectos tisulares y heridas con infección.
+                            </p>
+                            
+                            <div class="materials">
+                                <h4>
+                                    <i class="fas fa-box-open"></i>
+                                    Materiales Necesarios
+                                </h4>
+                                <ul>
+                                    <li>Sistema de terapia de presión negativa</li>
+                                    <li>Espuma especializada para relleno</li>
+                                    <li>Parche impermeable</li>
+                                    <li>Conectores y tubos</li>
+                                    <li>Bolsa de recolección</li>
+                                    <li>Dispositivo de control de presión</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="steps">
+                                <h4>
+                                    <i class="fas fa-step-forward"></i>
+                                    Pasos del Procedimiento
+                                </h4>
+                                <ol>
+                                    <li>Preparar la herida con limpieza adecuada</li>
+                                    <li>Cortar la espuma al tamaño y forma de la herida</li>
+                                    <li>Rellenar la herida completamente con la espuma</li>
+                                    <li>Cubrir con parche impermeable sellando completamente</li>
+                                    <li>Conectar el sistema de vacío y establecer parámetros</li>
+                                    <li>Verificar el sellado y funcionamiento del sistema</li>
+                                    <li>Documentar presión establecida y características de la herida</li>
+                                </ol>
+                            </div>
+                            
+                            <div class="notes">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <strong>Consideraciones Importantes:</strong> La terapia VAC está contraindicada en heridas con tejido necrótico no desbridado, heridas con fístulas entero-cutáneas o en tejidos expuestos como vasos sanguíneos o nervios.
+                            </div>
+                            
+                            <div class="source-reference">
                                 <i class="fas fa-book"></i>
-                                AORN Standards
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-image">
-                        <img src="https://placehold.co/400x200/ff9800/white?text=Curación+Húmeda" alt="Curación húmeda">
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Terapia de Curación Húmeda</h3>
-                        <span class="card-specialty">Enfermería Avanzada</span>
-                        <p class="card-summary">Aplicación de vendajes o apósitos que mantienen un ambiente húmedo para acelerar la cicatrización y reducir el dolor.</p>
-                        <div class="card-footer">
-                            <span class="source-link">
-                                <i class="fas fa-book"></i>
-                                Cochrane Review
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-image">
-                        <img src="https://placehold.co/400x200/607d8b/white?text=Heridas+Diabéticas" alt="Heridas en pacientes diabéticos">
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Manejo de Heridas en Pacientes Diabéticos</h3>
-                        <span class="card-specialty">Endocrinología</span>
-                        <p class="card-summary">Protocolo específico para el tratamiento de úlceras del pie diabético con enfoque en control glucémico, revascularización y prevención de amputaciones.</p>
-                        <div class="card-footer">
-                            <span class="source-link">
-                                <i class="fas fa-book"></i>
-                                ADA Standards
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Detailed Article -->
-            <div class="article">
-                <div class="article-header">
-                    Procedimiento: Curación de Herida Quirúrgica
-                </div>
-                <div class="article-body">
-                    <div class="section">
-                        <h3 class="section-title">
-                            <i class="fas fa-info-circle"></i>
-                            Información General
-                        </h3>
-                        <div class="content-grid">
-                            <div class="info-item">
-                                <div class="info-label">
+                                Basado en las <strong>Normas de AORN</strong> para la terapia de presión negativa.
+                                <span class="source-badge">
                                     <i class="fas fa-hospital"></i>
-                                    Especialidad
-                                </div>
-                                <div class="info-value">Cirugía General</div>
-                            </div>
-                            <div class="info-item">
-                                <div class="info-label">
-                                    <i class="fas fa-clock"></i>
-                                    Duración
-                                </div>
-                                <div class="info-value">15-20 minutos</div>
-                            </div>
-                            <div class="info-item">
-                                <div class="info-label">
-                                    <i class="fas fa-user-md"></i>
-                                    Profesional
-                                </div>
-                                <div class="info-value">Enfermero/a o Médico</div>
-                            </div>
-                            <div class="info-item">
-                                <div class="info-label">
-                                    <i class="fas fa-calendar"></i>
-                                    Frecuencia
-                                </div>
-                                <div class="info-value">Cada 24-48 horas o según indicación</div>
+                                    AORN Standards
+                                </span>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="section">
-                        <h3 class="section-title">
-                            <i class="fas fa-list"></i>
-                            Objetivos del Procedimiento
-                        </h3>
-                        <ul class="steps-list">
-                            <li>Prevenir infecciones en el sitio quirúrgico</li>
-                            <li>Promover la cicatrización óptima del tejido</li>
-                            <li>Reducir el dolor y molestias del paciente</li>
-                            <li>Monitorear signos de complicaciones</li>
-                            <li>Mantener un ambiente limpio y protegido</li>
-                        </ul>
+                <!-- Cardiología Content -->
+                <div id="cardiologia" class="category-content" style="display: none;">
+                    <div class="page-header">
+                        <h1 class="page-title">
+                            <i class="fas fa-heart"></i>
+                            Cardiología
+                        </h1>
                     </div>
 
-                    <div class="section">
-                        <h3 class="section-title">
-                            <i class="fas fa-box-open"></i>
-                            Materiales Necesarios
-                        </h3>
-                        <div class="content-grid">
-                            <div class="info-item">
-                                <div class="info-label">
-                                    <i class="fas fa-check-circle"></i>
-                                    Materiales Estériles
-                                </div>
-                                <div class="info-value">
-                                    Guantes estériles, gasas estériles, pinzas estériles, bandeja estéril, solución salina fisiológica, antiséptico (povidona yodada o clorhexidina)
-                                </div>
+                    <div class="category-card">
+                        <h2>
+                            <i class="fas fa-heart"></i>
+                            Manejo de Emergencias Cardiovasculares
+                        </h2>
+                        <p>Protocolos actualizados para el diagnóstico y tratamiento de condiciones cardiovasculares agudas, basados en las últimas guías de la Asociación Americana del Corazón (AHA) y la Sociedad Europea de Cardiología (ESC).</p>
+                        
+                        <div class="procedure">
+                            <h3>
+                                <i class="fas fa-heartbeat"></i>
+                                Manejo de Infarto de Miocardio
+                            </h3>
+                            <p class="summary">
+                                <i class="fas fa-info-circle"></i>
+                                Protocolo de atención inicial para pacientes con síndrome coronario agudo y elevación del segmento ST, con enfoque en reperfusión temprana.
+                            </p>
+                            
+                            <div class="materials">
+                                <h4>
+                                    <i class="fas fa-box-open"></i>
+                                    Materiales Necesarios
+                                </h4>
+                                <ul>
+                                    <li>Monitor cardíaco</li>
+                                    <li>Desfibrilador</li>
+                                    <li>Equipo de oxigenoterapia</li>
+                                    <li>Medicamentos (aspirina, nitroglicerina, morfina, antiagregantes)</li>
+                                    <li>Kit de acceso vascular</li>
+                                    <li>ECG de 12 derivaciones</li>
+                                </ul>
                             </div>
-                            <div class="info-item">
-                                <div class="info-label">
-                                    <i class="fas fa-check-circle"></i>
-                                    Materiales No Estériles
-                                </div>
-                                <div class="info-value">
-                                    Guantes no estériles, apósitos, cinta adhesiva, tijeras, recipiente para residuos, bolsa para residuos biológicos
-                                </div>
+                            
+                            <div class="steps">
+                                <h4>
+                                    <i class="fas fa-step-forward"></i>
+                                    Algoritmo STEMI
+                                </h4>
+                                <ol>
+                                    <li>Reconocer síntomas típicos (dolor torácico, opresión, irradiación)</li>
+                                    <li>Realizar ECG dentro de los primeros 10 minutos</li>
+                                    <li>Administrar aspirina 325mg masticable</li>
+                                    <li>Establecer acceso venoso</li>
+                                    <li>Administrar oxígeno si saturación <90%</li>
+                                    <li>Considerar nitroglicerina sublingual si presión adecuada</li>
+                                    <li>Activar equipo de cateterismo para angioplastia primaria</li>
+                                    <li>Objetivo: "Puerta a balón" <90 minutos</li>
+                                </ol>
+                            </div>
+                            
+                            <div class="notes">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <strong>Consideraciones Importantes:</strong> El tiempo es músculo miocárdico. Cada minuto de retraso en la reperfusión aumenta la mortalidad. Los pacientes con contraindicaciones para angioplastia pueden requerir trombólisis.
+                            </div>
+                            
+                            <div class="source-reference">
+                                <i class="fas fa-book"></i>
+                                Basado en las <strong>Guías AHA 2023</strong> para el manejo del infarto agudo de miocardio.
+                                <span class="source-badge">
+                                    <i class="fas fa-heart"></i>
+                                    AHA Guidelines
+                                </span>
                             </div>
                         </div>
                     </div>
-
-                    <div class="section">
-                        <h3 class="section-title">
-                            <i class="fas fa-step-forward"></i>
-                            Pasos del Procedimiento
-                        </h3>
-                        <ol class="steps-list">
-                            <li><strong>Preparación:</strong> Lavado de manos y colocación de guantes no estériles. Preparar el área de trabajo con todos los materiales necesarios.</li>
-                            <li><strong>Retiro del apósito:</strong> Retirar el apósito anterior con técnica aséptica, observando características de la herida (tamaño, profundidad, secreción).</li>
-                            <li><strong>Inspección:</strong> Evaluar signos de infección (enrojecimiento, calor, dolor, edema, secreción purulenta) y complicaciones (dehiscencia, evisceración).</li>
-                            <li><strong>Limpieza:</strong> Limpiar la herida con solución salina fisiológica de centro a periferia usando gasas estériles. No usar antisépticos dentro de la herida a menos que esté indicado.</li>
-                            <li><strong>Secado:</strong> Secar la zona periferal con gasas estériles limpias, usando movimientos desde la herida hacia afuera.</li>
-                            <li><strong>Aplicación:</strong> Colocar gasas estériles o material de relleno si es necesario, evitando presión excesiva.</li>
-                            <li><strong>Cierre:</strong> Colocar nuevo apósito estéril y fijarlo adecuadamente con cinta adhesiva o vendaje.</li>
-                            <li><strong>Documentación:</strong> Registrar el procedimiento, características de la herida, productos utilizados y respuesta del paciente.</li>
-                            <li><strong>Higiene final:</strong> Retirar guantes y realizar higiene de manos.</li>
-                        </ol>
-                    </div>
-
-                    <div class="alert">
-                        <div class="alert-title">
-                            <i class="fas fa-exclamation-triangle"></i>
-                            Consideraciones Importantes
-                        </div>
-                        <p>Las heridas quirúrgicas deben ser monitoreadas cuidadosamente para detectar signos de infección del sitio quirúrgico (SSI). El cambio de apósito debe realizarse con técnica aséptica rigurosa. Si se observa dehiscencia parcial o completa, se debe notificar inmediatamente al equipo quirúrgico. Los pacientes con factores de riesgo (diabetes, obesidad, inmunosupresión) requieren un seguimiento más estrecho.</p>
-                    </div>
-
-                    <div class="section">
-                        <h3 class="section-title">
-                            <i class="fas fa-book"></i>
-                            Referencias y Fuentes
-                        </h3>
-                        <div class="references">
-                            <h4>
-                                <i class="fas fa-globe"></i>
-                                Fuentes Científicas
-                            </h4>
-                            <ul>
-                                <li>CDC. <em>Guideline for Prevention of Surgical Site Infection</em>. 2017. <a href="https://www.cdc.gov/hai/pdfs/ssi/SSI_guideline-2017.pdf" target="_blank">Acceso directo</a></li>
-                                <li>WHO. <em>Global Guidelines for the Prevention of Surgical Site Infection</em>. 2018. <a href="https://www.who.int/publications/i/item/9789241549949" target="_blank">Acceso directo</a></li>
-                                <li>AORN. <em>Perioperative Standards and Recommended Practices</em>. 2023. <a href="https://www.aorn.org/" target="_blank">Acceso directo</a></li>
-                                <li>Wound Healing Society. <em>Guidelines for Wound Management</em>. 2022. <a href="https://woundhealing.org/" target="_blank">Acceso directo</a></li>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
-            </div>
 
-            <!-- Cardiología -->
-            <div class="page-header">
-                <h1 class="page-title">
-                    <i class="fas fa-heart"></i>
-                    Cardiología
-                </h1>
-            </div>
-
-            <div class="card-grid">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="https://placehold.co/400x200/4285f4/white?text=Infarto+Miocardio" alt="Manejo de infarto de miocardio">
+                <!-- Neumología Content -->
+                <div id="neumologia" class="category-content" style="display: none;">
+                    <div class="page-header">
+                        <h1 class="page-title">
+                            <i class="fas fa-lungs"></i>
+                            Neumología
+                        </h1>
                     </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Manejo de Infarto de Miocardio</h3>
-                        <span class="card-specialty">Cardiología Intervencionista</span>
-                        <p class="card-summary">Protocolo de atención inicial para pacientes con síndrome coronario agudo y elevación del segmento ST, con enfoque en reperfusión temprana.</p>
-                        <div class="card-footer">
-                            <span class="source-link">
+
+                    <div class="category-card">
+                        <h2>
+                            <i class="fas fa-lungs"></i>
+                            Manejo de Enfermedades Respiratorias
+                        </h2>
+                        <p>Protocolos para el diagnóstico y tratamiento de condiciones pulmonares agudas y crónicas, basados en las guías GOLD para EPOC y las recomendaciones de la ATS/IDSA para neumonía.</p>
+                        
+                        <div class="procedure">
+                            <h3>
+                                <i class="fas fa-virus"></i>
+                                Diagnóstico y Tratamiento de Neumonía
+                            </h3>
+                            <p class="summary">
+                                <i class="fas fa-info-circle"></i>
+                                Algoritmo para el diagnóstico, clasificación y tratamiento antimicrobiano de neumonía adquirida en la comunidad y nosocomial.
+                            </p>
+                            
+                            <div class="materials">
+                                <h4>
+                                    <i class="fas fa-box-open"></i>
+                                    Materiales Necesarios
+                                </h4>
+                                <ul>
+                                    <li>Estetoscopio</li>
+                                    <li>Pulsioxímetro</li>
+                                    <li>Equipo de radiografía torácica</li>
+                                    <li>Kit de toma de muestra (hemocultivos, cultivo de esputo)</li>
+                                    <li>Panel de biomarcadores (procalcitonina, PCR)</li>
+                                    <li>Antibióticos empíricos</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="steps">
+                                <h4>
+                                    <i class="fas fa-step-forward"></i>
+                                    Pasos del Diagnóstico
+                                </h4>
+                                <ol>
+                                    <li>Evaluar criterios diagnósticos (fiebre, tos, disnea, infiltrado en RX)</li>
+                                    <li>Clasificar según gravedad (escala CURB-65 o PSI)</li>
+                                    <li>Determinar si requiere hospitalización</li>
+                                    <li>Obtener hemocultivos y cultivo de esputo antes de antibióticos</li>
+                                    <li>Iniciar terapia antimicrobiana empírica según factores de riesgo</li>
+                                    <li>Monitorizar respuesta clínica en las primeras 48-72 horas</li>
+                                    <li>De-escalar terapia según cultivos y clínica</li>
+                                </ol>
+                            </div>
+                            
+                            <div class="notes">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <strong>Consideraciones Importantes:</strong> La terapia antimicrobiana debe iniciarse dentro de la primera hora en pacientes con sepsis. La duración típica es de 5-7 días, pero puede variar según respuesta clínica y patógeno identificado.
+                            </div>
+                            
+                            <div class="source-reference">
                                 <i class="fas fa-book"></i>
-                                AHA Guidelines 2023
-                            </span>
+                                Basado en las <strong>Guías IDSA/ATS</strong> para el manejo de neumonía.
+                                <span class="source-badge">
+                                    <i class="fas fa-microscope"></i>
+                                    IDSA/ATS Guidelines
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="card">
-                    <div class="card-image">
-                        <img src="https://placehold.co/400x200/34a853/white?text=Insuficiencia+Cardiaca" alt="Manejo de insuficiencia cardíaca">
+                <!-- Endocrinología Content -->
+                <div id="endocrinologia" class="category-content" style="display: none;">
+                    <div class="page-header">
+                        <h1 class="page-title">
+                            <i class="fas fa-brain"></i>
+                            Endocrinología
+                        </h1>
                     </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Manejo de Insuficiencia Cardíaca</h3>
-                        <span class="card-specialty">Cardiología Clínica</span>
-                        <p class="card-summary">Estrategias terapéuticas para el control de síntomas y prevención de hospitalizaciones en pacientes con disfunción ventricular.</p>
-                        <div class="card-footer">
-                            <span class="source-link">
+
+                    <div class="category-card">
+                        <h2>
+                            <i class="fas fa-brain"></i>
+                            Manejo de Trastornos Endocrinos
+                        </h2>
+                        <p>Protocolos para el diagnóstico y tratamiento de condiciones endocrinas, basados en las guías de la Asociación Americana de Diabetes (ADA) y la Asociación Americana de Endocrinología Clínica (AACE).</p>
+                        
+                        <div class="procedure">
+                            <h3>
+                                <i class="fas fa-syringe"></i>
+                                Manejo de Cetoacidosis Diabética
+                            </h3>
+                            <p class="summary">
+                                <i class="fas fa-info-circle"></i>
+                                Protocolo para el manejo de la cetoacidosis diabética, una emergencia metabólica potencialmente mortal.
+                            </p>
+                            
+                            <div class="materials">
+                                <h4>
+                                    <i class="fas fa-box-open"></i>
+                                    Materiales Necesarios
+                                </h4>
+                                <ul>
+                                    <li>Monitor de glucosa</li>
+                                    <li>Kit de toma de muestra para gases arteriales</li>
+                                    <li>Insulina intravenosa</li>
+                                    <li>Solución salina 0.9%</li>
+                                    <li>Solución con potasio</li>
+                                    <li>Equipo de monitoreo continuo</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="steps">
+                                <h4>
+                                    <i class="fas fa-step-forward"></i>
+                                    Pasos del Tratamiento
+                                </h4>
+                                <ol>
+                                    <li>Establecer acceso venoso y comenzar cristaloides (1L en primera hora)</li>
+                                    <li>Comenzar infusión de insulina IV (0.1 U/kg/h)</li>
+                                    <li>Reponer potasio cuando niveles <5.3 mEq/L</li>
+                                    <li>Monitorear glucosa cada hora</li>
+                                    <li>Cuando glucosa <200 mg/dL, añadir dextrosa al líquido</li>
+                                    <li>Continuar insulina hasta resolución de acidosis</li>
+                                    <li>Transicionar a insulina subcutánea cuando paciente pueda ingerir</li>
+                                </ol>
+                            </div>
+                            
+                            <div class="notes">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <strong>Consideraciones Importantes:</strong> El manejo agresivo de la hiperglucemia sin reponer potasio puede causar hipopotasemia severa. La resolución se define por pH >7.3, bicarbonato >18 mEq/L y ausencia de cetonas en orina.
+                            </div>
+                            
+                            <div class="source-reference">
                                 <i class="fas fa-book"></i>
-                                ESC Guidelines 2023
-                            </span>
+                                Basado en las <strong>Guías ADA 2024</strong> para el manejo de complicaciones agudas de la diabetes.
+                                <span class="source-badge">
+                                    <i class="fas fa-syringe"></i>
+                                    ADA Guidelines
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="card">
-                    <div class="card-image">
-                        <img src="https://placehold.co/400x200/ea4335/white?text=Arritmias" alt="Manejo de arritmias">
+                <!-- Recursos Educativos -->
+                <div id="recursos" class="category-content" style="display: none;">
+                    <div class="page-header">
+                        <h1 class="page-title">
+                            <i class="fas fa-book-open"></i>
+                            Recursos Educativos
+                        </h1>
                     </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Manejo de Arritmias Cardiacas</h3>
-                        <span class="card-specialty">Electrofisiología</span>
-                        <p class="card-summary">Diagnóstico y tratamiento de trastornos del ritmo cardíaco, desde extrasístoles hasta fibrilación auricular y taquicardias sostenidas.</p>
-                        <div class="card-footer">
-                            <span class="source-link">
-                                <i class="fas fa-book"></i>
-                                ACC/AHA Guidelines
-                            </span>
+
+                    <div class="resource-panel">
+                        <h2>
+                            <i class="fas fa-book-open"></i>
+                            Recursos Clínicos y Educativos
+                        </h2>
+                        <p>Acceda a las fuentes más confiables de información médica para profundizar en cada especialidad y procedimiento.</p>
+                        
+                        <div class="resource-grid">
+                            <div class="resource-card">
+                                <h3>
+                                    <i class="fas fa-hospital"></i>
+                                    Guías Clínicas
+                                </h3>
+                                <p>
+                                    <i class="fas fa-book"></i>
+                                    CDC - Prevención de infecciones
+                                </p>
+                                <p>
+                                    <i class="fas fa-book"></i>
+                                    AHA - Manejo de infarto
+                                </p>
+                                <p>
+                                    <i class="fas fa-book"></i>
+                                    WHO - Cuidado de heridas
+                                </p>
+                                <a href="#" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Acceder a recursos
+                                </a>
+                            </div>
+                            
+                            <div class="resource-card">
+                                <h3>
+                                    <i class="fas fa-video"></i>
+                                    Videos Educativos
+                                </h3>
+                                <p>
+                                    <i class="fas fa-play-circle"></i>
+                                    Técnica de curación aséptica
+                                </p>
+                                <p>
+                                    <i class="fas fa-play-circle"></i>
+                                    Manejo de RCP básico
+                                </p>
+                                <p>
+                                    <i class="fas fa-play-circle"></i>
+                                    Colocación de acceso venoso
+                                </p>
+                                <a href="#" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Ver videos
+                                </a>
+                            </div>
+                            
+                            <div class="resource-card">
+                                <h3>
+                                    <i class="fas fa-download"></i>
+                                    Descargables
+                                </h3>
+                                <p>
+                                    <i class="fas fa-file-pdf"></i>
+                                    Algoritmo de RCP 2025
+                                </p>
+                                <p>
+                                    <i class="fas fa-file-pdf"></i>
+                                    Escala de Braden
+                                </p>
+                                <p>
+                                    <i class="fas fa-file-pdf"></i>
+                                    Guía de antibióticos
+                                </p>
+                                <a href="#" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Descargar recursos
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </main>
+        </div>
+    </div>
 
-            <!-- Neumología -->
-            <div class="page-header">
-                <h1 class="page-title">
-                    <i class="fas fa-lungs"></i>
-                    Neumología
-                </h1>
-            </div>
-
-            <div class="card-grid">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="https://placehold.co/400x200/9c27b0/white?text=Neumonía" alt="Tratamiento de neumonía">
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Diagnóstico y Tratamiento de Neumonía</h3>
-                        <span class="card-specialty">Neumología Clínica</span>
-                        <p class="card-summary">Algoritmo para el diagnóstico, clasificación y tratamiento antimicrobiano de neumonía adquirida en la comunidad y nosocomial.</p>
-                        <div class="card-footer">
-                            <span class="source-link">
-                                <i class="fas fa-book"></i>
-                                IDSA/ATS Guidelines
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-image">
-                        <img src="https://placehold.co/400x200/ff9800/white?text=EPOC" alt="Manejo de EPOC">
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Manejo de EPOC Agudizada</h3>
-                        <span class="card-specialty">Neumología Respiratoria</span>
-                        <p class="card-summary">Estrategias terapéuticas para el manejo de exacerbaciones de enfermedad pulmonar obstructiva crónica con enfoque en broncodilatadores y oxigenoterapia.</p>
-                        <div class="card-footer">
-                            <span class="source-link">
-                                <i class="fas fa-book"></i>
-                                GOLD Guidelines 2023
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Endocrinología -->
-            <div class="page-header">
-                <h1 class="page-title">
-                    <i class="fas fa-brain"></i>
-                    Endocrinología
-                </h1>
-            </div>
-
-            <div class="card-grid">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="https://placehold.co/400x200/607d8b/white?text=Diabetes" alt="Manejo de diabetes">
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Manejo Integral de Diabetes</h3>
-                        <span class="card-specialty">Endocrinología Metabólica</span>
-                        <p class="card-summary">Enfoque multidisciplinario para el control glucémico, prevención de complicaciones micro y macrovasculares y educación del paciente.</p>
-                        <div class="card-footer">
-                            <span class="source-link">
-                                <i class="fas fa-book"></i>
-                                ADA Standards 2024
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-image">
-                        <img src="https://placehold.co/400x200/4caf50/white?text=Tiroides" alt="Trastornos tiroideos">
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Evaluación de Trastornos Tiroideos</h3>
-                        <span class="card-specialty">Endocrinología Clínica</span>
-                        <p class="card-summary">Protocolo para el diagnóstico y manejo de hipotiroidismo, hipertiroidismo, tiroiditis y nódulos tiroideos.</p>
-                        <div class="card-footer">
-                            <span class="source-link">
-                                <i class="fas fa-book"></i>
-                                ATA Guidelines
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
+    <div class="notification-container" id="notificationContainer">
+        <!-- Notifications will be added here by JavaScript -->
     </div>
 
     <script>
-        // Simulación de funcionalidad básica
-        document.querySelectorAll('.category-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // Actualizar estado activo
-                document.querySelectorAll('.category-link').forEach(el => {
-                    el.classList.remove('active');
+        // DOM Elements
+        const sidebar = document.querySelector('.sidebar');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const themeToggle = document.getElementById('themeToggle');
+        const searchInput = document.getElementById('searchInput');
+        const searchSuggestions = document.getElementById('searchSuggestions');
+        const mainContent = document.getElementById('mainContent');
+        const notificationContainer = document.getElementById('notificationContainer');
+
+        // Category buttons
+        const categoryButtons = document.querySelectorAll('.cat-btn');
+        const categoryContents = document.querySelectorAll('.category-content');
+
+        // Theme functionality
+        let darkTheme = true;
+
+        themeToggle.addEventListener('click', () => {
+            darkTheme = !darkTheme;
+            
+            if (darkTheme) {
+                document.documentElement.style.setProperty('--bg', 'linear-gradient(135deg, #0f172a, #1e293b, #334155)');
+                document.documentElement.style.setProperty('--glass', 'rgba(15, 23, 42, 0.95)');
+                document.documentElement.style.setProperty('--glass-2', 'rgba(30, 41, 59, 0.8)');
+                document.documentElement.style.setProperty('--text-light', '#e2e8f0');
+                document.documentElement.style.setProperty('--muted', '#94a3b8');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                showNotification('🌙 Modo oscuro activado', 'info');
+            } else {
+                document.documentElement.style.setProperty('--bg', 'linear-gradient(135deg, #f8fafc, #e2e8f0, #cbd5e1)');
+                document.documentElement.style.setProperty('--glass', 'rgba(255, 255, 255, 0.95)');
+                document.documentElement.style.setProperty('--glass-2', 'rgba(241, 245, 249, 0.9)');
+                document.documentElement.style.setProperty('--text-light', '#0f172a');
+                document.documentElement.style.setProperty('--muted', '#64748b');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                showNotification('☀️ Modo claro activado', 'info');
+            }
+        });
+
+        // Mobile menu functionality
+        mobileMenuBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('hidden-mobile');
+        });
+
+        // Category navigation
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                categoryButtons.forEach(btn => {
+                    btn.classList.remove('active');
                 });
-                this.classList.add('active');
                 
-                // Actualizar título
-                const category = this.textContent.trim();
-                document.querySelector('.page-title').innerHTML = `
-                    <i class="${this.querySelector('i').className}"></i>
-                    ${category}
-                `;
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                // Hide all content sections
+                categoryContents.forEach(content => {
+                    content.style.display = 'none';
+                });
+                
+                // Show the selected content
+                const categoryId = button.getAttribute('data-cat');
+                const selectedContent = document.getElementById(categoryId);
+                if (selectedContent) {
+                    selectedContent.style.display = 'block';
+                }
+                
+                // Close mobile menu after selection
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.add('hidden-mobile');
+                }
+                
+                // Show notification
+                const categoryName = button.textContent.trim();
+                showNotification(`✅ Mostrando: ${categoryName}`, 'success');
             });
         });
 
-        // Búsqueda
-        const searchInput = document.querySelector('.search-input');
-        searchInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' && this.value.trim()) {
-                alert(`Buscando: "${this.value}" en todas las especialidades médicas`);
+        // Search functionality
+        const searchTerms = [
+            "curación quirúrgica",
+            "manejo de úlceras",
+            "terapia VAC",
+            "infarto miocardio",
+            "neumonía tratamiento",
+            "cetoacidosis diabética",
+            "RCP básico",
+            "movilización pacientes",
+            "control infecciones",
+            "farmacología clínica"
+        ];
+
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.toLowerCase();
+            
+            if (query.length > 2) {
+                const filteredSuggestions = searchTerms.filter(term => 
+                    term.toLowerCase().includes(query)
+                );
+                
+                if (filteredSuggestions.length > 0) {
+                    searchSuggestions.innerHTML = '';
+                    searchSuggestions.style.display = 'block';
+                    
+                    filteredSuggestions.forEach(suggestion => {
+                        const suggestionElement = document.createElement('div');
+                        suggestionElement.className = 'suggestion-item';
+                        suggestionElement.innerHTML = `
+                            <i class="fas fa-search"></i>
+                            ${highlightText(suggestion, query)}
+                        `;
+                        suggestionElement.addEventListener('click', () => {
+                            searchInput.value = suggestion;
+                            searchSuggestions.style.display = 'none';
+                            showNotification(`🔍 Buscando: ${suggestion}`, 'info');
+                        });
+                        searchSuggestions.appendChild(suggestionElement);
+                    });
+                } else {
+                    searchSuggestions.style.display = 'none';
+                }
+            } else {
+                searchSuggestions.style.display = 'none';
             }
+        });
+
+        // Click outside search to close suggestions
+        document.addEventListener('click', (e) => {
+            if (!searchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {
+                searchSuggestions.style.display = 'none';
+            }
+        });
+
+        function highlightText(text, query) {
+            const regex = new RegExp(`(${query})`, 'gi');
+            return text.replace(regex, '<strong>$1</strong>');
+        }
+
+        // Notifications system
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-bell notification-icon"></i>
+                <div class="notification-content">${message}</div>
+                <button class="close-notification">&times;</button>
+            `;
+            
+            notificationContainer.appendChild(notification);
+            
+            // Set icon based on type
+            const icon = notification.querySelector('.notification-icon');
+            if (type === 'success') {
+                icon.className = 'fas fa-check-circle notification-icon';
+            } else if (type === 'error') {
+                icon.className = 'fas fa-times-circle notification-icon';
+            } else if (type === 'warning') {
+                icon.className = 'fas fa-exclamation-triangle notification-icon';
+            }
+            
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 5000);
+            
+            // Close on button click
+            notification.querySelector('.close-notification').addEventListener('click', () => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            });
+        }
+
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', () => {
+            showNotification('👋 Bienvenido a EduMed. Plataforma de educación clínica.', 'success');
+            
+            // Check if we have a hash in the URL
+            if (window.location.hash) {
+                const hash = window.location.hash.substring(1);
+                const button = document.querySelector(`.cat-btn[data-cat="${hash}"]`);
+                if (button) {
+                    button.click();
+                }
+            }
+        });
+
+        // Add smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
     </script>
 </body>
