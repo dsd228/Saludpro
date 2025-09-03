@@ -11,21 +11,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg: linear-gradient(135deg, #0f172a, #1e293b, #334155);
-            --glass: rgba(15, 23, 42, 0.95);
-            --glass-2: rgba(30, 41, 59, 0.8);
-            --accent: #3b82f6;
-            --accent-2: #2563eb;
-            --accent-3: #1d4ed8;
-            --primary-blue: #2563eb;
-            --primary-blue-darker: #1d4ed8;
-            --primary-blue-lighter: rgba(37, 99, 235, 0.1);
+            /* Paleta de verdes claros */
+            --bg: linear-gradient(135deg, #f0f9ff, #e0f2f1, #d0f0c0);
+            --glass: rgba(255, 255, 255, 0.95);
+            --glass-2: rgba(240, 249, 255, 0.8);
+            --accent: #059669;
+            --accent-2: #047857;
+            --accent-3: #065f46;
+            --primary-green: #059669;
+            --primary-green-darker: #047857;
+            --primary-green-lighter: rgba(5, 150, 105, 0.1);
             --success-green: #10b981;
-            --warning-yellow: #f59e0b;
-            --alert-red: #ef4444;
-            --text-light: #e2e8f0;
+            --warning-yellow: #ca8a04;
+            --alert-red: #dc2626;
+            --text-light: #0f172a;
             --text-dark: #0f172a;
-            --muted: #94a3b8;
+            --muted: #64748b;
             --danger: #ef4444;
             --card-radius: 24px;
             --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
@@ -37,15 +38,15 @@
             --font: 'Inter', 'Roboto', system-ui, -apple-system, "Segoe UI", sans-serif;
             --font-heading: 'Inter', 'Open Sans', system-ui, sans-serif;
             --maxwidth: 1600px;
-            --border: rgba(148, 163, 184, 0.3);
-            --border-light: rgba(148, 163, 184, 0.2);
+            --border: rgba(100, 116, 139, 0.3);
+            --border-light: rgba(100, 116, 139, 0.2);
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --transition-fast: all 0.15s ease;
             --z-header: 100;
             --z-sidebar: 90;
             --z-modal: 200;
-            --gradient-primary: linear-gradient(135deg, #3b82f6, #2563eb);
-            --gradient-secondary: linear-gradient(135deg, #60a5fa, #3b82f6);
+            --gradient-primary: linear-gradient(135deg, #059669, #047857);
+            --gradient-secondary: linear-gradient(135deg, #10b981, #059669);
             --gradient-success: linear-gradient(135deg, #10b981, #059669);
             --gradient-warning: linear-gradient(135deg, #f59e0b, #d97706);
             --gradient-danger: linear-gradient(135deg, #ef4444, #dc2626);
@@ -87,7 +88,7 @@
         }
         header {
             padding: 24px 32px;
-            background: rgba(15, 23, 42, 0.98);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
             display: flex;
@@ -106,12 +107,12 @@
             align-items: center;
             gap: 16px;
             letter-spacing: -0.8px;
-            text-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+            text-shadow: 0 2px 4px rgba(5, 150, 105, 0.3);
         }
         .brand-icon {
             font-size: 2.2rem;
             color: var(--accent);
-            text-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
+            text-shadow: 0 0 12px rgba(5, 150, 105, 0.4);
         }
         .controls {
             display: flex;
@@ -258,10 +259,10 @@
             transition: var(--transition);
         }
         .cat-btn[data-cat="higiene"] i { color: #4ade80; }
-        .cat-btn[data-cat="curaciones"] i { color: #3b82f6; }
+        .cat-btn[data-cat="curaciones"] i { color: #059669; }
         .cat-btn[data-cat="farmaco"] i { color: #8b5cf6; }
-        .cat-btn[data-cat="emergencias"] i { color: #ef4444; }
-        .cat-btn[data-cat="movilizacion"] i { color: #f59e0b; }
+        .cat-btn[data-cat="emergencias"] i { color: #dc2626; }
+        .cat-btn[data-cat="movilizacion"] i { color: #ca8a04; }
         .cat-btn[data-cat="rcp"] i { color: #06b6d4; }
         .cat-btn[data-cat="pae"] i { color: #10b981; }
         .cat-btn[data-cat="recursos"] i { color: #64748b; }
@@ -312,7 +313,7 @@
         .btn.primary {
             background: var(--gradient-primary);
             color: white;
-            border: 1px solid rgba(37, 99, 235, 0.3);
+            border: 1px solid rgba(5, 150, 105, 0.3);
         }
         .btn.primary:hover {
             background: var(--gradient-secondary);
@@ -325,12 +326,27 @@
         .btn.secondary {
             background: var(--gradient-secondary);
             color: white;
-            border: 1px solid rgba(59, 130, 246, 0.3);
+            border: 1px solid rgba(16, 185, 129, 0.3);
         }
         .btn.secondary:hover {
-            background: var(--primary-blue-darker);
+            background: var(--primary-green-darker);
             transform: translateY(-4px);
             box-shadow: var(--shadow-md);
+        }
+        .btn.success {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+        .btn.warning {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+        .btn.danger {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            border: 1px solid rgba(239, 68, 68, 0.3);
         }
         .search-container {
             position: relative;
@@ -352,12 +368,12 @@
             border: 1px solid var(--border-light);
         }
         .input::placeholder {
-            color: rgba(226, 232, 240, 0.7);
+            color: rgba(15, 23, 42, 0.7);
         }
         .input:focus {
             outline: none;
             border-color: var(--accent);
-            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+            box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.2);
             background: rgba(255, 255, 255, 0.12);
         }
         .search-icon {
@@ -442,7 +458,7 @@
             letter-spacing: -0.5px;
         }
         .category-card h4 {
-            color: var(--primary-blue);
+            color: var(--primary-green);
             margin: 14px 0 10px 0;
             font-size: 1.2rem;
             font-weight: 500;
@@ -497,14 +513,14 @@
             color: var(--muted);
             margin-bottom: 14px;
             padding: 20px;
-            background: var(--primary-blue-lighter);
+            background: var(--primary-green-lighter);
             border-radius: 14px;
-            border-left: 5px solid var(--primary-blue);
+            border-left: 5px solid var(--primary-green);
             border: 1px solid var(--border-light);
             box-shadow: var(--shadow-sm);
         }
         .procedure .summary i {
-            color: var(--primary-blue);
+            color: var(--primary-green);
             margin-right: 10px;
         }
         .materials, .steps, .notes {
@@ -543,31 +559,31 @@
             margin-top: 4px;
         }
         .notes {
-            background: var(--primary-blue-lighter);
+            background: var(--primary-green-lighter);
             padding: 22px 26px;
             border-radius: 16px;
-            border-left: 5px solid var(--primary-blue);
+            border-left: 5px solid var(--primary-green);
             margin: 16px 0;
             font-size: 1.02rem;
             border: 1px solid var(--border-light);
             box-shadow: var(--shadow-sm);
         }
         .notes i {
-            color: var(--primary-blue);
+            color: var(--primary-green);
             margin-right: 12px;
         }
         .source-badge {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: rgba(59, 130, 246, 0.15);
+            background: rgba(5, 150, 105, 0.15);
             color: var(--accent);
             padding: 4px 12px;
             border-radius: 12px;
             font-size: 0.85rem;
             font-weight: 500;
             margin-left: 8px;
-            border: 1px solid rgba(59, 130, 246, 0.3);
+            border: 1px solid rgba(5, 150, 105, 0.3);
         }
         .source-badge i {
             font-size: 0.9rem;
@@ -667,7 +683,7 @@
             text-decoration: none;
             font-weight: 500;
             transition: var(--transition);
-            border: 1px solid rgba(59, 130, 246, 0.3);
+            border: 1px solid rgba(16, 185, 129, 0.3);
             font-size: 1.02rem;
         }
         .resource-card a:hover {
@@ -767,8 +783,8 @@
             color: var(--alert-red);
         }
         .notification-info {
-            background: rgba(59, 130, 246, 0.22);
-            border-color: rgba(59, 130, 246, 0.38);
+            background: rgba(5, 150, 105, 0.22);
+            border-color: rgba(5, 150, 105, 0.38);
             color: var(--accent);
         }
         .notification-icon {
@@ -868,13 +884,13 @@
         .external-links {
             margin: 20px 0;
             padding: 16px;
-            background: var(--primary-blue-lighter);
+            background: var(--primary-green-lighter);
             border-radius: 16px;
             border: 1px solid var(--border-light);
         }
         
         .external-links h4 {
-            color: var(--primary-blue);
+            color: var(--primary-green);
             margin-bottom: 12px;
             display: flex;
             align-items: center;
@@ -909,10 +925,230 @@
         .external-links i {
             font-size: 1.1rem;
         }
+        
+        /* Drug interaction warnings */
+        .interaction-warning {
+            margin: 16px 0;
+            padding: 16px;
+            border-radius: 16px;
+            font-size: 1.05rem;
+            border: 1px solid;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .interaction-warning.severe {
+            background: rgba(220, 38, 38, 0.15);
+            border-color: rgba(220, 38, 38, 0.3);
+            color: var(--alert-red);
+        }
+        
+        .interaction-warning.moderate {
+            background: rgba(202, 138, 4, 0.15);
+            border-color: rgba(202, 138, 4, 0.3);
+            color: var(--warning-yellow);
+        }
+        
+        .interaction-warning.mild {
+            background: rgba(16, 185, 129, 0.15);
+            border-color: rgba(16, 185, 129, 0.3);
+            color: var(--success-green);
+        }
+        
+        .interaction-warning i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        /* Calculator styles */
+        .calculator {
+            background: var(--glass-2);
+            border-radius: 18px;
+            padding: 24px;
+            margin: 20px 0;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .calculator h4 {
+            color: var(--accent-2);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .calculator-input {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+            align-items: center;
+        }
+        
+        .calculator-input label {
+            flex: 1;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+        
+        .calculator-input input {
+            flex: 2;
+            padding: 12px 16px;
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-light);
+        }
+        
+        .calculator-result {
+            margin-top: 16px;
+            padding: 16px;
+            background: var(--primary-green-lighter);
+            border-radius: 12px;
+            border-left: 5px solid var(--primary-green);
+            font-size: 1.1rem;
+            color: var(--accent-2);
+            font-weight: 500;
+        }
+        
+        /* Login modal */
+        .login-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: modalFadeIn 0.4s ease;
+        }
+        
+        .login-content {
+            background: var(--glass);
+            border-radius: 24px;
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+        }
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        
+        .login-header h2 {
+            color: var(--accent);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .login-form label {
+            color: var(--text-light);
+            font-weight: 500;
+        }
+        
+        .login-form input {
+            padding: 16px 20px;
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-light);
+        }
+        
+        .login-form button {
+            margin-top: 8px;
+            padding: 16px 24px;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .login-form button:hover {
+            background: var(--gradient-secondary);
+            transform: translateY(-2px);
+        }
+        
+        /* Tabs */
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-light);
+            margin-bottom: 24px;
+        }
+        
+        .tab {
+            padding: 16px 24px;
+            cursor: pointer;
+            color: var(--muted);
+            font-weight: 500;
+            border-bottom: 3px solid transparent;
+            transition: var(--transition);
+        }
+        
+        .tab.active {
+            color: var(--accent);
+            border-bottom: 3px solid var(--accent);
+            font-weight: 600;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
     </style>
 </head>
 <body>
-    <div class="app">
+    <!-- Login Modal -->
+    <div id="loginModal" class="login-modal">
+        <div class="login-content">
+            <div class="login-header">
+                <h2>
+                    <i class="fas fa-user-md"></i>
+                    Inicio de Sesión
+                </h2>
+                <p style="color: var(--muted);">Acceda con su correo institucional</p>
+            </div>
+            <form id="loginForm" class="login-form">
+                <div>
+                    <label for="email">Correo Electrónico</label>
+                    <input type="email" id="email" placeholder="nombre@institucion.edu" required>
+                </div>
+                <div>
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+                <button type="submit">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Iniciar Sesión
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="app" style="display: none;">
         <header>
             <h1>
                 <i class="fas fa-heartbeat brand-icon"></i>
@@ -921,7 +1157,7 @@
             <div class="controls">
                 <div class="search-container">
                     <i class="fas fa-search search-icon"></i>
-                    <input type="text" id="searchInput" class="input" placeholder="Buscar procedimientos, enfermedades, medicamentos...">
+                    <input type="text" id="searchInput" class="input" placeholder="Buscar procedimientos, medicamentos, interacciones...">
                     <div id="searchSuggestions" class="search-suggestions" style="display: none;">
                         <!-- Suggestions will be added here by JavaScript -->
                     </div>
@@ -934,7 +1170,7 @@
                     </div>
                 </div>
                 <button id="themeToggle" class="theme-toggle">
-                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-palette"></i>
                 </button>
                 <button id="mobileMenuBtn" class="mobile-menu-btn">
                     <i class="fas fa-bars"></i>
@@ -1665,6 +1901,34 @@
                                 type: "image"
                             }
                         ]
+                    },
+                    {
+                        id: "interacciones-medicamentosas",
+                        title: "Interacciones Medicamentosas",
+                        icon: "fa-exclamation-triangle",
+                        summary: "Evaluación de interacciones medicamentosas con clasificación por gravedad para la toma de decisiones clínicas seguras.",
+                        materials: [
+                            "Base de datos de interacciones medicamentosas",
+                            "Historia clínica del paciente",
+                            "Lista de medicamentos actuales",
+                            "Perfil de función hepática y renal"
+                        ],
+                        steps: [
+                            "Revisar todos los medicamentos que el paciente está tomando",
+                            "Utilizar herramienta de evaluación de interacciones",
+                            "Clasificar interacciones por gravedad (leve, moderada, grave)",
+                            "Considerar alternativas terapéuticas si hay interacciones graves",
+                            "Monitorizar signos de efectos adversos",
+                            "Educación al paciente sobre signos de alarma",
+                            "Documentar evaluación y decisiones clínicas"
+                        ],
+                        notes: "Las interacciones medicamentosas son una causa importante de eventos adversos. La revisión regular de la medicación es esencial, especialmente en pacientes polimedicados. Utilice herramientas de apoyo a la decisión clínica para identificar interacciones potenciales.",
+                        source: {
+                            name: "Micromedex",
+                            description: "Base de datos de interacciones medicamentosas Micromedex.",
+                            type: "micromedex"
+                        },
+                        lastUpdated: "2024-03-15"
                     }
                 ]
             },
@@ -1900,6 +2164,9 @@
         };
 
         // DOM Elements
+        const loginModal = document.getElementById('loginModal');
+        const loginForm = document.getElementById('loginForm');
+        const app = document.querySelector('.app');
         const sidebar = document.querySelector('.sidebar');
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const themeToggle = document.getElementById('themeToggle');
@@ -1914,57 +2181,92 @@
         
         // User preferences and data storage
         const userPreferences = {
-            theme: 'dark',
+            theme: 'light',
             recentCategories: [],
             savedProcedures: [],
-            userProgress: {}
+            userProgress: {},
+            currentUser: null
         };
 
         // Initialize the app
         function initApp() {
-            // Load user preferences from localStorage
-            loadUserPreferences();
-            
-            // Set initial theme
-            setTheme(userPreferences.theme);
-            
-            // Load the default content
-            loadCategoryContent('curaciones');
-            
-            // Update active button
-            updateActiveButton('curaciones');
+            // Check if user is logged in
+            checkLoginStatus();
             
             // Initialize search
             initSearch();
             
-            // Show welcome notification
-            showNotification('👋 Bienvenido a EduMed. Plataforma de educación clínica.', 'success');
+            // Show welcome notification after login
+            if (userPreferences.currentUser) {
+                showNotification(`👋 Bienvenido Dr. ${userPreferences.currentUser.name}`, 'success');
+            }
+        }
+
+        // Check login status
+        function checkLoginStatus() {
+            const savedUser = localStorage.getItem('edumed_user');
+            if (savedUser) {
+                userPreferences.currentUser = JSON.parse(savedUser);
+                loginModal.style.display = 'none';
+                app.style.display = 'flex';
+                updateUserInfo();
+            } else {
+                loginModal.style.display = 'flex';
+                app.style.display = 'none';
+            }
+        }
+
+        // Update user info in header
+        function updateUserInfo() {
+            if (userPreferences.currentUser) {
+                const userAvatar = document.querySelector('.user-avatar');
+                const userName = document.querySelector('.user-name');
+                const userRole = document.querySelector('.user-role');
+                
+                // Use first letter of name for avatar
+                userAvatar.textContent = userPreferences.currentUser.name.charAt(0).toUpperCase();
+                userName.textContent = `Dr. ${userPreferences.currentUser.name}`;
+                userRole.textContent = userPreferences.currentUser.role;
+            }
+        }
+
+        // Handle login
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
             
-            // Check URL hash
-            checkUrlHash();
-        }
-
-        // Load user preferences from localStorage
-        function loadUserPreferences() {
-            try {
-                const saved = localStorage.getItem('edumed_preferences');
-                if (saved) {
-                    const parsed = JSON.parse(saved);
-                    Object.assign(userPreferences, parsed);
-                }
-            } catch (e) {
-                console.error('Error loading preferences:', e);
+            // In a real app, this would validate with a server
+            // For now, we'll simulate a successful login
+            if (email && password) {
+                const name = email.split('@')[0].split('.')[0];
+                const role = "Médico Residente";
+                
+                userPreferences.currentUser = {
+                    email: email,
+                    name: name.charAt(0).toUpperCase() + name.slice(1),
+                    role: role
+                };
+                
+                // Save to localStorage
+                localStorage.setItem('edumed_user', JSON.stringify(userPreferences.currentUser));
+                
+                // Hide modal and show app
+                loginModal.style.display = 'none';
+                app.style.display = 'flex';
+                
+                // Update user info
+                updateUserInfo();
+                
+                // Initialize app
+                initApp();
+                
+                // Show welcome notification
+                showNotification(`👋 Bienvenido Dr. ${userPreferences.currentUser.name}`, 'success');
+            } else {
+                showNotification('❌ Credenciales inválidas', 'error');
             }
-        }
-
-        // Save user preferences to localStorage
-        function saveUserPreferences() {
-            try {
-                localStorage.setItem('edumed_preferences', JSON.stringify(userPreferences));
-            } catch (e) {
-                console.error('Error saving preferences:', e);
-            }
-        }
+        });
 
         // Set theme
         function setTheme(theme) {
@@ -1976,15 +2278,14 @@
                 document.documentElement.style.setProperty('--muted', '#94a3b8');
                 themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
             } else {
-                document.documentElement.style.setProperty('--bg', 'linear-gradient(135deg, #f8fafc, #e2e8f0, #cbd5e1)');
+                document.documentElement.style.setProperty('--bg', 'linear-gradient(135deg, #f0f9ff, #e0f2f1, #d0f0c0)');
                 document.documentElement.style.setProperty('--glass', 'rgba(255, 255, 255, 0.95)');
-                document.documentElement.style.setProperty('--glass-2', 'rgba(241, 245, 249, 0.9)');
+                document.documentElement.style.setProperty('--glass-2', 'rgba(240, 249, 255, 0.8)');
                 document.documentElement.style.setProperty('--text-light', '#0f172a');
                 document.documentElement.style.setProperty('--muted', '#64748b');
                 themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
             }
             userPreferences.theme = theme;
-            saveUserPreferences();
         }
 
         // Toggle theme
@@ -2053,6 +2354,22 @@
             });
         }
 
+        // Save user preferences
+        function saveUserPreferences() {
+            try {
+                if (userPreferences.currentUser) {
+                    localStorage.setItem('edumed_preferences', JSON.stringify({
+                        theme: userPreferences.theme,
+                        recentCategories: userPreferences.recentCategories,
+                        savedProcedures: userPreferences.savedProcedures,
+                        userProgress: userPreferences.userProgress
+                    }));
+                }
+            } catch (e) {
+                console.error('Error saving preferences:', e);
+            }
+        }
+
         // Load category content
         function loadCategoryContent(categoryId) {
             const category = medicalData[categoryId];
@@ -2075,6 +2392,8 @@
                 
                 if (categoryId === 'recursos') {
                     content = renderResourcesContent(category);
+                } else if (categoryId === 'farmacologia') {
+                    content = renderFarmacologiaContent(category);
                 } else {
                     content = renderProceduresContent(category);
                 }
@@ -2089,6 +2408,9 @@
                         ${category.title}
                     `;
                 }
+                
+                // Initialize calculators if they exist
+                initCalculators();
             }, 300);
         }
 
@@ -2148,6 +2470,7 @@
                             </div>
                             
                             <!-- Visual References -->
+                            ${procedure.visualReferences ? `
                             <div class="external-links">
                                 <h4>
                                     <i class="fas fa-image"></i>
@@ -2167,6 +2490,7 @@
                                     `).join('')}
                                 </ul>
                             </div>
+                            ` : ''}
                             
                             <div class="source-reference">
                                 <i class="fas fa-book"></i>
@@ -2180,6 +2504,318 @@
                         </div>
                     `).join('')}
                 </div>
+            `;
+        }
+
+        // Render farmacologia content with drug interactions
+        function renderFarmacologiaContent(category) {
+            return `
+                <div class="page-header">
+                    <h1 class="page-title">
+                        <i class="fas ${category.icon}"></i>
+                        ${category.title}
+                    </h1>
+                </div>
+                
+                <div class="tabs">
+                    <div class="tab active" data-tab="procedures">Procedimientos</div>
+                    <div class="tab" data-tab="interactions">Interacciones</div>
+                    <div class="tab" data-tab="calculators">Calculadoras</div>
+                </div>
+                
+                <div id="procedures" class="tab-content active">
+                    ${renderProceduresContent(category)}
+                </div>
+                
+                <div id="interactions" class="tab-content">
+                    <div class="category-card">
+                        <h2>
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Interacciones Medicamentosas
+                        </h2>
+                        <p>Evalúe las interacciones medicamentosas con clasificación por gravedad para la toma de decisiones clínicas seguras.</p>
+                        
+                        <div class="procedure">
+                            <h3>
+                                <i class="fas fa-flask"></i>
+                                Interacciones Graves (Letales)
+                            </h3>
+                            <div class="interaction-warning severe">
+                                <i class="fas fa-skull-crossbones"></i>
+                                <strong>Warfarina + Antibióticos (Macrólidos, Fluoroquinolonas)</strong>
+                                <p style="margin-top: 8px;">Aumento significativo del INR con riesgo de hemorragia grave. Requiere monitoreo frecuente del INR y ajuste de dosis.</p>
+                            </div>
+                            <div class="interaction-warning severe">
+                                <i class="fas fa-skull-crossbones"></i>
+                                <strong>IECA + AINEs + Diuréticos (Tríada nefrotóxica)</strong>
+                                <p style="margin-top: 8px;">Riesgo de fallo renal agudo, especialmente en pacientes deshidratados o con enfermedad renal crónica.</p>
+                            </div>
+                            <div class="interaction-warning severe">
+                                <i class="fas fa-skull-crossbones"></i>
+                                <strong>Estatinas + Inhibidores de la CYP3A4 (Itraconazol, Claritromicina)</strong>
+                                <p style="margin-top: 8px;">Aumento del riesgo de rabdomiólisis. Evitar la combinación o reducir significativamente la dosis de la estatina.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="procedure">
+                            <h3>
+                                <i class="fas fa-exclamation-triangle"></i>
+                                Interacciones Moderadas
+                            </h3>
+                            <div class="interaction-warning moderate">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <strong>Antidepresivos SSRIs + AINEs</strong>
+                                <p style="margin-top: 8px;">Aumento del riesgo de hemorragia gastrointestinal. Considerar gastroprotección con inhibidores de la bomba de protones.</p>
+                            </div>
+                            <div class="interaction-warning moderate">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <strong>Metformina + Contraste yodado</strong>
+                                <p style="margin-top: 8px;">Riesgo de acidosis láctica. Suspender metformina 48 horas antes y después del procedimiento con contraste.</p>
+                            </div>
+                            <div class="interaction-warning moderate">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <strong>Levotiroxina + Suplementos de Calcio</strong>
+                                <p style="margin-top: 8px;">Disminución de la absorción de levotiroxina. Administrar con 4 horas de diferencia.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="procedure">
+                            <h3>
+                                <i class="fas fa-check-circle"></i>
+                                Interacciones Leves
+                            </h3>
+                            <div class="interaction-warning mild">
+                                <i class="fas fa-check-circle"></i>
+                                <strong>Paracetamol + Vitamina C</strong>
+                                <p style="margin-top: 8px;">Ligero aumento en la absorción del paracetamol. No requiere ajuste de dosis en la mayoría de los casos.</p>
+                            </div>
+                            <div class="interaction-warning mild">
+                                <i class="fas fa-check-circle"></i>
+                                <strong>Antihistamínicos + Antiinflamatorios no esteroideos</strong>
+                                <p style="margin-top: 8px;">Efecto aditivo en el alivio de síntomas. Monitorizar somnolencia, especialmente en ancianos.</p>
+                            </div>
+                            <div class="interaction-warning mild">
+                                <i class="fas fa-check-circle"></i>
+                                <strong>Antiácidos + Suplementos de hierro</strong>
+                                <p style="margin-top: 8px;">Disminución de la absorción de hierro. Administrar con 2 horas de diferencia.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="notes">
+                            <i class="fas fa-info-circle"></i>
+                            <strong>Recomendaciones:</strong> Revise todas las interacciones medicamentosas al iniciar un nuevo tratamiento, especialmente en pacientes polimedicados. Utilice herramientas de apoyo a la decisión clínica para identificar interacciones potenciales.
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="calculators" class="tab-content">
+                    <div class="category-card">
+                        <h2>
+                            <i class="fas fa-calculator"></i>
+                            Calculadoras Clínicas
+                        </h2>
+                        <p>Herramientas para cálculos médicos esenciales en la práctica clínica diaria.</p>
+                        
+                        <div class="calculator">
+                            <h4>
+                                <i class="fas fa-weight"></i>
+                                Cálculo de Creatinina
+                            </h4>
+                            <div class="calculator-input">
+                                <label for="age">Edad (años)</label>
+                                <input type="number" id="age" placeholder="Ej: 65">
+                            </div>
+                            <div class="calculator-input">
+                                <label for="weight">Peso (kg)</label>
+                                <input type="number" id="weight" placeholder="Ej: 70">
+                            </div>
+                            <div class="calculator-input">
+                                <label for="creatinine">Creatinina sérica (mg/dL)</label>
+                                <input type="number" id="creatinine" placeholder="Ej: 1.2" step="0.1">
+                            </div>
+                            <div class="calculator-input">
+                                <label>Género</label>
+                                <select id="gender" style="flex: 2; padding: 12px 16px; border: 1px solid var(--border-light); border-radius: 12px;">
+                                    <option value="male">Masculino</option>
+                                    <option value="female">Femenino</option>
+                                </select>
+                            </div>
+                            <button class="btn primary" onclick="calculateCreatinine()" style="width: auto;">
+                                <i class="fas fa-calculator"></i>
+                                Calcular TFG
+                            </button>
+                            <div class="calculator-result" id="creatinineResult">
+                                Ingrese los datos para calcular la tasa de filtración glomerular
+                            </div>
+                        </div>
+                        
+                        <div class="calculator">
+                            <h4>
+                                <i class="fas fa-balance-scale"></i>
+                                Cálculo de Índice de Masa Corporal (IMC)
+                            </h4>
+                            <div class="calculator-input">
+                                <label for="height">Altura (cm)</label>
+                                <input type="number" id="height" placeholder="Ej: 170">
+                            </div>
+                            <div class="calculator-input">
+                                <label for="weightBMI">Peso (kg)</label>
+                                <input type="number" id="weightBMI" placeholder="Ej: 70">
+                            </div>
+                            <button class="btn primary" onclick="calculateBMI()" style="width: auto;">
+                                <i class="fas fa-calculator"></i>
+                                Calcular IMC
+                            </button>
+                            <div class="calculator-result" id="bmiResult">
+                                Ingrese los datos para calcular el IMC
+                            </div>
+                        </div>
+                        
+                        <div class="calculator">
+                            <h4>
+                                <i class="fas fa-tint"></i>
+                                Cálculo de Dosis de Medicamentos
+                            </h4>
+                            <div class="calculator-input">
+                                <label for="weightDose">Peso (kg)</label>
+                                <input type="number" id="weightDose" placeholder="Ej: 70">
+                            </div>
+                            <div class="calculator-input">
+                                <label for="dosePerKg">Dosis (mg/kg)</label>
+                                <input type="number" id="dosePerKg" placeholder="Ej: 10" step="0.1">
+                            </div>
+                            <button class="btn primary" onclick="calculateDose()" style="width: auto;">
+                                <i class="fas fa-calculator"></i>
+                                Calcular Dosis
+                            </button>
+                            <div class="calculator-result" id="doseResult">
+                                Ingrese los datos para calcular la dosis total
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Initialize calculators
+        function initCalculators() {
+            // Add event listeners to tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs
+                    tabs.forEach(t => t.classList.remove('active'));
+                    // Add active class to clicked tab
+                    tab.classList.add('active');
+                    
+                    // Hide all tab content
+                    document.querySelectorAll('.tab-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    
+                    // Show selected tab content
+                    const tabId = tab.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+        }
+
+        // Calculate creatinine clearance (CKD-EPI formula)
+        function calculateCreatinine() {
+            const age = parseFloat(document.getElementById('age').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+            const creatinine = parseFloat(document.getElementById('creatinine').value);
+            const gender = document.getElementById('gender').value;
+            
+            if (!age || !weight || !creatinine) {
+                document.getElementById('creatinineResult').textContent = 'Por favor, complete todos los campos';
+                return;
+            }
+            
+            let tfg;
+            if (gender === 'male') {
+                if (creatinine <= 0.9) {
+                    tfg = 141 * Math.pow(creatinine/0.9, -0.411) * Math.pow(0.993, age);
+                } else {
+                    tfg = 141 * Math.pow(creatinine/0.9, -1.209) * Math.pow(0.993, age);
+                }
+            } else {
+                if (creatinine <= 0.7) {
+                    tfg = 144 * Math.pow(creatinine/0.7, -0.329) * Math.pow(0.993, age);
+                } else {
+                    tfg = 144 * Math.pow(creatinine/0.7, -1.209) * Math.pow(0.993, age);
+                }
+                tfg *= 0.742; // Adjustment for females
+            }
+            
+            let category;
+            if (tfg >= 90) {
+                category = "Normal o aumentada";
+            } else if (tfg >= 60) {
+                category = "Ligera disminución";
+            } else if (tfg >= 30) {
+                category = "Disminución moderada";
+            } else if (tfg >= 15) {
+                category = "Disminución severa";
+            } else {
+                category = "Insuficiencia renal";
+            }
+            
+            document.getElementById('creatinineResult').innerHTML = `
+                <strong>TFG:</strong> ${tfg.toFixed(1)} mL/min/1.73m²<br>
+                <strong>Categoría:</strong> ${category}
+            `;
+        }
+
+        // Calculate BMI
+        function calculateBMI() {
+            const height = parseFloat(document.getElementById('height').value);
+            const weight = parseFloat(document.getElementById('weightBMI').value);
+            
+            if (!height || !weight) {
+                document.getElementById('bmiResult').textContent = 'Por favor, complete todos los campos';
+                return;
+            }
+            
+            const heightM = height / 100;
+            const bmi = weight / (heightM * heightM);
+            
+            let category;
+            if (bmi < 18.5) {
+                category = "Bajo peso";
+            } else if (bmi < 25) {
+                category = "Peso normal";
+            } else if (bmi < 30) {
+                category = "Sobrepeso";
+            } else if (bmi < 35) {
+                category = "Obesidad grado I";
+            } else if (bmi < 40) {
+                category = "Obesidad grado II";
+            } else {
+                category = "Obesidad grado III";
+            }
+            
+            document.getElementById('bmiResult').innerHTML = `
+                <strong>IMC:</strong> ${bmi.toFixed(1)} kg/m²<br>
+                <strong>Categoría:</strong> ${category}
+            `;
+        }
+
+        // Calculate medication dose
+        function calculateDose() {
+            const weight = parseFloat(document.getElementById('weightDose').value);
+            const dosePerKg = parseFloat(document.getElementById('dosePerKg').value);
+            
+            if (!weight || !dosePerKg) {
+                document.getElementById('doseResult').textContent = 'Por favor, complete todos los campos';
+                return;
+            }
+            
+            const totalDose = weight * dosePerKg;
+            
+            document.getElementById('doseResult').innerHTML = `
+                <strong>Dosis total:</strong> ${totalDose.toFixed(1)} mg<br>
+                <strong>Para un paciente de:</strong> ${weight} kg
             `;
         }
 
@@ -2254,10 +2890,19 @@
                 }
             });
             
+            // Add drug interaction terms
+            searchTerms.push("interacciones medicamentosas");
+            searchTerms.push("interacciones graves");
+            searchTerms.push("interacciones moderadas");
+            searchTerms.push("interacciones leves");
+            searchTerms.push("warfarina antibióticos");
+            searchTerms.push("IECA AINEs diuréticos");
+            searchTerms.push("estatinas inhibidores CYP3A4");
+            
             // Remove duplicates and filter short terms
             const uniqueTerms = [...new Set(searchTerms)]
                 .filter(term => term.length > 3)
-                .slice(0, 50); // Limit to 50 terms
+                .slice(0, 100); // Limit to 100 terms
             
             searchInput.addEventListener('input', () => {
                 const query = searchInput.value.toLowerCase();
@@ -2314,11 +2959,27 @@
         function performSearch(query) {
             showNotification(`🔍 Buscando: "${query}"`, 'info');
             
-            // In a real app, this would search through all content
-            // For now, we'll just show a message
-            setTimeout(() => {
-                showNotification('🔍 Búsqueda en desarrollo. En una versión completa, esto mostraría resultados relevantes de todas las categorías.', 'info');
-            }, 1000);
+            // Find matching categories or procedures
+            let found = false;
+            
+            Object.keys(medicalData).forEach(categoryId => {
+                const category = medicalData[categoryId];
+                if (category.title.toLowerCase().includes(query.toLowerCase())) {
+                    handleCategoryNavigation(categoryId);
+                    found = true;
+                } else if (category.procedures) {
+                    category.procedures.forEach(procedure => {
+                        if (procedure.title.toLowerCase().includes(query.toLowerCase())) {
+                            handleCategoryNavigation(categoryId);
+                            found = true;
+                        }
+                    });
+                }
+            });
+            
+            if (!found) {
+                showNotification(`🔍 No se encontraron resultados para "${query}"`, 'warning');
+            }
         }
 
         // Notifications system
