@@ -5,13 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Plataforma Educativa Médica - Curaciones y Especialidades Clínicas">
     <title>EduMed · Plataforma de Educación Clínica</title>
-    
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
         :root {
             --bg: linear-gradient(135deg, #0f172a, #1e293b, #334155);
@@ -54,14 +51,12 @@
             --gradient-danger: linear-gradient(135deg, #ef4444, #dc2626);
             --gradient-info: linear-gradient(135deg, #06b6d4, #0891b2);
         }
-
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             transition: var(--transition);
         }
-
         html, body {
             height: 100%;
             margin: 0;
@@ -75,7 +70,6 @@
             color: var(--text-dark);
             overflow-x: hidden;
         }
-
         .app {
             width: 100%;
             max-width: var(--maxwidth);
@@ -91,7 +85,6 @@
             border: 1px solid var(--border);
             border-bottom-width: 2px;
         }
-
         header {
             padding: 24px 32px;
             background: rgba(15, 23, 42, 0.98);
@@ -105,7 +98,6 @@
             z-index: var(--z-header);
             box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
         }
-
         header h1 {
             font-size: 1.9rem;
             font-weight: 700;
@@ -116,19 +108,16 @@
             letter-spacing: -0.8px;
             text-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
         }
-
         .brand-icon {
             font-size: 2.2rem;
             color: var(--accent);
             text-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
         }
-
         .controls {
             display: flex;
             align-items: center;
             gap: 18px;
         }
-
         .theme-toggle {
             background: var(--glass-2);
             border: none;
@@ -147,17 +136,14 @@
             box-shadow: var(--shadow-sm);
             transform: scale(1);
         }
-
         .theme-toggle:hover {
             background: var(--accent-2);
             transform: translateY(-3px) rotate(10deg);
             box-shadow: var(--shadow-md);
         }
-
         .theme-toggle:active {
             transform: translateY(-1px);
         }
-
         .mobile-menu-btn {
             display: none;
             background: var(--glass-2);
@@ -175,19 +161,16 @@
             border: 1px solid var(--border);
             box-shadow: var(--shadow-sm);
         }
-
         .mobile-menu-btn:hover {
             background: var(--accent-2);
             transform: translateY(-3px);
             box-shadow: var(--shadow-md);
         }
-
         .container {
             display: flex;
             flex: 1;
             overflow: hidden;
         }
-
         .sidebar {
             width: 340px;
             background: var(--glass);
@@ -200,7 +183,6 @@
             box-shadow: var(--shadow-sm);
             border-right-width: 2px;
         }
-
         .sidebar-header {
             display: flex;
             align-items: center;
@@ -210,19 +192,16 @@
             border-bottom: 1px solid var(--border-light);
             color: var(--accent);
         }
-
         .sidebar-header h3 {
             font-size: 1.3rem;
             font-weight: 600;
             letter-spacing: 0.8px;
         }
-
         .cat-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 16px;
         }
-
         .cat-btn {
             padding: 20px 24px;
             border: none;
@@ -243,7 +222,6 @@
             font-size: 1.05rem;
             font-family: var(--font);
         }
-
         .cat-btn::before {
             content: '';
             position: absolute;
@@ -254,18 +232,15 @@
             background: transparent;
             transition: var(--transition);
         }
-
         .cat-btn:hover {
             background: var(--accent-2);
             color: white;
             transform: translateY(-5px);
             box-shadow: var(--shadow-md);
         }
-
         .cat-btn:hover::before {
             background: var(--accent);
         }
-
         .cat-btn.active {
             background: var(--accent-2);
             color: white;
@@ -273,18 +248,15 @@
             font-weight: 600;
             transform: translateY(-2px);
         }
-
         .cat-btn.active::before {
             background: var(--accent);
         }
-
         .cat-btn i {
             font-size: 1.7rem;
             width: 32px;
             text-align: center;
             transition: var(--transition);
         }
-
         .cat-btn[data-cat="higiene"] i { color: #4ade80; }
         .cat-btn[data-cat="curaciones"] i { color: #3b82f6; }
         .cat-btn[data-cat="farmaco"] i { color: #8b5cf6; }
@@ -293,14 +265,12 @@
         .cat-btn[data-cat="rcp"] i { color: #06b6d4; }
         .cat-btn[data-cat="pae"] i { color: #10b981; }
         .cat-btn[data-cat="recursos"] i { color: #64748b; }
-
         main {
             flex: 1;
             padding: 32px;
             overflow-y: auto;
             background: var(--glass);
         }
-
         .page-header {
             display: flex;
             justify-content: space-between;
@@ -309,7 +279,6 @@
             padding-bottom: 16px;
             border-bottom: 1px solid var(--border-light);
         }
-
         .page-title {
             display: flex;
             align-items: center;
@@ -318,16 +287,13 @@
             font-weight: 500;
             color: var(--text-light);
         }
-
         .page-title i {
             color: var(--accent);
         }
-
         .action-buttons {
             display: flex;
             gap: 12px;
         }
-
         .btn {
             padding: 18px 24px;
             border: none;
@@ -343,41 +309,34 @@
             font-size: 1.1rem;
             transition: var(--transition);
         }
-
         .btn.primary {
             background: var(--gradient-primary);
             color: white;
             border: 1px solid rgba(37, 99, 235, 0.3);
         }
-
         .btn.primary:hover {
             background: var(--gradient-secondary);
             transform: translateY(-4px);
             box-shadow: var(--shadow-md);
         }
-
         .btn.primary:active {
             transform: translateY(-2px);
         }
-
         .btn.secondary {
             background: var(--gradient-secondary);
             color: white;
             border: 1px solid rgba(59, 130, 246, 0.3);
         }
-
         .btn.secondary:hover {
             background: var(--primary-blue-darker);
             transform: translateY(-4px);
             box-shadow: var(--shadow-md);
         }
-
         .search-container {
             position: relative;
             width: 100%;
             max-width: 500px;
         }
-
         .input {
             width: 100%;
             padding: 18px 24px;
@@ -392,18 +351,15 @@
             backdrop-filter: blur(12px);
             border: 1px solid var(--border-light);
         }
-
         .input::placeholder {
             color: rgba(226, 232, 240, 0.7);
         }
-
         .input:focus {
             outline: none;
             border-color: var(--accent);
             box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
             background: rgba(255, 255, 255, 0.12);
         }
-
         .search-icon {
             position: absolute;
             left: 20px;
@@ -412,7 +368,6 @@
             color: var(--muted);
             font-size: 1.2rem;
         }
-
         .search-suggestions {
             position: absolute;
             top: 100%;
@@ -427,7 +382,6 @@
             max-height: 300px;
             overflow-y: auto;
         }
-
         .suggestion-item {
             padding: 16px 24px;
             cursor: pointer;
@@ -438,21 +392,17 @@
             align-items: center;
             gap: 12px;
         }
-
         .suggestion-item:hover {
             background: var(--accent-2);
             color: white;
         }
-
         .suggestion-item:last-child {
             border-bottom: none;
         }
-
         .suggestion-item i {
             color: var(--muted);
             font-size: 1.1rem;
         }
-
         .category-card {
             background: var(--glass-2);
             border-radius: 24px;
@@ -464,12 +414,10 @@
             backdrop-filter: blur(12px);
             border: 1px solid var(--border-light);
         }
-
         .category-card:hover {
             transform: translateY(-8px);
             box-shadow: var(--shadow-lg);
         }
-
         .category-card h2 {
             color: var(--accent);
             margin-bottom: 24px;
@@ -480,11 +428,9 @@
             gap: 14px;
             letter-spacing: -0.8px;
         }
-
         .category-card h2 i {
             font-size: 1.8rem;
         }
-
         .category-card h3 {
             color: var(--accent-2);
             margin: 24px 0 14px 0;
@@ -495,7 +441,6 @@
             gap: 12px;
             letter-spacing: -0.5px;
         }
-
         .category-card h4 {
             color: var(--primary-blue);
             margin: 14px 0 10px 0;
@@ -505,7 +450,6 @@
             align-items: center;
             gap: 10px;
         }
-
         .procedure {
             margin-bottom: 28px;
             padding-bottom: 28px;
@@ -513,7 +457,6 @@
             transition: var(--transition);
             position: relative;
         }
-
         .procedure::after {
             content: '';
             position: absolute;
@@ -524,17 +467,14 @@
             background: var(--accent);
             transition: var(--transition);
         }
-
         .procedure:hover::after {
             width: 100%;
         }
-
         .procedure:last-child {
             border-bottom: none;
             margin-bottom: 0;
             padding-bottom: 0;
         }
-
         .procedure h3 {
             color: var(--accent-2);
             margin-bottom: 14px;
@@ -542,19 +482,16 @@
             align-items: center;
             gap: 12px;
         }
-
         .procedure h3 i {
             font-size: 1.4rem;
             color: var(--accent);
         }
-
         .procedure p {
             margin: 8px 0;
             color: var(--text-light);
             line-height: 1.7;
             font-size: 1.05rem;
         }
-
         .procedure .summary {
             font-style: italic;
             color: var(--muted);
@@ -566,28 +503,23 @@
             border: 1px solid var(--border-light);
             box-shadow: var(--shadow-sm);
         }
-
         .procedure .summary i {
             color: var(--primary-blue);
             margin-right: 10px;
         }
-
         .materials, .steps, .notes {
             margin: 14px 0;
         }
-
         .materials ul, .steps ol {
             margin: 12px 0;
             padding-left: 32px;
         }
-
         .materials li, .steps li {
             margin: 8px 0;
             display: flex;
             align-items: flex-start;
             gap: 12px;
         }
-
         .materials li::before, .steps li::before {
             content: "•";
             color: var(--accent);
@@ -595,7 +527,6 @@
             margin-top: 6px;
             font-size: 1.3rem;
         }
-
         .steps li::before {
             content: counter(step);
             counter-increment: step;
@@ -611,7 +542,6 @@
             font-weight: bold;
             margin-top: 4px;
         }
-
         .notes {
             background: var(--primary-blue-lighter);
             padding: 22px 26px;
@@ -622,12 +552,10 @@
             border: 1px solid var(--border-light);
             box-shadow: var(--shadow-sm);
         }
-
         .notes i {
             color: var(--primary-blue);
             margin-right: 12px;
         }
-
         .source-badge {
             display: inline-flex;
             align-items: center;
@@ -641,29 +569,24 @@
             margin-left: 8px;
             border: 1px solid rgba(59, 130, 246, 0.3);
         }
-
         .source-badge i {
             font-size: 0.9rem;
         }
-
         .source-badge.wiki {
             background: rgba(234, 234, 234, 0.2);
             color: #000000;
             border-color: rgba(234, 234, 234, 0.4);
         }
-
         .source-badge.fda {
             background: rgba(220, 38, 38, 0.15);
             color: var(--alert-red);
             border-color: rgba(220, 38, 38, 0.3);
         }
-
         .source-badge.who {
             background: rgba(0, 153, 255, 0.15);
             color: #0099ff;
             border-color: rgba(0, 153, 255, 0.3);
         }
-
         .source-reference {
             font-size: 0.9rem;
             color: var(--muted);
@@ -673,16 +596,13 @@
             gap: 8px;
             font-style: italic;
         }
-
         .source-reference a {
             color: var(--accent);
             text-decoration: none;
         }
-
         .source-reference a:hover {
             text-decoration: underline;
         }
-
         .resource-panel {
             background: var(--glass-2);
             border-radius: 24px;
@@ -694,14 +614,12 @@
             backdrop-filter: blur(12px);
             border: 1px solid var(--border-light);
         }
-
         .resource-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 24px;
             margin-top: 24px;
         }
-
         .resource-card {
             background: var(--glass-2);
             border-radius: 18px;
@@ -710,12 +628,10 @@
             box-shadow: var(--shadow-sm);
             transition: var(--transition);
         }
-
         .resource-card:hover {
             transform: translateY(-6px);
             box-shadow: var(--shadow-md);
         }
-
         .resource-card h3 {
             color: var(--accent);
             margin-bottom: 16px;
@@ -724,11 +640,9 @@
             align-items: center;
             gap: 12px;
         }
-
         .resource-card h3 i {
             font-size: 1.5rem;
         }
-
         .resource-card p {
             margin: 6px 0;
             font-size: 1.02rem;
@@ -737,14 +651,12 @@
             align-items: center;
             gap: 10px;
         }
-
         .resource-card p i {
             color: var(--muted);
             font-size: 1.2rem;
             width: 24px;
             text-align: center;
         }
-
         .resource-card a {
             display: inline-block;
             margin-top: 16px;
@@ -758,12 +670,10 @@
             border: 1px solid rgba(59, 130, 246, 0.3);
             font-size: 1.02rem;
         }
-
         .resource-card a:hover {
             transform: translateY(-3px);
             box-shadow: var(--shadow-sm);
         }
-
         @media (max-width: 1200px) {
             .app {
                 border-radius: 18px;
@@ -773,7 +683,6 @@
                 padding: 28px;
             }
         }
-
         @media (max-width: 1024px) {
             .app {
                 border-radius: 16px;
@@ -783,7 +692,6 @@
                 padding: 24px;
             }
         }
-
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
@@ -803,7 +711,6 @@
                 display: none;
             }
         }
-
         @media (max-width: 480px) {
             .app {
                 border-radius: 14px;
@@ -817,18 +724,15 @@
                 font-size: 1rem;
             }
         }
-
         /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         @keyframes modalFadeIn {
             from { opacity: 0; transform: translateY(-60px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         .notification-container {
             position: fixed;
             top: 20px;
@@ -839,7 +743,6 @@
             gap: 12px;
             max-width: 400px;
         }
-
         .notification {
             padding: 20px 24px;
             border-radius: 16px;
@@ -853,33 +756,27 @@
             animation: fadeIn 0.4s ease;
             border: 1px solid var(--border);
         }
-
         .notification-success {
             background: rgba(16, 185, 129, 0.22);
             border-color: rgba(16, 185, 129, 0.38);
             color: var(--success-green);
         }
-
         .notification-error {
             background: rgba(239, 68, 68, 0.22);
             border-color: rgba(239, 68, 68, 0.38);
             color: var(--alert-red);
         }
-
         .notification-info {
             background: rgba(59, 130, 246, 0.22);
             border-color: rgba(59, 130, 246, 0.38);
             color: var(--accent);
         }
-
         .notification-icon {
             font-size: 1.5rem;
         }
-
         .notification-content {
             flex: 1;
         }
-
         .close-notification {
             background: none;
             border: none;
@@ -888,9 +785,129 @@
             color: var(--muted);
             padding: 4px;
         }
-
         .close-notification:hover {
             color: white;
+        }
+        
+        /* Loading states */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* User profile */
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 16px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .user-info {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+        
+        .user-name {
+            font-weight: 600;
+        }
+        
+        .user-role {
+            font-size: 12px;
+            color: var(--muted);
+        }
+        
+        /* Visual content */
+        .visual-content {
+            margin: 20px 0;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .visual-content img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .visual-caption {
+            padding: 16px;
+            background: var(--glass-2);
+            border-top: 1px solid var(--border-light);
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+        
+        .external-links {
+            margin: 20px 0;
+            padding: 16px;
+            background: var(--primary-blue-lighter);
+            border-radius: 16px;
+            border: 1px solid var(--border-light);
+        }
+        
+        .external-links h4 {
+            color: var(--primary-blue);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .external-links ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .external-links li {
+            margin: 8px 0;
+        }
+        
+        .external-links a {
+            color: var(--accent);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+        
+        .external-links a:hover {
+            background: var(--accent-2);
+            color: white;
+        }
+        
+        .external-links i {
+            font-size: 1.1rem;
         }
     </style>
 </head>
@@ -909,6 +926,13 @@
                         <!-- Suggestions will be added here by JavaScript -->
                     </div>
                 </div>
+                <div class="user-profile">
+                    <div class="user-avatar">JD</div>
+                    <div class="user-info">
+                        <div class="user-name">Dr. Juan Díaz</div>
+                        <div class="user-role">Médico Residente</div>
+                    </div>
+                </div>
                 <button id="themeToggle" class="theme-toggle">
                     <i class="fas fa-moon"></i>
                 </button>
@@ -917,7 +941,6 @@
                 </button>
             </div>
         </header>
-
         <div class="container">
             <aside class="sidebar">
                 <div class="sidebar-header">
@@ -985,527 +1008,897 @@
                         <i class="fas fa-heartbeat"></i>
                         <span>RCP Integral</span>
                     </button>
+                    <button class="cat-btn" data-cat="recursos">
+                        <i class="fas fa-book-open"></i>
+                        <span>Recursos Educativos</span>
+                    </button>
                 </div>
             </aside>
-
             <main id="mainContent">
-                <!-- Curaciones Avanzadas Content -->
-                <div id="curaciones" class="category-content active">
-                    <div class="page-header">
-                        <h1 class="page-title">
-                            <i class="fas fa-band-aid"></i>
-                            Curaciones Avanzadas
-                        </h1>
-                        <div class="action-buttons">
-                            <button class="btn primary">
-                                <i class="fas fa-plus"></i>
-                                Nuevo Procedimiento
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="category-card">
-                        <h2>
-                            <i class="fas fa-band-aid"></i>
-                            Técnicas de Curación y Cuidado de Heridas
-                        </h2>
-                        <p>Esta sección proporciona protocolos estandarizados para el cuidado de heridas en entornos clínicos, basados en evidencia científica actualizada y guías de práctica clínica reconocidas internacionalmente.</p>
-                        
-                        <div class="procedure">
-                            <h3>
-                                <i class="fas fa-syringe"></i>
-                                Curación de Herida Quirúrgica
-                            </h3>
-                            <p class="summary">
-                                <i class="fas fa-info-circle"></i>
-                                Protocolo estandarizado para el cuidado postoperatorio de heridas quirúrgicas con enfoque en prevención de infecciones y promoción de la cicatrización óptima.
-                            </p>
-                            
-                            <div class="materials">
-                                <h4>
-                                    <i class="fas fa-box-open"></i>
-                                    Materiales Necesarios
-                                </h4>
-                                <ul>
-                                    <li>Guantes estériles y no estériles</li>
-                                    <li>Gasas estériles</li>
-                                    <li>Solución salina fisiológica</li>
-                                    <li>Antiséptico (povidona yodada o clorhexidina)</li>
-                                    <li>Apósito estéril</li>
-                                    <li>Tijeras estériles</li>
-                                    <li>Bandeja estéril</li>
-                                    <li>Pinzas estériles</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="steps">
-                                <h4>
-                                    <i class="fas fa-step-forward"></i>
-                                    Pasos del Procedimiento
-                                </h4>
-                                <ol>
-                                    <li>Lavado de manos y colocación de guantes no estériles</li>
-                                    <li>Preparar el área de trabajo con todos los materiales necesarios</li>
-                                    <li>Retirar el apósito anterior con técnica aséptica</li>
-                                    <li>Evaluar características de la herida (tamaño, profundidad, secreción)</li>
-                                    <li>Limpiar la herida con solución salina fisiológica de centro a periferia</li>
-                                    <li>Aplicar antiséptico si está indicado y no hay contraindicaciones</li>
-                                    <li>Colocar gasas estériles o material de relleno si es necesario</li>
-                                    <li>Colocar nuevo apósito estéril y fijarlo adecuadamente</li>
-                                    <li>Retirar guantes y realizar higiene de manos</li>
-                                    <li>Documentar el procedimiento y características de la herida</li>
-                                </ol>
-                            </div>
-                            
-                            <div class="notes">
-                                <i class="fas fa-exclamation-triangle"></i>
-                                <strong>Consideraciones Importantes:</strong> Observar signos de infección: enrojecimiento, calor, dolor, edema, secreción purulenta. Mantener registro detallado del proceso de cicatrización. Cambiar el apósito según indicación médica o si hay signos de saturación.
-                            </div>
-                            
-                            <div class="source-reference">
-                                <i class="fas fa-book"></i>
-                                Basado en las <strong>Guías del CDC 2023</strong> para la prevención de infecciones del sitio quirúrgico.
-                                <span class="source-badge">
-                                    <i class="fas fa-shield-alt"></i>
-                                    CDC Guidelines
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="procedure">
-                            <h3>
-                                <i class="fas fa-bed"></i>
-                                Manejo de Úlceras por Presión
-                            </h3>
-                            <p class="summary">
-                                <i class="fas fa-info-circle"></i>
-                                Estrategias preventivas y terapéuticas para el tratamiento de lesiones por presión en pacientes con movilidad reducida o encamados.
-                            </p>
-                            
-                            <div class="materials">
-                                <h4>
-                                    <i class="fas fa-box-open"></i>
-                                    Materiales Necesarios
-                                </h4>
-                                <ul>
-                                    <li>Guantes estériles</li>
-                                    <li>Gasas hidrocoloides o alginato</li>
-                                    <li>Solución de limpieza específica para úlceras</li>
-                                    <li>Apósitos especiales para úlceras por presión</li>
-                                    <li>Medidor de presión (para evaluación)</li>
-                                    <li>Herramienta de clasificación (Escala de Braden)</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="steps">
-                                <h4>
-                                    <i class="fas fa-step-forward"></i>
-                                    Pasos del Procedimiento
-                                </h4>
-                                <ol>
-                                    <li>Evaluar el riesgo del paciente usando la Escala de Braden</li>
-                                    <li>Inspeccionar áreas de riesgo (sacra, talones, isquiones)</li>
-                                    <li>Clasificar la úlcera según su estadio (I-IV)</li>
-                                    <li>Limpiar la herida con solución específica</li>
-                                    <li>Aplicar apósito adecuado según el estadio y características</li>
-                                    <li>Documentar tamaño, profundidad, tejidos presentes y bordes</li>
-                                    <li>Implementar medidas preventivas (cambios de posición, colchones especiales)</li>
-                                </ol>
-                            </div>
-                            
-                            <div class="notes">
-                                <i class="fas fa-exclamation-triangle"></i>
-                                <strong>Consideraciones Importantes:</strong> Las úlceras por presión son consideradas eventos adversos evitables. La prevención es más efectiva que el tratamiento. Los pacientes críticos requieren evaluación cada 8-12 horas.
-                            </div>
-                            
-                            <div class="source-reference">
-                                <i class="fas fa-book"></i>
-                                Basado en las <strong>Guías del NIH</strong> para el manejo de lesiones por presión.
-                                <span class="source-badge">
-                                    <i class="fas fa-flask"></i>
-                                    NIH Guidelines
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="procedure">
-                            <h3>
-                                <i class="fas fa-wind"></i>
-                                Terapia de Presión Negativa (VAC)
-                            </h3>
-                            <p class="summary">
-                                <i class="fas fa-info-circle"></i>
-                                Uso de dispositivos de vacío para promover la cicatrización de heridas complejas, grandes defectos tisulares y heridas con infección.
-                            </p>
-                            
-                            <div class="materials">
-                                <h4>
-                                    <i class="fas fa-box-open"></i>
-                                    Materiales Necesarios
-                                </h4>
-                                <ul>
-                                    <li>Sistema de terapia de presión negativa</li>
-                                    <li>Espuma especializada para relleno</li>
-                                    <li>Parche impermeable</li>
-                                    <li>Conectores y tubos</li>
-                                    <li>Bolsa de recolección</li>
-                                    <li>Dispositivo de control de presión</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="steps">
-                                <h4>
-                                    <i class="fas fa-step-forward"></i>
-                                    Pasos del Procedimiento
-                                </h4>
-                                <ol>
-                                    <li>Preparar la herida con limpieza adecuada</li>
-                                    <li>Cortar la espuma al tamaño y forma de la herida</li>
-                                    <li>Rellenar la herida completamente con la espuma</li>
-                                    <li>Cubrir con parche impermeable sellando completamente</li>
-                                    <li>Conectar el sistema de vacío y establecer parámetros</li>
-                                    <li>Verificar el sellado y funcionamiento del sistema</li>
-                                    <li>Documentar presión establecida y características de la herida</li>
-                                </ol>
-                            </div>
-                            
-                            <div class="notes">
-                                <i class="fas fa-exclamation-triangle"></i>
-                                <strong>Consideraciones Importantes:</strong> La terapia VAC está contraindicada en heridas con tejido necrótico no desbridado, heridas con fístulas entero-cutáneas o en tejidos expuestos como vasos sanguíneos o nervios.
-                            </div>
-                            
-                            <div class="source-reference">
-                                <i class="fas fa-book"></i>
-                                Basado en las <strong>Normas de AORN</strong> para la terapia de presión negativa.
-                                <span class="source-badge">
-                                    <i class="fas fa-hospital"></i>
-                                    AORN Standards
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Cardiología Content -->
-                <div id="cardiologia" class="category-content" style="display: none;">
-                    <div class="page-header">
-                        <h1 class="page-title">
-                            <i class="fas fa-heart"></i>
-                            Cardiología
-                        </h1>
-                    </div>
-
-                    <div class="category-card">
-                        <h2>
-                            <i class="fas fa-heart"></i>
-                            Manejo de Emergencias Cardiovasculares
-                        </h2>
-                        <p>Protocolos actualizados para el diagnóstico y tratamiento de condiciones cardiovasculares agudas, basados en las últimas guías de la Asociación Americana del Corazón (AHA) y la Sociedad Europea de Cardiología (ESC).</p>
-                        
-                        <div class="procedure">
-                            <h3>
-                                <i class="fas fa-heartbeat"></i>
-                                Manejo de Infarto de Miocardio
-                            </h3>
-                            <p class="summary">
-                                <i class="fas fa-info-circle"></i>
-                                Protocolo de atención inicial para pacientes con síndrome coronario agudo y elevación del segmento ST, con enfoque en reperfusión temprana.
-                            </p>
-                            
-                            <div class="materials">
-                                <h4>
-                                    <i class="fas fa-box-open"></i>
-                                    Materiales Necesarios
-                                </h4>
-                                <ul>
-                                    <li>Monitor cardíaco</li>
-                                    <li>Desfibrilador</li>
-                                    <li>Equipo de oxigenoterapia</li>
-                                    <li>Medicamentos (aspirina, nitroglicerina, morfina, antiagregantes)</li>
-                                    <li>Kit de acceso vascular</li>
-                                    <li>ECG de 12 derivaciones</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="steps">
-                                <h4>
-                                    <i class="fas fa-step-forward"></i>
-                                    Algoritmo STEMI
-                                </h4>
-                                <ol>
-                                    <li>Reconocer síntomas típicos (dolor torácico, opresión, irradiación)</li>
-                                    <li>Realizar ECG dentro de los primeros 10 minutos</li>
-                                    <li>Administrar aspirina 325mg masticable</li>
-                                    <li>Establecer acceso venoso</li>
-                                    <li>Administrar oxígeno si saturación <90%</li>
-                                    <li>Considerar nitroglicerina sublingual si presión adecuada</li>
-                                    <li>Activar equipo de cateterismo para angioplastia primaria</li>
-                                    <li>Objetivo: "Puerta a balón" <90 minutos</li>
-                                </ol>
-                            </div>
-                            
-                            <div class="notes">
-                                <i class="fas fa-exclamation-triangle"></i>
-                                <strong>Consideraciones Importantes:</strong> El tiempo es músculo miocárdico. Cada minuto de retraso en la reperfusión aumenta la mortalidad. Los pacientes con contraindicaciones para angioplastia pueden requerir trombólisis.
-                            </div>
-                            
-                            <div class="source-reference">
-                                <i class="fas fa-book"></i>
-                                Basado en las <strong>Guías AHA 2023</strong> para el manejo del infarto agudo de miocardio.
-                                <span class="source-badge">
-                                    <i class="fas fa-heart"></i>
-                                    AHA Guidelines
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Neumología Content -->
-                <div id="neumologia" class="category-content" style="display: none;">
-                    <div class="page-header">
-                        <h1 class="page-title">
-                            <i class="fas fa-lungs"></i>
-                            Neumología
-                        </h1>
-                    </div>
-
-                    <div class="category-card">
-                        <h2>
-                            <i class="fas fa-lungs"></i>
-                            Manejo de Enfermedades Respiratorias
-                        </h2>
-                        <p>Protocolos para el diagnóstico y tratamiento de condiciones pulmonares agudas y crónicas, basados en las guías GOLD para EPOC y las recomendaciones de la ATS/IDSA para neumonía.</p>
-                        
-                        <div class="procedure">
-                            <h3>
-                                <i class="fas fa-virus"></i>
-                                Diagnóstico y Tratamiento de Neumonía
-                            </h3>
-                            <p class="summary">
-                                <i class="fas fa-info-circle"></i>
-                                Algoritmo para el diagnóstico, clasificación y tratamiento antimicrobiano de neumonía adquirida en la comunidad y nosocomial.
-                            </p>
-                            
-                            <div class="materials">
-                                <h4>
-                                    <i class="fas fa-box-open"></i>
-                                    Materiales Necesarios
-                                </h4>
-                                <ul>
-                                    <li>Estetoscopio</li>
-                                    <li>Pulsioxímetro</li>
-                                    <li>Equipo de radiografía torácica</li>
-                                    <li>Kit de toma de muestra (hemocultivos, cultivo de esputo)</li>
-                                    <li>Panel de biomarcadores (procalcitonina, PCR)</li>
-                                    <li>Antibióticos empíricos</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="steps">
-                                <h4>
-                                    <i class="fas fa-step-forward"></i>
-                                    Pasos del Diagnóstico
-                                </h4>
-                                <ol>
-                                    <li>Evaluar criterios diagnósticos (fiebre, tos, disnea, infiltrado en RX)</li>
-                                    <li>Clasificar según gravedad (escala CURB-65 o PSI)</li>
-                                    <li>Determinar si requiere hospitalización</li>
-                                    <li>Obtener hemocultivos y cultivo de esputo antes de antibióticos</li>
-                                    <li>Iniciar terapia antimicrobiana empírica según factores de riesgo</li>
-                                    <li>Monitorizar respuesta clínica en las primeras 48-72 horas</li>
-                                    <li>De-escalar terapia según cultivos y clínica</li>
-                                </ol>
-                            </div>
-                            
-                            <div class="notes">
-                                <i class="fas fa-exclamation-triangle"></i>
-                                <strong>Consideraciones Importantes:</strong> La terapia antimicrobiana debe iniciarse dentro de la primera hora en pacientes con sepsis. La duración típica es de 5-7 días, pero puede variar según respuesta clínica y patógeno identificado.
-                            </div>
-                            
-                            <div class="source-reference">
-                                <i class="fas fa-book"></i>
-                                Basado en las <strong>Guías IDSA/ATS</strong> para el manejo de neumonía.
-                                <span class="source-badge">
-                                    <i class="fas fa-microscope"></i>
-                                    IDSA/ATS Guidelines
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Endocrinología Content -->
-                <div id="endocrinologia" class="category-content" style="display: none;">
-                    <div class="page-header">
-                        <h1 class="page-title">
-                            <i class="fas fa-brain"></i>
-                            Endocrinología
-                        </h1>
-                    </div>
-
-                    <div class="category-card">
-                        <h2>
-                            <i class="fas fa-brain"></i>
-                            Manejo de Trastornos Endocrinos
-                        </h2>
-                        <p>Protocolos para el diagnóstico y tratamiento de condiciones endocrinas, basados en las guías de la Asociación Americana de Diabetes (ADA) y la Asociación Americana de Endocrinología Clínica (AACE).</p>
-                        
-                        <div class="procedure">
-                            <h3>
-                                <i class="fas fa-syringe"></i>
-                                Manejo de Cetoacidosis Diabética
-                            </h3>
-                            <p class="summary">
-                                <i class="fas fa-info-circle"></i>
-                                Protocolo para el manejo de la cetoacidosis diabética, una emergencia metabólica potencialmente mortal.
-                            </p>
-                            
-                            <div class="materials">
-                                <h4>
-                                    <i class="fas fa-box-open"></i>
-                                    Materiales Necesarios
-                                </h4>
-                                <ul>
-                                    <li>Monitor de glucosa</li>
-                                    <li>Kit de toma de muestra para gases arteriales</li>
-                                    <li>Insulina intravenosa</li>
-                                    <li>Solución salina 0.9%</li>
-                                    <li>Solución con potasio</li>
-                                    <li>Equipo de monitoreo continuo</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="steps">
-                                <h4>
-                                    <i class="fas fa-step-forward"></i>
-                                    Pasos del Tratamiento
-                                </h4>
-                                <ol>
-                                    <li>Establecer acceso venoso y comenzar cristaloides (1L en primera hora)</li>
-                                    <li>Comenzar infusión de insulina IV (0.1 U/kg/h)</li>
-                                    <li>Reponer potasio cuando niveles <5.3 mEq/L</li>
-                                    <li>Monitorear glucosa cada hora</li>
-                                    <li>Cuando glucosa <200 mg/dL, añadir dextrosa al líquido</li>
-                                    <li>Continuar insulina hasta resolución de acidosis</li>
-                                    <li>Transicionar a insulina subcutánea cuando paciente pueda ingerir</li>
-                                </ol>
-                            </div>
-                            
-                            <div class="notes">
-                                <i class="fas fa-exclamation-triangle"></i>
-                                <strong>Consideraciones Importantes:</strong> El manejo agresivo de la hiperglucemia sin reponer potasio puede causar hipopotasemia severa. La resolución se define por pH >7.3, bicarbonato >18 mEq/L y ausencia de cetonas en orina.
-                            </div>
-                            
-                            <div class="source-reference">
-                                <i class="fas fa-book"></i>
-                                Basado en las <strong>Guías ADA 2024</strong> para el manejo de complicaciones agudas de la diabetes.
-                                <span class="source-badge">
-                                    <i class="fas fa-syringe"></i>
-                                    ADA Guidelines
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Recursos Educativos -->
-                <div id="recursos" class="category-content" style="display: none;">
-                    <div class="page-header">
-                        <h1 class="page-title">
-                            <i class="fas fa-book-open"></i>
-                            Recursos Educativos
-                        </h1>
-                    </div>
-
-                    <div class="resource-panel">
-                        <h2>
-                            <i class="fas fa-book-open"></i>
-                            Recursos Clínicos y Educativos
-                        </h2>
-                        <p>Acceda a las fuentes más confiables de información médica para profundizar en cada especialidad y procedimiento.</p>
-                        
-                        <div class="resource-grid">
-                            <div class="resource-card">
-                                <h3>
-                                    <i class="fas fa-hospital"></i>
-                                    Guías Clínicas
-                                </h3>
-                                <p>
-                                    <i class="fas fa-book"></i>
-                                    CDC - Prevención de infecciones
-                                </p>
-                                <p>
-                                    <i class="fas fa-book"></i>
-                                    AHA - Manejo de infarto
-                                </p>
-                                <p>
-                                    <i class="fas fa-book"></i>
-                                    WHO - Cuidado de heridas
-                                </p>
-                                <a href="#" target="_blank">
-                                    <i class="fas fa-external-link-alt"></i>
-                                    Acceder a recursos
-                                </a>
-                            </div>
-                            
-                            <div class="resource-card">
-                                <h3>
-                                    <i class="fas fa-video"></i>
-                                    Videos Educativos
-                                </h3>
-                                <p>
-                                    <i class="fas fa-play-circle"></i>
-                                    Técnica de curación aséptica
-                                </p>
-                                <p>
-                                    <i class="fas fa-play-circle"></i>
-                                    Manejo de RCP básico
-                                </p>
-                                <p>
-                                    <i class="fas fa-play-circle"></i>
-                                    Colocación de acceso venoso
-                                </p>
-                                <a href="#" target="_blank">
-                                    <i class="fas fa-external-link-alt"></i>
-                                    Ver videos
-                                </a>
-                            </div>
-                            
-                            <div class="resource-card">
-                                <h3>
-                                    <i class="fas fa-download"></i>
-                                    Descargables
-                                </h3>
-                                <p>
-                                    <i class="fas fa-file-pdf"></i>
-                                    Algoritmo de RCP 2025
-                                </p>
-                                <p>
-                                    <i class="fas fa-file-pdf"></i>
-                                    Escala de Braden
-                                </p>
-                                <p>
-                                    <i class="fas fa-file-pdf"></i>
-                                    Guía de antibióticos
-                                </p>
-                                <a href="#" target="_blank">
-                                    <i class="fas fa-external-link-alt"></i>
-                                    Descargar recursos
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- Content will be loaded dynamically -->
             </main>
         </div>
     </div>
-
     <div class="notification-container" id="notificationContainer">
         <!-- Notifications will be added here by JavaScript -->
     </div>
-
     <script>
+        // Mock medical data - in a real app, this would come from an API
+        const medicalData = {
+            curaciones: {
+                title: "Curaciones Avanzadas",
+                icon: "fa-band-aid",
+                procedures: [
+                    {
+                        id: "curacion-quirurgica",
+                        title: "Curación de Herida Quirúrgica",
+                        icon: "fa-syringe",
+                        summary: "Protocolo estandarizado para el cuidado postoperatorio de heridas quirúrgicas con enfoque en prevención de infecciones y promoción de la cicatrización óptima.",
+                        materials: [
+                            "Guantes estériles y no estériles",
+                            "Gasas estériles",
+                            "Solución salina fisiológica",
+                            "Antiséptico (povidona yodada o clorhexidina)",
+                            "Apósito estéril",
+                            "Tijeras estériles",
+                            "Bandeja estéril",
+                            "Pinzas estériles"
+                        ],
+                        steps: [
+                            "Lavado de manos y colocación de guantes no estériles",
+                            "Preparar el área de trabajo con todos los materiales necesarios",
+                            "Retirar el apósito anterior con técnica aséptica",
+                            "Evaluar características de la herida (tamaño, profundidad, secreción)",
+                            "Limpiar la herida con solución salina fisiológica de centro a periferia",
+                            "Aplicar antiséptico si está indicado y no hay contraindicaciones",
+                            "Colocar gasas estériles o material de relleno si es necesario",
+                            "Colocar nuevo apósito estéril y fijarlo adecuadamente",
+                            "Retirar guantes y realizar higiene de manos",
+                            "Documentar el procedimiento y características de la herida"
+                        ],
+                        notes: "Observar signos de infección: enrojecimiento, calor, dolor, edema, secreción purulenta. Mantener registro detallado del proceso de cicatrización. Cambiar el apósito según indicación médica o si hay signos de saturación.",
+                        source: {
+                            name: "CDC Guidelines",
+                            description: "Guías del CDC 2023 para la prevención de infecciones del sitio quirúrgico.",
+                            type: "cdc"
+                        },
+                        lastUpdated: "2024-01-15",
+                        visualReferences: [
+                            {
+                                url: "https://phil.cdc.gov/Details.aspx?pid=23336",
+                                title: "Técnica aséptica para curación de heridas",
+                                description: "Ilustración del CDC mostrando la técnica correcta para el cambio de apósitos con técnica aséptica.",
+                                type: "image"
+                            },
+                            {
+                                url: "https://phil.cdc.gov/Details.aspx?pid=23337",
+                                title: "Evaluación de heridas quirúrgicas",
+                                description: "Guía visual para la evaluación de signos de infección en heridas postoperatorias.",
+                                type: "image"
+                            }
+                        ]
+                    },
+                    {
+                        id: "ulceras-por-presion",
+                        title: "Manejo de Úlceras por Presión",
+                        icon: "fa-bed",
+                        summary: "Estrategias preventivas y terapéuticas para el tratamiento de lesiones por presión en pacientes con movilidad reducida o encamados.",
+                        materials: [
+                            "Guantes estériles",
+                            "Gasas hidrocoloides o alginato",
+                            "Solución de limpieza específica para úlceras",
+                            "Apósitos especiales para úlceras por presión",
+                            "Medidor de presión (para evaluación)",
+                            "Herramienta de clasificación (Escala de Braden)"
+                        ],
+                        steps: [
+                            "Evaluar el riesgo del paciente usando la Escala de Braden",
+                            "Inspeccionar áreas de riesgo (sacra, talones, isquiones)",
+                            "Clasificar la úlcera según su estadio (I-IV)",
+                            "Limpiar la herida con solución específica",
+                            "Aplicar apósito adecuado según el estadio y características",
+                            "Documentar tamaño, profundidad, tejidos presentes y bordes",
+                            "Implementar medidas preventivas (cambios de posición, colchones especiales)"
+                        ],
+                        notes: "Las úlceras por presión son consideradas eventos adversos evitables. La prevención es más efectiva que el tratamiento. Los pacientes críticos requieren evaluación cada 8-12 horas.",
+                        source: {
+                            name: "NIH Guidelines",
+                            description: "Guías del NIH para el manejo de lesiones por presión.",
+                            type: "nih"
+                        },
+                        lastUpdated: "2024-02-03",
+                        visualReferences: [
+                            {
+                                url: "https://www.ninds.nih.gov/Disorders/Patient-Caregiver-Education/Fact-Sheets/Pressure-Sores-Fact-Sheet",
+                                title: "Clasificación de úlceras por presión",
+                                description: "Guía visual de la NIH para la clasificación de úlceras por presión por estadio.",
+                                type: "image"
+                            },
+                            {
+                                url: "https://www.woundsource.com/blog/pressure-injury-staging-what-nurses-need-know",
+                                title: "Diferenciación entre estadios",
+                                description: "Imágenes comparativas de los diferentes estadios de úlceras por presión.",
+                                type: "image"
+                            }
+                        ]
+                    },
+                    {
+                        id: "terapia-vac",
+                        title: "Terapia de Presión Negativa (VAC)",
+                        icon: "fa-wind",
+                        summary: "Uso de dispositivos de vacío para promover la cicatrización de heridas complejas, grandes defectos tisulares y heridas con infección.",
+                        materials: [
+                            "Sistema de terapia de presión negativa",
+                            "Espuma especializada para relleno",
+                            "Parche impermeable",
+                            "Conectores y tubos",
+                            "Bolsa de recolección",
+                            "Dispositivo de control de presión"
+                        ],
+                        steps: [
+                            "Preparar la herida con limpieza adecuada",
+                            "Cortar la espuma al tamaño y forma de la herida",
+                            "Rellenar la herida completamente con la espuma",
+                            "Cubrir con parche impermeable sellando completamente",
+                            "Conectar el sistema de vacío y establecer parámetros",
+                            "Verificar el sellado y funcionamiento del sistema",
+                            "Documentar presión establecida y características de la herida"
+                        ],
+                        notes: "La terapia VAC está contraindicada en heridas con tejido necrótico no desbridado, heridas con fístulas entero-cutáneas o en tejidos expuestos como vasos sanguíneos o nervios.",
+                        source: {
+                            name: "AORN Standards",
+                            description: "Normas de AORN para la terapia de presión negativa.",
+                            type: "aorn"
+                        },
+                        lastUpdated: "2024-01-28",
+                        visualReferences: [
+                            {
+                                url: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4213970/",
+                                title: "Colocación del sistema VAC",
+                                description: "Diagrama paso a paso para la colocación correcta del sistema de terapia de presión negativa.",
+                                type: "image"
+                            },
+                            {
+                                url: "https://www.medicalnewstoday.com/articles/323783",
+                                title: "Mecanismo de acción de la terapia VAC",
+                                description: "Ilustración del mecanismo fisiológico de la terapia de presión negativa en la cicatrización de heridas.",
+                                type: "image"
+                            }
+                        ]
+                    }
+                ]
+            },
+            cardiologia: {
+                title: "Cardiología",
+                icon: "fa-heart",
+                procedures: [
+                    {
+                        id: "infarto-miocardio",
+                        title: "Manejo de Infarto de Miocardio",
+                        icon: "fa-heartbeat",
+                        summary: "Protocolo de atención inicial para pacientes con síndrome coronario agudo y elevación del segmento ST, con enfoque en reperfusión temprana.",
+                        materials: [
+                            "Monitor cardíaco",
+                            "Desfibrilador",
+                            "Equipo de oxigenoterapia",
+                            "Medicamentos (aspirina, nitroglicerina, morfina, antiagregantes)",
+                            "Kit de acceso vascular",
+                            "ECG de 12 derivaciones"
+                        ],
+                        steps: [
+                            "Reconocer síntomas típicos (dolor torácico, opresión, irradiación)",
+                            "Realizar ECG dentro de los primeros 10 minutos",
+                            "Administrar aspirina 325mg masticable",
+                            "Establecer acceso venoso",
+                            "Administrar oxígeno si saturación <90%",
+                            "Considerar nitroglicerina sublingual si presión adecuada",
+                            "Activar equipo de cateterismo para angioplastia primaria",
+                            "Objetivo: 'Puerta a balón' <90 minutos"
+                        ],
+                        notes: "El tiempo es músculo miocárdico. Cada minuto de retraso en la reperfusión aumenta la mortalidad. Los pacientes con contraindicaciones para angioplastia pueden requerir trombólisis.",
+                        source: {
+                            name: "AHA Guidelines",
+                            description: "Guías AHA 2023 para el manejo del infarto agudo de miocardio.",
+                            type: "aha"
+                        },
+                        lastUpdated: "2024-03-10",
+                        visualReferences: [
+                            {
+                                url: "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001123",
+                                title: "Algoritmo STEMI 2023",
+                                description: "Algoritmo actualizado de la AHA para el manejo del infarto agudo de miocardio con elevación del segmento ST.",
+                                type: "image"
+                            },
+                            {
+                                url: "https://radiopaedia.org/articles/myocardial-infarction-1",
+                                title: "Hallazgos en imagenología",
+                                description: "Imágenes de tomografía computarizada y resonancia magnética de infartos de miocardio.",
+                                type: "image"
+                            }
+                        ]
+                    }
+                ]
+            },
+            neumologia: {
+                title: "Neumología",
+                icon: "fa-lungs",
+                procedures: [
+                    {
+                        id: "neumonia",
+                        title: "Diagnóstico y Tratamiento de Neumonía",
+                        icon: "fa-virus",
+                        summary: "Algoritmo para el diagnóstico, clasificación y tratamiento antimicrobiano de neumonía adquirida en la comunidad y nosocomial.",
+                        materials: [
+                            "Estetoscopio",
+                            "Pulsioxímetro",
+                            "Equipo de radiografía torácica",
+                            "Kit de toma de muestra (hemocultivos, cultivo de esputo)",
+                            "Panel de biomarcadores (procalcitonina, PCR)",
+                            "Antibióticos empíricos"
+                        ],
+                        steps: [
+                            "Evaluar criterios diagnósticos (fiebre, tos, disnea, infiltrado en RX)",
+                            "Clasificar según gravedad (escala CURB-65 o PSI)",
+                            "Determinar si requiere hospitalización",
+                            "Obtener hemocultivos y cultivo de esputo antes de antibióticos",
+                            "Iniciar terapia antimicrobiana empírica según factores de riesgo",
+                            "Monitorizar respuesta clínica en las primeras 48-72 horas",
+                            "De-escalar terapia según cultivos y clínica"
+                        ],
+                        notes: "La terapia antimicrobiana debe iniciarse dentro de la primera hora en pacientes con sepsis. La duración típica es de 5-7 días, pero puede variar según respuesta clínica y patógeno identificado.",
+                        source: {
+                            name: "IDSA/ATS Guidelines",
+                            description: "Guías IDSA/ATS para el manejo de neumonía.",
+                            type: "idsa"
+                        },
+                        lastUpdated: "2024-02-15",
+                        visualReferences: [
+                            {
+                                url: "https://radiopaedia.org/articles/lung-consolidation-2",
+                                title: "Hallazgos radiológicos en neumonía",
+                                description: "Imágenes de radiografía y tomografía computarizada de diferentes tipos de neumonía.",
+                                type: "image"
+                            },
+                            {
+                                url: "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(22)02512-8/fulltext",
+                                title: "Algoritmo de manejo de neumonía",
+                                description: "Algoritmo actualizado para el manejo de neumonía adquirida en la comunidad.",
+                                type: "image"
+                            }
+                        ]
+                    }
+                ]
+            },
+            endocrinologia: {
+                title: "Endocrinología",
+                icon: "fa-brain",
+                procedures: [
+                    {
+                        id: "cetoacidosis",
+                        title: "Manejo de Cetoacidosis Diabética",
+                        icon: "fa-syringe",
+                        summary: "Protocolo para el manejo de la cetoacidosis diabética, una emergencia metabólica potencialmente mortal.",
+                        materials: [
+                            "Monitor de glucosa",
+                            "Kit de toma de muestra para gases arteriales",
+                            "Insulina intravenosa",
+                            "Solución salina 0.9%",
+                            "Solución con potasio",
+                            "Equipo de monitoreo continuo"
+                        ],
+                        steps: [
+                            "Establecer acceso venoso y comenzar cristaloides (1L en primera hora)",
+                            "Comenzar infusión de insulina IV (0.1 U/kg/h)",
+                            "Reponer potasio cuando niveles <5.3 mEq/L",
+                            "Monitorear glucosa cada hora",
+                            "Cuando glucosa <200 mg/dL, añadir dextrosa al líquido",
+                            "Continuar insulina hasta resolución de acidosis",
+                            "Transicionar a insulina subcutánea cuando paciente pueda ingerir"
+                        ],
+                        notes: "El manejo agresivo de la hiperglucemia sin reponer potasio puede causar hipopotasemia severa. La resolución se define por pH >7.3, bicarbonato >18 mEq/L y ausencia de cetonas en orina.",
+                        source: {
+                            name: "ADA Guidelines",
+                            description: "Guías ADA 2024 para el manejo de complicaciones agudas de la diabetes.",
+                            type: "ada"
+                        },
+                        lastUpdated: "2024-01-20",
+                        visualReferences: [
+                            {
+                                url: "https://diabetesjournals.org/care/rapid-early-view/article/doi/10.2337/dci24-0009/146877",
+                                title: "Algoritmo de manejo de cetoacidosis",
+                                description: "Algoritmo actualizado de la ADA para el manejo de cetoacidosis diabética.",
+                                type: "image"
+                            },
+                            {
+                                url: "https://www.endocrinologyadvisor.com/home/decision-support-in-medicine/endocrinology/diabetic-ketoacidosis/",
+                                title: "Cambios fisiopatológicos",
+                                description: "Ilustración de los cambios fisiopatológicos en la cetoacidosis diabética.",
+                                type: "image"
+                            }
+                        ]
+                    }
+                ]
+            },
+            neurologia: {
+                title: "Neurología",
+                icon: "fa-head-side-brain",
+                procedures: [
+                    {
+                        id: "accidente-cerebrovascular",
+                        title: "Manejo de Accidente Cerebrovascular",
+                        icon: "fa-brain",
+                        summary: "Protocolo para la atención aguda de accidente cerebrovascular isquémico y hemorrágico, con enfoque en la ventana terapéutica para trombólisis.",
+                        materials: [
+                            "Tomografía computarizada",
+                            "Monitor neurológico",
+                            "Equipo de oxigenoterapia",
+                            "Medicamentos (tPA, antihipertensivos)",
+                            "Kit de acceso vascular",
+                            "Escala NIHSS"
+                        ],
+                        steps: [
+                            "Reconocer signos de ACV (face droop, arm drift, speech difficulty)",
+                            "Realizar evaluación neurológica completa (NIHSS)",
+                            "Obtener TC cerebral de emergencia",
+                            "Determinar tipo de ACV (isquémico vs hemorrágico)",
+                            "Para ACV isquémico: evaluar ventana terapéutica para tPA (<4.5 horas)",
+                            "Iniciar trombólisis si indicado y sin contraindicaciones",
+                            "Controlar presión arterial según protocolo",
+                            "Monitorizar complicaciones neurológicas"
+                        ],
+                        notes: "El tiempo es cerebro. La trombólisis debe administrarse dentro de la ventana terapéutica. Los pacientes con ACV hemorrágico requieren manejo diferente con control de presión arterial y posible intervención neuroquirúrgica.",
+                        source: {
+                            name: "AHA/ASA Guidelines",
+                            description: "Guías AHA/ASA para el manejo del accidente cerebrovascular.",
+                            type: "aha"
+                        },
+                        lastUpdated: "2024-03-12",
+                        visualReferences: [
+                            {
+                                url: "https://www.ahajournals.org/doi/10.1161/STR.0000000000000450",
+                                title: "Algoritmo de manejo de ACV isquémico",
+                                description: "Algoritmo actualizado para el manejo del accidente cerebrovascular isquémico agudo.",
+                                type: "image"
+                            },
+                            {
+                                url: "https://radiopaedia.org/articles/stroke-1",
+                                title: "Hallazgos en neuroimagen",
+                                description: "Imágenes de tomografía computarizada y resonancia magnética de accidentes cerebrovasculares.",
+                                type: "image"
+                            }
+                        ]
+                    }
+                ]
+            },
+            oncologia: {
+                title: "Oncología",
+                icon: "fa-dna",
+                procedures: [
+                    {
+                        id: "quimioterapia",
+                        title: "Administración de Quimioterapia",
+                        icon: "fa-syringe",
+                        summary: "Protocolo estandarizado para la preparación y administración segura de agentes quimioterapéuticos con enfoque en la protección del personal y prevención de errores.",
+                        materials: [
+                            "Equipo de protección personal (guantes, bata, gafas)",
+                            "Bomba de infusión",
+                            "Soluciones de dilución específicas",
+                            "Antieméticos de rescate",
+                            "Kit de derrames de quimioterapia",
+                            "Formulario de verificación"
+                        ],
+                        steps: [
+                            "Verificar identidad del paciente y consentimiento informado",
+                            "Revisar perfil hematológico y función orgánica",
+                            "Preparar medicamentos en cabina de seguridad biológica",
+                            "Verificar dosis y cálculos con segundo profesional",
+                            "Establecer acceso venoso adecuado",
+                            "Administrar premedicación según protocolo",
+                            "Infundir quimioterapia según velocidades especificadas",
+                            "Monitorear signos vitales y reacciones durante la infusión",
+                            "Documentar completamente el procedimiento"
+                        ],
+                        notes: "La administración de quimioterapia requiere doble verificación por dos profesionales de enfermería. El manejo de residuos debe seguir protocolos estrictos de seguridad. Los pacientes deben ser educados sobre efectos secundarios y signos de alarma.",
+                        source: {
+                            name: "Oncology Nursing Society",
+                            description: "Normas de la Sociedad de Enfermería Oncológica para la administración segura de quimioterapia.",
+                            type: "ons"
+                        },
+                        lastUpdated: "2024-02-20",
+                        visualReferences: [
+                            {
+                                url: "https://www.cdc.gov/niosh/topics/hazardousdrugs/default.html",
+                                title: "Equipo de protección para quimioterapia",
+                                description: "Guía del CDC sobre el equipo de protección personal necesario para la manipulación segura de quimioterapia.",
+                                type: "image"
+                            },
+                            {
+                                url: "https://www.oncologynurseadvisor.com/home/nursing-articles/chemotherapy-safety/",
+                                title: "Procedimiento de preparación",
+                                description: "Ilustración del procedimiento seguro para la preparación de quimioterapia en cabina de seguridad biológica.",
+                                type: "image"
+                            }
+                        ]
+                    }
+                ]
+            },
+            nephrologia: {
+                title: "Nefrología",
+                icon: "fa-kidneys",
+                procedures: [
+                    {
+                        id: "diálisis-peritoneal",
+                        title: "Diálisis Peritoneal Ambulatoria Continua (CAPD)",
+                        icon: "fa-kidneys",
+                        summary: "Protocolo para la realización segura de diálisis peritoneal en pacientes con insuficiencia renal crónica.",
+                        materials: [
+                            "Solución de diálisis peritoneal",
+                            "Equipo de conexión estéril",
+                            "Báscula",
+                            "Guantes estériles",
+                            "Bolsa de drenaje",
+                            "Registro de intercambios"
+                        ],
+                        steps: [
+                            "Lavado de manos y colocación de mascarilla",
+                            "Preparar el área de intercambio con técnica aséptica",
+                            "Drenar el líquido peritoneal residual",
+                            "Verificar claridad del líquido de drenaje",
+                            "Conectar nueva bolsa de diálisis con técnica estéril",
+                            "Infundir solución de diálisis",
+                            "Registrar volumen de entrada y salida",
+                            "Educación sobre signos de peritonitis"
+                        ],
+                        notes: "La peritonitis es la complicación más común de la diálisis peritoneal. Los pacientes deben ser educados sobre técnicas asépticas rigurosas. El líquido de drenaje debe evaluarse diariamente por turbidez.",
+                        source: {
+                            name: "ISPD Guidelines",
+                            description: "Guías de la Sociedad Internacional de Diálisis Peritoneal.",
+                            type: "ispd"
+                        },
+                        lastUpdated: "2024-01-18",
+                        visualReferences: [
+                            {
+                                url: "https://www.ispd.org/guidelines",
+                                title: "Técnica de conexión segura",
+                                description: "Ilustración de la técnica de conexión segura para diálisis peritoneal CAPD.",
+                                type: "image"
+                            },
+                            {
+                                url: "https://radiopaedia.org/articles/peritoneal-dialysis-1",
+                                title: "Anatomía de la diálisis peritoneal",
+                                description: "Imagen anatómica del catéter de diálisis peritoneal y su colocación.",
+                                type: "image"
+                            }
+                        ]
+                    }
+                ]
+            },
+            gastroenterologia: {
+                title: "Gastroenterología",
+                icon: "fa-stomach",
+                procedures: [
+                    {
+                        id: "manejo-pancreatitis",
+                        title: "Manejo de Pancreatitis Aguda",
+                        icon: "fa-stomach",
+                        summary: "Protocolo para el manejo inicial de pancreatitis aguda, con enfoque en soporte vital y prevención de complicaciones.",
+                        materials: [
+                            "Soluciones cristaloides",
+                            "Analgesia",
+                            "Monitorización de signos vitales",
+                            "Laboratorio (amilasa, lipasa, función hepática)",
+                            "Tomografía computarizada"
+                        ],
+                        steps: [
+                            "Establecer acceso venoso y comenzar reanimación con cristaloides",
+                            "Controlar dolor con analgésicos adecuados",
+                            "Ayuno completo (NPO)",
+                            "Monitorear función renal y electrolitos",
+                            "Evaluar criterios de gravedad (Ranson, APACHE II)",
+                            "Obtener imágenes para evaluar complicaciones",
+                            "Iniciar alimentación enteral cuando indicado"
+                        ],
+                        notes: "La reanimación agresiva con fluidos es crucial en las primeras 24 horas. La alimentación debe iniciarse lo antes posible (dentro de las 24-48 horas) si el paciente tolera. Las complicaciones incluyen necrosis pancreática, pseudquistes y fallo orgánico.",
+                        source: {
+                            name: "ACG Guidelines",
+                            description: "Guías de la Asociación Americana de Gastroenterología para el manejo de pancreatitis aguda.",
+                            type: "acg"
+                        },
+                        lastUpdated: "2024-02-28",
+                        visualReferences: [
+                            {
+                                url: "https://www.acg.gastro.org/clinical-guidelines/acute-pancreatitis/",
+                                title: "Algoritmo de manejo de pancreatitis",
+                                description: "Algoritmo actualizado para el manejo de pancreatitis aguda según las guías de la ACG.",
+                                type: "image"
+                            },
+                            {
+                                url: "https://radiopaedia.org/articles/acute-pancreatitis-1",
+                                title: "Hallazgos en imagenología",
+                                description: "Imágenes de tomografía computarizada de pancreatitis aguda y sus complicaciones.",
+                                type: "image"
+                            }
+                        ]
+                    }
+                ]
+            },
+            reumatologia: {
+                title: "Reumatología",
+                icon: "fa-bone",
+                procedures: [
+                    {
+                        id: "artritis-reumatoide",
+                        title: "Evaluación y Tratamiento de Artritis Reumatoide",
+                        icon: "fa-bone",
+                        summary: "Enfoque integral para el diagnóstico y manejo de artritis reumatoide, con enfoque en la prevención de daño articular progresivo.",
+                        materials: [
+                            "Escala de evaluación de actividad (DAS28)",
+                            "Laboratorio (factor reumatoide, anti-CCP, PCR, VSG)",
+                            "Radiografías de manos y pies",
+                            "Medicamentos (DMARDs, biológicos)"
+                        ],
+                        steps: [
+                            "Evaluar número de articulaciones inflamadas y dolorosas",
+                            "Obtener marcadores de inflamación (PCR, VSG)",
+                            "Calcular puntuación de actividad (DAS28)",
+                            "Iniciar terapia con metotrexato como fármaco base",
+                            "Agregar biológicos si no hay respuesta adecuada",
+                            "Monitorear función hepática y hematológica",
+                            "Educación sobre ejercicios y protección articular"
+                        ],
+                        notes: "El objetivo del tratamiento es alcanzar la remisión o baja actividad de la enfermedad. El inicio temprano de DMARDs modifica el curso de la enfermedad. La evaluación debe ser mensual inicialmente.",
+                        source: {
+                            name: "ACR/EULAR Guidelines",
+                            description: "Guías conjuntas de la Asociación Americana de Reumatología y la Liga Europea contra el Reumatismo.",
+                            type: "acr"
+                        },
+                        lastUpdated: "2024-03-05",
+                        visualReferences: [
+                            {
+                                url: "https://www.rheumatology.org/Portals/0/Files/2021-RA-Treatment-Guidelines.pdf",
+                                title: "Algoritmo de tratamiento de AR",
+                                description: "Algoritmo actualizado para el tratamiento de artritis reumatoide según las guías de la ACR.",
+                                type: "image"
+                            },
+                            {
+                                url: "https://radiopaedia.org/articles/rheumatoid-arthritis-4",
+                                title: "Cambios radiológicos en AR",
+                                description: "Imágenes de radiografía de manos y pies mostrando cambios típicos de artritis reumatoide.",
+                                type: "image"
+                            }
+                        ]
+                    }
+                ]
+            },
+            emergencias: {
+                title: "Emergencias Médicas",
+                icon: "fa-ambulance",
+                procedures: [
+                    {
+                        id: "trauma-inicial",
+                        title: "Evaluación Primaria en Trauma (ABCDE)",
+                        icon: "fa-ambulance",
+                        summary: "Protocolo estandarizado para la evaluación inicial del paciente traumático con enfoque en la identificación y tratamiento de amenazas a la vida.",
+                        materials: [
+                            "Equipo de vía aérea",
+                            "Monitor cardíaco y de oximetría",
+                            "Equipo de acceso vascular",
+                            "Equipo de intubación",
+                            "Equipo de descompresión torácica",
+                            "Equipo de ecografía FAST"
+                        ],
+                        steps: [
+                            "A (Airway): Evaluar y proteger la vía aérea con maniobras y dispositivos",
+                            "B (Breathing): Evaluar ventilación y oxigenación, tratar neumotórax",
+                            "C (Circulation): Establecer acceso vascular, controlar hemorragia, reanimar con fluidos",
+                            "D (Disability): Evaluar estado neurológico (escala Glasgow)",
+                            "E (Exposure): Examinar completamente al paciente, prevenir hipotermia",
+                            "Reevaluar continuamente cada componente"
+                        ],
+                        notes: "La evaluación primaria debe completarse en menos de 5 minutos. El control del sangrado debe ser inmediato. La hipotensión en trauma es considerada hemorrágica hasta que se demuestre lo contrario.",
+                        source: {
+                            name: "ATLS Guidelines",
+                            description: "Guías de Soporte Vital Avanzado en Trauma (ATLS) del Colegio Americano de Cirujanos.",
+                            type: "atls"
+                        },
+                        lastUpdated: "2024-01-30",
+                        visualReferences: [
+                            {
+                                url: "https://www.facs.org/quality-programs/trauma/atls/",
+                                title: "Algoritmo ATLS ABCDE",
+                                description: "Algoritmo completo de evaluación primaria en trauma según las guías ATLS.",
+                                type: "image"
+                            },
+                            {
+                                url: "https://radiopaedia.org/articles/trauma-imaging-1",
+                                title: "Protocolo de imagenología en trauma",
+                                description: "Guía visual para el protocolo de imagenología en pacientes traumáticos.",
+                                type: "image"
+                            }
+                        ]
+                    }
+                ]
+            },
+            farmacologia: {
+                title: "Farmacología",
+                icon: "fa-pills",
+                procedures: [
+                    {
+                        id: "antibioticos",
+                        title: "Selección de Antibióticos Empíricos",
+                        icon: "fa-pills",
+                        summary: "Guía para la selección racional de antibióticos empíricos basada en el sitio de infección, factores de riesgo y perfil local de sensibilidad.",
+                        materials: [
+                            "Guía local de antibiograma",
+                            "Perfil de sensibilidad hospitalaria",
+                            "Calculadora de creatinina",
+                            "Protocolos institucionales",
+                            "Ficha de alergias del paciente"
+                        ],
+                        steps: [
+                            "Identificar sitio y gravedad de la infección",
+                            "Considerar factores de riesgo para resistencia (MRSA, Pseudomonas)",
+                            "Revisar antibiograma local y protocolos institucionales",
+                            "Ajustar dosis según función renal y hepática",
+                            "Elegir espectro más estrecho posible",
+                            "Planificar de-escalación según cultivos",
+                            "Duración adecuada según tipo de infección"
+                        ],
+                        notes: "La terapia antimicrobiana debe ser guiada por cultivos cuando sea posible. La de-escalación es un principio clave para prevenir resistencia. La duración debe ser la mínima efectiva.",
+                        source: {
+                            name: "IDSA Guidelines",
+                            description: "Guías de la Sociedad de Enfermedades Infecciosas de América para el uso apropiado de antimicrobianos.",
+                            type: "idsa"
+                        },
+                        lastUpdated: "2024-02-10",
+                        visualReferences: [
+                            {
+                                url: "https://www.idsociety.org/practice-guideline/antibiotic-stewardship/",
+                                title: "Algoritmo de selección de antibióticos",
+                                description: "Algoritmo para la selección empírica de antibióticos según el sitio de infección.",
+                                type: "image"
+                            },
+                            {
+                                url: "https://www.cdc.gov/antibiotic-use/healthcare/public-resources/index.html",
+                                title: "Programa de optimización de antibióticos",
+                                description: "Guía visual del CDC para la optimización del uso de antibióticos en hospitales.",
+                                type: "image"
+                            }
+                        ]
+                    }
+                ]
+            },
+            nutricion: {
+                title: "Nutrición Clínica",
+                icon: "fa-apple-alt",
+                procedures: [
+                    {
+                        id: "soporte-nutricional",
+                        title: "Soporte Nutricional en Pacientes Críticos",
+                        icon: "fa-apple-alt",
+                        summary: "Protocolo para la evaluación y provisión de soporte nutricional en pacientes hospitalizados, con enfoque en la prevención de desnutrición hospitalaria.",
+                        materials: [
+                            "Escala de evaluación nutricional (NRS-2002)",
+                            "Calculadora de necesidades calóricas",
+                            "Fórmulas enterales",
+                            "Equipo de sonda nasogástrica",
+                            "Monitorización de tolerancia"
+                        ],
+                        steps: [
+                            "Evaluar riesgo de desnutrición con escala validada",
+                            "Calcular necesidades calóricas y proteicas",
+                            "Iniciar nutrición enteral dentro de las 24-48 horas",
+                            "Elevar la cabecera de la cama a 30-45 grados",
+                            "Monitorear residuos gástricos y tolerancia",
+                            "Considerar nutrición parenteral si contraindicada la enteral",
+                            "Reevaluar estado nutricional semanalmente"
+                        ],
+                        notes: "La nutrición enteral es preferida sobre la parenteral cuando el tracto gastrointestinal está disponible. El inicio temprano reduce complicaciones. La hiperprotección es importante en pacientes críticos.",
+                        source: {
+                            name: "ASPEN Guidelines",
+                            description: "Guías de la Sociedad Americana de Medicina Parenteral y Enteral.",
+                            type: "aspes"
+                        },
+                        lastUpdated: "2024-01-25",
+                        visualReferences: [
+                            {
+                                url: "https://www.nutritioncare.org/uploadedFiles/Public/Learn/Infographics/ICU_Nutrition_Infographic.pdf",
+                                title: "Algoritmo de nutrición en UCI",
+                                description: "Algoritmo para el soporte nutricional en pacientes críticos según las guías de ASPEN.",
+                                type: "image"
+                            },
+                            {
+                                url: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5767265/",
+                                title: "Comparación enteral vs parenteral",
+                                description: "Ilustración comparativa de los beneficios de la nutrición enteral frente a la parenteral.",
+                                type: "image"
+                            }
+                        ]
+                    }
+                ]
+            },
+            infecciones: {
+                title: "Control de Infecciones",
+                icon: "fa-virus",
+                procedures: [
+                    {
+                        id: "aislamientos",
+                        title: "Precauciones de Aislamiento",
+                        icon: "fa-virus",
+                        summary: "Protocolo para la implementación de precauciones de aislamiento según el modo de transmisión de agentes infecciosos.",
+                        materials: [
+                            "Equipo de protección personal (EPP)",
+                            "Etiquetas de aislamiento",
+                            "Contenedores para residuos",
+                            "Desinfectantes de superficies",
+                            "Sistemas de monitoreo"
+                        ],
+                        steps: [
+                            "Identificar el agente infeccioso y su modo de transmisión",
+                            "Implementar precauciones estándar para todos los pacientes",
+                            "Añadir precauciones según transmisión (contacto, gotas, aérea)",
+                            "Seleccionar EPP adecuado para cada tipo de aislamiento",
+                            "Educación del personal sobre protocolos",
+                            "Monitorear cumplimiento de las precauciones",
+                            "Descontinuar aislamiento según criterios establecidos"
+                        ],
+                        notes: "Las precauciones estándar deben aplicarse a todos los pacientes. El aislamiento por contacto es para MRSA, C. difficile, etc. El aislamiento por vía aérea requiere habitación con presión negativa.",
+                        source: {
+                            name: "CDC Guidelines",
+                            description: "Guías del CDC para el control de infecciones en entornos de atención médica.",
+                            type: "cdc"
+                        },
+                        lastUpdated: "2024-02-08",
+                        visualReferences: [
+                            {
+                                url: "https://www.cdc.gov/infectioncontrol/guidelines/isolation/index.html",
+                                title: "Guía de precauciones de aislamiento",
+                                description: "Tabla comparativa de las diferentes precauciones de aislamiento y su implementación.",
+                                type: "image"
+                            },
+                            {
+                                url: "https://www.cdc.gov/handhygiene/providers/index.html",
+                                title: "Técnica de lavado de manos",
+                                description: "Ilustración de la técnica correcta de lavado de manos según el CDC.",
+                                type: "image"
+                            }
+                        ]
+                    }
+                ]
+            },
+            movilizacion: {
+                title: "Movilización Pacientes",
+                icon: "fa-wheelchair",
+                procedures: [
+                    {
+                        id: "movilizacion-segura",
+                        title: "Técnica de Movilización Segura de Pacientes",
+                        icon: "fa-wheelchair",
+                        summary: "Protocolo para la movilización segura de pacientes con riesgo de caídas o con limitaciones de movilidad.",
+                        materials: [
+                            "Chaleco de transferencia",
+                            "Tabla de transferencia",
+                            "Elevador mecánico",
+                            "Silla de ruedas",
+                            "Zapatillas antideslizantes"
+                        ],
+                        steps: [
+                            "Evaluar capacidad del paciente para cooperar",
+                            "Explicar el procedimiento al paciente",
+                            "Asegurar equipo de movilización adecuado",
+                            "Usar técnica corporal correcta (rodillas flexionadas)",
+                            "Mantener espalda recta durante la maniobra",
+                            "Mover al paciente en una sola acción coordinada",
+                            "Verificar bienestar del paciente después de la movilización"
+                        ],
+                        notes: "La movilización segura previene lesiones tanto en pacientes como en el personal. Los dispositivos mecánicos deben usarse cuando el paciente no puede cooperar. La comunicación clara entre el equipo es esencial.",
+                        source: {
+                            name: "OSHA Guidelines",
+                            description: "Normas de OSHA para la prevención de lesiones por levantamiento de pacientes.",
+                            type: "osha"
+                        },
+                        lastUpdated: "2024-01-12",
+                        visualReferences: [
+                            {
+                                url: "https://www.osha.gov/healthcare/guidelines/patient-handling",
+                                title: "Técnicas de movilización segura",
+                                description: "Ilustraciones de las técnicas correctas de movilización de pacientes según OSHA.",
+                                type: "image"
+                            },
+                            {
+                                url: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6557634/",
+                                title: "Uso de dispositivos mecánicos",
+                                description: "Guía visual para el uso correcto de elevadores mecánicos en la movilización de pacientes.",
+                                type: "image"
+                            }
+                        ]
+                    }
+                ]
+            },
+            rcp: {
+                title: "RCP Integral",
+                icon: "fa-heartbeat",
+                procedures: [
+                    {
+                        id: "rcp-basica",
+                        title: "Reanimación Cardiopulmonar Básica (BLS)",
+                        icon: "fa-heartbeat",
+                        summary: "Protocolo actualizado para la reanimación cardiopulmonar básica en adultos, niños y lactantes.",
+                        materials: [
+                            "Desfibrilador externo automático (DEA)",
+                            "Máscara facial con válvula unidireccional",
+                            "Guantes",
+                            "Bolsa-válvula-máscara",
+                            "Barbijo"
+                        ],
+                        steps: [
+                            "Verificar seguridad del escenario",
+                            "Evaluar respuesta del paciente",
+                            "Activar sistema de respuesta médica",
+                            "Comenzar compresiones torácicas (100-120/min, profundidad 5-6 cm)",
+                            "Ventilar con relación 30:2 (compresiones:ventilaciones)",
+                            "Aplicar DEA y seguir sus instrucciones",
+                            "Continuar RCP hasta llegada de ayuda avanzada o recuperación"
+                        ],
+                        notes: "Las compresiones de alta calidad son esenciales. Minimizar interrupciones. La ventilación debe evitar hiperventilación. El DEA debe aplicarse lo antes posible.",
+                        source: {
+                            name: "AHA Guidelines",
+                            description: "Guías AHA 2025 para la reanimación cardiopulmonar.",
+                            type: "aha"
+                        },
+                        lastUpdated: "2025-01-01",
+                        visualReferences: [
+                            {
+                                url: "https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines/2020-guidelines",
+                                title: "Algoritmo BLS 2025",
+                                description: "Algoritmo actualizado de la AHA para la reanimación cardiopulmonar básica.",
+                                type: "image"
+                            },
+                            {
+                                url: "https://www.redcross.org/take-a-class/cpr.html",
+                                title: "Técnica de compresiones torácicas",
+                                description: "Ilustración de la técnica correcta para realizar compresiones torácicas durante la RCP.",
+                                type: "image"
+                            }
+                        ]
+                    }
+                ]
+            },
+            recursos: {
+                title: "Recursos Educativos",
+                icon: "fa-book-open",
+                resources: [
+                    {
+                        title: "Guías Clínicas",
+                        icon: "fa-hospital",
+                        items: [
+                            { name: "CDC - Prevención de infecciones", type: "pdf", url: "https://www.cdc.gov/infectioncontrol/guidelines/index.html", description: "Guías actualizadas para prevención de infecciones en entornos clínicos" },
+                            { name: "AHA - Manejo de infarto", type: "pdf", url: "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001123", description: "Protocolos de la Asociación Americana del Corazón" },
+                            { name: "WHO - Cuidado de heridas", type: "pdf", url: "https://www.who.int/publications/i/item/9789241549758", description: "Directrices de la Organización Mundial de la Salud" }
+                        ]
+                    },
+                    {
+                        title: "Videos Educativos",
+                        icon: "fa-video",
+                        items: [
+                            { name: "Técnica de curación aséptica", type: "video", url: "https://www.youtube.com/watch?v=9cN0t4O2mCk", description: "Demostración paso a paso del procedimiento" },
+                            { name: "Manejo de RCP básico", type: "video", url: "https://www.youtube.com/watch?v=eqcGnH27-cw", description: "Protocolo de reanimación cardiopulmonar" },
+                            { name: "Colocación de acceso venoso", type: "video", url: "https://www.youtube.com/watch?v=QyGqF-gTZu4", description: "Técnica para acceso vascular seguro" }
+                        ]
+                    },
+                    {
+                        title: "Descargables",
+                        icon: "fa-download",
+                        items: [
+                            { name: "Algoritmo de RCP 2025", type: "pdf", url: "https://cpr.heart.org/-/media/cpr-american-red-cross/files/cpr--aed/2020-guidelines/cpr-summary-tables.ashx", description: "Guía rápida para reanimación" },
+                            { name: "Escala de Braden", type: "pdf", url: "https://www.braden.org/", description: "Herramienta de evaluación de riesgo" },
+                            { name: "Guía de antibióticos", type: "pdf", url: "https://www.idsociety.org/practice-guideline/antibiotic-stewardship/", description: "Tabla de selección de antimicrobianos" }
+                        ]
+                    }
+                ]
+            }
+        };
+
         // DOM Elements
         const sidebar = document.querySelector('.sidebar');
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -1514,25 +1907,74 @@
         const searchSuggestions = document.getElementById('searchSuggestions');
         const mainContent = document.getElementById('mainContent');
         const notificationContainer = document.getElementById('notificationContainer');
-
+        
         // Category buttons
         const categoryButtons = document.querySelectorAll('.cat-btn');
-        const categoryContents = document.querySelectorAll('.category-content');
+        const categoryContents = {};
+        
+        // User preferences and data storage
+        const userPreferences = {
+            theme: 'dark',
+            recentCategories: [],
+            savedProcedures: [],
+            userProgress: {}
+        };
 
-        // Theme functionality
-        let darkTheme = true;
-
-        themeToggle.addEventListener('click', () => {
-            darkTheme = !darkTheme;
+        // Initialize the app
+        function initApp() {
+            // Load user preferences from localStorage
+            loadUserPreferences();
             
-            if (darkTheme) {
+            // Set initial theme
+            setTheme(userPreferences.theme);
+            
+            // Load the default content
+            loadCategoryContent('curaciones');
+            
+            // Update active button
+            updateActiveButton('curaciones');
+            
+            // Initialize search
+            initSearch();
+            
+            // Show welcome notification
+            showNotification('👋 Bienvenido a EduMed. Plataforma de educación clínica.', 'success');
+            
+            // Check URL hash
+            checkUrlHash();
+        }
+
+        // Load user preferences from localStorage
+        function loadUserPreferences() {
+            try {
+                const saved = localStorage.getItem('edumed_preferences');
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    Object.assign(userPreferences, parsed);
+                }
+            } catch (e) {
+                console.error('Error loading preferences:', e);
+            }
+        }
+
+        // Save user preferences to localStorage
+        function saveUserPreferences() {
+            try {
+                localStorage.setItem('edumed_preferences', JSON.stringify(userPreferences));
+            } catch (e) {
+                console.error('Error saving preferences:', e);
+            }
+        }
+
+        // Set theme
+        function setTheme(theme) {
+            if (theme === 'dark') {
                 document.documentElement.style.setProperty('--bg', 'linear-gradient(135deg, #0f172a, #1e293b, #334155)');
                 document.documentElement.style.setProperty('--glass', 'rgba(15, 23, 42, 0.95)');
                 document.documentElement.style.setProperty('--glass-2', 'rgba(30, 41, 59, 0.8)');
                 document.documentElement.style.setProperty('--text-light', '#e2e8f0');
                 document.documentElement.style.setProperty('--muted', '#94a3b8');
                 themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-                showNotification('🌙 Modo oscuro activado', 'info');
             } else {
                 document.documentElement.style.setProperty('--bg', 'linear-gradient(135deg, #f8fafc, #e2e8f0, #cbd5e1)');
                 document.documentElement.style.setProperty('--glass', 'rgba(255, 255, 255, 0.95)');
@@ -1540,8 +1982,17 @@
                 document.documentElement.style.setProperty('--text-light', '#0f172a');
                 document.documentElement.style.setProperty('--muted', '#64748b');
                 themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-                showNotification('☀️ Modo claro activado', 'info');
             }
+            userPreferences.theme = theme;
+            saveUserPreferences();
+        }
+
+        // Toggle theme
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = userPreferences.theme;
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            setTheme(newTheme);
+            showNotification(`✅ ${newTheme === 'dark' ? 'Modo oscuro' : 'Modo claro'} activado`, 'info');
         });
 
         // Mobile menu functionality
@@ -1552,95 +2003,322 @@
         // Category navigation
         categoryButtons.forEach(button => {
             button.addEventListener('click', () => {
-                // Remove active class from all buttons
-                categoryButtons.forEach(btn => {
-                    btn.classList.remove('active');
-                });
-                
-                // Add active class to clicked button
-                button.classList.add('active');
-                
-                // Hide all content sections
-                categoryContents.forEach(content => {
-                    content.style.display = 'none';
-                });
-                
-                // Show the selected content
                 const categoryId = button.getAttribute('data-cat');
-                const selectedContent = document.getElementById(categoryId);
-                if (selectedContent) {
-                    selectedContent.style.display = 'block';
-                }
-                
-                // Close mobile menu after selection
-                if (window.innerWidth <= 768) {
-                    sidebar.classList.add('hidden-mobile');
-                }
-                
-                // Show notification
-                const categoryName = button.textContent.trim();
-                showNotification(`✅ Mostrando: ${categoryName}`, 'success');
+                handleCategoryNavigation(categoryId);
             });
         });
 
-        // Search functionality
-        const searchTerms = [
-            "curación quirúrgica",
-            "manejo de úlceras",
-            "terapia VAC",
-            "infarto miocardio",
-            "neumonía tratamiento",
-            "cetoacidosis diabética",
-            "RCP básico",
-            "movilización pacientes",
-            "control infecciones",
-            "farmacología clínica"
-        ];
-
-        searchInput.addEventListener('input', () => {
-            const query = searchInput.value.toLowerCase();
+        // Handle category navigation
+        function handleCategoryNavigation(categoryId) {
+            // Update recent categories
+            if (!userPreferences.recentCategories.includes(categoryId)) {
+                userPreferences.recentCategories.unshift(categoryId);
+                if (userPreferences.recentCategories.length > 5) {
+                    userPreferences.recentCategories.pop();
+                }
+            } else {
+                // Move to front
+                userPreferences.recentCategories = [categoryId, ...userPreferences.recentCategories.filter(id => id !== categoryId)];
+            }
             
-            if (query.length > 2) {
-                const filteredSuggestions = searchTerms.filter(term => 
-                    term.toLowerCase().includes(query)
-                );
+            // Save preferences
+            saveUserPreferences();
+            
+            // Update active button
+            updateActiveButton(categoryId);
+            
+            // Load content
+            loadCategoryContent(categoryId);
+            
+            // Close mobile menu
+            if (window.innerWidth <= 768) {
+                sidebar.classList.add('hidden-mobile');
+            }
+            
+            // Update URL
+            window.history.pushState({category: categoryId}, '', `#${categoryId}`);
+            
+            // Show notification
+            const categoryName = document.querySelector(`.cat-btn[data-cat="${categoryId}"]`).textContent.trim();
+            showNotification(`✅ Mostrando: ${categoryName}`, 'success');
+        }
+
+        // Update active button
+        function updateActiveButton(activeId) {
+            categoryButtons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-cat') === activeId) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        // Load category content
+        function loadCategoryContent(categoryId) {
+            const category = medicalData[categoryId];
+            if (!category) {
+                showNotification('❌ Categoría no encontrada', 'error');
+                return;
+            }
+            
+            // Show loading state
+            mainContent.innerHTML = `
+                <div style="display: flex; justify-content: center; align-items: center; height: 200px;">
+                    <div class="loading"></div>
+                    <span style="margin-left: 12px; color: var(--text-light);">Cargando contenido...</span>
+                </div>
+            `;
+            
+            // Simulate API delay
+            setTimeout(() => {
+                let content = '';
                 
-                if (filteredSuggestions.length > 0) {
-                    searchSuggestions.innerHTML = '';
-                    searchSuggestions.style.display = 'block';
+                if (categoryId === 'recursos') {
+                    content = renderResourcesContent(category);
+                } else {
+                    content = renderProceduresContent(category);
+                }
+                
+                mainContent.innerHTML = content;
+                
+                // Update page title
+                const pageTitle = mainContent.querySelector('.page-title');
+                if (pageTitle) {
+                    pageTitle.innerHTML = `
+                        <i class="fas ${category.icon}"></i>
+                        ${category.title}
+                    `;
+                }
+            }, 300);
+        }
+
+        // Render procedures content
+        function renderProceduresContent(category) {
+            return `
+                <div class="page-header">
+                    <h1 class="page-title">
+                        <i class="fas ${category.icon}"></i>
+                        ${category.title}
+                    </h1>
+                    <div class="action-buttons">
+                        <button class="btn primary" onclick="showNotification('🔍 Funcionalidad en desarrollo', 'info')">
+                            <i class="fas fa-plus"></i>
+                            Nuevo Procedimiento
+                        </button>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <h2>
+                        <i class="fas ${category.icon}"></i>
+                        Técnicas de ${category.title}
+                    </h2>
+                    <p>Esta sección proporciona protocolos estandarizados para el cuidado clínico, basados en evidencia científica actualizada y guías de práctica clínica reconocidas internacionalmente.</p>
                     
-                    filteredSuggestions.forEach(suggestion => {
-                        const suggestionElement = document.createElement('div');
-                        suggestionElement.className = 'suggestion-item';
-                        suggestionElement.innerHTML = `
-                            <i class="fas fa-search"></i>
-                            ${highlightText(suggestion, query)}
-                        `;
-                        suggestionElement.addEventListener('click', () => {
-                            searchInput.value = suggestion;
-                            searchSuggestions.style.display = 'none';
-                            showNotification(`🔍 Buscando: ${suggestion}`, 'info');
-                        });
-                        searchSuggestions.appendChild(suggestionElement);
+                    ${category.procedures.map(procedure => `
+                        <div class="procedure">
+                            <h3>
+                                <i class="fas ${procedure.icon}"></i>
+                                ${procedure.title}
+                            </h3>
+                            <p class="summary">
+                                <i class="fas fa-info-circle"></i>
+                                ${procedure.summary}
+                            </p>
+                            <div class="materials">
+                                <h4>
+                                    <i class="fas fa-box-open"></i>
+                                    Materiales Necesarios
+                                </h4>
+                                <ul>
+                                    ${procedure.materials.map(material => `<li>${material}</li>`).join('')}
+                                </ul>
+                            </div>
+                            <div class="steps">
+                                <h4>
+                                    <i class="fas fa-step-forward"></i>
+                                    Pasos del Procedimiento
+                                </h4>
+                                <ol>
+                                    ${procedure.steps.map(step => `<li>${step}</li>`).join('')}
+                                </ol>
+                            </div>
+                            <div class="notes">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <strong>Consideraciones Importantes:</strong> ${procedure.notes}
+                            </div>
+                            
+                            <!-- Visual References -->
+                            <div class="external-links">
+                                <h4>
+                                    <i class="fas fa-image"></i>
+                                    Recursos Visuales y Educativos
+                                </h4>
+                                <ul>
+                                    ${procedure.visualReferences.map(ref => `
+                                        <li>
+                                            <a href="${ref.url}" target="_blank">
+                                                <i class="fas fa-external-link-alt"></i>
+                                                <div>
+                                                    <strong>${ref.title}</strong>
+                                                    <div style="font-size: 0.9rem; margin-top: 4px;">${ref.description}</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    `).join('')}
+                                </ul>
+                            </div>
+                            
+                            <div class="source-reference">
+                                <i class="fas fa-book"></i>
+                                Basado en las <strong>${procedure.source.description}</strong>.
+                                <span class="source-badge ${procedure.source.type}">
+                                    <i class="fas fa-shield-alt"></i>
+                                    ${procedure.source.name}
+                                </span>
+                                <span style="margin-left: 8px; font-size: 0.8rem; color: var(--muted);">Actualizado: ${formatDate(procedure.lastUpdated)}</span>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        // Render resources content
+        function renderResourcesContent(category) {
+            return `
+                <div class="page-header">
+                    <h1 class="page-title">
+                        <i class="fas ${category.icon}"></i>
+                        ${category.title}
+                    </h1>
+                </div>
+                <div class="resource-panel">
+                    <h2>
+                        <i class="fas ${category.icon}"></i>
+                        Recursos Clínicos y Educativos
+                    </h2>
+                    <p>Acceda a las fuentes más confiables de información médica para profundizar en cada especialidad y procedimiento.</p>
+                    <div class="resource-grid">
+                        ${category.resources.map(resource => `
+                            <div class="resource-card">
+                                <h3>
+                                    <i class="fas ${resource.icon}"></i>
+                                    ${resource.title}
+                                </h3>
+                                ${resource.items.map(item => `
+                                    <p>
+                                        <i class="fas fa-${item.type === 'pdf' ? 'file-pdf' : 'play-circle'}"></i>
+                                        ${item.name}
+                                    </p>
+                                    <p style="font-size: 0.9rem; color: var(--muted); margin: 4px 0 12px 34px;">
+                                        ${item.description}
+                                    </p>
+                                `).join('')}
+                                <a href="${resource.items[0].url}" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Acceder a recursos
+                                </a>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Initialize search functionality
+        function initSearch() {
+            // Extract searchable terms from medical data
+            const searchTerms = [];
+            
+            Object.keys(medicalData).forEach(categoryId => {
+                const category = medicalData[categoryId];
+                
+                // Add category title
+                searchTerms.push(category.title);
+                
+                if (category.procedures) {
+                    category.procedures.forEach(procedure => {
+                        searchTerms.push(procedure.title);
+                        searchTerms.push(procedure.summary);
+                        procedure.materials.forEach(material => searchTerms.push(material));
+                        procedure.steps.forEach(step => searchTerms.push(step));
+                        
+                        // Add visual references to search
+                        if (procedure.visualReferences) {
+                            procedure.visualReferences.forEach(ref => {
+                                searchTerms.push(ref.title);
+                                searchTerms.push(ref.description);
+                            });
+                        }
                     });
+                }
+            });
+            
+            // Remove duplicates and filter short terms
+            const uniqueTerms = [...new Set(searchTerms)]
+                .filter(term => term.length > 3)
+                .slice(0, 50); // Limit to 50 terms
+            
+            searchInput.addEventListener('input', () => {
+                const query = searchInput.value.toLowerCase();
+                if (query.length > 2) {
+                    const filteredSuggestions = uniqueTerms.filter(term => 
+                        term.toLowerCase().includes(query)
+                    );
+                    if (filteredSuggestions.length > 0) {
+                        displaySearchSuggestions(filteredSuggestions, query);
+                    } else {
+                        searchSuggestions.style.display = 'none';
+                    }
                 } else {
                     searchSuggestions.style.display = 'none';
                 }
-            } else {
-                searchSuggestions.style.display = 'none';
-            }
-        });
+            });
+            
+            // Click outside search to close suggestions
+            document.addEventListener('click', (e) => {
+                if (!searchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {
+                    searchSuggestions.style.display = 'none';
+                }
+            });
+        }
 
-        // Click outside search to close suggestions
-        document.addEventListener('click', (e) => {
-            if (!searchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {
-                searchSuggestions.style.display = 'none';
-            }
-        });
+        // Display search suggestions
+        function displaySearchSuggestions(suggestions, query) {
+            searchSuggestions.innerHTML = '';
+            searchSuggestions.style.display = 'block';
+            
+            suggestions.slice(0, 8).forEach(suggestion => {
+                const suggestionElement = document.createElement('div');
+                suggestionElement.className = 'suggestion-item';
+                suggestionElement.innerHTML = `
+                    <i class="fas fa-search"></i>
+                    ${highlightText(suggestion, query)}
+                `;
+                suggestionElement.addEventListener('click', () => {
+                    searchInput.value = suggestion;
+                    searchSuggestions.style.display = 'none';
+                    performSearch(suggestion);
+                });
+                searchSuggestions.appendChild(suggestionElement);
+            });
+        }
 
+        // Highlight text in search results
         function highlightText(text, query) {
             const regex = new RegExp(`(${query})`, 'gi');
-            return text.replace(regex, '<strong>$1</strong>');
+            return text.replace(regex, '<strong style="color: var(--accent);">$1</strong>');
+        }
+
+        // Perform search
+        function performSearch(query) {
+            showNotification(`🔍 Buscando: "${query}"`, 'info');
+            
+            // In a real app, this would search through all content
+            // For now, we'll just show a message
+            setTimeout(() => {
+                showNotification('🔍 Búsqueda en desarrollo. En una versión completa, esto mostraría resultados relevantes de todas las categorías.', 'info');
+            }, 1000);
         }
 
         // Notifications system
@@ -1652,7 +2330,6 @@
                 <div class="notification-content">${message}</div>
                 <button class="close-notification">&times;</button>
             `;
-            
             notificationContainer.appendChild(notification);
             
             // Set icon based on type
@@ -1663,51 +2340,52 @@
                 icon.className = 'fas fa-times-circle notification-icon';
             } else if (type === 'warning') {
                 icon.className = 'fas fa-exclamation-triangle notification-icon';
+            } else if (type === 'info') {
+                icon.className = 'fas fa-info-circle notification-icon';
             }
             
             // Auto-remove after 5 seconds
-            setTimeout(() => {
+            const removeNotification = () => {
                 notification.style.opacity = '0';
                 setTimeout(() => {
                     notification.remove();
                 }, 300);
-            }, 5000);
+            };
+            
+            setTimeout(removeNotification, 5000);
             
             // Close on button click
-            notification.querySelector('.close-notification').addEventListener('click', () => {
-                notification.style.opacity = '0';
-                setTimeout(() => {
-                    notification.remove();
-                }, 300);
-            });
+            notification.querySelector('.close-notification').addEventListener('click', removeNotification);
         }
 
-        // Initialize app
-        document.addEventListener('DOMContentLoaded', () => {
-            showNotification('👋 Bienvenido a EduMed. Plataforma de educación clínica.', 'success');
-            
-            // Check if we have a hash in the URL
+        // Format date
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('es-ES', options);
+        }
+
+        // Check URL hash on load
+        function checkUrlHash() {
             if (window.location.hash) {
                 const hash = window.location.hash.substring(1);
-                const button = document.querySelector(`.cat-btn[data-cat="${hash}"]`);
-                if (button) {
-                    button.click();
+                if (medicalData[hash]) {
+                    // Wait for DOM to be ready
+                    setTimeout(() => {
+                        handleCategoryNavigation(hash);
+                    }, 100);
                 }
+            }
+        }
+
+        // Handle browser back/forward buttons
+        window.addEventListener('popstate', (event) => {
+            if (event.state && event.state.category) {
+                handleCategoryNavigation(event.state.category);
             }
         });
 
-        // Add smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
+        // Initialize app when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initApp);
     </script>
 </body>
 </html>
