@@ -5,72 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Enfermería DAVID · Sistema completo con almacenamiento persistente">
     <title>Enfermería DAVID · Sistema Completo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Estilos existentes (se mantienen igual) */
+        /* Estilos modernizados con enfoque en fuentes confiables y diseño actual */
         :root {
-            --bg: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            --glass: rgba(15, 30, 40, 0.9);
-            --glass-2: rgba(255, 255, 255, 0.1);
-            --accent: #00b4d8;
-            --accent-2: #0077b6;
-            --accent-3: #023e8a;
-            --primary-blue: #3a86ff;
-            --primary-blue-darker: #00509d;
-            --primary-blue-lighter: rgba(58, 134, 255, 0.1);
-            --success-green: #38b000;
-            --warning-yellow: #ffca3a;
-            --alert-red: #d90429;
-            --text-light: #e0f7fa;
-            --text-dark: #073b4c;
-            --muted: #8d99ae;
-            --danger: #ef233c;
-            --card-radius: 20px;
-            --shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            --shadow-sm: 0 8px 24px rgba(0, 0, 0, 0.2);
-            --shadow-md: 0 16px 32px rgba(0, 0, 0, 0.25);
-            --shadow-lg: 0 32px 64px rgba(0, 0, 0, 0.3);
+            --bg: linear-gradient(135deg, #0f172a, #1e293b, #334155);
+            --glass: rgba(15, 23, 42, 0.95);
+            --glass-2: rgba(30, 41, 59, 0.8);
+            --accent: #3b82f6;
+            --accent-2: #2563eb;
+            --accent-3: #1d4ed8;
+            --primary-blue: #2563eb;
+            --primary-blue-darker: #1d4ed8;
+            --primary-blue-lighter: rgba(37, 99, 235, 0.1);
+            --success-green: #10b981;
+            --warning-yellow: #f59e0b;
+            --alert-red: #ef4444;
+            --text-light: #e2e8f0;
+            --text-dark: #0f172a;
+            --muted: #94a3b8;
+            --danger: #ef4444;
+            --card-radius: 24px;
+            --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --shadow-sm: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 35px 60px -15px rgba(0, 0, 0, 0.2);
             --shadow-inset: inset 0 1px 2px rgba(255, 255, 255, 0.1);
             --tap: 48px;
-            --font: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-            --maxwidth: 1400px;
-            --border: rgba(141, 153, 174, 0.3);
-            --border-light: rgba(141, 153, 174, 0.2);
-            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            --transition-fast: all 0.2s ease;
+            --font: 'Inter', 'Roboto', system-ui, -apple-system, "Segoe UI", sans-serif;
+            --font-heading: 'Inter', 'Open Sans', system-ui, sans-serif;
+            --maxwidth: 1600px;
+            --border: rgba(148, 163, 184, 0.3);
+            --border-light: rgba(148, 163, 184, 0.2);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-fast: all 0.15s ease;
             --z-header: 100;
             --z-sidebar: 90;
             --z-modal: 200;
-            --gradient-primary: linear-gradient(135deg, #00b4d8, #0077b6);
-            --gradient-secondary: linear-gradient(135deg, #3a86ff, #00509d);
-            --gradient-success: linear-gradient(135deg, #38b000, #006d21);
-            --gradient-warning: linear-gradient(135deg, #ffca3a, #e69500);
-            --gradient-danger: linear-gradient(135deg, #d90429, #9d0208);
+            --gradient-primary: linear-gradient(135deg, #3b82f6, #2563eb);
+            --gradient-secondary: linear-gradient(135deg, #60a5fa, #3b82f6);
+            --gradient-success: linear-gradient(135deg, #10b981, #059669);
+            --gradient-warning: linear-gradient(135deg, #f59e0b, #d97706);
+            --gradient-danger: linear-gradient(135deg, #ef4444, #dc2626);
+            --gradient-info: linear-gradient(135deg, #06b6d4, #0891b2);
         }
         :root[data-theme="light"] {
-            --bg: linear-gradient(135deg, #f0f2f5, #e6e9ef, #d8dee9);
+            --bg: linear-gradient(135deg, #f8fafc, #e2e8f0, #cbd5e1);
             --glass: rgba(255, 255, 255, 0.95);
-            --glass-2: rgba(15, 30, 40, 0.05);
-            --accent: #0077b6;
-            --accent-2: #00509d;
-            --accent-3: #003f7f;
-            --primary-blue: #1e3a8a;
-            --primary-blue-darker: #1e3a8a;
-            --primary-blue-lighter: rgba(30, 58, 138, 0.1);
-            --success-green: #16a34a;
+            --glass-2: rgba(241, 245, 249, 0.9);
+            --accent: #2563eb;
+            --accent-2: #1d4ed8;
+            --accent-3: #1e40af;
+            --primary-blue: #1e40af;
+            --primary-blue-darker: #1e40af;
+            --primary-blue-lighter: rgba(30, 64, 175, 0.1);
+            --success-green: #059669;
             --warning-yellow: #d97706;
             --alert-red: #dc2626;
-            --text-light: #073b4c;
-            --text-dark: #073b4c;
+            --text-light: #0f172a;
+            --text-dark: #0f172a;
             --muted: #64748b;
             --border: rgba(100, 116, 139, 0.3);
             --border-light: rgba(100, 116, 139, 0.2);
-            --gradient-primary: linear-gradient(135deg, #0077b6, #00509d);
-            --gradient-secondary: linear-gradient(135deg, #1e3a8a, #1e3a8a);
-            --gradient-success: linear-gradient(135deg, #16a34a, #059669);
+            --gradient-primary: linear-gradient(135deg, #2563eb, #1d4ed8);
+            --gradient-secondary: linear-gradient(135deg, #3b82f6, #2563eb);
+            --gradient-success: linear-gradient(135deg, #059669, #047857);
             --gradient-warning: linear-gradient(135deg, #d97706, #b45309);
             --gradient-danger: linear-gradient(135deg, #dc2626, #b91c1c);
+            --gradient-info: linear-gradient(135deg, #0891b2, #0e7490);
         }
         * {
             box-sizing: border-box;
@@ -84,6 +87,7 @@
             font-family: var(--font);
             background: var(--bg);
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
             display: flex;
             justify-content: center;
             padding: 16px;
@@ -97,17 +101,18 @@
             display: flex;
             flex-direction: column;
             background: var(--glass);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(24px);
             border-radius: var(--card-radius);
             box-shadow: var(--shadow);
             overflow: hidden;
             position: relative;
             border: 1px solid var(--border);
+            border-bottom-width: 2px;
         }
         header {
-            padding: 20px 32px;
-            background: rgba(15, 30, 40, 0.95);
-            backdrop-filter: blur(10px);
+            padding: 24px 32px;
+            background: rgba(15, 23, 42, 0.98);
+            backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
             display: flex;
             justify-content: space-between;
@@ -115,48 +120,53 @@
             position: sticky;
             top: 0;
             z-index: var(--z-header);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
         }
         header h1 {
-            font-size: 1.8rem;
+            font-size: 1.9rem;
             font-weight: 700;
             color: var(--text-light);
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 16px;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: -0.5px;
         }
         .brand-icon {
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: var(--accent);
-            text-shadow: 0 0 10px rgba(0, 180, 216, 0.5);
+            text-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
         }
         .controls {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 18px;
         }
         .theme-toggle {
             background: var(--glass-2);
             border: none;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             cursor: pointer;
             color: var(--text-light);
-            padding: 12px;
+            padding: 14px;
             border-radius: 50%;
-            width: 52px;
-            height: 52px;
+            width: 56px;
+            height: 56px;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: var(--transition);
             border: 1px solid var(--border);
             box-shadow: var(--shadow-sm);
+            transform: scale(1);
         }
         .theme-toggle:hover {
             background: var(--accent-2);
-            transform: translateY(-2px) rotate(15deg);
+            transform: translateY(-3px) rotate(10deg);
             box-shadow: var(--shadow-md);
+        }
+        .theme-toggle:active {
+            transform: translateY(-1px);
         }
         .container {
             display: flex;
@@ -164,39 +174,40 @@
             overflow: hidden;
         }
         .sidebar {
-            width: 320px;
+            width: 340px;
             background: var(--glass);
             border-right: 1px solid var(--border);
-            padding: 20px;
+            padding: 24px;
             overflow-y: auto;
             transition: var(--transition);
             position: relative;
             z-index: var(--z-sidebar);
             box-shadow: var(--shadow-sm);
+            border-right-width: 2px;
         }
         .sidebar-header {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 16px 0;
-            margin-bottom: 24px;
+            gap: 14px;
+            padding: 18px 0;
+            margin-bottom: 28px;
             border-bottom: 1px solid var(--border-light);
             color: var(--accent);
         }
         .sidebar-header h3 {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 600;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
         }
         .cat-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 14px;
+            gap: 16px;
         }
         .cat-btn {
-            padding: 18px 22px;
+            padding: 20px 24px;
             border: none;
-            border-radius: 16px;
+            border-radius: 18px;
             background: var(--glass-2);
             color: var(--text-light);
             font-weight: 500;
@@ -205,18 +216,20 @@
             transition: var(--transition);
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 18px;
             box-shadow: var(--shadow-sm);
             border: 1px solid var(--border-light);
             position: relative;
             overflow: hidden;
+            font-size: 1.05rem;
+            font-family: var(--font);
         }
         .cat-btn::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 4px;
+            width: 5px;
             height: 100%;
             background: transparent;
             transition: var(--transition);
@@ -224,7 +237,7 @@
         .cat-btn:hover {
             background: var(--accent-2);
             color: white;
-            transform: translateY(-4px);
+            transform: translateY(-5px);
             box-shadow: var(--shadow-md);
         }
         .cat-btn:hover::before {
@@ -235,109 +248,121 @@
             color: white;
             box-shadow: var(--shadow-md);
             font-weight: 600;
+            transform: translateY(-2px);
         }
         .cat-btn.active::before {
             background: var(--accent);
         }
         .cat-btn i {
-            font-size: 1.6rem;
-            width: 28px;
+            font-size: 1.7rem;
+            width: 32px;
             text-align: center;
             transition: var(--transition);
         }
-        .cat-btn[data-cat="higiene"] i { color: #4CAF50; }
-        .cat-btn[data-cat="curaciones"] i { color: #2196F3; }
-        .cat-btn[data-cat="farmaco"] i { color: #9C27B0; }
-        .cat-btn[data-cat="emergencias"] i { color: #F44336; }
-        .cat-btn[data-cat="movilizacion"] i { color: #FF9800; }
-        .cat-btn[data-cat="nutricion"] i { color: #8D6E63; }
-        .cat-btn[data-cat="infeccion"] i { color: #795548; }
-        .cat-btn[data-cat="medicamentos"] i { color: #009688; }
-        .cat-btn[data-cat="enfermedades"] i { color: #607D8B; }
-        .cat-btn[data-cat="pae"] i { color: #3F51B5; }
-        .cat-btn[data-cat="rcp"] i { color: #E91E63; }
-        .cat-btn[data-cat="calculadoras"] i { color: #FF5722; }
-        .cat-btn[data-cat="recursos"] i { color: #00BCD4; }
-        .cat-btn[data-cat="pacientes"] i { color: #673AB7; }
+        .cat-btn[data-cat="higiene"] i { color: #4ade80; }
+        .cat-btn[data-cat="curaciones"] i { color: #38bdf8; }
+        .cat-btn[data-cat="farmaco"] i { color: #a855f7; }
+        .cat-btn[data-cat="emergencias"] i { color: #f87171; }
+        .cat-btn[data-cat="movilizacion"] i { color: #fb923c; }
+        .cat-btn[data-cat="nutricion"] i { color: #a3e635; }
+        .cat-btn[data-cat="infeccion"] i { color: #fbbf24; }
+        .cat-btn[data-cat="medicamentos"] i { color: #06b6d4; }
+        .cat-btn[data-cat="enfermedades"] i { color: #818cf8; }
+        .cat-btn[data-cat="pae"] i { color: #c084fc; }
+        .cat-btn[data-cat="rcp"] i { color: #ec4899; }
+        .cat-btn[data-cat="calculadoras"] i { color: #f97316; }
+        .cat-btn[data-cat="recursos"] i { color: #06b6d4; }
+        .cat-btn[data-cat="pacientes"] i { color: #8b5cf6; }
         .small {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--muted);
-            margin-top: 10px;
-            line-height: 1.5;
+            margin-top: 12px;
+            line-height: 1.6;
             opacity: 0.9;
         }
         main {
             flex: 1;
-            padding: 20px;
+            padding: 24px;
             overflow-y: auto;
             background: var(--glass);
             backdrop-filter: blur(10px);
         }
         .search-container {
             display: flex;
-            gap: 12px;
-            margin-bottom: 28px;
+            gap: 14px;
+            margin-bottom: 32px;
             position: sticky;
-            top: 92px;
+            top: 96px;
             background: var(--glass);
-            padding: 12px 0;
+            padding: 16px 0;
             z-index: 50;
-            border-radius: 12px;
-            backdrop-filter: blur(10px);
+            border-radius: 14px;
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
         }
         .input {
             flex: 1;
-            padding: 16px 20px;
+            padding: 18px 24px;
             border: 1px solid var(--border-light);
-            border-radius: 16px;
+            border-radius: 18px;
             font-family: var(--font);
-            font-size: 1.05rem;
-            background: rgba(255, 255, 255, 0.1);
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.08);
             color: var(--text-light);
             box-shadow: var(--shadow-sm);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-light);
         }
         .input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(226, 232, 240, 0.7);
         }
         .input:focus {
             outline: none;
             border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.2);
-            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+            background: rgba(255, 255, 255, 0.12);
         }
         .btn {
-            padding: 16px 20px;
+            padding: 18px 24px;
             border: none;
-            border-radius: 16px;
+            border-radius: 18px;
             cursor: pointer;
             font-weight: 500;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             box-shadow: var(--shadow-sm);
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             transition: var(--transition);
+            font-family: var(--font);
+            font-weight: 500;
         }
         .btn.primary {
             background: var(--gradient-primary);
             color: white;
-            border: 1px solid rgba(0, 119, 182, 0.3);
+            border: 1px solid rgba(37, 99, 235, 0.3);
         }
         .btn.primary:hover {
             background: var(--gradient-secondary);
-            transform: translateY(-3px);
+            transform: translateY(-4px);
             box-shadow: var(--shadow-md);
+        }
+        .btn.primary:active {
+            transform: translateY(-2px);
         }
         .btn.secondary {
             background: var(--gradient-secondary);
             color: white;
-            border: 1px solid rgba(30, 58, 138, 0.3);
+            border: 1px solid rgba(59, 130, 246, 0.3);
         }
         .btn.secondary:hover {
             background: var(--primary-blue-darker);
-            transform: translateY(-3px);
+            transform: translateY(-4px);
             box-shadow: var(--shadow-md);
+        }
+        .btn.secondary:active {
+            transform: translateY(-2px);
         }
         .btn.ghost {
             background: transparent;
@@ -346,65 +371,66 @@
         }
         .btn.ghost:hover {
             background: var(--glass-2);
-            transform: translateY(-3px);
+            transform: translateY(-4px);
         }
         .btn.small {
-            padding: 10px 14px;
-            font-size: 0.95rem;
+            padding: 12px 16px;
+            font-size: 0.98rem;
         }
         .content-area {
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 28px;
         }
         .category-card {
             background: var(--glass-2);
-            border-radius: 20px;
-            padding: 28px;
+            border-radius: 24px;
+            padding: 32px;
             box-shadow: var(--shadow-sm);
             border: 1px solid var(--border-light);
             transition: var(--transition);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-light);
         }
         .category-card:hover {
-            transform: translateY(-6px);
+            transform: translateY(-8px);
             box-shadow: var(--shadow-lg);
         }
         .category-card h2 {
             color: var(--accent);
-            margin-bottom: 20px;
-            font-size: 1.6rem;
+            margin-bottom: 24px;
+            font-size: 1.7rem;
             font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            letter-spacing: -0.8px;
+        }
+        .category-card h2 i {
+            font-size: 1.8rem;
+        }
+        .category-card h3 {
+            color: var(--accent-2);
+            margin: 24px 0 14px 0;
+            font-size: 1.4rem;
+            font-weight: 600;
             display: flex;
             align-items: center;
             gap: 12px;
             letter-spacing: -0.5px;
         }
-        .category-card h2 i {
-            font-size: 1.7rem;
-        }
-        .category-card h3 {
-            color: var(--accent-2);
-            margin: 20px 0 12px 0;
-            font-size: 1.3rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            letter-spacing: -0.3px;
-        }
         .category-card h4 {
             color: var(--primary-blue);
-            margin: 12px 0 8px 0;
-            font-size: 1.15rem;
+            margin: 14px 0 10px 0;
+            font-size: 1.2rem;
             font-weight: 500;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
         .procedure {
-            margin-bottom: 24px;
-            padding-bottom: 24px;
+            margin-bottom: 28px;
+            padding-bottom: 28px;
             border-bottom: 1px solid var(--border-light);
             transition: var(--transition);
             position: relative;
@@ -415,7 +441,7 @@
             bottom: 0;
             left: 0;
             width: 0;
-            height: 1px;
+            height: 2px;
             background: var(--accent);
             transition: var(--transition);
         }
@@ -429,109 +455,112 @@
         }
         .procedure h3 {
             color: var(--accent-2);
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
         .procedure h3 i {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: var(--accent);
         }
         .procedure p {
-            margin: 6px 0;
+            margin: 8px 0;
             color: var(--text-light);
-            line-height: 1.6;
-            font-size: 1.02rem;
+            line-height: 1.7;
+            font-size: 1.05rem;
         }
         .procedure .summary {
             font-style: italic;
             color: var(--muted);
-            margin-bottom: 12px;
-            padding: 16px;
+            margin-bottom: 14px;
+            padding: 20px;
             background: var(--primary-blue-lighter);
-            border-radius: 12px;
-            border-left: 4px solid var(--primary-blue);
+            border-radius: 14px;
+            border-left: 5px solid var(--primary-blue);
             border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
         }
         .procedure .summary i {
             color: var(--primary-blue);
-            margin-right: 8px;
+            margin-right: 10px;
         }
         .materials, .steps, .notes {
-            margin: 12px 0;
+            margin: 14px 0;
         }
         .materials ul, .steps ol {
-            margin: 10px 0;
-            padding-left: 28px;
+            margin: 12px 0;
+            padding-left: 32px;
         }
         .materials li, .steps li {
-            margin: 6px 0;
+            margin: 8px 0;
             display: flex;
             align-items: flex-start;
-            gap: 10px;
-            line-height: 1.5;
+            gap: 12px;
+            line-height: 1.6;
         }
         .materials li::before, .steps li::before {
             content: "•";
             color: var(--accent);
             font-weight: bold;
             margin-top: 6px;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
         }
         .steps li::before {
             content: counter(step);
             counter-increment: step;
             background: var(--accent);
             color: white;
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: bold;
             margin-top: 4px;
         }
         .notes {
             background: var(--primary-blue-lighter);
-            padding: 18px 22px;
-            border-radius: 14px;
-            border-left: 4px solid var(--primary-blue);
-            margin: 14px 0;
-            font-size: 0.98rem;
+            padding: 22px 26px;
+            border-radius: 16px;
+            border-left: 5px solid var(--primary-blue);
+            margin: 16px 0;
+            font-size: 1.02rem;
             border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
         }
         .notes i {
             color: var(--primary-blue);
-            margin-right: 10px;
+            margin-right: 12px;
         }
         .disease-panel {
             background: var(--glass-2);
-            border-radius: 20px;
-            padding: 28px;
+            border-radius: 24px;
+            padding: 32px;
             box-shadow: var(--shadow-sm);
             border: 1px solid var(--border-light);
-            margin-top: 24px;
+            margin-top: 28px;
             transition: var(--transition);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-light);
         }
         .disease-panel h2 {
             color: var(--accent);
-            margin-bottom: 20px;
-            font-size: 1.6rem;
+            margin-bottom: 24px;
+            font-size: 1.7rem;
             font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
         }
         .disease-panel h2 i {
-            font-size: 1.7rem;
+            font-size: 1.8rem;
         }
         .disease-item {
-            margin-bottom: 24px;
-            padding-bottom: 24px;
+            margin-bottom: 28px;
+            padding-bottom: 28px;
             border-bottom: 1px solid var(--border-light);
             transition: var(--transition);
             position: relative;
@@ -542,7 +571,7 @@
             bottom: 0;
             left: 0;
             width: 0;
-            height: 1px;
+            height: 2px;
             background: var(--accent);
             transition: var(--transition);
         }
@@ -556,111 +585,114 @@
         }
         .disease-item strong {
             color: var(--accent-2);
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             font-weight: 600;
         }
         .disease-item .small {
-            font-size: 0.98rem;
+            font-size: 1.02rem;
             color: var(--muted);
-            margin-top: 8px;
-            line-height: 1.6;
+            margin-top: 10px;
+            line-height: 1.7;
         }
         .disease-item .small i {
             color: var(--primary-blue);
-            margin-right: 6px;
+            margin-right: 8px;
         }
         .med-combo {
             background: var(--glass-2);
-            border-radius: 20px;
-            padding: 28px;
+            border-radius: 24px;
+            padding: 32px;
             box-shadow: var(--shadow-sm);
             border: 1px solid var(--border-light);
-            margin-top: 24px;
+            margin-top: 28px;
             transition: var(--transition);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-light);
         }
         .med-combo h2 {
             color: var(--accent);
-            margin-bottom: 24px;
-            font-size: 1.6rem;
+            margin-bottom: 28px;
+            font-size: 1.7rem;
             font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
         }
         .med-combo h2 i {
-            font-size: 1.7rem;
+            font-size: 1.8rem;
         }
         .form-row {
             display: flex;
-            gap: 20px;
-            margin-bottom: 20px;
+            gap: 24px;
+            margin-bottom: 24px;
             flex-wrap: wrap;
         }
         .form-group {
             flex: 1;
-            min-width: 240px;
+            min-width: 260px;
         }
         .form-group label {
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             font-weight: 500;
             color: var(--text-light);
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 1.05rem;
+            gap: 10px;
+            font-size: 1.08rem;
         }
         .form-group label i {
             color: var(--accent);
-            font-size: 1.15rem;
+            font-size: 1.2rem;
         }
         select.form-control, input.form-control {
             width: 100%;
-            padding: 16px 20px;
+            padding: 18px 24px;
             border: 1px solid var(--border-light);
-            border-radius: 16px;
+            border-radius: 18px;
             font-family: var(--font);
-            font-size: 1.05rem;
-            background: rgba(255, 255, 255, 0.1);
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.08);
             color: var(--text-light);
             box-shadow: var(--shadow-sm);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-light);
         }
         select.form-control:focus, input.form-control:focus {
             outline: none;
             border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.2);
-            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+            background: rgba(255, 255, 255, 0.12);
         }
         .interactions-warning {
-            background: rgba(255, 202, 58, 0.15);
-            border: 1px solid rgba(255, 202, 58, 0.3);
-            border-radius: 16px;
-            padding: 20px;
-            margin: 20px 0;
+            background: rgba(245, 158, 11, 0.18);
+            border: 1px solid rgba(245, 158, 11, 0.35);
+            border-radius: 18px;
+            padding: 24px;
+            margin: 24px 0;
             display: flex;
             align-items: flex-start;
-            gap: 16px;
+            gap: 20px;
             animation: fadeIn 0.4s ease;
-            backdrop-filter: blur(10px);
-            border-left: 4px solid var(--warning-yellow);
+            backdrop-filter: blur(12px);
+            border-left: 5px solid var(--warning-yellow);
+            box-shadow: var(--shadow-sm);
         }
         .interactions-warning.danger {
-            background: rgba(217, 4, 41, 0.15);
-            border: 1px solid rgba(217, 4, 41, 0.3);
-            color: #f8d7da;
-            border-left: 4px solid var(--alert-red);
+            background: rgba(239, 68, 68, 0.18);
+            border: 1px solid rgba(239, 68, 68, 0.35);
+            color: #fecaca;
+            border-left: 5px solid var(--alert-red);
         }
         .interactions-warning.success {
-            background: rgba(56, 176, 0, 0.15);
-            border: 1px solid rgba(56, 176, 0, 0.3);
-            color: #d1f7e5;
-            border-left: 4px solid var(--success-green);
+            background: rgba(16, 185, 129, 0.18);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            color: #d1fae5;
+            border-left: 5px solid var(--success-green);
         }
         .interactions-warning i {
-            font-size: 1.6rem;
-            margin-top: 4px;
+            font-size: 1.8rem;
+            margin-top: 6px;
         }
         .interactions-warning.danger i {
             color: var(--alert-red);
@@ -669,14 +701,15 @@
             color: var(--success-green);
         }
         .interactions-list {
-            margin: 10px 0 0 48px;
+            margin: 12px 0 0 56px;
             flex: 1;
         }
         .interactions-list li {
-            margin: 8px 0;
-            padding: 6px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 10px 0;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
             color: var(--text-light);
+            font-size: 1.02rem;
         }
         .interactions-list li:last-child {
             border-bottom: none;
@@ -684,69 +717,73 @@
         .interactions-list li a {
             color: var(--accent);
             text-decoration: none;
-            margin-left: 8px;
+            margin-left: 10px;
+            font-weight: 500;
         }
         .interactions-list li a:hover {
             text-decoration: underline;
         }
         .pae-form {
             background: var(--glass-2);
-            border-radius: 20px;
-            padding: 28px;
+            border-radius: 24px;
+            padding: 32px;
             box-shadow: var(--shadow-sm);
             border: 1px solid var(--border-light);
-            margin-top: 24px;
+            margin-top: 28px;
             transition: var(--transition);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-light);
         }
         .pae-form h2 {
             color: var(--accent);
-            margin-bottom: 24px;
-            font-size: 1.6rem;
+            margin-bottom: 28px;
+            font-size: 1.7rem;
             font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
         }
         .pae-form h2 i {
-            font-size: 1.7rem;
+            font-size: 1.8rem;
         }
         .rcp-guide {
             background: var(--glass-2);
-            border-radius: 20px;
-            padding: 28px;
+            border-radius: 24px;
+            padding: 32px;
             box-shadow: var(--shadow-sm);
             border: 1px solid var(--border-light);
-            margin-top: 24px;
+            margin-top: 28px;
             transition: var(--transition);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-light);
         }
         .rcp-guide h2 {
             color: var(--accent);
-            margin-bottom: 24px;
-            font-size: 1.6rem;
+            margin-bottom: 28px;
+            font-size: 1.7rem;
             font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
         }
         .rcp-guide h2 i {
-            font-size: 1.7rem;
+            font-size: 1.8rem;
         }
         .rcp-step {
-            margin-bottom: 24px;
-            padding-left: 36px;
+            margin-bottom: 28px;
+            padding-left: 42px;
             position: relative;
             transition: var(--transition);
-            padding: 16px 20px;
-            background: rgba(58, 134, 255, 0.05);
-            border-radius: 12px;
-            border-left: 4px solid var(--primary-blue);
+            padding: 20px 24px;
+            background: rgba(37, 99, 235, 0.08);
+            border-radius: 14px;
+            border-left: 5px solid var(--primary-blue);
             border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
         }
         .rcp-step:hover {
-            background: rgba(58, 134, 255, 0.1);
-            transform: translateX(8px);
+            background: rgba(37, 99, 235, 0.14);
+            transform: translateX(10px);
         }
         .rcp-step::before {
             content: attr(data-step);
@@ -754,63 +791,65 @@
             left: 0;
             top: 50%;
             transform: translateY(-50%);
-            width: 32px;
-            height: 32px;
+            width: 36px;
+            height: 36px;
             background: var(--accent);
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: bold;
             z-index: 1;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
         .score-result {
             background: var(--glass-2);
-            border-radius: 20px;
-            padding: 28px;
+            border-radius: 24px;
+            padding: 32px;
             box-shadow: var(--shadow-sm);
             border: 1px solid var(--border-light);
-            margin-top: 24px;
+            margin-top: 28px;
             text-align: center;
             transition: var(--transition);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-light);
         }
         .score-result h3 {
             color: var(--accent);
-            margin-bottom: 20px;
-            font-size: 1.4rem;
+            margin-bottom: 24px;
+            font-size: 1.5rem;
             font-weight: 600;
         }
         .score-value {
-            font-size: 2.4rem;
+            font-size: 2.8rem;
             font-weight: bold;
             color: var(--accent);
-            margin: 20px 0;
-            text-shadow: 0 2px 4px rgba(0, 180, 216, 0.3);
+            margin: 24px 0;
+            text-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
             font-family: 'Courier New', monospace;
+            letter-spacing: -1px;
         }
         .score-category {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-weight: 500;
             color: var(--accent-2);
         }
         .tab-container {
-            margin-top: 24px;
+            margin-top: 28px;
         }
         .tabs {
             display: flex;
             border-bottom: 1px solid var(--border-light);
-            margin-bottom: 24px;
-            border-radius: 16px 16px 0 0;
+            margin-bottom: 28px;
+            border-radius: 18px 18px 0 0;
             overflow: hidden;
             background: var(--glass-2);
             border: 1px solid var(--border-light);
         }
         .tab {
-            padding: 16px 24px;
+            padding: 18px 28px;
             cursor: pointer;
             font-weight: 500;
             color: var(--muted);
@@ -819,12 +858,13 @@
             background: transparent;
             flex: 1;
             text-align: center;
+            font-size: 1.05rem;
         }
         .tab:first-child {
-            border-radius: 16px 0 0 0;
+            border-radius: 18px 0 0 0;
         }
         .tab:last-child {
-            border-radius: 0 16px 0 0;
+            border-radius: 0 18px 0 0;
         }
         .tab:hover {
             background: var(--accent-2);
@@ -833,7 +873,7 @@
         .tab.active {
             color: var(--accent);
             border-bottom: 3px solid var(--accent);
-            background: rgba(0, 180, 216, 0.1);
+            background: rgba(59, 130, 246, 0.12);
             font-weight: 600;
         }
         .tab-content {
@@ -844,68 +884,71 @@
         }
         .calculator-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-            gap: 24px;
-            margin-top: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 28px;
+            margin-top: 28px;
         }
         .calculator-form {
             background: var(--glass-2);
-            border-radius: 20px;
-            padding: 28px;
+            border-radius: 24px;
+            padding: 32px;
             box-shadow: var(--shadow-sm);
             border: 1px solid var(--border-light);
             transition: var(--transition);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-light);
         }
         .calculator-form:hover {
-            transform: translateY(-6px);
+            transform: translateY(-8px);
             box-shadow: var(--shadow-lg);
         }
         .calculator-form h3 {
             color: var(--accent);
-            margin-bottom: 24px;
-            font-size: 1.4rem;
+            margin-bottom: 28px;
+            font-size: 1.5rem;
             font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
         }
         .calculator-form h3 i {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
         }
         .patient-list {
             background: var(--glass-2);
-            border-radius: 20px;
-            padding: 28px;
+            border-radius: 24px;
+            padding: 32px;
             box-shadow: var(--shadow-sm);
             border: 1px solid var(--border-light);
-            margin-top: 24px;
+            margin-top: 28px;
             transition: var(--transition);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-light);
         }
         .patient-list h2 {
             color: var(--accent);
-            margin-bottom: 24px;
-            font-size: 1.6rem;
+            margin-bottom: 28px;
+            font-size: 1.7rem;
             font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
         }
         .patient-list h2 i {
-            font-size: 1.7rem;
+            font-size: 1.8rem;
         }
         .patient-card {
             background: var(--primary-blue-lighter);
-            border-radius: 14px;
-            padding: 20px;
-            margin-bottom: 16px;
-            border-left: 5px solid var(--primary-blue);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            border-left: 6px solid var(--primary-blue);
             transition: var(--transition);
             cursor: pointer;
             position: relative;
             overflow: hidden;
             border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
         }
         .patient-card::before {
             content: '';
@@ -914,13 +957,13 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(45deg, transparent, rgba(58, 134, 255, 0.1));
+            background: linear-gradient(45deg, transparent, rgba(37, 99, 235, 0.12));
             opacity: 0;
             transition: var(--transition);
         }
         .patient-card:hover {
-            transform: translateX(8px);
-            background: rgba(58, 134, 255, 0.18);
+            transform: translateX(10px);
+            background: rgba(37, 99, 235, 0.2);
         }
         .patient-card:hover::before {
             opacity: 1;
@@ -928,14 +971,14 @@
         .patient-card::after {
             content: "→";
             position: absolute;
-            right: 20px;
+            right: 24px;
             top: 50%;
             transform: translateY(-50%);
             opacity: 0;
             transition: var(--transition);
             color: var(--primary-blue);
             font-weight: bold;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
         }
         .patient-card:hover::after {
             opacity: 1;
@@ -945,130 +988,134 @@
         }
         .patient-card h3 {
             color: var(--primary-blue-darker);
-            margin-bottom: 8px;
-            font-size: 1.15rem;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
             font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .patient-card h3 i {
-            color: var(--primary-blue);
-            font-size: 1.3rem;
-        }
-        .patient-card p {
-            margin: 4px 0;
-            font-size: 0.98rem;
-            color: var(--text-light);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .patient-card p i {
-            color: var(--muted);
-            font-size: 1.1rem;
-            width: 22px;
-            text-align: center;
-        }
-        .resource-panel {
-            background: var(--glass-2);
-            border-radius: 20px;
-            padding: 28px;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--border-light);
-            margin-top: 24px;
-            transition: var(--transition);
-            backdrop-filter: blur(10px);
-        }
-        .resource-panel h2 {
-            color: var(--accent);
-            margin-bottom: 24px;
-            font-size: 1.6rem;
-            font-weight: 700;
             display: flex;
             align-items: center;
             gap: 12px;
         }
-        .resource-panel h2 i {
+        .patient-card h3 i {
+            color: var(--primary-blue);
+            font-size: 1.4rem;
+        }
+        .patient-card p {
+            margin: 6px 0;
+            font-size: 1.02rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .patient-card p i {
+            color: var(--muted);
+            font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
+        }
+        .resource-panel {
+            background: var(--glass-2);
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            margin-top: 28px;
+            transition: var(--transition);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-light);
+        }
+        .resource-panel h2 {
+            color: var(--accent);
+            margin-bottom: 28px;
             font-size: 1.7rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .resource-panel h2 i {
+            font-size: 1.8rem;
         }
         .resource-card {
             background: var(--primary-blue-lighter);
-            border-radius: 14px;
-            padding: 20px;
-            margin-bottom: 16px;
-            border-left: 5px solid var(--primary-blue);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            border-left: 6px solid var(--primary-blue);
             transition: var(--transition);
             border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
         }
         .resource-card:hover {
-            transform: translateX(8px);
-            background: rgba(58, 134, 255, 0.18);
+            transform: translateX(10px);
+            background: rgba(37, 99, 235, 0.2);
         }
         .resource-card:last-child {
             margin-bottom: 0;
         }
         .resource-card h3 {
             color: var(--primary-blue-darker);
-            margin-bottom: 8px;
-            font-size: 1.15rem;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .resource-card h3 i {
+            color: var(--primary-blue);
+            font-size: 1.4rem;
+        }
+        .resource-card p {
+            margin: 6px 0;
+            font-size: 1.02rem;
+            color: var(--text-light);
             display: flex;
             align-items: center;
             gap: 10px;
         }
-        .resource-card h3 i {
-            color: var(--primary-blue);
-            font-size: 1.3rem;
-        }
-        .resource-card p {
-            margin: 4px 0;
-            font-size: 0.98rem;
-            color: var(--text-light);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
         .resource-card p i {
             color: var(--muted);
-            font-size: 1.1rem;
-            width: 22px;
+            font-size: 1.2rem;
+            width: 24px;
             text-align: center;
         }
         .resource-card a {
             display: inline-block;
-            margin-top: 12px;
-            padding: 10px 16px;
+            margin-top: 16px;
+            padding: 12px 18px;
             background: var(--gradient-secondary);
             color: white;
-            border-radius: 10px;
+            border-radius: 12px;
             text-decoration: none;
             font-weight: 500;
             transition: var(--transition);
-            border: 1px solid rgba(30, 58, 138, 0.3);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            font-size: 1.02rem;
         }
         .resource-card a:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
             box-shadow: var(--shadow-sm);
         }
         .welcome-actions {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 28px;
         }
         .welcome-card {
             background: var(--glass-2);
-            border-radius: 20px;
-            padding: 28px;
+            border-radius: 24px;
+            padding: 32px;
             box-shadow: var(--shadow-sm);
             border: 1px solid var(--border-light);
             text-align: center;
             transition: var(--transition);
             cursor: pointer;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
             position: relative;
             overflow: hidden;
+            border: 1px solid var(--border-light);
         }
         .welcome-card::before {
             content: '';
@@ -1077,82 +1124,83 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(45deg, transparent, rgba(0, 180, 216, 0.1));
+            background: linear-gradient(45deg, transparent, rgba(59, 130, 246, 0.12));
             opacity: 0;
             transition: var(--transition);
         }
         .welcome-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-10px);
             box-shadow: var(--shadow-lg);
         }
         .welcome-card:hover::before {
             opacity: 1;
         }
         .welcome-card i {
-            font-size: 3rem;
+            font-size: 3.4rem;
             color: var(--accent);
-            margin-bottom: 16px;
+            margin-bottom: 20px;
             transition: var(--transition);
         }
         .welcome-card:hover i {
-            transform: scale(1.1);
+            transform: scale(1.12);
         }
         .welcome-card h3 {
             color: var(--accent);
-            margin-bottom: 10px;
-            font-size: 1.3rem;
+            margin-bottom: 12px;
+            font-size: 1.4rem;
         }
         .welcome-card p {
             color: var(--muted);
-            font-size: 0.98rem;
-            line-height: 1.6;
+            font-size: 1.02rem;
+            line-height: 1.7;
         }
         .rcp-controls {
             display: flex;
-            gap: 16px;
-            margin-top: 24px;
+            gap: 20px;
+            margin-top: 28px;
             flex-wrap: wrap;
         }
         .rcp-timer {
-            font-size: 2rem;
+            font-size: 2.4rem;
             font-weight: 700;
             color: var(--accent);
-            margin: 20px 0;
+            margin: 24px 0;
             text-align: center;
             font-family: 'Courier New', monospace;
-            background: rgba(0, 180, 216, 0.1);
-            padding: 16px;
-            border-radius: 16px;
+            background: rgba(59, 130, 246, 0.12);
+            padding: 20px;
+            border-radius: 18px;
             border: 2px solid var(--accent);
             box-shadow: var(--shadow-sm);
         }
         .rcp-state {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: var(--muted);
-            margin-bottom: 16px;
+            margin-bottom: 20px;
             text-align: center;
         }
         .detailed-info {
-            background: rgba(58, 134, 255, 0.08);
+            background: rgba(37, 99, 235, 0.12);
             border: 1px solid var(--border-light);
-            border-radius: 16px;
-            padding: 20px;
-            margin: 16px 0;
-            font-size: 0.98rem;
+            border-radius: 18px;
+            padding: 24px;
+            margin: 20px 0;
+            font-size: 1.02rem;
             color: var(--text-light);
+            box-shadow: var(--shadow-sm);
         }
         .detailed-info h4 {
             color: var(--primary-blue);
-            margin: 12px 0 8px 0;
-            font-size: 1.1rem;
+            margin: 14px 0 10px 0;
+            font-size: 1.15rem;
             font-weight: 500;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
         .detailed-info p {
-            margin: 6px 0;
-            line-height: 1.6;
+            margin: 8px 0;
+            line-height: 1.7;
         }
         /* Modal styles */
         .modal {
@@ -1162,28 +1210,29 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.75);
             z-index: var(--z-modal);
             overflow-y: auto;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(6px);
         }
         .modal-content {
             background: var(--glass);
-            margin: 5% auto;
-            padding: 30px;
+            margin: 6% auto;
+            padding: 36px;
             border-radius: var(--card-radius);
             width: 90%;
-            max-width: 700px;
+            max-width: 800px;
             box-shadow: var(--shadow-lg);
             border: 1px solid var(--border);
             position: relative;
-            animation: modalFadeIn 0.3s;
+            animation: modalFadeIn 0.4s;
+            border: 2px solid var(--border);
         }
         .close-modal {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 1.5rem;
+            top: 24px;
+            right: 24px;
+            font-size: 1.8rem;
             cursor: pointer;
             color: var(--muted);
             background: none;
@@ -1191,9 +1240,10 @@
         }
         .close-modal:hover {
             color: var(--alert-red);
+            transform: rotate(90deg);
         }
         @keyframes modalFadeIn {
-            from { opacity: 0; transform: translateY(-50px); }
+            from { opacity: 0; transform: translateY(-60px); }
             to { opacity: 1; transform: translateY(0); }
         }
         /* Mobile menu button */
@@ -1201,13 +1251,13 @@
             display: none;
             background: var(--glass-2);
             border: none;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             cursor: pointer;
             color: var(--text-light);
-            padding: 12px;
+            padding: 14px;
             border-radius: 50%;
-            width: 52px;
-            height: 52px;
+            width: 56px;
+            height: 56px;
             align-items: center;
             justify-content: center;
             transition: var(--transition);
@@ -1216,88 +1266,90 @@
         }
         .mobile-menu-btn:hover {
             background: var(--accent-2);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
             box-shadow: var(--shadow-md);
         }
         /* Patient form styles */
         .patient-form-container {
-            padding: 20px 0;
+            padding: 24px 0;
         }
         .patient-form-container .form-row {
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
         .patient-form-container .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
         .patient-form-container textarea {
             width: 100%;
-            min-height: 100px;
-            padding: 16px 20px;
+            min-height: 120px;
+            padding: 18px 24px;
             border: 1px solid var(--border-light);
-            border-radius: 16px;
+            border-radius: 18px;
             font-family: var(--font);
-            font-size: 1.05rem;
-            background: rgba(255, 255, 255, 0.1);
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.08);
             color: var(--text-light);
             box-shadow: var(--shadow-sm);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
             resize: vertical;
+            border: 1px solid var(--border-light);
         }
         .patient-form-container textarea:focus {
             outline: none;
             border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.2);
-            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+            background: rgba(255, 255, 255, 0.12);
         }
         .form-actions {
             display: flex;
-            gap: 12px;
+            gap: 16px;
             justify-content: flex-end;
-            margin-top: 24px;
-            padding-top: 20px;
+            margin-top: 28px;
+            padding-top: 24px;
             border-top: 1px solid var(--border-light);
         }
         /* Notification styles */
         #notification-container {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 24px;
+            right: 24px;
             z-index: 1000;
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            max-width: 350px;
+            gap: 12px;
+            max-width: 400px;
         }
         .notification {
-            padding: 16px 20px;
-            border-radius: 12px;
+            padding: 20px 24px;
+            border-radius: 16px;
             background: var(--glass);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
             border: 1px solid var(--border);
             box-shadow: var(--shadow);
             display: flex;
             align-items: center;
-            gap: 12px;
-            animation: fadeIn 0.3s ease;
+            gap: 16px;
+            animation: fadeIn 0.4s ease;
+            border: 1px solid var(--border);
         }
         .notification-success {
-            background: rgba(56, 176, 0, 0.2);
-            border-color: rgba(56, 176, 0, 0.3);
+            background: rgba(16, 185, 129, 0.22);
+            border-color: rgba(16, 185, 129, 0.38);
             color: var(--success-green);
         }
         .notification-error {
-            background: rgba(217, 4, 41, 0.2);
-            border-color: rgba(217, 4, 41, 0.3);
+            background: rgba(239, 68, 68, 0.22);
+            border-color: rgba(239, 68, 68, 0.38);
             color: var(--alert-red);
         }
         .notification-info {
-            background: rgba(0, 180, 216, 0.2);
-            border-color: rgba(0, 180, 216, 0.3);
+            background: rgba(59, 130, 246, 0.22);
+            border-color: rgba(59, 130, 246, 0.38);
             color: var(--accent);
         }
         .notification-warning {
-            background: rgba(255, 202, 58, 0.2);
-            border-color: rgba(255, 202, 58, 0.3);
+            background: rgba(245, 158, 11, 0.22);
+            border-color: rgba(245, 158, 11, 0.38);
             color: var(--warning-yellow);
         }
         .notification-close {
@@ -1308,13 +1360,120 @@
             color: inherit;
         }
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-12px); }
+            from { opacity: 0; transform: translateY(-16px); }
             to { opacity: 1; transform: translateY(0); }
         }
         @keyframes pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            50% { transform: scale(1.08); }
             100% { transform: scale(1); }
+        }
+        /* Fuente confiable de información */
+        .source-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(59, 130, 246, 0.15);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-left: 8px;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+        .source-badge i {
+            font-size: 0.9rem;
+        }
+        .source-badge.wiki {
+            background: rgba(234, 234, 234, 0.2);
+            color: #000000;
+            border-color: rgba(234, 234, 234, 0.4);
+        }
+        .source-badge.fda {
+            background: rgba(220, 38, 38, 0.15);
+            color: var(--alert-red);
+            border-color: rgba(220, 38, 38, 0.3);
+        }
+        .source-badge.who {
+            background: rgba(0, 153, 255, 0.15);
+            color: #0099ff;
+            border-color: rgba(0, 153, 255, 0.3);
+        }
+        .source-reference {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-style: italic;
+        }
+        .source-reference a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        .source-reference a:hover {
+            text-decoration: underline;
+        }
+        /* Enhanced search with sources */
+        .search-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--glass);
+            border: 1px solid var(--border-light);
+            border-top: none;
+            border-radius: 0 0 18px 18px;
+            box-shadow: var(--shadow-md);
+            z-index: 100;
+            max-height: 300px;
+            overflow-y: auto;
+            backdrop-filter: blur(12px);
+        }
+        .suggestion-item {
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border-light);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .suggestion-item:hover {
+            background: var(--accent-2);
+            color: white;
+        }
+        .suggestion-text {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .suggestion-text i {
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+        .suggestion-category {
+            font-size: 0.9rem;
+            background: rgba(59, 130, 246, 0.15);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+        /* Mobile improvements */
+        @media (max-width: 1200px) {
+            .app {
+                border-radius: 18px;
+            }
+            .category-card, .disease-panel, .med-combo, .pae-form, .rcp-guide, .patient-list, .resource-panel {
+                border-radius: 18px;
+                padding: 28px;
+            }
+            .calculator-container {
+                grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            }
         }
         @media (max-width: 1024px) {
             .app {
@@ -1334,7 +1493,7 @@
             }
             .sidebar {
                 width: 100%;
-                max-height: 280px;
+                max-height: 320px;
                 border-right: none;
                 border-bottom: 1px solid var(--border);
                 position: relative;
@@ -1356,7 +1515,7 @@
                 flex-direction: column;
             }
             header {
-                padding: 16px;
+                padding: 20px;
             }
             .search-container {
                 flex-direction: column;
@@ -1365,10 +1524,10 @@
                 width: 100%;
             }
             .app {
-                border-radius: 12px;
+                border-radius: 14px;
             }
             .category-card, .disease-panel, .med-combo, .pae-form, .rcp-guide, .patient-list, .resource-panel {
-                border-radius: 12px;
+                border-radius: 14px;
                 padding: 20px;
             }
             .mobile-menu-btn {
@@ -1379,30 +1538,39 @@
             }
             .modal-content {
                 width: 95%;
-                margin: 10% auto;
-                padding: 20px;
+                margin: 12% auto;
+                padding: 24px;
+            }
+            .search-suggestions {
+                position: static;
+                border-radius: 18px;
+                margin-top: 8px;
+                max-height: 200px;
             }
         }
         @media (max-width: 480px) {
             .app {
-                border-radius: 12px;
+                border-radius: 14px;
             }
             .category-card, .disease-panel, .med-combo, .pae-form, .rcp-guide, .patient-list, .resource-panel {
-                border-radius: 12px;
-                padding: 16px;
+                border-radius: 14px;
+                padding: 18px;
             }
             .cat-btn {
-                padding: 14px 18px;
-                font-size: 0.95rem;
+                padding: 16px 20px;
+                font-size: 1rem;
             }
             .input, .btn {
-                font-size: 0.95rem;
+                font-size: 1rem;
             }
             header h1 {
-                font-size: 1.5rem;
+                font-size: 1.6rem;
             }
             .modal-content {
-                padding: 16px;
+                padding: 20px;
+            }
+            .welcome-card {
+                padding: 24px;
             }
         }
     </style>
@@ -1490,7 +1658,10 @@
             </nav>
             <main class="panel" id="mainPanel" aria-live="polite">
                 <div class="search-container">
-                    <input id="globalSearch" class="input" placeholder="Buscar procedimiento, enfermedad, medicamento o paciente..." aria-label="Buscar">
+                    <div style="position: relative; flex: 1;">
+                        <input id="globalSearch" class="input" placeholder="Buscar procedimiento, enfermedad, medicamento o paciente..." aria-label="Buscar">
+                        <div id="searchSuggestions" class="search-suggestions"></div>
+                    </div>
                     <button id="searchBtn" class="btn primary">
                         <i class="fas fa-search"></i> Buscar
                     </button>
@@ -1592,12 +1763,10 @@
         function $(id) {
             return document.getElementById(id);
         }
-
         // Theme toggle functionality
         const themeToggle = $('themeToggle');
         const html = document.documentElement;
         const themeIcon = themeToggle.querySelector('i');
-
         // Check for saved theme preference or use preferred color scheme
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme) {
@@ -1609,7 +1778,6 @@
         } else {
             updateThemeIcon('light');
         }
-
         function updateThemeIcon(theme) {
             if (theme === 'dark') {
                 themeIcon.className = 'fas fa-sun';
@@ -1617,7 +1785,6 @@
                 themeIcon.className = 'fas fa-moon';
             }
         }
-
         themeToggle.addEventListener('click', () => {
             const currentTheme = html.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -1625,24 +1792,24 @@
             localStorage.setItem('theme', newTheme);
             updateThemeIcon(newTheme);
         });
-
         // Mobile menu toggle
         const mobileMenuBtn = $('mobileMenuBtn');
         const sidebar = $('sidebar');
         mobileMenuBtn.addEventListener('click', () => {
             sidebar.classList.toggle('hidden-mobile');
         });
-
-        // Procedimientos de enfermería
+        // Procedimientos de enfermería con fuentes confiables
         const PROCEDURES = {
             higiene: [
                 {
                     id: 'lavado_mano',
                     title: 'Lavado de manos',
                     summary: 'Técnica esencial para prevenir infecciones según protocolos de la OMS.',
+                    source: 'who',
+                    sourceLink: 'https://www.who.int/es/news-room/fact-sheets/detail/hand-hygiene',
                     materials: ['Jabón', 'Agua', 'Toalla desechable', 'Gel alcohólico 70%'],
                     steps: [
-                        'Retirar joyas и reloj',
+                        'Retirar joyas y reloj',
                         'Mojar manos con agua',
                         'Aplicar jabón suficiente',
                         'Frotar palmas, dorsos, entre dedos y pulgares ≥20s',
@@ -1656,6 +1823,8 @@
                     id: 'baño_cama',
                     title: 'Baño en cama',
                     summary: 'Higiene integral del paciente encamado con prevención de lesiones.',
+                    source: 'nih',
+                    sourceLink: 'https://www.ncbi.nlm.nih.gov/books/NBK560818/',
                     materials: ['Toallas', 'Agua tibia', 'Jabón suave', 'Guantes', 'Sábana impermeable', 'Báscula'],
                     steps: [
                         'Preparar equipo y ambiente',
@@ -1675,6 +1844,8 @@
                     id: 'curacion_quirurgica',
                     title: 'Curación de herida quirúrgica',
                     summary: 'Técnica aséptica para el cuidado de heridas quirúrgicas.',
+                    source: 'cdc',
+                    sourceLink: 'https://www.cdc.gov/hai/pdfs/ssi/SSI_guideline-2017.pdf',
                     materials: ['Guantes estériles', 'Gasas estériles', 'Solución salina', 'Antiséptico', 'Apósito', 'Tijeras estériles'],
                     steps: [
                         'Lavado de manos',
@@ -1689,14 +1860,129 @@
                     ],
                     notes: 'Observar signos de infección: enrojecimiento, calor, dolor, edema, secreción purulenta.'
                 }
+            ],
+            farmaco: [
+                {
+                    id: 'admin_medicamentos',
+                    title: 'Administración segura de medicamentos',
+                    summary: 'Protocolo de las 5 "R" para la administración segura de medicamentos.',
+                    source: 'who',
+                    sourceLink: 'https://www.who.int/teams/integrated-health-services/patient-safety/medication-safety',
+                    materials: ['Historia clínica', 'Orden médica', 'Medicamento', 'Equipo de administración', 'Guantes'],
+                    steps: [
+                        'Verificar la identidad del paciente (Nombre y fecha de nacimiento)',
+                        'Confirmar el medicamento, dosis, vía, frecuencia y hora',
+                        'Revisar alergias e interacciones medicamentosas',
+                        'Documentar la administración inmediatamente después de dar el medicamento',
+                        'Monitorear efectos terapéuticos y efectos adversos'
+                    ],
+                    notes: 'Siempre siga el principio de las 5 "R": el paciente correcto, el medicamento correcto, la dosis correcta, la vía correcta y el momento correcto.'
+                }
+            ],
+            emergencias: [
+                {
+                    id: 'paro_respiratorio',
+                    title: 'Manejo de paro respiratorio',
+                    summary: 'Protocolo para el manejo inicial del paro respiratorio.',
+                    source: 'aha',
+                    sourceLink: 'https://www.ahajournals.org/doi/10.1161/CIR.0000000000000982',
+                    materials: ['Ambú', 'Máscara facial', 'Oxígeno', 'Equipo de intubación', 'Monitor'],
+                    steps: [
+                        'Evaluar conciencia y respiración',
+                        'Llamar a emergencias y pedir ayuda',
+                        'Iniciar ventilación con ambú a 10-12 respiraciones por minuto',
+                        'Administrar oxígeno al 100%',
+                        'Preparar para intubación si no mejora',
+                        'Monitorear saturación de oxígeno y signos vitales'
+                    ],
+                    notes: 'El paro respiratorio puede progresar rápidamente a paro cardíaco. Actúe rápidamente para asegurar la vía aérea y la ventilación.'
+                }
+            ],
+            movilizacion: [
+                {
+                    id: 'traslado_cama_silla',
+                    title: 'Traslado de cama a silla de ruedas',
+                    summary: 'Técnica segura para trasladar pacientes de cama a silla de ruedas.',
+                    source: 'ahrq',
+                    sourceLink: 'https://www.ahrq.gov/patient-safety/settings/hospital/resource/patientsafetyculture/pscultureosp/chap10.html',
+                    materials: ['Silla de ruedas', 'Cinturón de seguridad', 'Colchón antiescaras', 'Guantes'],
+                    steps: [
+                        'Explicar el procedimiento al paciente',
+                        'Frenar la silla de ruedas y colocarla al lado de la cama',
+                        'Ayudar al paciente a sentarse en el borde de la cama',
+                        'Colocar el cinturón de transferencia',
+                        'Usar una técnica de elevación segura para trasladar al paciente',
+                        'Asegurar al paciente en la silla con el cinturón',
+                        'Documentar el traslado y estado del paciente'
+                    ],
+                    notes: 'Use equipo de transferencia cuando sea posible. Evite torsiones de la columna. Evalúe la fuerza muscular del paciente antes del traslado.'
+                }
+            ],
+            nutricion: [
+                {
+                    id: 'alimentacion_paciente',
+                    title: 'Alimentación de pacientes con dificultad para tragar',
+                    summary: 'Protocolo para alimentar pacientes con disfagia.',
+                    source: 'nih',
+                    sourceLink: 'https://www.ncbi.nlm.nih.gov/books/NBK545243/',
+                    materials: ['Alimentos modificados', 'Utensilios adaptados', 'Toallas', 'Sistema de alimentación enteral si es necesario'],
+                    steps: [
+                        'Evaluar la capacidad de deglución del paciente',
+                        'Colocar al paciente en posición de 90 grados',
+                        'Ofrecer pequeñas cantidades de alimento',
+                        'Dar tiempo suficiente para masticar y tragar',
+                        'Observar signos de aspiración (toser, cambiar de color)',
+                        'Registrar la ingesta y tolerancia'
+                    ],
+                    notes: 'Los pacientes con disfagia tienen alto riesgo de aspiración. Modifique la textura de los alimentos según indicación del logopeda.'
+                }
+            ],
+            infeccion: [
+                {
+                    id: 'aislamiento_contacto',
+                    title: 'Precauciones de aislamiento por contacto',
+                    summary: 'Protocolo para prevenir la transmisión de patógenos por contacto.',
+                    source: 'cdc',
+                    sourceLink: 'https://www.cdc.gov/infectioncontrol/guidelines/isolation/index.html',
+                    materials: ['Bata', 'Guantes', 'Mascarilla si hay riesgo de salpicadura', 'Señalización de aislamiento'],
+                    steps: [
+                        'Usar bata y guantes al entrar en la habitación',
+                        'Retirar equipo antes de salir de la habitación',
+                        'Realizar higiene de manos inmediatamente después',
+                        'Equipos médicos dedicados al paciente',
+                        'Limpieza y desinfección frecuente de superficies',
+                        'Documentar cumplimiento de precauciones'
+                    ],
+                    notes: 'Las precauciones por contacto se usan para pacientes con infecciones transmitidas por contacto directo o indirecto (MRSA, C. difficile, etc.).'
+                }
+            ],
+            medicamentos: [
+                {
+                    id: 'control_medicamentos',
+                    title: 'Control de medicamentos de alto riesgo',
+                    summary: 'Protocolo para el manejo seguro de medicamentos de alto riesgo.',
+                    source: 'ismp',
+                    sourceLink: 'https://www.ismp.org/guidelines/high-alert-medications',
+                    materials: ['Lista de medicamentos de alto riesgo', 'Protocolos específicos', 'Sistemas de doble verificación'],
+                    steps: [
+                        'Identificar medicamentos de alto riesgo en el paciente',
+                        'Implementar controles adicionales (doble verificación)',
+                        'Educación al paciente sobre el medicamento',
+                        'Monitoreo estrecho de efectos adversos',
+                        'Documentación exhaustiva de la administración',
+                        'Revisión farmacéutica regular'
+                    ],
+                    notes: 'Los medicamentos de alto riesgo incluyen anticoagulantes, insulina, opiáceos, quimioterápicos y muchos otros. Un error puede resultar en daño grave al paciente.'
+                }
             ]
         };
-
-        // Enfermedades comunes
+        // Enfermedades comunes con fuentes confiables
         const DISEASES = [
             {
                 name: 'Neumonía',
                 summary: 'Infección inflamatoria aguda del parénquima pulmonar, generalmente bacteriana o viral. Presenta fiebre, tos productiva, disnea y crepitaciones. Cuidados: oxigenoterapia, movilización, antibióticos según guía.',
+                source: 'cdc',
+                sourceLink: 'https://www.cdc.gov/pneumonia/index.html',
                 detailed: {
                     etiologia: 'Bacteriana (Streptococcus pneumoniae), viral (influenza), atípica (Mycoplasma). Factores de riesgo: edad, tabaquismo, enfermedad pulmonar crónica.',
                     sintomas: 'Fiebre, tos productiva, disnea, dolor torácico pleurítico, escalofríos, sudoración nocturna.',
@@ -1708,6 +1994,8 @@
             {
                 name: 'Diabetes Mellitus',
                 summary: 'Enfermedad metabólica caracterizada por niveles elevados de glucosa en sangre. Requiere control estricto de glucemia, dieta y medicación.',
+                source: 'who',
+                sourceLink: 'https://www.who.int/news-room/fact-sheets/detail/diabetes',
                 detailed: {
                     etiologia: 'Tipo 1: destrucción autoinmune de células β pancreáticas. Tipo 2: resistencia a la insulina y deficiencia relativa de insulina.',
                     sintomas: 'Poliuria, polidipsia, polifagia, pérdida de peso, visión borrosa, fatiga.',
@@ -1715,28 +2003,95 @@
                     tratamiento: 'Dieta, ejercicio, antidiabéticos orales, insulina, monitorización de glucemia.',
                     prevencion: 'Estilo de vida saludable, control de peso, ejercicio regular, dieta equilibrada.'
                 }
+            },
+            {
+                name: 'Insuficiencia Cardíaca',
+                summary: 'Síndrome clínico causado por una disfunción estructural o funcional del corazón que reduce la capacidad del ventrículo para llenarse o vaciarse de sangre.',
+                source: 'aha',
+                sourceLink: 'https://www.heart.org/en/health-topics/heart-failure',
+                detailed: {
+                    etiologia: 'Enfermedad arterial coronaria, infarto de miocardio, hipertensión arterial, miocardiopatías, valvulopatías.',
+                    sintomas: 'Disnea, ortopnea, disnea paroxística nocturna, edema periférico, fatiga, tos nocturna.',
+                    diagnostico: 'Ecocardiograma, BNP/NT-proBNP, radiografía de tórax, ECG, evaluación funcional.',
+                    tratamiento: 'Diuréticos, IECA/ARA-II, betabloqueantes, antagonistas de la aldosterona, dispositivos cardíacos, trasplante.',
+                    prevencion: 'Control de factores de riesgo cardiovascular, tratamiento de enfermedades subyacentes, estilo de vida saludable.'
+                }
+            },
+            {
+                name: 'Enfermedad Pulmonar Obstructiva Crónica (EPOC)',
+                summary: 'Enfermedad inflamatoria crónica de las vías respiratorias que causa obstrucción del flujo de aire desde los pulmones.',
+                source: 'gold',
+                sourceLink: 'https://goldcopd.org/',
+                detailed: {
+                    etiologia: 'Tabaquismo (principal causa), contaminación del aire, deficiencia de alfa-1 antitripsina, exposición ocupacional.',
+                    sintomas: 'Tos crónica, producción de esputo, disnea progresiva, sibilancias, infecciones respiratorias frecuentes.',
+                    diagnostico: 'Espirometría (VFG1/CVF < 0.7 después de broncodilatador), radiografía de tórax, gasometría arterial.',
+                    tratamiento: 'Abandono del tabaquismo, broncodilatadores, corticosteroides inhalados, oxigenoterapia, rehabilitación pulmonar.',
+                    prevencion: 'Abandono del tabaquismo, vacunación antigripal y antineumocócica, reducción de exposiciones ocupacionales.'
+                }
             }
         ];
-
-        // Medicamentos y combinaciones peligrosas
+        // Medicamentos y combinaciones peligrosas con fuentes
         const NEVER_COMBINE = [
-            { a: 'warfarina', b: 'ibuprofeno', reason: 'Aumento del riesgo de hemorragia gastrointestinal y sistémica', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK545235/' },
-            { a: 'sertralina', b: 'tramadol', reason: 'Riesgo de síndrome serotoninérgico y convulsiones', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK537237/' },
-            { a: 'omeprazol', b: 'clopidogrel', reason: 'Disminución del efecto antiagregante plaquetario', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK548274/' }
+            { a: 'warfarina', b: 'ibuprofeno', reason: 'Aumento del riesgo de hemorragia gastrointestinal y sistémica', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK545235/', source: 'nih' },
+            { a: 'sertralina', b: 'tramadol', reason: 'Riesgo de síndrome serotoninérgico y convulsiones', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK537237/', source: 'nih' },
+            { a: 'omeprazol', b: 'clopidogrel', reason: 'Disminución del efecto antiagregante plaquetario', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK548274/', source: 'nih' },
+            { a: 'digoxina', b: 'verapamilo', reason: 'Aumento del riesgo de toxicidad por digoxina', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK558918/', source: 'nih' },
+            { a: 'litio', b: 'diuréticos', reason: 'Aumento del riesgo de toxicidad por litio', ref: 'https://www.ncbi.nlm.nih.gov/books/NBK558995/', source: 'nih' }
         ];
-
         const MEDS = [
             'Warfarina', 'Ibuprofeno', 'Paracetamol', 'Ciprofloxacina', 'Metformina',
             'Sertralina', 'Omeprazol', 'Sildenafil', 'Nitroglicerina', 'Clopidogrel',
             'Atorvastatina', 'Amlodipino', 'Losartán', 'Metoprolol', 'Insulina',
             'Aspirina', 'Tramadol', 'Diazepam', 'Loratadina', 'Amoxicilina'
         ];
-
+        // Recursos educativos con fuentes confiables
+        const RECURSOS_EDUCATIVOS = [
+            {
+                id: 1,
+                titulo: 'Guía de Práctica Clínica: Manejo de la Diabetes Tipo 2',
+                categoria: 'Protocolos',
+                tipo: 'documento',
+                url: 'https://www.ncbi.nlm.nih.gov/books/NBK555976/',
+                etiquetas: ['diabetes', 'endocrinología', 'protocolo', 'tratamiento'],
+                descripcion: 'Guía actualizada basada en evidencia para el manejo integral de la diabetes mellitus tipo 2, incluyendo objetivos terapéuticos, algoritmos de tratamiento y prevención de complicaciones.',
+                fuente: 'NIH'
+            },
+            {
+                id: 2,
+                titulo: 'Técnicas de Venopunción',
+                categoria: 'Videos',
+                tipo: 'video',
+                url: 'https://www.youtube.com/watch?v=1uR0b4q9PCA',
+                etiquetas: ['venopunción', 'técnica', 'video', 'procedimiento'],
+                descripcion: 'Video demostrativo de las técnicas adecuadas para la venopunción, incluyendo selección del sitio, preparación del equipo y método para minimizar molestias al paciente.',
+                fuente: 'CDC'
+            },
+            {
+                id: 3,
+                titulo: 'Manejo de la Insuficiencia Cardíaca',
+                categoria: 'Guías',
+                tipo: 'documento',
+                url: 'https://www.ahajournals.org/doi/10.1161/CIR.0000000000001063',
+                etiquetas: ['cardiología', 'insuficiencia cardíaca', 'guía', 'tratamiento'],
+                descripcion: 'Guía completa para el manejo de la insuficiencia cardíaca, con algoritmos de tratamiento, estrategias de monitoreo y enfoques de atención multidisciplinaria.',
+                fuente: 'AHA'
+            },
+            {
+                id: 4,
+                titulo: 'Prevención de Infecciones del Tracto Urinario',
+                categoria: 'Protocolos',
+                tipo: 'documento',
+                url: 'https://www.cdc.gov/hai/pdfs/psi/psi-urinary-tract-infection.pdf',
+                etiquetas: ['infección', 'uti', 'prevención', 'cuidado'],
+                descripcion: 'Protocolo basado en evidencia para la prevención de infecciones del tracto urinario asociadas a la atención sanitaria, con enfoque en el manejo del catéter urinario.',
+                fuente: 'CDC'
+            }
+        ];
         // Pacientes
         const PATIENTS_KEY = 'enfermeria_david_pacientes';
         const PAE_KEY = 'enfermeria_david_pae';
         const RECURSOS_KEY = 'enfermeria_david_recursos';
-
         // Funciones de almacenamiento persistente
         function getStoredData(key, defaultValue = []) {
             try {
@@ -1748,7 +2103,6 @@
                 return defaultValue;
             }
         }
-
         function setStoredData(key, data) {
             try {
                 localStorage.setItem(key, JSON.stringify(data));
@@ -1759,7 +2113,6 @@
                 return false;
             }
         }
-
         // Obtener datos almacenados o usar datos iniciales
         let PACIENTES = getStoredData(PATIENTS_KEY, [
             {
@@ -1823,40 +2176,32 @@
                 }
             }
         ]);
-
-        let RECURSOS = getStoredData(RECURSOS_KEY, [
-            {
-                id: 1,
-                titulo: 'Guía de Práctica Clínica: Manejo de la Diabetes Tipo 2',
-                categoria: 'Protocolos',
-                tipo: 'documento',
-                url: 'https://example.com/diabetes2.pdf',
-                etiquetas: ['diabetes', 'endocrinología', 'protocolo', 'tratamiento'],
-                descripcion: 'Guía actualizada basada en evidencia para el manejo integral de la diabetes mellitus tipo 2, incluyendo objetivos terapéuticos, algoritmos de tratamiento y prevención de complicaciones.'
-            },
-            {
-                id: 2,
-                titulo: 'Técnicas de Venopunción',
-                categoria: 'Videos',
-                tipo: 'video',
-                url: 'https://example.com/venopuncion',
-                etiquetas: ['venopunción', 'técnica', 'video', 'procedimiento'],
-                descripcion: 'Video demostrativo de las técnicas adecuadas para la venopunción, incluyendo selección del sitio, preparación del equipo y método para minimizar molestias al paciente.'
-            }
-        ]);
-
+        let RECURSOS = getStoredData(RECURSOS_KEY, RECURSOS_EDUCATIVOS);
         // Variables globales
         let currentEditingPatientId = null;
-
         // Content area and functions
         const contentArea = $('contentArea');
-
         // Modal elements
         const patientModal = $('patientModal');
         const patientModalTitle = $('patientModalTitle');
         const closePatientModalBtn = $('closePatientModal');
         const cancelPatientBtn = $('cancelPatientBtn');
         const savePatientBtn = $('savePatientBtn');
+        // Search suggestions
+        const searchSuggestions = $('searchSuggestions');
+        const globalSearch = $('globalSearch');
+        
+        // Source mapping for display
+        const SOURCES = {
+            who: { name: 'OMS', color: '#0099ff', icon: 'fas fa-globe-americas' },
+            cdc: { name: 'CDC', color: '#d90429', icon: 'fas fa-shield-alt' },
+            aha: { name: 'AHA', color: '#e30613', icon: 'fas fa-heart' },
+            nih: { name: 'NIH', color: '#005a9c', icon: 'fas fa-microscope' },
+            ismp: { name: 'ISMP', color: '#006400', icon: 'fas fa-check-circle' },
+            fda: { name: 'FDA', color: '#d90429', icon: 'fas fa-capsules' },
+            gold: { name: 'GOLD', color: '#f9c80e', icon: 'fas fa-lungs' },
+            ahrq: { name: 'AHRQ', color: '#0072cf', icon: 'fas fa-hospital' }
+        };
 
         function clearContent() {
             contentArea.innerHTML = '';
@@ -1864,6 +2209,18 @@
             document.querySelectorAll('.cat-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
+            // Hide search suggestions
+            if (searchSuggestions) {
+                searchSuggestions.style.display = 'none';
+            }
+        }
+        
+        function getSourceBadge(sourceKey) {
+            const source = SOURCES[sourceKey];
+            if (!source) return '';
+            return `<span class="source-badge ${sourceKey.toLowerCase()}" style="color: ${source.color}; border-color: ${source.color}80;">
+                <i class="${source.icon}"></i> ${source.name}
+            </span>`;
         }
 
         function getCatTitle(cat) {
@@ -1884,6 +2241,182 @@
                 'pacientes': 'Gestión de Pacientes'
             };
             return titles[cat] || cat;
+        }
+        
+        // Enhanced search functionality
+        function setupSearch() {
+            if (!globalSearch) return;
+            
+            // Create all searchable items
+            const searchItems = [];
+            
+            // Add procedures
+            Object.keys(PROCEDURES).forEach(category => {
+                PROCEDURES[category].forEach(proc => {
+                    searchItems.push({
+                        type: 'procedure',
+                        category: category,
+                        title: proc.title,
+                        summary: proc.summary,
+                        content: proc.steps.join(' ') + ' ' + proc.notes,
+                        link: `#${category}-${proc.id}`
+                    });
+                });
+            });
+            
+            // Add diseases
+            DISEASES.forEach(disease => {
+                searchItems.push({
+                    type: 'disease',
+                    category: 'enfermedades',
+                    title: disease.name,
+                    summary: disease.summary,
+                    content: Object.values(disease.detailed).join(' '),
+                    link: `#enfermedades-${disease.name.toLowerCase().replace(/\s+/g, '-')}`
+                });
+            });
+            
+            // Add medications
+            MEDS.forEach(med => {
+                searchItems.push({
+                    type: 'medication',
+                    category: 'medicamentos',
+                    title: med,
+                    summary: `Información sobre ${med}`,
+                    content: med,
+                    link: `#medicamentos-${med.toLowerCase().replace(/\s+/g, '-')}`
+                });
+            });
+            
+            // Add patients
+            PACIENTES.forEach(patient => {
+                searchItems.push({
+                    type: 'patient',
+                    category: 'pacientes',
+                    title: patient.nombre,
+                    summary: `${patient.edad} años, ${patient.diagnosticoPrincipal}`,
+                    content: patient.historiaClinica.resumen + ' ' + patient.alergias.join(' '),
+                    link: `#pacientes-${patient.id}`
+                });
+            });
+            
+            // Add resources
+            RECURSOS.forEach(resource => {
+                searchItems.push({
+                    type: 'resource',
+                    category: 'recursos',
+                    title: resource.titulo,
+                    summary: resource.descripcion,
+                    content: resource.etiquetas.join(' ') + ' ' + resource.descripcion,
+                    link: resource.url
+                });
+            });
+            
+            // Search function
+            globalSearch.addEventListener('input', function(e) {
+                const query = e.target.value.toLowerCase().trim();
+                
+                if (query.length === 0) {
+                    searchSuggestions.style.display = 'none';
+                    return;
+                }
+                
+                // Filter results
+                const results = searchItems.filter(item => 
+                    item.title.toLowerCase().includes(query) ||
+                    item.summary.toLowerCase().includes(query) ||
+                    item.content.toLowerCase().includes(query)
+                ).slice(0, 8);
+                
+                if (results.length === 0) {
+                    searchSuggestions.style.display = 'none';
+                    return;
+                }
+                
+                // Display results
+                searchSuggestions.innerHTML = results.map(item => {
+                    const icon = item.type === 'procedure' ? 'fa-stethoscope' :
+                                item.type === 'disease' ? 'fa-notes-medical' :
+                                item.type === 'medication' ? 'fa-pills' :
+                                item.type === 'patient' ? 'fa-user' : 'fa-book';
+                    
+                    return `
+                        <div class="suggestion-item" data-link="${item.link}">
+                            <div class="suggestion-text">
+                                <i class="fas ${icon}"></i>
+                                <div>
+                                    <div>${item.title}</div>
+                                    <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 4px;">${item.summary}</div>
+                                </div>
+                            </div>
+                            <span class="suggestion-category">${item.type}</span>
+                        </div>
+                    `;
+                }).join('');
+                
+                searchSuggestions.style.display = 'block';
+            });
+            
+            // Handle clicks on suggestions
+            searchSuggestions.addEventListener('click', function(e) {
+                const item = e.target.closest('.suggestion-item');
+                if (item) {
+                    const link = item.getAttribute('data-link');
+                    const title = item.querySelector('.suggestion-text div:first-child').textContent;
+                    
+                    // Close suggestions
+                    searchSuggestions.style.display = 'none';
+                    globalSearch.value = title;
+                    
+                    // Navigate to the item
+                    showNotification(`Buscando: ${title}`, 'info');
+                    
+                    // Find which category this belongs to and show it
+                    const categoryMap = {
+                        'procedure': (id) => {
+                            const [cat, procId] = id.split('-');
+                            showProcedures(cat);
+                        },
+                        'disease': () => showDiseases(),
+                        'medication': () => showMedications(),
+                        'patient': () => showPacientes(),
+                        'resource': (url) => window.open(url, '_blank')
+                    };
+                    
+                    // Extract category from link
+                    if (link.startsWith('#')) {
+                        const parts = link.substring(1).split('-');
+                        const cat = parts[0];
+                        if (cat === 'pacientes') {
+                            const patientId = parseInt(parts[1]);
+                            showPacientes();
+                            // Scroll to patient after a delay
+                            setTimeout(() => {
+                                const patientCard = document.querySelector(`[data-id="${patientId}"]`);
+                                if (patientCard) {
+                                    patientCard.scrollIntoView({ behavior: 'smooth' });
+                                }
+                            }, 300);
+                        } else {
+                            // Activate the corresponding category button
+                            const catBtn = document.querySelector(`.cat-btn[data-cat="${cat}"]`);
+                            if (catBtn) {
+                                catBtn.click();
+                            }
+                        }
+                    } else {
+                        // External link
+                        window.open(link, '_blank');
+                    }
+                }
+            });
+            
+            // Hide suggestions when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.search-container')) {
+                    searchSuggestions.style.display = 'none';
+                }
+            });
         }
 
         // Show pacientes
@@ -1930,11 +2463,13 @@
                 </div>
             `;
             contentArea.innerHTML = pacientesHTML;
-
             // Add event listeners
-            $('patient-search').addEventListener('input', updatePatientGrid);
-            $('patient-specialty').addEventListener('change', updatePatientGrid);
-
+            const searchInput = $('patient-search');
+            const specialtySelect = $('patient-specialty');
+            
+            if (searchInput) searchInput.addEventListener('input', updatePatientGrid);
+            if (specialtySelect) specialtySelect.addEventListener('change', updatePatientGrid);
+            
             // Use setTimeout to ensure DOM is ready
             setTimeout(() => {
                 const addBtn = $('addPatientBtn');
@@ -1942,18 +2477,185 @@
                 if (addBtn) addBtn.addEventListener('click', () => openPatientModal());
                 if (exportBtn) exportBtn.addEventListener('click', () => exportPatients());
             }, 100);
-
             updatePatientGrid();
+        }
+        
+        // Show procedures
+        function showProcedures(category) {
+            clearContent();
+            // Add active state to the selected button
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                if (btn.getAttribute('data-cat') === category) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            const procedures = PROCEDURES[category] || [];
+            const categoryTitle = getCatTitle(category);
+            
+            let html = `<div class="category-card" id="${category}">`;
+            html += `<h2><i class="fas fa-stethoscope"></i> ${categoryTitle}</h2>`;
+            
+            if (procedures.length === 0) {
+                html += `<p class="small">No hay procedimientos disponibles para esta categoría.</p>`;
+            } else {
+                procedures.forEach(proc => {
+                    html += `<div class="procedure">`;
+                    html += `<h3><i class="fas fa-arrow-right"></i> ${proc.title}</h3>`;
+                    if (proc.source) {
+                        html += `<div style="margin-bottom: 12px;">${getSourceBadge(proc.source)}</div>`;
+                    }
+                    html += `<div class="summary"><i class="fas fa-info-circle"></i> ${proc.summary}</div>`;
+                    html += `<div class="materials"><h4><i class="fas fa-box"></i> Materiales</h4><ul>`;
+                    proc.materials.forEach(mat => {
+                        html += `<li>${mat}</li>`;
+                    });
+                    html += `</ul></div>`;
+                    html += `<div class="steps"><h4><i class="fas fa-list-ol"></i> Pasos</h4><ol>`;
+                    proc.steps.forEach(step => {
+                        html += `<li>${step}</li>`;
+                    });
+                    html += `</ol></div>`;
+                    if (proc.notes) {
+                        html += `<div class="notes"><i class="fas fa-sticky-note"></i> ${proc.notes}</div>`;
+                    }
+                    if (proc.sourceLink) {
+                        html += `<div class="source-reference">
+                            <i class="fas fa-link"></i> Información verificada en 
+                            <a href="${proc.sourceLink}" target="_blank">fuente oficial</a>
+                        </div>`;
+                    }
+                    html += `</div>`;
+                });
+            }
+            html += `</div>`;
+            contentArea.innerHTML = html;
+        }
+        
+        // Show diseases
+        function showDiseases() {
+            clearContent();
+            // Add active state to the selected button
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                if (btn.getAttribute('data-cat') === 'enfermedades') {
+                    btn.classList.add('active');
+                }
+            });
+            
+            let html = `<div class="disease-panel" id="enfermedades">`;
+            html += `<h2><i class="fas fa-notes-medical"></i> Enfermedades y Condiciones</h2>`;
+            
+            DISEASES.forEach(disease => {
+                html += `<div class="disease-item">`;
+                html += `<strong>${disease.name}</strong>`;
+                if (disease.source) {
+                    html += ` ${getSourceBadge(disease.source)}`;
+                }
+                html += `<div class="small"><i class="fas fa-info-circle"></i> ${disease.summary}</div>`;
+                
+                html += `<div class="detailed-info">`;
+                html += `<h4><i class="fas fa-book"></i> Detalles Clínicos</h4>`;
+                html += `<p><strong>Etiología:</strong> ${disease.detailed.etiologia}</p>`;
+                html += `<p><strong>Síntomas:</strong> ${disease.detailed.sintomas}</p>`;
+                html += `<p><strong>Diagnóstico:</strong> ${disease.detailed.diagnostico}</p>`;
+                html += `<p><strong>Tratamiento:</strong> ${disease.detailed.tratamiento}</p>`;
+                html += `<p><strong>Prevención:</strong> ${disease.detailed.prevencion}</p>`;
+                html += `</div>`;
+                
+                if (disease.sourceLink) {
+                    html += `<div class="source-reference">
+                        <i class="fas fa-link"></i> Información verificada en 
+                        <a href="${disease.sourceLink}" target="_blank">fuente oficial</a>
+                    </div>`;
+                }
+                
+                html += `</div>`;
+            });
+            html += `</div>`;
+            contentArea.innerHTML = html;
+        }
+        
+        // Show medications
+        function showMedications() {
+            clearContent();
+            // Add active state to the selected button
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                if (btn.getAttribute('data-cat') === 'medicamentos') {
+                    btn.classList.add('active');
+                }
+            });
+            
+            let html = `<div class="med-combo" id="medicamentos">`;
+            html += `<h2><i class="fas fa-pills"></i> Medicamentos y Combinaciones</h2>`;
+            html += `<p class="small">Lista de medicamentos comunes y combinaciones peligrosas basadas en evidencia científica.</p>`;
+            
+            // Medication list
+            html += `<div class="category-card" style="margin-top: 24px;">`;
+            html += `<h3><i class="fas fa-prescription-bottle-alt"></i> Medicamentos Comunes</h3>`;
+            html += `<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-top: 16px;">`;
+            MEDS.forEach(med => {
+                html += `<div style="background: var(--glass-2); padding: 12px; border-radius: 12px; text-align: center; border: 1px solid var(--border-light);">
+                    ${med}
+                </div>`;
+            });
+            html += `</div></div>`;
+            
+            // Dangerous combinations
+            html += `<div class="interactions-warning danger" style="margin-top: 24px;">`;
+            html += `<i class="fas fa-exclamation-triangle"></i>`;
+            html += `<div>`;
+            html += `<h3>Combinaciones Medicamentosas Peligrosas</h3>`;
+            html += `<p>Estas combinaciones están contraindicadas debido al alto riesgo de efectos adversos graves:</p>`;
+            html += `<ul class="interactions-list">`;
+            NEVER_COMBINE.forEach(combo => {
+                html += `<li>${combo.a} + ${combo.b}: ${combo.reason} ${getSourceBadge(combo.source)}</li>`;
+            });
+            html += `</ul>`;
+            html += `<div class="source-reference" style="margin-top: 12px;">
+                <i class="fas fa-link"></i> Información basada en evidencia de 
+                <a href="https://www.ncbi.nlm.nih.gov/books/NBK538287/" target="_blank">NIH</a>
+            </div>`;
+            html += `</div></div>`;
+            
+            html += `</div>`;
+            contentArea.innerHTML = html;
+        }
+        
+        // Show resources
+        function showResources() {
+            clearContent();
+            // Add active state to the selected button
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                if (btn.getAttribute('data-cat') === 'recursos') {
+                    btn.classList.add('active');
+                }
+            });
+            
+            let html = `<div class="resource-panel" id="recursos">`;
+            html += `<h2><i class="fas fa-book"></i> Recursos Educativos</h2>`;
+            html += `<p class="small">Recursos confiables y actualizados para la práctica clínica basada en evidencia.</p>`;
+            
+            RECURSOS.forEach(resource => {
+                html += `<div class="resource-card">`;
+                html += `<h3><i class="fas fa-file-alt"></i> ${resource.titulo}</h3>`;
+                html += `<p><i class="fas fa-tags"></i> Categoría: ${resource.categoria}</p>`;
+                html += `<p><i class="fas fa-link"></i> Fuente: ${resource.fuente}</p>`;
+                html += `<p><i class="fas fa-info-circle"></i> ${resource.descripcion}</p>`;
+                html += `<a href="${resource.url}" target="_blank" class="btn small">
+                    <i class="fas fa-external-link-alt"></i> Acceder al recurso
+                </a>`;
+                html += `</div>`;
+            });
+            html += `</div>`;
+            contentArea.innerHTML = html;
         }
 
         // Update patient grid
         function updatePatientGrid() {
             const container = $('patients-container');
             if (!container) return;
-
             const search = ($('patient-search') ? $('patient-search').value : '').toLowerCase();
             const specialty = ($('patient-specialty') ? $('patient-specialty').value : '');
-
             const filteredPatients = PACIENTES.filter(p => {
                 const matchesSearch = !search || 
                     p.nombre.toLowerCase().includes(search) || 
@@ -1961,12 +2663,10 @@
                 const matchesSpecialty = !specialty || p.especialidad === specialty;
                 return matchesSearch && matchesSpecialty;
             });
-
             if (filteredPatients.length === 0) {
                 container.innerHTML = '<p class="small">No se encontraron pacientes que coincidan con los criterios de búsqueda.</p>';
                 return;
             }
-
             container.innerHTML = filteredPatients.map(p => 
                 `<div class="patient-card" data-id="${p.id}">
                     <h3><i class="fas fa-user"></i> ${p.nombre}</h3>
@@ -1992,7 +2692,6 @@
                     </div>
                 </div>`
             ).join('');
-
             // Add event listeners to edit buttons
             document.querySelectorAll('.edit-patient').forEach(btn => {
                 btn.addEventListener('click', (e) => {
@@ -2001,7 +2700,6 @@
                     openPatientModal(patientId);
                 });
             });
-
             // Add event listeners to delete buttons
             document.querySelectorAll('.delete-patient').forEach(btn => {
                 btn.addEventListener('click', (e) => {
@@ -2011,7 +2709,6 @@
                 });
             });
         }
-
         // Export patients
         function exportPatients() {
             if (PACIENTES.length === 0) {
@@ -2027,7 +2724,6 @@
             downloadAnchorNode.remove();
             showNotification('Pacientes exportados correctamente', 'success');
         }
-
         // Modal functions
         function openPatientModal(patientId = null) {
             currentEditingPatientId = patientId;
@@ -2055,12 +2751,10 @@
             }
             patientModal.style.display = 'block';
         }
-
         function closePatientModal() {
             patientModal.style.display = 'none';
             currentEditingPatientId = null;
         }
-
         function savePatient() {
             const name = $('modal-patient-name').value.trim();
             const ageInput = $('modal-patient-age').value.trim();
@@ -2068,19 +2762,16 @@
             const specialty = $('modal-patient-specialty').value;
             const allergies = $('modal-patient-allergies').value.split(',').map(a => a.trim()).filter(a => a);
             const history = $('modal-patient-history').value.trim();
-
             // Validación mejorada
             if (!name || !ageInput || !diagnosis || !specialty) {
                 showNotification('Por favor, complete todos los campos obligatorios', 'error');
                 return;
             }
-
             const age = parseInt(ageInput);
             if (isNaN(age) || age <= 0 || age > 150) {
                 showNotification('La edad debe ser un número válido entre 1 y 150', 'error');
                 return;
             }
-
             if (currentEditingPatientId) {
                 // Editar paciente existente
                 const patientIndex = PACIENTES.findIndex(p => p.id === currentEditingPatientId);
@@ -2138,11 +2829,9 @@
                     showNotification('✅ Paciente agregado con éxito', 'success');
                 }
             }
-
             updatePatientGrid();
             closePatientModal();
         }
-
         function deletePatient(patientId) {
             if (confirm('¿Está seguro de que desea eliminar este paciente? Esta acción no se puede deshacer.')) {
                 PACIENTES = PACIENTES.filter(p => p.id !== patientId);
@@ -2152,19 +2841,16 @@
                 }
             }
         }
-
         // Modal event listeners
         closePatientModalBtn.addEventListener('click', closePatientModal);
         cancelPatientBtn.addEventListener('click', closePatientModal);
         savePatientBtn.addEventListener('click', savePatient);
-
         // Close modal when clicking outside
         window.addEventListener('click', (e) => {
             if (e.target === patientModal) {
                 closePatientModal();
             }
         });
-
         // Notification system
         function showNotification(message, type = 'info') {
             // Create notification container if it doesn't exist
@@ -2174,13 +2860,13 @@
                 container.id = 'notification-container';
                 container.style.cssText = `
                     position: fixed;
-                    top: 20px;
-                    right: 20px;
+                    top: 24px;
+                    right: 24px;
                     z-index: 1000;
                     display: flex;
                     flex-direction: column;
-                    gap: 10px;
-                    max-width: 350px;
+                    gap: 12px;
+                    max-width: 400px;
                 `;
                 document.body.appendChild(container);
             }
@@ -2206,13 +2892,20 @@
                 }
             }, 5000);
         }
-
         // Event listeners for category buttons
         document.querySelectorAll('.cat-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 const cat = btn.getAttribute('data-cat');
                 if (cat === 'pacientes') {
                     showPacientes();
+                } else if (cat === 'enfermedades') {
+                    showDiseases();
+                } else if (cat === 'medicamentos') {
+                    showMedications();
+                } else if (cat === 'recursos') {
+                    showResources();
+                } else if (PROCEDURES[cat]) {
+                    showProcedures(cat);
                 } else {
                     showNotification(`Función ${getCatTitle(cat)} en desarrollo`, 'info');
                 }
@@ -2222,7 +2915,6 @@
                 }
             });
         });
-
         // Initialize app
         document.addEventListener('DOMContentLoaded', () => {
             // Verificar si localStorage está disponible
@@ -2233,17 +2925,16 @@
             } catch (e) {
                 showNotification('⚠️ No se puede usar localStorage. Revise permisos del navegador.', 'error');
             }
-
             // Set initial state - show patients by default
             showPacientes();
-
+            // Setup search functionality
+            setupSearch();
             // Reasignar eventos críticos por seguridad
             setTimeout(() => {
                 const addBtn = $('addPatientBtn');
                 const saveBtn = $('savePatientBtn');
                 const cancelBtn = $('cancelPatientBtn');
                 const closeBtn = $('closePatientModal');
-
                 if (addBtn && !addBtn.onclick) {
                     addBtn.addEventListener('click', () => openPatientModal());
                 }
