@@ -1630,6 +1630,462 @@
             margin: 16px 0;
             border: 1px solid var(--border-light);
         }
+        /* Estilos para procedimientos */
+        .procedure-card {
+            background: var(--glass-2);
+            border-radius: 18px;
+            padding: 20px;
+            margin: 16px 0;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+        }
+        .procedure-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+        .procedure-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+        .procedure-specialty {
+            font-size: 0.9rem;
+            color: var(--muted);
+            background: rgba(5, 150, 105, 0.1);
+            padding: 4px 8px;
+            border-radius: 6px;
+            border: 1px solid rgba(5, 150, 105, 0.2);
+        }
+        .procedure-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .procedure-steps {
+            counter-reset: step;
+            margin: 16px 0;
+        }
+        .procedure-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding-left: 24px;
+            position: relative;
+        }
+        .procedure-step::before {
+            content: counter(step);
+            counter-increment: step;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 28px;
+            height: 28px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+        .procedure-step:last-child {
+            margin-bottom: 0;
+        }
+        .procedure-visuals {
+            margin: 16px 0;
+            padding: 16px;
+            background: rgba(5, 150, 105, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(5, 150, 105, 0.2);
+        }
+        .procedure-visuals h4 {
+            color: var(--accent);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .procedure-visuals img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin: 8px 0;
+        }
+        /* Estilos para nutrición */
+        .nutrition-card {
+            background: var(--glass-2);
+            border-radius: 18px;
+            padding: 20px;
+            margin: 16px 0;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+        }
+        .nutrition-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+        .nutrition-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+        .nutrition-type {
+            font-size: 0.9rem;
+            color: var(--muted);
+            background: rgba(16, 185, 129, 0.1);
+            padding: 4px 8px;
+            border-radius: 6px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+        .nutrition-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .nutrition-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+        }
+        .nutrition-table th, .nutrition-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .nutrition-table th {
+            background: var(--glass-2);
+            font-weight: 500;
+        }
+        .nutrition-table tr:last-child td {
+            border-bottom: none;
+        }
+        /* Estilos para movilización */
+        .mobility-card {
+            background: var(--glass-2);
+            border-radius: 18px;
+            padding: 20px;
+            margin: 16px 0;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+        }
+        .mobility-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+        .mobility-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+        .mobility-risk {
+            font-size: 0.9rem;
+            color: var(--muted);
+            background: rgba(202, 138, 4, 0.1);
+            padding: 4px 8px;
+            border-radius: 6px;
+            border: 1px solid rgba(202, 138, 4, 0.2);
+        }
+        .mobility-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .mobility-steps {
+            counter-reset: step;
+            margin: 16px 0;
+        }
+        .mobility-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding-left: 24px;
+            position: relative;
+        }
+        .mobility-step::before {
+            content: counter(step);
+            counter-increment: step;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 28px;
+            height: 28px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+        .mobility-step:last-child {
+            margin-bottom: 0;
+        }
+        .mobility-visuals {
+            margin: 16px 0;
+            padding: 16px;
+            background: rgba(5, 150, 105, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(5, 150, 105, 0.2);
+        }
+        .mobility-visuals h4 {
+            color: var(--accent);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .mobility-visuals img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin: 8px 0;
+        }
+        /* Estilos para RCP */
+        .rcp-card {
+            background: var(--glass-2);
+            border-radius: 18px;
+            padding: 20px;
+            margin: 16px 0;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+        }
+        .rcp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+        .rcp-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+        .rcp-level {
+            font-size: 0.9rem;
+            color: var(--muted);
+            background: rgba(220, 38, 38, 0.1);
+            padding: 4px 8px;
+            border-radius: 6px;
+            border: 1px solid rgba(220, 38, 38, 0.2);
+        }
+        .rcp-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .rcp-steps {
+            counter-reset: step;
+            margin: 16px 0;
+        }
+        .rcp-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding-left: 24px;
+            position: relative;
+        }
+        .rcp-step::before {
+            content: counter(step);
+            counter-increment: step;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 28px;
+            height: 28px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+        .rcp-step:last-child {
+            margin-bottom: 0;
+        }
+        .rcp-visuals {
+            margin: 16px 0;
+            padding: 16px;
+            background: rgba(5, 150, 105, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(5, 150, 105, 0.2);
+        }
+        .rcp-visuals h4 {
+            color: var(--accent);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .rcp-visuals img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin: 8px 0;
+        }
+        /* Estilos para infecciones */
+        .infection-card {
+            background: var(--glass-2);
+            border-radius: 18px;
+            padding: 20px;
+            margin: 16px 0;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+        }
+        .infection-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+        .infection-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+        .infection-type {
+            font-size: 0.9rem;
+            color: var(--muted);
+            background: rgba(220, 38, 38, 0.1);
+            padding: 4px 8px;
+            border-radius: 6px;
+            border: 1px solid rgba(220, 38, 38, 0.2);
+        }
+        .infection-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .infection-transmission {
+            margin: 16px 0;
+            padding: 16px;
+            background: rgba(202, 138, 4, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(202, 138, 4, 0.2);
+        }
+        .infection-control {
+            margin: 16px 0;
+            padding: 16px;
+            background: rgba(5, 150, 105, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(5, 150, 105, 0.2);
+        }
+        /* Estilos para oncológicos */
+        .oncology-card {
+            background: var(--glass-2);
+            border-radius: 18px;
+            padding: 20px;
+            margin: 16px 0;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+        }
+        .oncology-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+        .oncology-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+        .oncology-stage {
+            font-size: 0.9rem;
+            color: var(--muted);
+            background: rgba(220, 38, 38, 0.1);
+            padding: 4px 8px;
+            border-radius: 6px;
+            border: 1px solid rgba(220, 38, 38, 0.2);
+        }
+        .oncology-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .oncology-treatment {
+            margin: 16px 0;
+            padding: 16px;
+            background: rgba(5, 150, 105, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(5, 150, 105, 0.2);
+        }
+        .oncology-prognosis {
+            margin: 16px 0;
+            padding: 16px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+        /* Estilos para reumatología */
+        .rheumatology-card {
+            background: var(--glass-2);
+            border-radius: 18px;
+            padding: 20px;
+            margin: 16px 0;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+        }
+        .rheumatology-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+        .rheumatology-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+        .rheumatology-type {
+            font-size: 0.9rem;
+            color: var(--muted);
+            background: rgba(202, 138, 4, 0.1);
+            padding: 4px 8px;
+            border-radius: 6px;
+            border: 1px solid rgba(202, 138, 4, 0.2);
+        }
+        .rheumatology-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .rheumatology-diagnosis {
+            margin: 16px 0;
+            padding: 16px;
+            background: rgba(5, 150, 105, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(5, 150, 105, 0.2);
+        }
+        .rheumatology-treatment {
+            margin: 16px 0;
+            padding: 16px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
     </style>
 </head>
 <body>
@@ -1960,13 +2416,13 @@
                         notes: "El tiempo es músculo. El objetivo es puerta-balón <90 minutos. Monitoreo continuo de signos vitales y arritmias. Manejo agresivo de factores de riesgo cardiovascular.",
                         visualReferences: [
                             {
-                                url: "https://placehold.co/600x400?text=ECG+IAM",
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/STEMI_ECG.jpg/800px-STEMI_ECG.jpg",
                                 title: "ECG de Infarto Agudo de Miocardio",
                                 description: "Patrón típico de elevación del ST en derivaciones precordiales"
                             },
                             {
-                                url: "https://placehold.co/600x400?text=Anatomía+Coronaria",
-                                title: "Arterias Coronarias",
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Coronary_anatomy.svg/800px-Coronary_anatomy.svg.png",
+                                title: "Anatomía Coronaria",
                                 description: "Distribución de las arterias coronarias y áreas que irrigan"
                             }
                         ],
@@ -2004,12 +2460,12 @@
                         notes: "Evaluar causa desencadenante. Controlar ingesta y egreso de líquidos. Educación al paciente sobre adherencia terapéutica y signos de descompensación.",
                         visualReferences: [
                             {
-                                url: "https://placehold.co/600x400?text=Insuficiencia+Cardiaca",
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Pulmonary_edema_chest_x_ray.jpg/800px-Pulmonary_edema_chest_x_ray.jpg",
                                 title: "Manifestaciones de Insuficiencia Cardiaca",
                                 description: "Signos clínicos de congestión pulmonar y sistémica"
                             },
                             {
-                                url: "https://placehold.co/600x400?text=Ecocardiograma",
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Echocardiogram_of_a_normal_heart_-_apical_four_chamber_view.gif/480px-Echocardiogram_of_a_normal_heart_-_apical_four_chamber_view.gif",
                                 title: "Ecocardiograma Doppler",
                                 description: "Evaluación de la fracción de eyección y función diastólica"
                             }
@@ -2062,161 +2518,1772 @@
                     }
                 ]
             },
-            farmacologia: {
-                title: "Farmacología",
-                icon: "fa-pills",
-                description: "Información completa sobre medicamentos, dosificaciones e interacciones",
-                medications: [
+            neumologia: {
+                title: "Neumología",
+                icon: "fa-lungs",
+                description: "Diagnóstico y tratamiento de enfermedades respiratorias",
+                procedures: [
                     {
-                        id: "paracetamol",
-                        name: "Paracetamol",
-                        brandNames: ["Tylenol", "Doliprane", "Panadol"],
-                        class: "Analgésicos",
-                        indications: "Dolor leve a moderado, fiebre",
-                        dosage: "Adultos: 500-1000 mg cada 4-6 horas (máx. 4g/día)",
-                        contraindications: "Hipersensibilidad, insuficiencia hepática grave",
-                        interactions: ["Alcohol", "Warfarina", "Carbamazepina"],
-                        sideEffects: ["Hepatotoxicidad (sobredosis)", "Reacciones cutáneas"],
-                        mechanism: "Inhibición de la ciclooxigenasa en el sistema nervioso central",
-                        pharmacokinetics: "Absorción rápida en tracto gastrointestinal, metabolismo hepático, excreción renal",
-                        warnings: "Riesgo de hepatotoxicidad en sobredosis. Evitar alcohol. Máximo 4g/día en adultos.",
-                        pregnancyCategory: "B",
-                        storage: "Conservar a temperatura ambiente, en lugar seco y protegido de la luz",
-                        images: [
-                            "https://placehold.co/300x200?text=Paracetamol+Tabletas",
-                            "https://placehold.co/300x200?text=Paracetamol+Suspensión"
+                        id: "asma",
+                        title: "Manejo de Asma Aguda",
+                        icon: "fa-lungs-virus",
+                        summary: "Protocolo para el manejo del asma aguda en el servicio de urgencias.",
+                        materials: [
+                            "Broncodilatadores de acción rápida",
+                            "Corticosteroides sistémicos",
+                            "Oxígeno terapia",
+                            "Monitorización de saturación de oxígeno",
+                            "Esquema de escala de asma"
                         ],
-                        sources: [
+                        steps: [
+                            "Evaluación inicial de la severidad del ataque",
+                            "Administrar broncodilatadores de acción rápida (salbutamol) por nebulización",
+                            "Administrar corticosteroides sistémicos (prednisona)",
+                            "Oxigenoterapia para mantener saturación >90%",
+                            "Monitoreo continuo de signos vitales y respuesta al tratamiento",
+                            "Evaluación de necesidad de hospitalización"
+                        ],
+                        notes: "Clasificar la severidad según los parámetros clínicos. Evitar el uso de sedantes. Monitorear función pulmonar si es posible. Educar al paciente sobre desencadenantes y uso correcto de inhaladores.",
+                        visualReferences: [
                             {
-                                name: "FDA",
-                                url: "https://www.fda.gov/drugs/postmarket-drug-safety-information-patients-and-providers/acetaminophen-information"
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Asthma_attack_on_a_child.jpg/800px-Asthma_attack_on_a_child.jpg",
+                                title: "Ataque de Asma",
+                                description: "Manifestaciones clínicas de un ataque de asma"
                             },
                             {
-                                name: "WHO",
-                                url: "https://www.who.int/publications/i/item/9789241549650"
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Pulmonary_function_test.jpg/800px-Pulmonary_function_test.jpg",
+                                title: "Prueba de Función Pulmonar",
+                                description: "Realización de espirometría para evaluación de asma"
                             }
                         ],
-                        lastUpdated: "2023-12-01"
+                        source: {
+                            name: "GINA",
+                            type: "who",
+                            description: "Global Initiative for Asthma Guidelines",
+                            url: "https://ginasthma.org"
+                        },
+                        lastUpdated: "2023-11-10"
                     },
                     {
-                        id: "ibuprofeno",
-                        name: "Ibuprofeno",
-                        brandNames: ["Advil", "Motrin", "Nurofen"],
-                        class: "AINEs",
-                        indications: "Dolor, inflamación, fiebre",
-                        dosage: "Adultos: 200-400 mg cada 4-6 horas (máx. 1200 mg/día)",
-                        contraindications: "Úlcera péptica activa, insuficiencia renal grave, tercer trimestre de embarazo",
-                        interactions: ["Warfarina", "Lithio", "IECA", "Diuréticos"],
-                        sideEffects: ["Gastropatía", "Retención de líquidos", "Daño renal"],
-                        mechanism: "Inhibición de la ciclooxigenasa-1 y -2",
-                        pharmacokinetics: "Absorción rápida, unión proteica 99%, metabolismo hepático",
-                        warnings: "Riesgo de eventos cardiovasculares. Evitar en pacientes con enfermedad cardiovascular. Riesgo de úlcera péptica.",
-                        pregnancyCategory: "C (evitar en tercer trimestre)",
-                        storage: "Conservar a temperatura ambiente, en lugar seco",
-                        images: [
-                            "https://placehold.co/300x200?text=Ibuprofeno+Tabletas",
-                            "https://placehold.co/300x200?text=Ibuprofeno+Jarabe"
+                        id: "copd",
+                        title: "Exacerbación de EPOC",
+                        icon: "fa-lungs",
+                        summary: "Manejo de la exacerbación aguda de la enfermedad pulmonar obstructiva crónica.",
+                        materials: [
+                            "Broncodilatadores",
+                            "Corticosteroides",
+                            "Antibióticos",
+                            "Oxígeno terapia",
+                            "Terapia no invasiva"
                         ],
-                        sources: [
+                        steps: [
+                            "Confirmar diagnóstico de exacerbación",
+                            "Administrar broncodilatadores de acción rápida",
+                            "Iniciar corticosteroides sistémicos",
+                            "Considerar antibióticos si hay signos de infección",
+                            "Oxigenoterapia controlada",
+                            "Considerar ventilación no invasiva si hay acidosis respiratoria",
+                            "Monitoreo continuo de gases arteriales"
+                        ],
+                        notes: "Evitar la hiperoxia. Monitorear niveles de CO2. Evaluar necesidad de ventilación mecánica. Prevenir tromboembolismo venoso.",
+                        visualReferences: [
                             {
-                                name: "FDA",
-                                url: "https://www.fda.gov/drugs/postmarket-drug-safety-information-patients-and-providers/ibuprofen-information"
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/COPD_exacerbation_chest_x_ray.jpg/800px-COPD_exacerbation_chest_x_ray.jpg",
+                                title: "Radiografía de Tórax en EPOC",
+                                description: "Hallazgos radiológicos en exacerbación de EPOC"
                             },
                             {
-                                name: "EMA",
-                                url: "https://www.ema.europa.eu/en/medicines/human/referrals/ibuprofen-containing-medicinal-products"
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Non_invasive_ventilation.jpg/800px-Non_invasive_ventilation.jpg",
+                                title: "Ventilación No Invasiva",
+                                description: "Aplicación de CPAP/BiPAP en exacerbación de EPOC"
                             }
                         ],
-                        lastUpdated: "2023-11-15"
-                    },
-                    {
-                        id: "amoxicilina",
-                        name: "Amoxicilina",
-                        brandNames: ["Amoxil", "Clamoxil", "Damoxy"],
-                        class: "Penicilinas",
-                        indications: "Infecciones bacterianas (respiratorias, urinarias, cutáneas)",
-                        dosage: "Adultos: 500 mg cada 8 horas o 875 mg cada 12 horas",
-                        contraindications: "Alergia a penicilinas, mononucleosis infecciosa",
-                        interactions: ["Metotrexato", "Probenecid", "Anticoagulantes"],
-                        sideEffects: ["Reacciones alérgicas", "Diarrea", "Candidiasis"],
-                        mechanism: "Inhibición de la síntesis de la pared bacteriana",
-                        pharmacokinetics: "Absorción bien en ayunas, distribución amplia, excreción renal",
-                        warnings: "Riesgo de reacciones alérgicas graves. Confirmar ausencia de alergia a penicilinas. Riesgo de colitis pseudomembranosa.",
-                        pregnancyCategory: "B",
-                        storage: "Conservar a temperatura ambiente, protección contra la humedad",
-                        images: [
-                            "https://placehold.co/300x200?text=Amoxicilina+Tabletas",
-                            "https://placehold.co/300x200?text=Amoxicilina+Suspensión"
-                        ],
-                        sources: [
-                            {
-                                name: "FDA",
-                                url: "https://www.fda.gov/drugs/postmarket-drug-safety-information-patients-and-providers/amoxicillin-information"
-                            },
-                            {
-                                name: "IDSA",
-                                url: "https://www.idsociety.org/practice-guideline/amoxicillin/"
-                            }
-                        ],
-                        lastUpdated: "2023-10-20"
+                        source: {
+                            name: "GOLD",
+                            type: "who",
+                            description: "Global Initiative for Chronic Obstructive Lung Disease",
+                            url: "https://goldcopd.org"
+                        },
+                        lastUpdated: "2023-10-25"
                     }
                 ],
-                interactions: [
+                diseases: [
                     {
-                        drugs: ["Warfarina", "Ibuprofeno"],
-                        severity: "Severe",
-                        mechanism: "El ibuprofeno desplaza a la warfarina de su unión a proteínas plasmáticas y afecta la hemostasia plaquetaria",
-                        recommendation: "Evitar la combinación. Si es necesaria, monitorear INR de cerca y considerar alternativas como paracetamol",
-                        evidence: "Nivel 1: Guías de la American Heart Association"
+                        id: "neumonia",
+                        name: "Neumonía Comunitaria",
+                        prevalence: "4-5 casos por 1000 adultos/año",
+                        description: "Infección aguda del parénquima pulmonar adquirida en la comunidad",
+                        symptoms: [
+                            "Fiebre",
+                            "Tos productiva",
+                            "Dolor torácico pleurítico",
+                            "Disnea",
+                            "Taquipnea"
+                        ],
+                        treatment: [
+                            "Antibióticos empíricos (amoxicilina-clavulánico)",
+                            "Soporte respiratorio",
+                            "Hidratación",
+                            "Control de fiebre"
+                        ],
+                        prognosis: "Buena con tratamiento oportuno. Mortalidad <5% en pacientes ambulatorios.",
+                        images: [
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Pneumonia_chest_x_ray.jpg/800px-Pneumonia_chest_x_ray.jpg",
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Lobar_pneumonia_microscopic.jpg/800px-Lobar_pneumonia_microscopic.jpg"
+                        ],
+                        sources: [
+                            {
+                                name: "IDSA",
+                                url: "https://www.idsociety.org/practice-guideline/community-acquired-pneumonia/"
+                            },
+                            {
+                                name: "ATS",
+                                url: "https://www.thoracic.org/statements/resources/mtp/management-of-adults-with-community-acquired-pneumonia.php"
+                            }
+                        ],
+                        lastUpdated: "2023-09-18"
                     },
                     {
-                        drugs: ["Simvastatina", "Itraconazol"],
-                        severity: "Severe",
-                        mechanism: "El itraconazol inhibe el CYP3A4, aumentando significativamente los niveles de simvastatina",
-                        recommendation: "Contraindicado. Usar estatinas que no dependan del CYP3A4 (pravastatina, rosuvastatina)",
-                        evidence: "Nivel 1: Guías de la FDA sobre interacciones medicamentosas"
-                    },
-                    {
-                        drugs: ["Lithio", "NSAIDs"],
-                        severity: "Moderate",
-                        mechanism: "Los AINEs reducen la excreción renal de litio, aumentando sus niveles plasmáticos",
-                        recommendation: "Monitorear niveles de litio de cerca. Considerar reducción de dosis de litio",
-                        evidence: "Nivel 2: Estudios clínicos controlados"
+                        id: "tuberculosis",
+                        name: "Tuberculosis",
+                        prevalence: "10 millones de casos nuevos/año globalmente",
+                        description: "Enfermedad infecciosa crónica causada por Mycobacterium tuberculosis",
+                        symptoms: [
+                            "Tos crónica >3 semanas",
+                            "Hemoptisis",
+                            "Fiebre vespertina",
+                            "Sudores nocturnos",
+                            "Pérdida de peso"
+                        ],
+                        treatment: [
+                            "Regimen cuádruple inicial (isoniacida, rifampicina, pirazinamida, etambutol)",
+                            "Tratamiento de 6 meses",
+                            "Terapia directamente observada",
+                            "Control de contactos"
+                        ],
+                        prognosis: "Curación >85% con tratamiento completo. Resistencia a medicamentos es un problema creciente.",
+                        images: [
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Tuberculosis_chest_x_ray.jpg/800px-Tuberculosis_chest_x_ray.jpg",
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Acid_fast_stain_of_M._tuberculosis.jpg/800px-Acid_fast_stain_of_M._tuberculosis.jpg"
+                        ],
+                        sources: [
+                            {
+                                name: "OMS",
+                                url: "https://www.who.int/teams/global-tuberculosis-programme"
+                            },
+                            {
+                                name: "CDC",
+                                url: "https://www.cdc.gov/tb"
+                            }
+                        ],
+                        lastUpdated: "2023-08-30"
                     }
                 ],
                 resources: [
                     {
-                        title: "Micromedex",
-                        description: "Base de datos completa de medicamentos y toxicología",
-                        url: "https://www.micromedexsolutions.com",
+                        title: "GINA Guidelines",
+                        description: "Guías globales para el manejo del asma",
+                        url: "https://ginasthma.org",
                         icon: "fa-book-medical",
                         category: "Referencia"
                     },
                     {
-                        title: "UpToDate",
-                        description: "Recursos clínicos actualizados basados en evidencia",
-                        url: "https://www.uptodate.com",
+                        title: "GOLD Guidelines",
+                        description: "Guías para el manejo de la EPOC",
+                        url: "https://goldcopd.org",
+                        icon: "fa-book-medical",
+                        category: "Referencia"
+                    },
+                    {
+                        title: "ERS Clinical Practice Guidelines",
+                        description: "Guías de práctica clínica de la Sociedad Europea de Neumología",
+                        url: "https://www.ersnet.org",
+                        icon: "fa-stethoscope",
+                        category: "Educación"
+                    }
+                ]
+            },
+            endocrinologia: {
+                title: "Endocrinología",
+                icon: "fa-brain",
+                description: "Diagnóstico y tratamiento de enfermedades del sistema endocrino",
+                procedures: [
+                    {
+                        id: "diabetes",
+                        title: "Manejo de Diabetes Mellitus Tipo 2",
+                        icon: "fa-sugar-cube",
+                        summary: "Enfoque integral para el control de la diabetes mellitus tipo 2.",
+                        materials: [
+                            "Glucómetro",
+                            "Tiras reactivas",
+                            "Agujas para punción",
+                            "Insulina y dispositivos de administración",
+                            "Educación para el paciente"
+                        ],
+                        steps: [
+                            "Evaluación inicial del control glucémico",
+                            "Educación sobre dieta y ejercicio",
+                            "Inicio de metformina como primera línea",
+                            "Monitoreo regular de HbA1c",
+                            "Evaluación de complicaciones crónicas",
+                            "Ajuste terapéutico basado en control glucémico"
+                        ],
+                        notes: "El objetivo es HbA1c <7% en la mayoría de los pacientes. Prevenir complicaciones micro y macrovasculares. Educar al paciente sobre reconocimiento e manejo de hipoglucemia.",
+                        visualReferences: [
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Diabetes_mellitus_complications.jpg/800px-Diabetes_mellitus_complications.jpg",
+                                title: "Complicaciones de la Diabetes",
+                                description: "Manifestaciones crónicas de la diabetes mellitus"
+                            },
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Glucose_meter.jpg/800px-Glucose_meter.jpg",
+                                title: "Autocontrol Glucémico",
+                                description: "Uso del glucómetro para monitoreo domiciliario"
+                            }
+                        ],
+                        source: {
+                            name: "ADA",
+                            type: "fda",
+                            description: "American Diabetes Association Standards of Care",
+                            url: "https://diabetes.org/clinical-guidelines"
+                        },
+                        lastUpdated: "2023-12-01"
+                    },
+                    {
+                        id: "tiroides",
+                        title: "Evaluación de Nódulo Tiroideo",
+                        icon: "fa-thyroid",
+                        summary: "Algoritmo para la evaluación de nódulos tiroideos.",
+                        materials: [
+                            "Ecógrafo",
+                            "Agujas para biopsia",
+                            "Laboratorio de hormonas tiroideas",
+                            "Escáner nuclear"
+                        ],
+                        steps: [
+                            "Palpación tiroidea",
+                            "Determinación de TSH",
+                            "Ecografía tiroidea",
+                            "Biopsia por aspiración con aguja fina si indicado",
+                            "Evaluación citológica",
+                            "Decisión terapéutica basada en resultados"
+                        ],
+                        notes: "La mayoría de los nódulos tiroideos son benignos. El TSH es el mejor indicador funcional. La ecografía guía la necesidad de biopsia. Seguimiento regular de nódulos benignos.",
+                        visualReferences: [
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Thyroid_nodule_ultrasound.jpg/800px-Thyroid_nodule_ultrasound.jpg",
+                                title: "Ecografía de Nódulo Tiroideo",
+                                description: "Características ecográficas de nódulos tiroideos"
+                            },
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Thyroid_scan.jpg/800px-Thyroid_scan.jpg",
+                                title: "Gammagrafía Tiroidea",
+                                description: "Distribución de captación de yodo radiactivo"
+                            }
+                        ],
+                        source: {
+                            name: "ATA",
+                            type: "fda",
+                            description: "American Thyroid Association Guidelines",
+                            url: "https://www.thyroid.org"
+                        },
+                        lastUpdated: "2023-11-15"
+                    }
+                ],
+                diseases: [
+                    {
+                        id: "hipotiroidismo",
+                        name: "Hipotiroidismo",
+                        prevalence: "4-5% de la población general",
+                        description: "Deficiencia de hormonas tiroideas",
+                        symptoms: [
+                            "Fatiga",
+                            "Aumento de peso",
+                            "Intolerancia al frío",
+                            "Piel seca",
+                            "Constipación",
+                            "Depresión"
+                        ],
+                        treatment: [
+                            "Levotiroxina sódica",
+                            "Ajuste de dosis según TSH",
+                            "Control regular",
+                            "Educación al paciente"
+                        ],
+                        prognosis: "Excelente con tratamiento adecuado. La mayoría de los pacientes requieren tratamiento de por vida.",
+                        images: [
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Myxedema_face.jpg/800px-Myxedema_face.jpg",
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Hypothyroidism_pathophysiology.jpg/800px-Hypothyroidism_pathophysiology.jpg"
+                        ],
+                        sources: [
+                            {
+                                name: "ATA",
+                                url: "https://www.thyroid.org/hypothyroidism/"
+                            },
+                            {
+                                name: "Endocrine Society",
+                                url: "https://www.endocrine.org/clinical-practice-guidelines/hypothyroidism"
+                            }
+                        ],
+                        lastUpdated: "2023-10-10"
+                    },
+                    {
+                        id: "hipertiroidismo",
+                        name: "Hipertiroidismo",
+                        prevalence: "1-2% de la población general",
+                        description: "Exceso de hormonas tiroideas",
+                        symptoms: [
+                            "Palpitaciones",
+                            "Pérdida de peso",
+                            "Intolerancia al calor",
+                            "Temblor",
+                            "Ansiedad",
+                            "Exoftalmos"
+                        ],
+                        treatment: [
+                            "Antitiroideos (metimazol, propiltiouracilo)",
+                            "Yodo radiactivo",
+                            "Tiroidectomía",
+                            "Beta bloqueadores sintomáticos"
+                        ],
+                        prognosis: "Bueno con tratamiento adecuado. La enfermedad de Graves puede tener remisiones y recaídas.",
+                        images: [
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Graves_disease_exophthalmos.jpg/800px-Graves_disease_exophthalmos.jpg",
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Graves_disease_pathophysiology.jpg/800px-Graves_disease_pathophysiology.jpg"
+                        ],
+                        sources: [
+                            {
+                                name: "ATA",
+                                url: "https://www.thyroid.org/hyperthyroidism/"
+                            },
+                            {
+                                name: "Endocrine Society",
+                                url: "https://www.endocrine.org/clinical-practice-guidelines/hyperthyroidism"
+                            }
+                        ],
+                        lastUpdated: "2023-09-20"
+                    }
+                ],
+                resources: [
+                    {
+                        title: "ADA Standards of Care",
+                        description: "Normas de atención para diabetes",
+                        url: "https://diabetes.org/clinical-guidelines",
+                        icon: "fa-book-medical",
+                        category: "Referencia"
+                    },
+                    {
+                        title: "Endocrine Society Guidelines",
+                        description: "Guías clínicas de la Sociedad de Endocrinología",
+                        url: "https://www.endocrine.org/clinical-practice-guidelines",
                         icon: "fa-stethoscope",
                         category: "Educación"
                     },
                     {
-                        title: "FDA Drug Database",
-                        description: "Base de datos oficial de medicamentos aprobados por la FDA",
-                        url: "https://www.accessdata.fda.gov",
-                        icon: "fa-hospital",
-                        category: "Regulatorio"
+                        title: "Thyroid.org",
+                        description: "Recursos educativos sobre enfermedades tiroideas",
+                        url: "https://www.thyroid.org",
+                        icon: "fa-clinic-medical",
+                        category: "Pacientes"
                     }
                 ]
             },
-            emergencias: {
-                title: "Emergencias Médicas",
-                icon: "fa-ambulance",
-                description: "Protocolos para manejo de situaciones críticas",
-                protocols: [
+            neurologia: {
+                title: "Neurología",
+                icon: "fa-head-side-brain",
+                description: "Diagnóstico y tratamiento de enfermedades del sistema nervioso",
+                procedures: [
+                    {
+                        id: "ictus",
+                        title: "Manejo Agudo del Ictus Isquémico",
+                        icon: "fa-brain",
+                        summary: "Protocolo para la atención del ictus isquémico agudo.",
+                        materials: [
+                            "Tomografía computarizada",
+                            "Monitor neurológico",
+                            "Trombolítico (alteplasa)",
+                            "Unidad de ictus",
+                            "Equipo multidisciplinario"
+                        ],
+                        steps: [
+                            "Activación del código ictus",
+                            "Evaluación neurológica rápida (escala NIHSS)",
+                            "Tomografía computarizada de cerebro",
+                            "Evaluación de ventana terapéutica",
+                            "Trombólisis intravenosa si indicado",
+                            "Transferencia a unidad de ictus",
+                            "Evaluación para trombectomía mecánica"
+                        ],
+                        notes: "Tiempo es cerebro. Objetivo puerta-aguja <60 minutos. Monitoreo neurológico frecuente. Prevención de complicaciones. Rehabilitación temprana.",
+                        visualReferences: [
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Ischemic_stroke_CT.jpg/800px-Ischemic_stroke_CT.jpg",
+                                title: "Ictus Isquémico en TC",
+                                description: "Hallazgos de ictus isquémico en tomografía computarizada"
+                            },
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Stroke_pathophysiology.jpg/800px-Stroke_pathophysiology.jpg",
+                                title: "Fisiopatología del Ictus",
+                                description: "Mecanismos de daño cerebral en el ictus"
+                            }
+                        ],
+                        source: {
+                            name: "AHA/ASA",
+                            type: "who",
+                            description: "American Heart Association/American Stroke Association Guidelines",
+                            url: "https://www.stroke.org"
+                        },
+                        lastUpdated: "2023-11-05"
+                    },
+                    {
+                        id: "epilepsia",
+                        title: "Manejo de Convulsiones",
+                        icon: "fa-bolt",
+                        summary: "Protocolo para el manejo de convulsiones agudas.",
+                        materials: [
+                            "Monitor cardíaco",
+                            "Oxígeno",
+                            "Medicamentos antiepilépticos intravenosos",
+                            "Protección de vía aérea",
+                            "Laboratorio de emergencia"
+                        ],
+                        steps: [
+                            "Protección del paciente durante la convulsión",
+                            "Soporte de vía aérea",
+                            "Monitorización de signos vitales",
+                            "Acceso venoso",
+                            "Administración de benzodiacepinas (lorazepam)",
+                            "Si persiste, administrar antiepiléptico de segunda línea",
+                            "Investigación de causa subyacente"
+                        ],
+                        notes: "No colocar objetos en la boca. Posición lateral de seguridad después de la convulsión. Evaluar necesidad de intubación. Investigar causa metabólica, infecciosa o estructural.",
+                        visualReferences: [
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Seizure_management.jpg/800px-Seizure_management.jpg",
+                                title: "Manejo de Convulsiones",
+                                description: "Actuación durante una convulsión"
+                            },
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/EEG_epilepsy.jpg/800px-EEG_epilepsy.jpg",
+                                title: "EEG en Epilepsia",
+                                description: "Patrones electroencefalográficos en epilepsia"
+                            }
+                        ],
+                        source: {
+                            name: "ILAE",
+                            type: "fda",
+                            description: "International League Against Epilepsy Guidelines",
+                            url: "https://www.ilae.org"
+                        },
+                        lastUpdated: "2023-10-18"
+                    }
+                ],
+                diseases: [
+                    {
+                        id: "alzheimer",
+                        name: "Enfermedad de Alzheimer",
+                        prevalence: "Afecta a 1 de cada 9 personas >65 años",
+                        description: "Demencia neurodegenerativa progresiva",
+                        symptoms: [
+                            "Pérdida de memoria",
+                            "Dificultad con tareas familiares",
+                            "Problemas con el lenguaje",
+                            "Desorientación",
+                            "Cambios de personalidad"
+                        ],
+                        treatment: [
+                            "Inhibidores de la colinesterasa",
+                            "Memantina",
+                            "Manejo de síntomas conductuales",
+                            "Soporte a cuidadores"
+                        ],
+                        prognosis: "Progresión inevitable. Supervivencia media de 8-10 años desde el diagnóstico.",
+                        images: [
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Alzheimer_brain_comparison.jpg/800px-Alzheimer_brain_comparison.jpg",
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Alzheimer_pathology.jpg/800px-Alzheimer_pathology.jpg"
+                        ],
+                        sources: [
+                            {
+                                name: "Alzheimer's Association",
+                                url: "https://www.alz.org"
+                            },
+                            {
+                                name: "NIA",
+                                url: "https://www.nia.nih.gov/health/alzheimers"
+                            }
+                        ],
+                        lastUpdated: "2023-09-25"
+                    },
+                    {
+                        id: "parkinson",
+                        name: "Enfermedad de Parkinson",
+                        prevalence: "Afecta a 1 de cada 350 adultos >40 años",
+                        description: "Trastorno neurodegenerativo del sistema motor",
+                        symptoms: [
+                            "Temblor en reposo",
+                            "Rigidez",
+                            "Bradicinesia",
+                            "Alteración de la marcha",
+                            "Postura encorvada"
+                        ],
+                        treatment: [
+                            "Levodopa",
+                            "Agonistas dopaminérgicos",
+                            "Inhibidores de la COMT",
+                            "Terapia de rehabilitación",
+                            "Cirugía (DBS) en casos seleccionados"
+                        ],
+                        prognosis: "Progresión lenta. Calidad de vida puede mantenerse con tratamiento adecuado.",
+                        images: [
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Parkinsonism.jpg/800px-Parkinsonism.jpg",
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Parkinson_pathology.jpg/800px-Parkinson_pathology.jpg"
+                        ],
+                        sources: [
+                            {
+                                name: "Michael J. Fox Foundation",
+                                url: "https://www.michaeljfox.org"
+                            },
+                            {
+                                name: "NINDS",
+                                url: "https://www.ninds.nih.gov/Disorders/All-Disorders/Parkinsons-Disease-Information-Page"
+                            }
+                        ],
+                        lastUpdated: "2023-08-15"
+                    }
+                ],
+                resources: [
+                    {
+                        title: "AAN Guidelines",
+                        description: "Guías de la Academia Americana de Neurología",
+                        url: "https://www.aan.com/Guidelines",
+                        icon: "fa-book-medical",
+                        category: "Referencia"
+                    },
+                    {
+                        title: "Stroke.org",
+                        description: "Recursos educativos sobre ictus",
+                        url: "https://www.stroke.org",
+                        icon: "fa-stethoscope",
+                        category: "Pacientes"
+                    },
+                    {
+                        title: "Epilepsy Foundation",
+                        description: "Fundación para la epilepsia",
+                        url: "https://www.epilepsy.com",
+                        icon: "fa-clinic-medical",
+                        category: "Pacientes"
+                    }
+                ]
+            },
+            oncologia: {
+                title: "Oncología",
+                icon: "fa-dna",
+                description: "Diagnóstico y tratamiento de enfermedades oncológicas",
+                procedures: [
+                    {
+                        id: "quimioterapia",
+                        title: "Administración de Quimioterapia",
+                        icon: "fa-syringe",
+                        summary: "Protocolo estandarizado para la administración segura de quimioterapia.",
+                        materials: [
+                            "Protocolo de quimioterapia",
+                            "Equipos de protección personal",
+                            "Soluciones intravenosas",
+                            "Antieméticos",
+                            "Medicamentos de rescate"
+                        ],
+                        steps: [
+                            "Verificación del protocolo y dosis",
+                            "Preparación en cabina de seguridad biológica",
+                            "Verificación de identidad del paciente",
+                            "Administración intravenosa con precauciones",
+                            "Monitoreo durante la infusión",
+                            "Manejo de reacciones adversas",
+                            "Documentación completa"
+                        ],
+                        notes: "Requiere capacitación especializada. Precauciones de manejo de citostáticos. Evaluación de función orgánica previa. Manejo proactivo de efectos adversos.",
+                        visualReferences: [
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Chemotherapy_administration.jpg/800px-Chemotherapy_administration.jpg",
+                                title: "Administración de Quimioterapia",
+                                description: "Infusión de quimioterapia con monitoreo"
+                            },
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Biological_safety_cabinet.jpg/800px-Biological_safety_cabinet.jpg",
+                                title: "Cabina de Seguridad",
+                                description: "Preparación de quimioterapia en cabina de seguridad biológica"
+                            }
+                        ],
+                        source: {
+                            name: "ASCO",
+                            type: "fda",
+                            description: "American Society of Clinical Oncology Guidelines",
+                            url: "https://www.asco.org"
+                        },
+                        lastUpdated: "2023-11-20"
+                    },
+                    {
+                        id: "radioterapia",
+                        title: "Planificación de Radioterapia",
+                        icon: "fa-radiation",
+                        summary: "Proceso de planificación para tratamiento con radioterapia.",
+                        materials: [
+                            "Tomografía simuladora",
+                            "Sistemas de planificación",
+                            "Marcadores de posicionamiento",
+                            "Equipos de radioterapia",
+                            "Protección radiológica"
+                        ],
+                        steps: [
+                            "Inmovilización del paciente",
+                            "Adquisición de imágenes de simulación",
+                            "Delineación de volúmenes objetivo",
+                            "Planificación dosimétrica",
+                            "Verificación del plan",
+                            "Tratamiento fraccionado",
+                            "Monitoreo de efectos adversos"
+                        ],
+                        notes: "Precisión milimétrica requerida. Colaboración multidisciplinaria. Evaluación diaria del paciente. Registro detallado del tratamiento.",
+                        visualReferences: [
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Radiation_therapy_simulation.jpg/800px-Radiation_therapy_simulation.jpg",
+                                title: "Simulación de Radioterapia",
+                                description: "Posicionamiento del paciente para radioterapia"
+                            },
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Radiation_therapy_plan.jpg/800px-Radiation_therapy_plan.jpg",
+                                title: "Plan de Radioterapia",
+                                description: "Visualización del plan de tratamiento radioterápico"
+                            }
+                        ],
+                        source: {
+                            name: "ASTRO",
+                            type: "fda",
+                            description: "American Society for Radiation Oncology Guidelines",
+                            url: "https://www.astro.org"
+                        },
+                        lastUpdated: "2023-10-30"
+                    }
+                ],
+                diseases: [
+                    {
+                        id: "mama",
+                        name: "Cáncer de Mama",
+                        prevalence: "1 de cada 8 mujeres desarrollará cáncer de mama",
+                        description: "Neoplasia maligna de las células epiteliales de los conductos o lobulillos mamarios",
+                        symptoms: [
+                            "Nódulo mamario",
+                            "Retracción de la piel",
+                            "Secreción del pezón",
+                            "Cambios en la areola",
+                            "Edema de la piel"
+                        ],
+                        treatment: [
+                            "Cirugía conservadora o mastectomía",
+                            "Radioterapia",
+                            "Quimioterapia",
+                            "Terapia hormonal",
+                            "Terapia dirigida"
+                        ],
+                        prognosis: "Supervivencia a 5 años >90% en estadios iniciales. Depende del subtipo molecular.",
+                        images: [
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Breast_cancer_mammogram.jpg/800px-Breast_cancer_mammogram.jpg",
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Breast_cancer_pathology.jpg/800px-Breast_cancer_pathology.jpg"
+                        ],
+                        sources: [
+                            {
+                                name: "NCCN",
+                                url: "https://www.nccn.org/guidelines/guidelines-detail?category=1&id=1425"
+                            },
+                            {
+                                name: "SEOM",
+                                url: "https://www.seom.org/seomcms/es_ES/guia-clinica-cancer-de-mama"
+                            }
+                        ],
+                        lastUpdated: "2023-09-12"
+                    },
+                    {
+                        id: "colon",
+                        name: "Cáncer Colorrectal",
+                        prevalence: "3er cáncer más común en hombres y mujeres",
+                        description: "Neoplasia maligna del colon o recto",
+                        symptoms: [
+                            "Cambios en el hábito intestinal",
+                            "Sangrado rectal",
+                            "Dolor abdominal",
+                            "Pérdida de peso",
+                            "Anemia"
+                        ],
+                        treatment: [
+                            "Resección quirúrgica",
+                            "Quimioterapia adyuvante",
+                            "Radioterapia (recto)",
+                            "Terapia dirigida",
+                            "Inmunoterapia"
+                        ],
+                        prognosis: "Supervivencia a 5 años ~65%. Mejor en estadios iniciales.",
+                        images: [
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Colon_cancer_endoscopy.jpg/800px-Colon_cancer_endoscopy.jpg",
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Colon_cancer_pathology.jpg/800px-Colon_cancer_pathology.jpg"
+                        ],
+                        sources: [
+                            {
+                                name: "NCCN",
+                                url: "https://www.nccn.org/guidelines/guidelines-detail?category=1&id=1430"
+                            },
+                            {
+                                name: "ESMO",
+                                url: "https://www.esmo.org/guidelines/gastrointestinal-cancers/colon-and-rectal-cancer"
+                            }
+                        ],
+                        lastUpdated: "2023-08-22"
+                    }
+                ],
+                resources: [
+                    {
+                        title: "NCCN Guidelines",
+                        description: "Guías de la Red Nacional de Cáncer",
+                        url: "https://www.nccn.org/guidelines",
+                        icon: "fa-book-medical",
+                        category: "Referencia"
+                    },
+                    {
+                        title: "ASCO Education",
+                        description: "Recursos educativos de oncología clínica",
+                        url: "https://www.asco.org/education",
+                        icon: "fa-stethoscope",
+                        category: "Educación"
+                    },
+                    {
+                        title: "Cancer.gov",
+                        description: "Información sobre cáncer del Instituto Nacional del Cáncer",
+                        url: "https://www.cancer.gov",
+                        icon: "fa-clinic-medical",
+                        category: "Pacientes"
+                    }
+                ]
+            },
+            nephrologia: {
+                title: "Nefrología",
+                icon: "fa-kidneys",
+                description: "Diagnóstico y tratamiento de enfermedades renales",
+                procedures: [
+                    {
+                        id: "hemodialisis",
+                        title: "Hemodiálisis",
+                        icon: "fa-hand-holding-medical",
+                        summary: "Procedimiento de diálisis para pacientes con insuficiencia renal.",
+                        materials: [
+                            "Máquina de diálisis",
+                            "Circuitos extracorpóreos",
+                            "Solución de diálisis",
+                            "Acceso vascular",
+                            "Anticoagulante"
+                        ],
+                        steps: [
+                            "Evaluación pre-tratamiento",
+                            "Conexión al circuito de diálisis",
+                            "Iniciación del tratamiento",
+                            "Monitoreo durante la sesión",
+                            "Desconexión y evaluación post-tratamiento",
+                            "Documentación del procedimiento"
+                        ],
+                        notes: "Requiere acceso vascular adecuado. Monitoreo hemodinámico continuo. Prevención de complicaciones (hipotensión, calambres). Educación del paciente.",
+                        visualReferences: [
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Hemodialysis_machine.jpg/800px-Hemodialysis_machine.jpg",
+                                title: "Máquina de Hemodiálisis",
+                                description: "Equipo utilizado para hemodiálisis"
+                            },
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Arteriovenous_fistula.jpg/800px-Arteriovenous_fistula.jpg",
+                                title: "Fístula Arteriovenosa",
+                                description: "Acceso vascular para hemodiálisis"
+                            }
+                        ],
+                        source: {
+                            name: "KDIGO",
+                            type: "fda",
+                            description: "Kidney Disease: Improving Global Outcomes Guidelines",
+                            url: "https://kdigo.org"
+                        },
+                        lastUpdated: "2023-11-18"
+                    },
+                    {
+                        id: "dialisaperitoneal",
+                        title: "Diálisis Peritoneal",
+                        icon: "fa-lungs",
+                        summary: "Modalidad de diálisis que utiliza la membrana peritoneal.",
+                        materials: [
+                            "Solución de diálisis",
+                            "Catéter peritoneal",
+                            "Bolsas de intercambio",
+                            "Equipo de conexión",
+                            "Material de cuidado del catéter"
+                        ],
+                        steps: [
+                            "Preparación del área de intercambio",
+                            "Conexión al catéter",
+                            "Infusión de solución",
+                            "Tiempo de permanencia",
+                            "Drenaje",
+                            "Desconexión",
+                            "Cuidado del catéter"
+                        ],
+                        notes: "Requiere técnica estéril. Educación intensiva del paciente. Prevención de peritonitis. Monitoreo de adecuación de diálisis.",
+                        visualReferences: [
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Peritoneal_dialysis_exchange.jpg/800px-Peritoneal_dialysis_exchange.jpg",
+                                title: "Intercambio en Diálisis Peritoneal",
+                                description: "Procedimiento de intercambio de solución"
+                            },
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Peritoneal_dialysis_catheter.jpg/800px-Peritoneal_dialysis_catheter.jpg",
+                                title: "Catéter de Diálisis Peritoneal",
+                                description: "Colocación del catéter peritoneal"
+                            }
+                        ],
+                        source: {
+                            name: "ISPD",
+                            type: "fda",
+                            description: "International Society for Peritoneal Dialysis Guidelines",
+                            url: "https://www.ispd.org"
+                        },
+                        lastUpdated: "2023-10-28"
+                    }
+                ],
+                diseases: [
+                    {
+                        id: "irc",
+                        name: "Insuficiencia Renal Crónica",
+                        prevalence: "10-15% de la población adulta",
+                        description: "Pérdida progresiva de la función renal",
+                        symptoms: [
+                            "Fatiga",
+                            "Náuseas",
+                            "Edema",
+                            "Hipertensión",
+                            "Alteraciones urinarias"
+                        ],
+                        treatment: [
+                            "Control de factores de riesgo",
+                            "Dieta renal",
+                            "Tratamiento de complicaciones",
+                            "Preparación para diálisis",
+                            "Trasplante renal"
+                        ],
+                        prognosis: "Progresión a diálisis en ~1-2% de casos/año. Supervivencia en diálisis ~5-10 años.",
+                        images: [
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Chronic_kidney_disease_pathology.jpg/800px-Chronic_kidney_disease_pathology.jpg",
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Kidney_failure_pathophysiology.jpg/800px-Kidney_failure_pathophysiology.jpg"
+                        ],
+                        sources: [
+                            {
+                                name: "KDIGO",
+                                url: "https://kdigo.org/guidelines/ckd/"
+                            },
+                            {
+                                name: "NKF",
+                                url: "https://www.kidney.org"
+                            }
+                        ],
+                        lastUpdated: "2023-09-15"
+                    },
+                    {
+                        id: "glomerulonefritis",
+                        name: "Glomerulonefritis",
+                        prevalence: "Varía según el tipo",
+                        description: "Inflamación de los glomérulos renales",
+                        symptoms: [
+                            "Hematuria",
+                            "Proteinuria",
+                            "Edema",
+                            "Hipertensión",
+                            "Insuficiencia renal aguda"
+                        ],
+                        treatment: [
+                            "Control de presión arterial",
+                            "Corticosteroides",
+                            "Inmunosupresores",
+                            "Tratamiento de la causa subyacente",
+                            "Soporte renal"
+                        ],
+                        prognosis: "Variable según el tipo. Algunos casos resuelven, otros progresan a IRC.",
+                        images: [
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Glomerulonephritis_microscopic.jpg/800px-Glomerulonephritis_microscopic.jpg",
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Glomerulonephritis_pathology.jpg/800px-Glomerulonephritis_pathology.jpg"
+                        ],
+                        sources: [
+                            {
+                                name: "KDIGO",
+                                url: "https://kdigo.org/guidelines/glomerular-diseases/"
+                            },
+                            {
+                                name: "ASN",
+                                url: "https://www.asn-online.org"
+                            }
+                        ],
+                        lastUpdated: "2023-08-20"
+                    }
+                ],
+                resources: [
+                    {
+                        title: "KDIGO Guidelines",
+                        description: "Guías para enfermedades renales",
+                        url: "https://kdigo.org",
+                        icon: "fa-book-medical",
+                        category: "Referencia"
+                    },
+                    {
+                        title: "NKF Resources",
+                        description: "Recursos de la Fundación Nacional del Riñón",
+                        url: "https://www.kidney.org",
+                        icon: "fa-stethoscope",
+                        category: "Pacientes"
+                    },
+                    {
+                        title: "ASN Journals",
+                        description: "Revistas de la Sociedad de Nefrología",
+                        url: "https://www.jasn.org",
+                        icon: "fa-newspaper",
+                        category: "Investigación"
+                    }
+                ]
+            },
+            gastroenterologia: {
+                title: "Gastroenterología",
+                icon: "fa-stomach",
+                description: "Diagnóstico y tratamiento de enfermedades digestivas",
+                procedures: [
+                    {
+                        id: "endoscopia",
+                        title: "Endoscopia Digestiva Alta",
+                        icon: "fa-procedures",
+                        summary: "Examen endoscópico del tracto digestivo superior.",
+                        materials: [
+                            "Endoscopio",
+                            "Monitor de video",
+                            "Instrumentos de biopsia",
+                            "Sedación",
+                            "Material de desinfección"
+                        ],
+                        steps: [
+                            "Preparación del paciente",
+                            "Sedación",
+                            "Introducción del endoscopio",
+                            "Evaluación sistemática",
+                            "Toma de biopsias si indicado",
+                            "Retirada del endoscopio",
+                            "Recuperación post-procedimiento"
+                        ],
+                        notes: "Requiere ayuno previo. Monitoreo durante sedación. Complicaciones raras pero potencialmente graves. Informe detallado post-procedimiento.",
+                        visualReferences: [
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Upper_endoscopy.jpg/800px-Upper_endoscopy.jpg",
+                                title: "Endoscopia Digestiva Alta",
+                                description: "Procedimiento de endoscopia digestiva"
+                            },
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Endoscopic_image_of_esophagitis.jpg/800px-Endoscopic_image_of_esophagitis.jpg",
+                                title: "Imagen Endoscópica",
+                                description: "Hallazgos endoscópicos de esofagitis"
+                            }
+                        ],
+                        source: {
+                            name: "ASGE",
+                            type: "fda",
+                            description: "American Society for Gastrointestinal Endoscopy Guidelines",
+                            url: "https://www.asge.org"
+                        },
+                        lastUpdated: "2023-11-25"
+                    },
+                    {
+                        id: "colonoscopia",
+                        title: "Colonoscopia",
+                        icon: "fa-procedures",
+                        summary: "Examen endoscópico del colon y recto.",
+                        materials: [
+                            "Colonoscopio",
+                            "Monitor de video",
+                            "Instrumentos de polipectomía",
+                            "Sedación",
+                            "Material de preparación intestinal"
+                        ],
+                        steps: [
+                            "Preparación intestinal",
+                            "Sedación",
+                            "Introducción del colonoscopio",
+                            "Evaluación sistemática",
+                            "Polipectomía si indicado",
+                            "Retirada del colonoscopio",
+                            "Recuperación post-procedimiento"
+                        ],
+                        notes: "Preparación intestinal adecuada es crucial. Monitoreo durante sedación. Prevención de complicaciones (perforación, sangrado). Seguimiento de hallazgos.",
+                        visualReferences: [
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Colonoscopy_procedure.jpg/800px-Colonoscopy_procedure.jpg",
+                                title: "Colonoscopia",
+                                description: "Procedimiento de colonoscopia"
+                            },
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Colonoscopic_polypectomy.jpg/800px-Colonoscopic_polypectomy.jpg",
+                                title: "Polipectomía",
+                                description: "Extirpación de pólipo durante colonoscopia"
+                            }
+                        ],
+                        source: {
+                            name: "USMSTF",
+                            type: "fda",
+                            description: "U.S. Multi-Society Task Force on Colorectal Cancer",
+                            url: "https://www.gastro.org/practice-guidelines"
+                        },
+                        lastUpdated: "2023-10-15"
+                    }
+                ],
+                diseases: [
+                    {
+                        id: "hepatitis",
+                        name: "Hepatitis Viral",
+                        prevalence: "350 millones con hepatitis B crónica, 70 millones con hepatitis C",
+                        description: "Inflamación del hígado causada por virus",
+                        symptoms: [
+                            "Ictericia",
+                            "Asthenia",
+                            "Náuseas",
+                            "Dolor abdominal",
+                            "Orina oscura"
+                        ],
+                        treatment: [
+                            "Antivirales (hepatitis B y C)",
+                            "Soporte sintomático",
+                            "Vacunación (A y B)",
+                            "Prevención de transmisión"
+                        ],
+                        prognosis: "Hepatitis A y E: resolución completa. Hepatitis B y C: pueden cronicizarse, llevar a cirrosis y cáncer hepático.",
+                        images: [
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Hepatitis_B_virus.jpg/800px-Hepatitis_B_virus.jpg",
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Liver_cirrhosis_pathology.jpg/800px-Liver_cirrhosis_pathology.jpg"
+                        ],
+                        sources: [
+                            {
+                                name: "AASLD",
+                                url: "https://www.aasld.org/practice-guidelines"
+                            },
+                            {
+                                name: "EASL",
+                                url: "https://www.easl.eu/guidelines/"
+                            }
+                        ],
+                        lastUpdated: "2023-09-05"
+                    },
+                    {
+                        id: "epatocarcinoma",
+                        name: "Carcinoma Hepatocelular",
+                        prevalence: "6th most common cancer worldwide",
+                        description: "Cáncer primario del hígado",
+                        symptoms: [
+                            "Dolor abdominal",
+                            "Pérdida de peso",
+                            "Ascitis",
+                            "Ictericia",
+                            "Masas palpables"
+                        ],
+                        treatment: [
+                            "Resección quirúrgica",
+                            "Trasplante hepático",
+                            "Ablación tumoral",
+                            "Quimioembolización",
+                            "Inmunoterapia"
+                        ],
+                        prognosis: "Depende del estadio. Supervivencia a 5 años ~18% globalmente.",
+                        images: [
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Hepatocellular_carcinoma_CT.jpg/800px-Hepatocellular_carcinoma_CT.jpg",
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Hepatocellular_carcinoma_pathology.jpg/800px-Hepatocellular_carcinoma_pathology.jpg"
+                        ],
+                        sources: [
+                            {
+                                name: "AASLD",
+                                url: "https://www.aasld.org/practice-guidelines/hepatocellular-carcinoma"
+                            },
+                            {
+                                name: "EASL",
+                                url: "https://www.easl.eu/guidelines/easl-clinical-practice-guidelines-on-the-prevention-detection-and-treatment-of-hepatocellular-carcinoma/"
+                            }
+                        ],
+                        lastUpdated: "2023-08-10"
+                    }
+                ],
+                resources: [
+                    {
+                        title: "AGA Guidelines",
+                        description: "Guías de la Asociación Americana de Gastroenterología",
+                        url: "https://gastro.org/practice-guidelines",
+                        icon: "fa-book-medical",
+                        category: "Referencia"
+                    },
+                    {
+                        title: "UpToDate GI",
+                        description: "Recursos clínicos de gastroenterología",
+                        url: "https://www.uptodate.com/contents/topic-list/gastroenterology",
+                        icon: "fa-stethoscope",
+                        category: "Educación"
+                    },
+                    {
+                        title: "Crohn's & Colitis Foundation",
+                        description: "Fundación para enfermedades inflamatorias intestinales",
+                        url: "https://www.crohnscolitisfoundation.org",
+                        icon: "fa-clinic-medical",
+                        category: "Pacientes"
+                    }
+                ]
+            },
+            reumatologia: {
+                title: "Reumatología",
+                icon: "fa-bone",
+                description: "Diagnóstico y tratamiento de enfermedades del sistema músculo-esquelético",
+                procedures: [
+                    {
+                        id: "artrocentesis",
+                        title: "Artrocentesis",
+                        icon: "fa-syringe",
+                        summary: "Aspiración del líquido sinovial de una articulación.",
+                        materials: [
+                            "Jeringa y aguja",
+                            "Solución antiséptica",
+                            "Anestesia local",
+                            "Tubos para muestras",
+                            "Vendaje"
+                        ],
+                        steps: [
+                            "Identificación del punto de punción",
+                            "Preparación antiséptica",
+                            "Anestesia local",
+                            "Punción articular",
+                            "Aspiración del líquido",
+                            "Envío de muestras",
+                            "Vendaje post-procedimiento"
+                        ],
+                        notes: "Técnica estéril requerida. Evaluación del líquido sinovial es crucial. Complicaciones raras (infección, hemartrosis). Puede ser terapéutico y diagnóstico.",
+                        visualReferences: [
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Knee_arthrocentesis.jpg/800px-Knee_arthrocentesis.jpg",
+                                title: "Artrocentesis de Rodilla",
+                                description: "Procedimiento de artrocentesis"
+                            },
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Synovial_fluid_analysis.jpg/800px-Synovial_fluid_analysis.jpg",
+                                title: "Análisis de Líquido Sinovial",
+                                description: "Evaluación del líquido obtenido"
+                            }
+                        ],
+                        source: {
+                            name: "ACR",
+                            type: "fda",
+                            description: "American College of Rheumatology Guidelines",
+                            url: "https://www.rheumatology.org"
+                        },
+                        lastUpdated: "2023-11-30"
+                    },
+                    {
+                        id: "infiltraciones",
+                        title: "Infiltraciones Articulares",
+                        icon: "fa-syringe",
+                        summary: "Administración de medicamentos directamente en una articulación.",
+                        materials: [
+                            "Corticosteroides",
+                            "Jeringa y aguja",
+                            "Solución antiséptica",
+                            "Anestesia local",
+                            "Vendaje"
+                        ],
+                        steps: [
+                            "Identificación del punto de inyección",
+                            "Preparación antiséptica",
+                            "Anestesia local",
+                            "Inyección del medicamento",
+                            "Movilización post-procedimiento",
+                            "Vendaje si necesario"
+                        ],
+                        notes: "Indicado para artritis inflamatorias. Puede proporcionar alivio rápido. Riesgo de infección articular. Limitar número de infiltraciones.",
+                        visualReferences: [
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Shoulder_injection.jpg/800px-Shoulder_injection.jpg",
+                                title: "Infiltración de Hombro",
+                                description: "Procedimiento de infiltración articular"
+                            },
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Corticosteroid_injection.jpg/800px-Corticosteroid_injection.jpg",
+                                title: "Inyección de Corticosteroides",
+                                description: "Administración de corticosteroides intraarticular"
+                            }
+                        ],
+                        source: {
+                            name: "EULAR",
+                            type: "fda",
+                            description: "European Alliance of Associations for Rheumatology Guidelines",
+                            url: "https://www.eular.org"
+                        },
+                        lastUpdated: "2023-10-22"
+                    }
+                ],
+                diseases: [
+                    {
+                        id: "artritis",
+                        name: "Artritis Reumatoide",
+                        prevalence: "0.5-1% de la población mundial",
+                        description: "Enfermedad autoinmune sistémica que afecta principalmente articulaciones",
+                        symptoms: [
+                            "Dolor articular simétrico",
+                            "Rigidez matutina >1 hora",
+                            "Hinchazón articular",
+                            "Deformidades",
+                            "Nódulos reumatoides"
+                        ],
+                        treatment: [
+                            "DMARDs (metotrexato)",
+                            "Biologicos",
+                            "Corticosteroides",
+                            "Terapia física",
+                            "Cirugía en casos avanzados"
+                        ],
+                        prognosis: "Curso crónico progresivo. Daño articular irreversible sin tratamiento. Mejora significativa con terapias modernas.",
+                        images: [
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Rheumatoid_arthritis_hand.jpg/800px-Rheumatoid_arthritis_hand.jpg",
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Rheumatoid_arthritis_pathology.jpg/800px-Rheumatoid_arthritis_pathology.jpg"
+                        ],
+                        sources: [
+                            {
+                                name: "ACR",
+                                url: "https://www.rheumatology.org/I-Am-A/Patient-Caregiver/Diseases-Conditions/Rheumatoid-Arthritis"
+                            },
+                            {
+                                name: "EULAR",
+                                url: "https://www.eular.org/patients.cfm"
+                            }
+                        ],
+                        lastUpdated: "2023-09-08"
+                    },
+                    {
+                        id: "lupus",
+                        name: "Lupus Eritematoso Sistémico",
+                        prevalence: "20-150 casos por 100,000 personas",
+                        description: "Enfermedad autoinmune sistémica con múltiples manifestaciones",
+                        symptoms: [
+                            "Erupción malar",
+                            "Artritis",
+                            "Fiebre",
+                            "Fatiga",
+                            "Lesión renal"
+                        ],
+                        treatment: [
+                            "Hidroxicloroquina",
+                            "Corticosteroides",
+                            "Inmunosupresores",
+                            "Biologicos",
+                            "Protección solar"
+                        ],
+                        prognosis: "Variable. Supervivencia a 10 años >90% con tratamiento adecuado. Complicaciones renales son principales causa de morbilidad.",
+                        images: [
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Lupus_malar_rash.jpg/800px-Lupus_malar_rash.jpg",
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Lupus_nephritis_pathology.jpg/800px-Lupus_nephritis_pathology.jpg"
+                        ],
+                        sources: [
+                            {
+                                name: "ACR",
+                                url: "https://www.rheumatology.org/I-Am-A/Patient-Caregiver/Diseases-Conditions/Lupus"
+                            },
+                            {
+                                name: "Lupus Foundation",
+                                url: "https://www.lupus.org"
+                            }
+                        ],
+                        lastUpdated: "2023-08-05"
+                    }
+                ],
+                resources: [
+                    {
+                        title: "ACR Guidelines",
+                        description: "Guías de la Colegio Americano de Reumatología",
+                        url: "https://www.rheumatology.org/Practice-Quality/Clinical-Support",
+                        icon: "fa-book-medical",
+                        category: "Referencia"
+                    },
+                    {
+                        title: "EULAR Recommendations",
+                        description: "Recomendaciones de la Alianza Europea de Reumatología",
+                        url: "https://www.eular.org/eular_recommendations.cfm",
+                        icon: "fa-stethoscope",
+                        category: "Educación"
+                    },
+                    {
+                        title: "Lupus.org",
+                        description: "Recursos sobre lupus eritematoso sistémico",
+                        url: "https://www.lupus.org",
+                        icon: "fa-clinic-medical",
+                        category: "Pacientes"
+                    }
+                ]
+            },
+            nutricion: {
+                title: "Nutrición Clínica",
+                icon: "fa-apple-alt",
+                description: "Evaluación y manejo nutricional de pacientes hospitalizados",
+                procedures: [
+                    {
+                        id: "evaluacion",
+                        title: "Evaluación Nutricional",
+                        icon: "fa-clipboard-list",
+                        summary: "Evaluación integral del estado nutricional del paciente.",
+                        materials: [
+                            "Historia clínica",
+                            "Examen físico",
+                            "Antropometría",
+                            "Laboratorio",
+                            "Escalas de evaluación"
+                        ],
+                        steps: [
+                            "Recopilación de historia dietética",
+                            "Evaluación antropométrica (peso, talla, pliegues)",
+                            "Examen físico para signos de deficiencia",
+                            "Evaluación de laboratorio relevante",
+                            "Aplicación de escalas (MUST, NRS-2002)",
+                            "Diagnóstico nutricional",
+                            "Plan nutricional individualizado"
+                        ],
+                        notes: "Identificar riesgo de malnutrición. Considerar factores sociales y psicológicos. Reevaluar regularmente. Enfoque multidisciplinario.",
+                        visualReferences: [
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Nutritional_assessment.jpg/800px-Nutritional_assessment.jpg",
+                                title: "Evaluación Nutricional",
+                                description: "Proceso de evaluación del estado nutricional"
+                            },
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Anthropometric_measurements.jpg/800px-Anthropometric_measurements.jpg",
+                                title: "Medidas Antropométricas",
+                                description: "Toma de medidas corporales para evaluación nutricional"
+                            }
+                        ],
+                        source: {
+                            name: "ESPEN",
+                            type: "who",
+                            description: "European Society for Clinical Nutrition and Metabolism Guidelines",
+                            url: "https://www.espen.org"
+                        },
+                        lastUpdated: "2023-12-05"
+                    },
+                    {
+                        id: "terapia_enteral",
+                        title: "Terapia Nutricional Enteral",
+                        icon: "fa-utensils",
+                        summary: "Administración de nutrientes por vía gastrointestinal.",
+                        materials: [
+                            "Fórmulas nutricionales",
+                            "Sondas nasogástricas/nasoentéricas",
+                            "Sistemas de alimentación",
+                            "Equipo de verificación de posición",
+                            "Material de cuidado de sondas"
+                        ],
+                        steps: [
+                            "Evaluación de indicaciones",
+                            "Elección de vía de acceso",
+                            "Colocación y verificación de posición",
+                            "Inicio de alimentación",
+                            "Ajuste de velocidad y volumen",
+                            "Monitoreo de tolerancia",
+                            "Cuidado de la sonda"
+                        ],
+                        notes: "Indicado cuando el tracto GI está funcional. Prevenir complicaciones (aspiración, obstrucción). Monitorear balance hídrico y electrolitos. Educación del paciente/cuidador.",
+                        visualReferences: [
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Enteral_feeding_tube.jpg/800px-Enteral_feeding_tube.jpg",
+                                title: "Sonda de Alimentación",
+                                description: "Colocación de sonda nasogástrica"
+                            },
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Enteral_feeding_pump.jpg/800px-Enteral_feeding_pump.jpg",
+                                title: "Bomba de Alimentación",
+                                description: "Administración controlada de nutrición enteral"
+                            }
+                        ],
+                        source: {
+                            name: "ASPEN",
+                            type: "fda",
+                            description: "American Society for Parenteral and Enteral Nutrition Guidelines",
+                            url: "https://www.nutritioncare.org"
+                        },
+                        lastUpdated: "2023-11-12"
+                    }
+                ],
+                diseases: [
+                    {
+                        id: "desnutricion",
+                        name: "Desnutrición Hospitalaria",
+                        prevalence: "20-50% de pacientes hospitalizados",
+                        description: "Estado de deficiencia de nutrientes en pacientes hospitalizados",
+                        symptoms: [
+                            "Pérdida de peso",
+                            "Musculatura disminuida",
+                            "Edema",
+                            "Lentitud en cicatrización",
+                            "Alteraciones inmunitarias"
+                        ],
+                        treatment: [
+                            "Optimización de ingesta oral",
+                            "Suplementos nutricionales",
+                            "Nutrición enteral",
+                            "Nutrición parenteral",
+                            "Tratamiento de la causa subyacente"
+                        ],
+                        prognosis: "Aumenta morbilidad, mortalidad y costos. Mejora con intervención nutricional temprana.",
+                        images: [
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Protein_energy_malnutrition.jpg/800px-Protein_energy_malnutrition.jpg",
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Malnutrition_clinical_signs.jpg/800px-Malnutrition_clinical_signs.jpg"
+                        ],
+                        sources: [
+                            {
+                                name: "ESPEN",
+                                url: "https://www.espen.org/guidelines"
+                            },
+                            {
+                                name: "ASPEN",
+                                url: "https://www.nutritioncare.org/guidelines/"
+                            }
+                        ],
+                        lastUpdated: "2023-10-08"
+                    },
+                    {
+                        id: "obesidad",
+                        name: "Obesidad",
+                        prevalence: "40% de adultos en EE.UU., globalmente en aumento",
+                        description: "Acumulación excesiva de grasa que puede afectar la salud",
+                        symptoms: [
+                            "IMC ≥30 kg/m²",
+                            "Apnea del sueño",
+                            "Esteatosis hepática",
+                            "Artropatía",
+                            "Problemas psicosociales"
+                        ],
+                        treatment: [
+                            "Modificación de estilo de vida",
+                            "Terapia farmacológica",
+                            "Cirugía bariátrica",
+                            "Manejo de comorbilidades",
+                            "Seguimiento multidisciplinario"
+                        ],
+                        prognosis: "Aumenta riesgo de múltiples enfermedades crónicas. Pérdida de peso mejora pronóstico.",
+                        images: [
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Obesity_classification.jpg/800px-Obesity_classification.jpg",
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Obesity_pathophysiology.jpg/800px-Obesity_pathophysiology.jpg"
+                        ],
+                        sources: [
+                            {
+                                name: "AACE",
+                                url: "https://www.aace.com/guidelines"
+                            },
+                            {
+                                name: "NIH",
+                                url: "https://www.nhlbi.nih.gov/health-topics/obesity"
+                            }
+                        ],
+                        lastUpdated: "2023-09-14"
+                    }
+                ],
+                resources: [
+                    {
+                        title: "ESPEN Guidelines",
+                        description: "Guías de nutrición clínica europeas",
+                        url: "https://www.espen.org/guidelines",
+                        icon: "fa-book-medical",
+                        category: "Referencia"
+                    },
+                    {
+                        title: "ASPEN Resources",
+                        description: "Recursos de la Sociedad Americana de Nutrición",
+                        url: "https://www.nutritioncare.org",
+                        icon: "fa-stethoscope",
+                        category: "Educación"
+                    },
+                    {
+                        title: "Academy of Nutrition",
+                        description: "Academia de Nutrición y Dietética",
+                        url: "https://www.eatright.org",
+                        icon: "fa-clinic-medical",
+                        category: "Pacientes"
+                    }
+                ]
+            },
+            infecciones: {
+                title: "Control de Infecciones",
+                icon: "fa-virus",
+                description: "Prevención y manejo de infecciones nosocomiales y comunitarias",
+                procedures: [
+                    {
+                        id: "lavado_mano",
+                        title: "Técnica de Lavado de Manos",
+                        icon: "fa-hands-wash",
+                        summary: "Técnica correcta para el lavado de manos en entornos de salud.",
+                        materials: [
+                            "Agua",
+                            "Jabón",
+                            "Toallas de papel",
+                            "Desinfectante de manos",
+                            "Reloj para cronometrar"
+                        ],
+                        steps: [
+                            "Mojar manos con agua",
+                            "Aplicar jabón",
+                            "Frotar palmas",
+                            "Frotar dorso de manos",
+                            "Entrelazar dedos",
+                            "Frotar pulgares",
+                            "Frotar puntas de dedos",
+                            "Aclarar con agua",
+                            "Secar con toalla de papel",
+                            "Cerrar grifo con toalla"
+                        ],
+                        notes: "Duración mínima 20 segundos. Indicado antes y después de contacto con pacientes. Alternativa con alcohol si no hay suciedad visible.",
+                        visualReferences: [
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Hand_washing_technique.jpg/800px-Hand_washing_technique.jpg",
+                                title: "Técnica de Lavado de Manos",
+                                description: "Pasos correctos para el lavado de manos"
+                            },
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/WHO_hand_hygiene.jpg/800px-WHO_hand_hygiene.jpg",
+                                title: "Higiene de Manos OMS",
+                                description: "Técnica recomendada por la Organización Mundial de la Salud"
+                            }
+                        ],
+                        source: {
+                            name: "OMS",
+                            type: "who",
+                            description: "Guías de Higiene de Manos en Atención de Salud",
+                            url: "https://www.who.int/gpsc/5by5/en/"
+                        },
+                        lastUpdated: "2023-12-10"
+                    },
+                    {
+                        id: "barrieras",
+                        title: "Uso de Barreras de Protección",
+                        icon: "fa-shield-alt",
+                        summary: "Protocolo para el uso correcto de equipos de protección personal.",
+                        materials: [
+                            "Guantes",
+                            "Batas",
+                            "Mascarillas",
+                            "Gafas de protección",
+                            "Careta facial"
+                        ],
+                        steps: [
+                            "Evaluación del riesgo",
+                            "Selección del EPP adecuado",
+                            "Colocación en orden correcto",
+                            "Uso durante procedimiento",
+                            "Retirada en orden correcto",
+                            "Desecho adecuado",
+                            "Higiene de manos post-remoción"
+                        ],
+                        notes: "Prevenir la transmisión de patógenos. Adaptar al riesgo específico. Capacitación y verificación de ajuste (mascarillas N95). Evitar la contaminación durante la remoción.",
+                        visualReferences: [
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/PPE_donning_sequence.jpg/800px-PPE_donning_sequence.jpg",
+                                title: "Colocación de EPP",
+                                description: "Secuencia correcta para poner equipo de protección"
+                            },
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/PPE_doffing_sequence.jpg/800px-PPE_doffing_sequence.jpg",
+                                title: "Retirada de EPP",
+                                description: "Secuencia correcta para quitar equipo de protección"
+                            }
+                        ],
+                        source: {
+                            name: "CDC",
+                            type: "fda",
+                            description: "Centers for Disease Control and Prevention Guidelines",
+                            url: "https://www.cdc.gov/infectioncontrol/guidelines/index.html"
+                        },
+                        lastUpdated: "2023-11-28"
+                    }
+                ],
+                diseases: [
+                    {
+                        id: "sepsis",
+                        name: "Sepsis",
+                        prevalence: "27 millones de casos/año globalmente",
+                        description: "Respuesta sistémica desregulada a la infección",
+                        symptoms: [
+                            "Fiebre o hipotermia",
+                            "Taquicardia",
+                            "Taquipnea",
+                            "Leucocitosis o leucopenia",
+                            "Hipotensión"
+                        ],
+                        treatment: [
+                            "Antibióticos empíricos inmediatos",
+                            "Reanimación con fluidos",
+                            "Soporte hemodinámico",
+                            "Fuente control",
+                            "Soporte de órganos"
+                        ],
+                        prognosis: "Mortalidad 15-30%. Mejora con intervención temprana (<1 hora)."
+                    }
+                ],
+                resources: [
+                    {
+                        title: "CDC Infection Control",
+                        description: "Guías de control de infecciones",
+                        url: "https://www.cdc.gov/infectioncontrol",
+                        icon: "fa-book-medical",
+                        category: "Referencia"
+                    },
+                    {
+                        title: "WHO Infection Prevention",
+                        description: "Prevención de infecciones de la OMS",
+                        url: "https://www.who.int/infection-prevention",
+                        icon: "fa-stethoscope",
+                        category: "Educación"
+                    },
+                    {
+                        title: "SHEA Guidelines",
+                        description: "Sociedad para Epidemiología en Atención de Salud",
+                        url: "https://www.shea-online.org",
+                        icon: "fa-clinic-medical",
+                        category: "Referencia"
+                    }
+                ]
+            },
+            movilizacion: {
+                title: "Movilización Pacientes",
+                icon: "fa-wheelchair",
+                description: "Técnicas seguras para la movilización de pacientes",
+                procedures: [
+                    {
+                        id: "traslado",
+                        title: "Traslado de Paciente de Cama a Silla",
+                        icon: "fa-exchange-alt",
+                        summary: "Técnica segura para trasladar pacientes de la cama a una silla.",
+                        materials: [
+                            "Silla de ruedas",
+                            "Tabla de transferencia",
+                            "Cinturón de transferencia",
+                            "Personal adecuado",
+                            "Espacio suficiente"
+                        ],
+                        steps: [
+                            "Explicar el procedimiento al paciente",
+                            "Preparar el equipo",
+                            "Posicionar la silla",
+                            "Ayudar al paciente a sentarse en la cama",
+                            "Deslizar la tabla de transferencia",
+                            "Asistir en el giro y traslado",
+                            "Asegurar al paciente en la silla",
+                            "Verificar comodidad y seguridad"
+                        ],
+                        notes: "Evaluar capacidad del paciente. Usar equipo de ayuda. Evitar torsión de columna. Comunicación constante con el paciente. Prevenir caídas.",
+                        visualReferences: [
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Patient_transfer_bed_to_chair.jpg/800px-Patient_transfer_bed_to_chair.jpg",
+                                title: "Traslado Cama a Silla",
+                                description: "Técnica de transferencia de paciente"
+                            },
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Transfer_board_use.jpg/800px-Transfer_board_use.jpg",
+                                title: "Tabla de Transferencia",
+                                description: "Uso de tabla para transferencia segura"
+                            }
+                        ],
+                        source: {
+                            name: "OSHA",
+                            type: "fda",
+                            description: "Occupational Safety and Health Administration Guidelines",
+                            url: "https://www.osha.gov/health-care"
+                        },
+                        lastUpdated: "2023-12-08"
+                    },
+                    {
+                        id: "ambulacion",
+                        title: "Ambulación con Ayudas",
+                        icon: "fa-walking",
+                        summary: "Técnica para ayudar a pacientes a caminar con dispositivos de apoyo.",
+                        materials: [
+                            "Andadores",
+                            "Muletas",
+                            "Bastones",
+                            "Cinturón de seguridad",
+                            "Espacio seguro"
+                        ],
+                        steps: [
+                            "Seleccionar la ayuda adecuada",
+                            "Ajustar la altura",
+                            "Demostrar el uso",
+                            "Asistir en la marcha",
+                            "Monitorear equilibrio",
+                            "Prevenir caídas",
+                            "Descansar según necesidad"
+                        ],
+                        notes: "Evaluar fuerza, equilibrio y coordinación. Ajustar dispositivo a la altura correcta. Superficie segura. Supervisión constante. Progresión gradual.",
+                        visualReferences: [
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Using_a_walker.jpg/800px-Using_a_walker.jpg",
+                                title: "Uso de Andador",
+                                description: "Técnica correcta para usar andador"
+                            },
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Using_crutches.jpg/800px-Using_crutches.jpg",
+                                title: "Uso de Muletas",
+                                description: "Técnica correcta para usar muletas"
+                            }
+                        ],
+                        source: {
+                            name: "APTA",
+                            type: "fda",
+                            description: "American Physical Therapy Association Guidelines",
+                            url: "https://www.apta.org"
+                        },
+                        lastUpdated: "2023-11-22"
+                    }
+                ],
+                resources: [
+                    {
+                        title: "OSHA Healthcare Guidelines",
+                        description: "Guías de seguridad en atención de salud",
+                        url: "https://www.osha.gov/health-care",
+                        icon: "fa-book-medical",
+                        category: "Referencia"
+                    },
+                    {
+                        title: "APTA Resources",
+                        description: "Recursos de la Asociación de Fisioterapia",
+                        url: "https://www.apta.org/patient-care",
+                        icon: "fa-stethoscope",
+                        category: "Educación"
+                    },
+                    {
+                        title: "NIOSH Ergonomics",
+                        description: "Ergonomía en el trabajo de salud",
+                        url: "https://www.cdc.gov/niosh/topics/ergonomics",
+                        icon: "fa-clinic-medical",
+                        category: "Seguridad"
+                    }
+                ]
+            },
+            rcp: {
+                title: "RCP Integral",
+                icon: "fa-heartbeat",
+                description: "Reanimación cardiopulmonar y cuidados avanzados",
+                procedures: [
                     {
                         id: "rcep",
-                        name: "Reanimación Cardiovascular Avanzada",
-                        level: 1,
+                        title: "Reanimación Cardiovascular Avanzada",
+                        icon: "fa-procedures",
+                        summary: "Protocolo completo para la reanimación cardiopulmonar avanzada.",
+                        materials: [
+                            "Desfibrilador/AED",
+                            "Equipo de vía aérea",
+                            "Medicamentos de paro",
+                            "Monitor cardíaco",
+                            "Equipo de acceso vascular"
+                        ],
                         steps: [
                             "Verificar escena segura",
                             "Evaluar respuesta del paciente",
@@ -2228,125 +4295,91 @@
                             "Acceso vascular y administración de epinefrina 1 mg cada 3-5 minutos",
                             "Identificar y tratar causas reversibles (5H 5T)"
                         ],
-                        evidence: [
-                            "Guías AHA 2020 de Reanimación Cardiovascular y Cuidado Cardiovascular de Emergencia",
-                            "Guías ERC 2021 de Reanimación"
-                        ],
-                        images: [
-                            "https://placehold.co/600x400?text=RCP+Adulto",
-                            "https://placehold.co/600x400?text=Desfibrilación"
-                        ],
-                        sources: [
+                        notes: "Calidad de las compresiones es crucial. Minimizar interrupciones. Trabajo en equipo coordinado. Documentación precisa. Debriefing post-paro.",
+                        visualReferences: [
                             {
-                                name: "AHA",
-                                url: "https://www.heart.org/en/resuscitation-science/cpr"
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Adult_CPR.jpg/800px-Adult_CPR.jpg",
+                                title: "RCP en Adulto",
+                                description: "Técnica correcta de reanimación cardiopulmonar"
                             },
                             {
-                                name: "ERC",
-                                url: "https://www.erc.edu/guidelines/"
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/AED_use.jpg/800px-AED_use.jpg",
+                                title: "Uso de DEA",
+                                description: "Aplicación de desfibrilador externo automático"
                             }
                         ],
-                        lastUpdated: "2023-09-01"
+                        source: {
+                            name: "AHA",
+                            type: "who",
+                            description: "American Heart Association Guidelines for CPR",
+                            url: "https://www.heart.org/en/resuscitation-science/cpr"
+                        },
+                        lastUpdated: "2023-10-15"
                     },
                     {
-                        id: "trauma",
-                        name: "Manejo Inicial del Trauma",
-                        level: 2,
+                        id: "postparo",
+                        title: "Cuidados Post-Paro",
+                        icon: "fa-heart",
+                        summary: "Manejo del paciente después de la reanimación exitosa.",
+                        materials: [
+                            "Monitorización neurológica",
+                            "Ventilación mecánica",
+                            "Terapia de hipotermia",
+                            "Soporte hemodinámico",
+                            "Evaluación de causa"
+                        ],
                         steps: [
-                            "Asegurar escena segura",
-                            "Evaluación primaria (ABCDE)",
-                            "Control de vía aérea con protección de columna cervical",
-                            "Soporte respiratorio si necesario",
-                            "Control de hemorragia masiva",
-                            "Acceso vascular y reanimación con fluidos",
-                            "Evaluación secundaria completa",
-                            "Imágenes diagnósticas según necesidad",
-                            "Tratamiento definitivo"
+                            "Optimizar ventilación y oxigenación",
+                            "Mantener perfusión cerebral adecuada",
+                            "Terapia de hipotermia terapéutica",
+                            "Control de glucemia",
+                            "Manejo de convulsiones",
+                            "Evaluación neurológica serial",
+                            "Investigación de causa del paro"
                         ],
-                        evidence: [
-                            "ATLS (Advanced Trauma Life Support) Guidelines 10th Edition",
-                            "Eastern Association for the Surgery of Trauma Guidelines"
-                        ],
-                        images: [
-                            "https://placehold.co/600x400?text=ABCDE+Trauma",
-                            "https://placehold.co/600x400?text=Control+Hemorragia"
-                        ],
-                        sources: [
+                        notes: "Enfriamiento terapéutico mejora resultados neurológicos. Monitoreo intensivo. Prevención de complicaciones. Evaluación pronóstica cuidadosa.",
+                        visualReferences: [
                             {
-                                name: "ACS",
-                                url: "https://www.facs.org/quality-programs/trauma/trauma-center/advanced-trauma-life-support/"
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Therapeutic_hypothermia.jpg/800px-Therapeutic_hypothermia.jpg",
+                                title: "Hipotermia Terapéutica",
+                                description: "Enfriamiento controlado post-paro cardíaco"
+                            },
+                            {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Post-cardiac-arrest_care.jpg/800px-Post-cardiac-arrest_care.jpg",
+                                title: "Cuidados Post-Paro",
+                                description: "Manejo del paciente post-reanimación"
                             }
                         ],
-                        lastUpdated: "2023-08-15"
+                        source: {
+                            name: "ERC",
+                            type: "fda",
+                            description: "European Resuscitation Council Guidelines",
+                            url: "https://www.erc.edu/guidelines/"
+                        },
+                        lastUpdated: "2023-09-28"
                     }
                 ],
-                diseases: [
+                resources: [
                     {
-                        id: "anafilaxia",
-                        name: "Anafilaxia",
-                        prevalence: "1-2% de la población general",
-                        description: "Reacción alérgica sistémica grave y potencialmente mortal",
-                        symptoms: [
-                            "Urticaria y angioedema",
-                            "Dificultad respiratoria",
-                            "Hipotensión",
-                            "Náuseas y vómitos",
-                            "Sensación de muerte inminente"
-                        ],
-                        treatment: [
-                            "Adrenalina intramuscular 0.3-0.5 mg (1:1000) cada 5-15 minutos",
-                            "Oxígeno al 100%",
-                            "Líquidos intravenosos",
-                            "Antihistamínicos (difenhidramina)",
-                            "Corticosteroides (hidrocortisona)"
-                        ],
-                        prognosis: "Buena con tratamiento oportuno. Mortalidad <0.1% con manejo adecuado",
-                        images: [
-                            "https://placehold.co/600x400?text=Anafilaxia",
-                            "https://placehold.co/600x400?text=Autoinyector+Adrenalina"
-                        ],
-                        sources: [
-                            {
-                                name: "AAAAI",
-                                url: "https://www.aaaai.org/Tools-for-the-Public/Conditions-Library/Allergies/Anaphylaxis.aspx"
-                            },
-                            {
-                                name: "WAO",
-                                url: "https://www.worldallergy.org/professionals/education-and-training/wao-curriculum"
-                            }
-                        ],
-                        lastUpdated: "2023-07-20"
+                        title: "AHA Heartsaver",
+                        description: "Cursos de RCP para profesionales",
+                        url: "https://cpr.heart.org",
+                        icon: "fa-book-medical",
+                        category: "Educación"
                     },
                     {
-                        id: "apendicitis",
-                        name: "Apendicitis Aguda",
-                        prevalence: "7-8% de la población en algún momento de la vida",
-                        description: "Inflamación del apéndice vermiforme, causa común de abdomen agudo",
-                        symptoms: [
-                            "Dolor abdominal en fosa ilíaca derecha",
-                            "Náuseas y vómitos",
-                            "Fiebre",
-                            "Anorexia",
-                            "Leucocitosis"
-                        ],
-                        treatment: [
-                            "Apéndicectomía laparoscópica o abierta",
-                            "Antibióticos preoperatorios",
-                            "Manejo del dolor",
-                            "Rehidratación"
-                        ],
-                        prognosis: "Excelente con tratamiento oportuno. Complicaciones <10% con cirugía temprana",
-                        images: [
-                            "https://placehold.co/600x400?text=Apendicitis",
-                            "https://placehold.co/600x400?text=Tomografía+Abdominal"
-                        ],
-                        sources: [
-                            {
-                                name: "ACS",
-                                url: "https://www.facs.org/quality-programs/cancer-programs/community-caner-program"
-                            }
-                        ],
-                        lastUpdated: "2023-06-10"
+                        title: "ERC Guidelines",
+                        description: "Guías europeas de reanimación",
+                        url: "https://www.erc.edu/guidelines/",
+                        icon: "fa-stethoscope",
+                        category: "Referencia"
+                    },
+                    {
+                        title: "ILCOR Consensus",
+                        description: "Consenso internacional sobre reanimación",
+                        url: "https://www.ilcor.org",
+                        icon: "fa-clinic-medical",
+                        category: "Investigación"
                     }
                 ]
             },
@@ -2805,25 +4838,28 @@
                             }
                         });
                     }
+                    
+                    // Buscar en recursos
+                    if (category.resources) {
+                        category.resources.forEach(resource => {
+                            if (resource.title.toLowerCase().includes(query) || 
+                                resource.description.toLowerCase().includes(query)) {
+                                suggestions.push({
+                                    type: 'resource',
+                                    title: resource.title,
+                                    summary: resource.description,
+                                    category: categoryTitle,
+                                    categoryKey: categoryKey,
+                                    icon: resource.type === 'video' ? 'fa-video' : 
+                                           resource.type === 'course' ? 'fa-chalkboard-teacher' : 'fa-book'
+                                });
+                            }
+                        });
+                    }
                 });
                 
-                // Buscar en recursos
+                // Buscar en recursos externos
                 if (medicalData.recursos) {
-                    medicalData.recursos.resources.forEach(resource => {
-                        if (resource.title.toLowerCase().includes(query) || 
-                            resource.description.toLowerCase().includes(query)) {
-                            suggestions.push({
-                                type: 'resource',
-                                title: resource.title,
-                                summary: resource.description,
-                                category: 'Recursos Educativos',
-                                categoryKey: 'recursos',
-                                icon: resource.type === 'video' ? 'fa-video' : 
-                                       resource.type === 'course' ? 'fa-chalkboard-teacher' : 'fa-book'
-                            });
-                        }
-                    });
-                    
                     medicalData.recursos.externalLinks.forEach(link => {
                         if (link.title.toLowerCase().includes(query) || 
                             link.description.toLowerCase().includes(query)) {
@@ -2912,6 +4948,18 @@
                     content = renderSimulatorContent(category);
                 } else if (categoryId === 'evaluacion') {
                     content = renderEvaluationContent(category);
+                } else if (categoryId === 'neumologia' || 
+                           categoryId === 'endocrinologia' || 
+                           categoryId === 'neurologia' || 
+                           categoryId === 'oncologia' || 
+                           categoryId === 'nephrologia' || 
+                           categoryId === 'gastroenterologia' || 
+                           categoryId === 'reumatologia' || 
+                           categoryId === 'nutricion' || 
+                           categoryId === 'infecciones' || 
+                           categoryId === 'movilizacion' || 
+                           categoryId === 'rcp') {
+                    content = renderSpecialtyContent(category);
                 } else {
                     content = renderProceduresContent(category);
                 }
@@ -3278,7 +5326,236 @@
             `;
         }
 
-        // Renderizar contenido del simulador
+        // Renderizar contenido de especialidades
+        function renderSpecialtyContent(category) {
+            return `
+                <div class="page-header">
+                    <h1 class="page-title">
+                        <i class="fas ${category.icon}"></i>
+                        ${category.title}
+                    </h1>
+                </div>
+                <div class="category-card">
+                    <h2>
+                        <i class="fas ${category.icon}"></i>
+                        ${category.title}
+                    </h2>
+                    <p>${category.description}</p>
+                    ${category.procedures ? `
+                    <h3>
+                        <i class="fas fa-procedures"></i>
+                        Procedimientos Principales
+                    </h3>
+                    ${category.procedures.map(procedure => `
+                        <div class="procedure-card">
+                            <div class="procedure-header">
+                                <div class="procedure-title">${procedure.title}</div>
+                                <div class="procedure-specialty">${procedure.summary}</div>
+                            </div>
+                            <div class="procedure-info">
+                                <div class="info-item">
+                                    <div class="info-label">Materiales</div>
+                                    <div class="info-value">${procedure.materials.slice(0, 3).join(', ')}${procedure.materials.length > 3 ? '...' : ''}</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Duración</div>
+                                    <div class="info-value">Variable</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Complejidad</div>
+                                    <div class="info-value">Alta</div>
+                                </div>
+                            </div>
+                            <div class="procedure-steps">
+                                <h4><i class="fas fa-step-forward"></i> Pasos Principales</h4>
+                                ${procedure.steps.slice(0, 3).map((step, index) => `
+                                    <div class="procedure-step">
+                                        ${step}
+                                    </div>
+                                `).join('')}
+                                ${procedure.steps.length > 3 ? '<div style="color: var(--muted); font-size: 0.9rem;">+ más pasos...</div>' : ''}
+                            </div>
+                            <div class="procedure-visuals">
+                                <h4><i class="fas fa-image"></i> Recursos Visuales</h4>
+                                <div class="image-gallery">
+                                    ${procedure.visualReferences.slice(0, 2).map(ref => `
+                                        <div class="image-item">
+                                            <img src="${ref.url}" alt="${ref.title}">
+                                            <div class="image-caption">
+                                                <strong>${ref.title}</strong>
+                                            </div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                            <div class="source-reference">
+                                <i class="fas fa-book"></i>
+                                Fuente: <a href="${procedure.source.url}" target="_blank">${procedure.source.name}</a>
+                                <span style="margin-left: 8px; font-size: 0.8rem; color: var(--muted);">Actualizado: ${formatDate(procedure.lastUpdated)}</span>
+                            </div>
+                        </div>
+                    `).join('')}
+                    ` : ''}
+                </div>
+                ${category.diseases ? `
+                <div class="category-card">
+                    <h2>
+                        <i class="fas fa-disease"></i>
+                        Enfermedades Principales
+                    </h2>
+                    ${category.diseases.map(disease => `
+                        <div class="disease-card">
+                            <div class="disease-header">
+                                <div class="disease-title">${disease.name}</div>
+                                <div class="disease-prevalence">${disease.prevalence}</div>
+                            </div>
+                            <p>${disease.description}</p>
+                            ${disease.images ? `
+                            <div class="image-gallery">
+                                ${disease.images.slice(0, 2).map(img => `
+                                    <div class="image-item">
+                                        <img src="${img}" alt="${disease.name}">
+                                        <div class="image-caption">
+                                            <strong>${disease.name}</strong>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            ` : ''}
+                            <div class="disease-info">
+                                <div class="info-item">
+                                    <div class="info-label">Síntomas</div>
+                                    <div class="info-value">${disease.symptoms.slice(0, 4).join(', ')}${disease.symptoms.length > 4 ? '...' : ''}</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Tratamiento</div>
+                                    <div class="info-value">${disease.treatment.slice(0, 3).join(', ')}${disease.treatment.length > 3 ? '...' : ''}</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Pronóstico</div>
+                                    <div class="info-value">${disease.prognosis}</div>
+                                </div>
+                            </div>
+                            <div class="source-reference">
+                                <i class="fas fa-link"></i>
+                                Fuentes:
+                                ${disease.sources.map(source => `
+                                    <a href="${source.url}" target="_blank">${source.name}</a>
+                                `).join(' • ')}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+                ` : ''}
+                ${category.resources ? `
+                <div class="resource-panel">
+                    <h2>
+                        <i class="fas fa-link"></i>
+                        Recursos ${category.title}
+                    </h2>
+                    <div class="resource-grid">
+                        ${category.resources.map(resource => `
+                            <div class="resource-card">
+                                <h3>
+                                    <i class="fas ${resource.icon}"></i>
+                                    ${resource.title}
+                                </h3>
+                                <p>
+                                    <i class="fas fa-info-circle"></i>
+                                    ${resource.description}
+                                </p>
+                                <p>
+                                    <i class="fas fa-tags"></i>
+                                    Categoría: ${resource.category}
+                                </p>
+                                <a href="${resource.url}" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Visitar Recurso
+                                </a>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                ` : ''}
+            `;
+        }
+
+        // Renderizar contenido de recursos
+        function renderResourcesContent(category) {
+            return `
+                <div class="page-header">
+                    <h1 class="page-title">
+                        <i class="fas ${category.icon}"></i>
+                        ${category.title}
+                    </h1>
+                </div>
+                <div class="category-card">
+                    <h2>
+                        <i class="fas fa-book-open"></i>
+                        Recursos Educativos Médicos
+                    </h2>
+                    <p>${category.description}</p>
+                    <div class="resource-grid">
+                        ${category.resources.map(resource => `
+                            <div class="resource-card">
+                                <img src="${resource.image}" alt="${resource.title}" style="width: 100%; height: 150px; object-fit: cover; border-radius: 12px; margin-bottom: 12px;">
+                                <h3>
+                                    <i class="fas ${resource.type === 'video' ? 'fa-video' : 
+                                           resource.type === 'course' ? 'fa-chalkboard-teacher' : 'fa-book'}"></i>
+                                    ${resource.title}
+                                </h3>
+                                <p>
+                                    <i class="fas fa-info-circle"></i>
+                                    ${resource.description}
+                                </p>
+                                <p>
+                                    <i class="fas fa-tag"></i>
+                                    Categoría: ${resource.category}
+                                </p>
+                                <p>
+                                    <i class="fas fa-download"></i>
+                                    ${resource.type === 'pdf' ? `Descargas: ${resource.downloads}` : 
+                                      resource.type === 'video' ? `Duración: ${resource.duration}` : 
+                                      resource.type === 'course' ? `Inscritos: ${resource.enrolled}` : ''}
+                                </p>
+                                <p>
+                                    <i class="fas fa-star"></i>
+                                    Calificación: ${resource.rating}/5.0
+                                </p>
+                                <p>
+                                    <i class="fas fa-calendar"></i>
+                                    Publicado: ${formatDate(resource.published)}
+                                </p>
+                                <a href="${resource.url}" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Acceder al Recurso
+                                </a>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                <div class="resource-panel">
+                    <h2>
+                        <i class="fas fa-globe-americas"></i>
+                        Recursos Externos de Calidad
+                    </h2>
+                    <p>Enlaces a las principales organizaciones médicas y bases de datos científicas.</p>
+                    <div class="resource-links">
+                        ${category.externalLinks.map(link => `
+                            <a href="${link.url}" target="_blank" class="resource-link">
+                                <i class="fas ${link.icon}"></i>
+                                <div class="resource-link-text">
+                                    <div class="resource-link-title">${link.title}</div>
+                                    <div class="resource-link-org">${link.description}</div></div>
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Renderizar contenido de simulador
         function renderSimulatorContent(category) {
             return `
                 <div class="page-header">
@@ -3472,82 +5749,6 @@
             }
             
             interpretationElement.innerHTML = interpretation;
-        }
-
-        // Renderizar contenido de recursos
-        function renderResourcesContent(category) {
-            return `
-                <div class="page-header">
-                    <h1 class="page-title">
-                        <i class="fas ${category.icon}"></i>
-                        ${category.title}
-                    </h1>
-                </div>
-                <div class="category-card">
-                    <h2>
-                        <i class="fas fa-book-open"></i>
-                        Recursos Educativos Médicos
-                    </h2>
-                    <p>${category.description}</p>
-                    <div class="resource-grid">
-                        ${category.resources.map(resource => `
-                            <div class="resource-card">
-                                <img src="${resource.image}" alt="${resource.title}" style="width: 100%; height: 150px; object-fit: cover; border-radius: 12px; margin-bottom: 12px;">
-                                <h3>
-                                    <i class="fas ${resource.type === 'video' ? 'fa-video' : 
-                                           resource.type === 'course' ? 'fa-chalkboard-teacher' : 'fa-book'}"></i>
-                                    ${resource.title}
-                                </h3>
-                                <p>
-                                    <i class="fas fa-info-circle"></i>
-                                    ${resource.description}
-                                </p>
-                                <p>
-                                    <i class="fas fa-tag"></i>
-                                    Categoría: ${resource.category}
-                                </p>
-                                <p>
-                                    <i class="fas fa-download"></i>
-                                    ${resource.type === 'pdf' ? `Descargas: ${resource.downloads}` : 
-                                      resource.type === 'video' ? `Duración: ${resource.duration}` : 
-                                      resource.type === 'course' ? `Inscritos: ${resource.enrolled}` : ''}
-                                </p>
-                                <p>
-                                    <i class="fas fa-star"></i>
-                                    Calificación: ${resource.rating}/5.0
-                                </p>
-                                <p>
-                                    <i class="fas fa-calendar"></i>
-                                    Publicado: ${formatDate(resource.published)}
-                                </p>
-                                <a href="${resource.url}" target="_blank">
-                                    <i class="fas fa-external-link-alt"></i>
-                                    Acceder al Recurso
-                                </a>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-                <div class="resource-panel">
-                    <h2>
-                        <i class="fas fa-globe-americas"></i>
-                        Recursos Externos de Calidad
-                    </h2>
-                    <p>Enlaces a las principales organizaciones médicas y bases de datos científicas.</p>
-                    <div class="resource-links">
-                        ${category.externalLinks.map(link => `
-                            <a href="${link.url}" target="_blank" class="resource-link">
-                                <i class="fas ${link.icon}"></i>
-                                <div class="resource-link-text">
-                                    <div class="resource-link-title">${link.title}</div>
-                                    <div class="resource-link-org">${link.description}</div>
-                                </div>
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        `).join('')}
-                    </div>
-                </div>
-            `;
         }
 
         // Renderizar contenido de evaluación
@@ -3802,7 +6003,7 @@
             messageElement.className = `message ${sender}`;
             messageElement.textContent = text;
             chatbotMessages.appendChild(messageElement);
-            chatbotMessages.scrollTop = chatbotMessages.scrollHeight();
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
         }
 
         // Generar respuesta del chatbot
