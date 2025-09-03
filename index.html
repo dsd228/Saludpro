@@ -5,19 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Plataforma Educativa Médica Avanzada - Curaciones, Especialidades Clínicas y Simulaciones">
     <title>EduMed · Plataforma Avanzada de Educación Clínica</title>
-    
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Three.js para visualizaciones 3D -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    
-    <!-- Chart.js para gráficos -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
     <style>
         :root {
             /* Paleta de verdes claros */
@@ -61,14 +52,12 @@
             --gradient-danger: linear-gradient(135deg, #ef4444, #dc2626);
             --gradient-info: linear-gradient(135deg, #06b6d4, #0891b2);
         }
-
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             transition: var(--transition);
         }
-
         html, body {
             height: 100%;
             margin: 0;
@@ -82,7 +71,6 @@
             color: var(--text-dark);
             overflow-x: hidden;
         }
-
         .app {
             width: 100%;
             max-width: var(--maxwidth);
@@ -98,7 +86,6 @@
             border: 1px solid var(--border);
             border-bottom-width: 2px;
         }
-
         /* Estructura principal */
         header {
             padding: 24px 32px;
@@ -113,7 +100,6 @@
             z-index: var(--z-header);
             box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
         }
-
         header h1 {
             font-size: 1.9rem;
             font-weight: 700;
@@ -124,19 +110,16 @@
             letter-spacing: -0.8px;
             text-shadow: 0 2px 4px rgba(5, 150, 105, 0.3);
         }
-
         .brand-icon {
             font-size: 2.2rem;
             color: var(--accent);
             text-shadow: 0 0 12px rgba(5, 150, 105, 0.4);
         }
-
         .controls {
             display: flex;
             align-items: center;
             gap: 18px;
         }
-
         .theme-toggle {
             background: var(--glass-2);
             border: none;
@@ -155,17 +138,14 @@
             box-shadow: var(--shadow-sm);
             transform: scale(1);
         }
-
         .theme-toggle:hover {
             background: var(--accent-2);
             transform: translateY(-3px) rotate(10deg);
             box-shadow: var(--shadow-md);
         }
-
         .theme-toggle:active {
             transform: translateY(-1px);
         }
-
         .mobile-menu-btn {
             display: none;
             background: var(--glass-2);
@@ -183,19 +163,16 @@
             border: 1px solid var(--border);
             box-shadow: var(--shadow-sm);
         }
-
         .mobile-menu-btn:hover {
             background: var(--accent-2);
             transform: translateY(-3px);
             box-shadow: var(--shadow-md);
         }
-
         .container {
             display: flex;
             flex: 1;
             overflow: hidden;
         }
-
         .sidebar {
             width: 340px;
             background: var(--glass);
@@ -208,7 +185,6 @@
             box-shadow: var(--shadow-sm);
             border-right-width: 2px;
         }
-
         .sidebar-header {
             display: flex;
             align-items: center;
@@ -218,19 +194,16 @@
             border-bottom: 1px solid var(--border-light);
             color: var(--accent);
         }
-
         .sidebar-header h3 {
             font-size: 1.3rem;
             font-weight: 600;
             letter-spacing: 0.8px;
         }
-
         .cat-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 16px;
         }
-
         .cat-btn {
             padding: 20px 24px;
             border: none;
@@ -251,7 +224,6 @@
             font-size: 1.05rem;
             font-family: var(--font);
         }
-
         .cat-btn::before {
             content: '';
             position: absolute;
@@ -262,18 +234,15 @@
             background: transparent;
             transition: var(--transition);
         }
-
         .cat-btn:hover {
             background: var(--accent-2);
             color: white;
             transform: translateY(-5px);
             box-shadow: var(--shadow-md);
         }
-
         .cat-btn:hover::before {
             background: var(--accent);
         }
-
         .cat-btn.active {
             background: var(--accent-2);
             color: white;
@@ -281,18 +250,15 @@
             font-weight: 600;
             transform: translateY(-2px);
         }
-
         .cat-btn.active::before {
             background: var(--accent);
         }
-
         .cat-btn i {
             font-size: 1.7rem;
             width: 32px;
             text-align: center;
             transition: var(--transition);
         }
-
         .cat-btn[data-cat="higiene"] i { color: #4ade80; }
         .cat-btn[data-cat="curaciones"] i { color: #059669; }
         .cat-btn[data-cat="farmaco"] i { color: #8b5cf6; }
@@ -301,14 +267,12 @@
         .cat-btn[data-cat="rcp"] i { color: #06b6d4; }
         .cat-btn[data-cat="pae"] i { color: #10b981; }
         .cat-btn[data-cat="recursos"] i { color: #64748b; }
-
         main {
             flex: 1;
             padding: 32px;
             overflow-y: auto;
             background: var(--glass);
         }
-
         .page-header {
             display: flex;
             justify-content: space-between;
@@ -317,7 +281,6 @@
             padding-bottom: 16px;
             border-bottom: 1px solid var(--border-light);
         }
-
         .page-title {
             display: flex;
             align-items: center;
@@ -326,16 +289,13 @@
             font-weight: 500;
             color: var(--text-light);
         }
-
         .page-title i {
             color: var(--accent);
         }
-
         .action-buttons {
             display: flex;
             gap: 12px;
         }
-
         .btn {
             padding: 18px 24px;
             border: none;
@@ -351,59 +311,49 @@
             font-size: 1.1rem;
             transition: var(--transition);
         }
-
         .btn.primary {
             background: var(--gradient-primary);
             color: white;
             border: 1px solid rgba(5, 150, 105, 0.3);
         }
-
         .btn.primary:hover {
             background: var(--gradient-secondary);
             transform: translateY(-4px);
             box-shadow: var(--shadow-md);
         }
-
         .btn.primary:active {
             transform: translateY(-2px);
         }
-
         .btn.secondary {
             background: var(--gradient-secondary);
             color: white;
             border: 1px solid rgba(16, 185, 129, 0.3);
         }
-
         .btn.secondary:hover {
             background: var(--primary-green-darker);
             transform: translateY(-4px);
             box-shadow: var(--shadow-md);
         }
-
         .btn.success {
             background: linear-gradient(135deg, #10b981, #059669);
             color: white;
             border: 1px solid rgba(16, 185, 129, 0.3);
         }
-
         .btn.warning {
             background: linear-gradient(135deg, #f59e0b, #d97706);
             color: white;
             border: 1px solid rgba(245, 158, 11, 0.3);
         }
-
         .btn.danger {
             background: linear-gradient(135deg, #ef4444, #dc2626);
             color: white;
             border: 1px solid rgba(239, 68, 68, 0.3);
         }
-
         .search-container {
             position: relative;
             width: 100%;
             max-width: 500px;
         }
-
         .input {
             width: 100%;
             padding: 18px 24px;
@@ -418,18 +368,15 @@
             backdrop-filter: blur(12px);
             border: 1px solid var(--border-light);
         }
-
         .input::placeholder {
             color: rgba(15, 23, 42, 0.7);
         }
-
         .input:focus {
             outline: none;
             border-color: var(--accent);
             box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.2);
             background: rgba(255, 255, 255, 0.12);
         }
-
         .search-icon {
             position: absolute;
             left: 20px;
@@ -438,7 +385,6 @@
             color: var(--muted);
             font-size: 1.2rem;
         }
-
         .search-suggestions {
             position: absolute;
             top: 100%;
@@ -453,7 +399,6 @@
             max-height: 300px;
             overflow-y: auto;
         }
-
         .suggestion-item {
             padding: 16px 24px;
             cursor: pointer;
@@ -464,21 +409,17 @@
             align-items: center;
             gap: 12px;
         }
-
         .suggestion-item:hover {
             background: var(--accent-2);
             color: white;
         }
-
         .suggestion-item:last-child {
             border-bottom: none;
         }
-
         .suggestion-item i {
             color: var(--muted);
             font-size: 1.1rem;
         }
-
         .category-card {
             background: var(--glass-2);
             border-radius: 24px;
@@ -490,12 +431,10 @@
             backdrop-filter: blur(12px);
             border: 1px solid var(--border-light);
         }
-
         .category-card:hover {
             transform: translateY(-8px);
             box-shadow: var(--shadow-lg);
         }
-
         .category-card h2 {
             color: var(--accent);
             margin-bottom: 24px;
@@ -506,11 +445,9 @@
             gap: 14px;
             letter-spacing: -0.8px;
         }
-
         .category-card h2 i {
             font-size: 1.8rem;
         }
-
         .category-card h3 {
             color: var(--accent-2);
             margin: 24px 0 14px 0;
@@ -521,7 +458,6 @@
             gap: 12px;
             letter-spacing: -0.5px;
         }
-
         .category-card h4 {
             color: var(--primary-green);
             margin: 14px 0 10px 0;
@@ -531,7 +467,6 @@
             align-items: center;
             gap: 10px;
         }
-
         .procedure {
             margin-bottom: 28px;
             padding-bottom: 28px;
@@ -539,7 +474,6 @@
             transition: var(--transition);
             position: relative;
         }
-
         .procedure::after {
             content: '';
             position: absolute;
@@ -550,17 +484,14 @@
             background: var(--accent);
             transition: var(--transition);
         }
-
         .procedure:hover::after {
             width: 100%;
         }
-
         .procedure:last-child {
             border-bottom: none;
             margin-bottom: 0;
             padding-bottom: 0;
         }
-
         .procedure h3 {
             color: var(--accent-2);
             margin-bottom: 14px;
@@ -568,19 +499,16 @@
             align-items: center;
             gap: 12px;
         }
-
         .procedure h3 i {
             font-size: 1.4rem;
             color: var(--accent);
         }
-
         .procedure p {
             margin: 8px 0;
             color: var(--text-light);
             line-height: 1.7;
             font-size: 1.05rem;
         }
-
         .procedure .summary {
             font-style: italic;
             color: var(--muted);
@@ -592,28 +520,23 @@
             border: 1px solid var(--border-light);
             box-shadow: var(--shadow-sm);
         }
-
         .procedure .summary i {
             color: var(--primary-green);
             margin-right: 10px;
         }
-
         .materials, .steps, .notes {
             margin: 14px 0;
         }
-
         .materials ul, .steps ol {
             margin: 12px 0;
             padding-left: 32px;
         }
-
         .materials li, .steps li {
             margin: 8px 0;
             display: flex;
             align-items: flex-start;
             gap: 12px;
         }
-
         .materials li::before, .steps li::before {
             content: "•";
             color: var(--accent);
@@ -621,7 +544,6 @@
             margin-top: 6px;
             font-size: 1.3rem;
         }
-
         .steps li::before {
             content: counter(step);
             counter-increment: step;
@@ -637,7 +559,6 @@
             font-weight: bold;
             margin-top: 4px;
         }
-
         .notes {
             background: var(--primary-green-lighter);
             padding: 22px 26px;
@@ -648,12 +569,10 @@
             border: 1px solid var(--border-light);
             box-shadow: var(--shadow-sm);
         }
-
         .notes i {
             color: var(--primary-green);
             margin-right: 12px;
         }
-
         .source-badge {
             display: inline-flex;
             align-items: center;
@@ -667,29 +586,24 @@
             margin-left: 8px;
             border: 1px solid rgba(5, 150, 105, 0.3);
         }
-
         .source-badge i {
             font-size: 0.9rem;
         }
-
         .source-badge.wiki {
             background: rgba(234, 234, 234, 0.2);
             color: #000000;
             border-color: rgba(234, 234, 234, 0.4);
         }
-
         .source-badge.fda {
             background: rgba(220, 38, 38, 0.15);
             color: var(--alert-red);
             border-color: rgba(220, 38, 38, 0.3);
         }
-
         .source-badge.who {
             background: rgba(0, 153, 255, 0.15);
             color: #0099ff;
             border-color: rgba(0, 153, 255, 0.3);
         }
-
         .source-reference {
             font-size: 0.9rem;
             color: var(--muted);
@@ -699,16 +613,13 @@
             gap: 8px;
             font-style: italic;
         }
-
         .source-reference a {
             color: var(--accent);
             text-decoration: none;
         }
-
         .source-reference a:hover {
             text-decoration: underline;
         }
-
         .resource-panel {
             background: var(--glass-2);
             border-radius: 24px;
@@ -720,14 +631,12 @@
             backdrop-filter: blur(12px);
             border: 1px solid var(--border-light);
         }
-
         .resource-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 24px;
             margin-top: 24px;
         }
-
         .resource-card {
             background: var(--glass-2);
             border-radius: 18px;
@@ -736,12 +645,10 @@
             box-shadow: var(--shadow-sm);
             transition: var(--transition);
         }
-
         .resource-card:hover {
             transform: translateY(-6px);
             box-shadow: var(--shadow-md);
         }
-
         .resource-card h3 {
             color: var(--accent);
             margin-bottom: 16px;
@@ -750,11 +657,9 @@
             align-items: center;
             gap: 12px;
         }
-
         .resource-card h3 i {
             font-size: 1.5rem;
         }
-
         .resource-card p {
             margin: 6px 0;
             font-size: 1.02rem;
@@ -763,14 +668,12 @@
             align-items: center;
             gap: 10px;
         }
-
         .resource-card p i {
             color: var(--muted);
             font-size: 1.2rem;
             width: 24px;
             text-align: center;
         }
-
         .resource-card a {
             display: inline-block;
             margin-top: 16px;
@@ -784,12 +687,10 @@
             border: 1px solid rgba(16, 185, 129, 0.3);
             font-size: 1.02rem;
         }
-
         .resource-card a:hover {
             transform: translateY(-3px);
             box-shadow: var(--shadow-sm);
         }
-
         @media (max-width: 1200px) {
             .app {
                 border-radius: 18px;
@@ -799,7 +700,6 @@
                 padding: 28px;
             }
         }
-
         @media (max-width: 1024px) {
             .app {
                 border-radius: 16px;
@@ -809,7 +709,6 @@
                 padding: 24px;
             }
         }
-
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
@@ -829,7 +728,6 @@
                 display: none;
             }
         }
-
         @media (max-width: 480px) {
             .app {
                 border-radius: 14px;
@@ -843,18 +741,15 @@
                 font-size: 1rem;
             }
         }
-
         /* Animaciones */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         @keyframes modalFadeIn {
             from { opacity: 0; transform: translateY(-60px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         .notification-container {
             position: fixed;
             top: 20px;
@@ -865,7 +760,6 @@
             gap: 12px;
             max-width: 400px;
         }
-
         .notification {
             padding: 20px 24px;
             border-radius: 16px;
@@ -879,33 +773,27 @@
             animation: fadeIn 0.4s ease;
             border: 1px solid var(--border);
         }
-
         .notification-success {
             background: rgba(16, 185, 129, 0.22);
             border-color: rgba(16, 185, 129, 0.38);
             color: var(--success-green);
         }
-
         .notification-error {
             background: rgba(239, 68, 68, 0.22);
             border-color: rgba(239, 68, 68, 0.38);
             color: var(--alert-red);
         }
-
         .notification-info {
             background: rgba(5, 150, 105, 0.22);
             border-color: rgba(5, 150, 105, 0.38);
             color: var(--accent);
         }
-
         .notification-icon {
             font-size: 1.5rem;
         }
-
         .notification-content {
             flex: 1;
         }
-
         .close-notification {
             background: none;
             border: none;
@@ -914,11 +802,9 @@
             color: var(--muted);
             padding: 4px;
         }
-
         .close-notification:hover {
             color: white;
         }
-        
         /* Estados de carga */
         .loading {
             display: inline-block;
@@ -929,11 +815,9 @@
             border-top-color: white;
             animation: spin 1s ease-in-out infinite;
         }
-        
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
-        
         /* Perfil de usuario */
         .user-profile {
             display: flex;
@@ -944,7 +828,6 @@
             background: rgba(255,255,255,0.1);
             backdrop-filter: blur(10px);
         }
-        
         .user-avatar {
             width: 36px;
             height: 36px;
@@ -957,21 +840,17 @@
             font-weight: bold;
             font-size: 14px;
         }
-        
         .user-info {
             color: var(--text-light);
             font-size: 14px;
         }
-        
         .user-name {
             font-weight: 600;
         }
-        
         .user-role {
             font-size: 12px;
             color: var(--muted);
         }
-        
         /* Contenido visual */
         .visual-content {
             margin: 20px 0;
@@ -980,13 +859,11 @@
             border: 1px solid var(--border-light);
             box-shadow: var(--shadow-sm);
         }
-        
         .visual-content img {
             width: 100%;
             height: auto;
             display: block;
         }
-        
         .visual-caption {
             padding: 16px;
             background: var(--glass-2);
@@ -994,7 +871,6 @@
             color: var(--muted);
             font-size: 0.95rem;
         }
-        
         .external-links {
             margin: 20px 0;
             padding: 16px;
@@ -1002,7 +878,6 @@
             border-radius: 16px;
             border: 1px solid var(--border-light);
         }
-        
         .external-links h4 {
             color: var(--primary-green);
             margin-bottom: 12px;
@@ -1010,16 +885,13 @@
             align-items: center;
             gap: 8px;
         }
-        
         .external-links ul {
             list-style: none;
             padding: 0;
         }
-        
         .external-links li {
             margin: 8px 0;
         }
-        
         .external-links a {
             color: var(--accent);
             text-decoration: none;
@@ -1030,16 +902,13 @@
             border-radius: 8px;
             transition: var(--transition);
         }
-        
         .external-links a:hover {
             background: var(--accent-2);
             color: white;
         }
-        
         .external-links i {
             font-size: 1.1rem;
         }
-        
         /* Advertencias de interacción de medicamentos */
         .interaction-warning {
             margin: 16px 0;
@@ -1049,30 +918,25 @@
             border: 1px solid;
             box-shadow: var(--shadow-sm);
         }
-        
         .interaction-warning.severe {
             background: rgba(220, 38, 38, 0.15);
             border-color: rgba(220, 38, 38, 0.3);
             color: var(--alert-red);
         }
-        
         .interaction-warning.moderate {
             background: rgba(202, 138, 4, 0.15);
             border-color: rgba(202, 138, 4, 0.3);
             color: var(--warning-yellow);
         }
-        
         .interaction-warning.mild {
             background: rgba(16, 185, 129, 0.15);
             border-color: rgba(16, 185, 129, 0.3);
             color: var(--success-green);
         }
-        
         .interaction-warning i {
             margin-right: 10px;
             font-size: 1.2rem;
         }
-        
         /* Estilos de calculadoras */
         .calculator {
             background: var(--glass-2);
@@ -1082,7 +946,6 @@
             border: 1px solid var(--border-light);
             box-shadow: var(--shadow-sm);
         }
-        
         .calculator h4 {
             color: var(--accent-2);
             margin-bottom: 16px;
@@ -1090,20 +953,17 @@
             align-items: center;
             gap: 10px;
         }
-        
         .calculator-input {
             display: flex;
             gap: 12px;
             margin-bottom: 16px;
             align-items: center;
         }
-        
         .calculator-input label {
             flex: 1;
             color: var(--text-light);
             font-weight: 500;
         }
-        
         .calculator-input input {
             flex: 2;
             padding: 12px 16px;
@@ -1113,7 +973,6 @@
             background: rgba(255, 255, 255, 0.08);
             color: var(--text-light);
         }
-        
         .calculator-result {
             margin-top: 16px;
             padding: 16px;
@@ -1124,7 +983,6 @@
             color: var(--accent-2);
             font-weight: 500;
         }
-        
         /* Modal de inicio de sesión */
         .login-modal {
             position: fixed;
@@ -1140,7 +998,6 @@
             z-index: 1000;
             animation: modalFadeIn 0.4s ease;
         }
-        
         .login-content {
             background: var(--glass);
             border-radius: 24px;
@@ -1150,12 +1007,10 @@
             box-shadow: var(--shadow-lg);
             border: 1px solid var(--border);
         }
-        
         .login-header {
             text-align: center;
             margin-bottom: 32px;
         }
-        
         .login-header h2 {
             color: var(--accent);
             margin-bottom: 8px;
@@ -1164,18 +1019,15 @@
             justify-content: center;
             gap: 12px;
         }
-        
         .login-form {
             display: flex;
             flex-direction: column;
             gap: 16px;
         }
-        
         .login-form label {
             color: var(--text-light);
             font-weight: 500;
         }
-        
         .login-form input {
             padding: 16px 20px;
             border: 1px solid var(--border-light);
@@ -1184,7 +1036,6 @@
             background: rgba(255, 255, 255, 0.08);
             color: var(--text-light);
         }
-        
         .login-form button {
             margin-top: 8px;
             padding: 16px 24px;
@@ -1197,19 +1048,16 @@
             cursor: pointer;
             box-shadow: var(--shadow-md);
         }
-        
         .login-form button:hover {
             background: var(--gradient-secondary);
             transform: translateY(-2px);
         }
-        
         /* Pestañas */
         .tabs {
             display: flex;
             border-bottom: 1px solid var(--border-light);
             margin-bottom: 24px;
         }
-        
         .tab {
             padding: 16px 24px;
             cursor: pointer;
@@ -1218,23 +1066,19 @@
             border-bottom: 3px solid transparent;
             transition: var(--transition);
         }
-        
         .tab.active {
             color: var(--accent);
             border-bottom: 3px solid var(--accent);
             font-weight: 600;
         }
-        
         .tab-content {
             display: none;
         }
-        
         .tab-content.active {
             display: block;
         }
-
-        /* Nuevos estilos para mejoras */
-        .simulator-container {
+        /* Formulario de procedimientos */
+        .procedure-form {
             background: var(--glass-2);
             border-radius: 18px;
             padding: 24px;
@@ -1242,257 +1086,82 @@
             border: 1px solid var(--border-light);
             box-shadow: var(--shadow-sm);
         }
-        
-        .simulator-header {
-            color: var(--accent);
+        .form-group {
             margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
-        
-        .vital-signs {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin-bottom: 20px;
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-light);
+            font-weight: 500;
         }
-        
-        .vital-card {
-            background: var(--glass);
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border-light);
             border-radius: 12px;
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-light);
+            font-family: var(--font);
+        }
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        .form-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+        /* Lista de procedimientos */
+        .procedure-list {
+            margin: 20px 0;
+        }
+        .procedure-item {
+            background: var(--glass-2);
+            border-radius: 16px;
             padding: 16px;
-            text-align: center;
+            margin-bottom: 12px;
             border: 1px solid var(--border-light);
             box-shadow: var(--shadow-sm);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        
-        .vital-value {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--accent);
-            margin: 8px 0;
+        .procedure-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
-        
-        .vital-label {
+        .procedure-item-info {
+            flex: 1;
+        }
+        .procedure-item-title {
+            font-weight: 600;
+            color: var(--accent-2);
+            margin-bottom: 4px;
+        }
+        .procedure-item-category {
             font-size: 0.9rem;
             color: var(--muted);
         }
-        
-        .simulator-controls {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        
-        .chatbot-container {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 350px;
-            height: 450px;
-            background: var(--glass);
-            border-radius: 18px;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid var(--border);
-            display: flex;
-            flex-direction: column;
-            z-index: 100;
-            overflow: hidden;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-        
-        .chatbot-container.open {
-            transform: translateY(0);
-        }
-        
-        .chatbot-header {
-            padding: 16px;
-            background: var(--accent);
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .chatbot-messages {
-            flex: 1;
-            padding: 16px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        
-        .message {
-            max-width: 80%;
-            padding: 12px 16px;
-            border-radius: 18px;
-            font-size: 0.95rem;
-        }
-        
-        .message.bot {
-            background: var(--glass-2);
-            align-self: flex-start;
-            border-bottom-left-radius: 4px;
-        }
-        
-        .message.user {
-            background: var(--accent);
-            color: white;
-            align-self: flex-end;
-            border-bottom-right-radius: 4px;
-        }
-        
-        .chatbot-input {
-            display: flex;
-            padding: 12px;
-            border-top: 1px solid var(--border-light);
-        }
-        
-        .chatbot-input input {
-            flex: 1;
-            padding: 12px 16px;
-            border: 1px solid var(--border-light);
-            border-radius: 18px;
-            font-size: 0.95rem;
-        }
-        
-        .chatbot-toggle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--accent);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: var(--shadow);
-            cursor: pointer;
-            z-index: 99;
-        }
-        
-        .progress-container {
-            margin: 20px 0;
-        }
-        
-        .progress-bar {
-            height: 8px;
-            background: var(--glass-2);
-            border-radius: 4px;
-            overflow: hidden;
-            margin: 8px 0;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background: var(--gradient-primary);
-            border-radius: 4px;
-            width: 0%;
-            transition: width 1s ease;
-        }
-        
-        .quiz-container {
-            background: var(--glass-2);
-            border-radius: 18px;
-            padding: 24px;
-            margin: 20px 0;
-            border: 1px solid var(--border-light);
-        }
-        
-        .quiz-question {
-            font-size: 1.1rem;
-            margin-bottom: 16px;
-            font-weight: 500;
-        }
-        
-        .quiz-options {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        
-        .quiz-option {
-            padding: 16px;
-            background: var(--glass);
-            border-radius: 12px;
-            border: 1px solid var(--border-light);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .quiz-option:hover {
-            background: var(--primary-green-lighter);
-        }
-        
-        .quiz-option.selected {
-            background: var(--accent);
-            color: white;
-            border-color: var(--accent);
-        }
-        
-        .quiz-controls {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-        
-        .ar-viewer {
-            width: 100%;
-            height: 300px;
-            background: #000;
-            border-radius: 12px;
-            margin: 20px 0;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .ar-controls {
-            position: absolute;
-            bottom: 16px;
-            left: 50%;
-            transform: translateX(-50%);
+        .procedure-item-actions {
             display: flex;
             gap: 8px;
         }
-        
-        .ar-button {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .btn-sm {
+            padding: 8px 12px;
+            font-size: 0.9rem;
+        }
+        .btn-edit {
+            background: var(--gradient-info);
             color: white;
-            cursor: pointer;
         }
-        
-        .image-generator {
-            background: var(--glass-2);
-            border-radius: 18px;
-            padding: 24px;
-            margin: 20px 0;
-            border: 1px solid var(--border-light);
-        }
-        
-        .generator-controls {
-            display: flex;
-            gap: 12px;
-            margin: 16px 0;
-        }
-        
-        .generated-image {
-            width: 100%;
-            border-radius: 12px;
-            margin-top: 16px;
-            display: none;
+        .btn-delete {
+            background: var(--gradient-danger);
+            color: white;
         }
     </style>
 </head>
@@ -1523,7 +1192,6 @@
             </form>
         </div>
     </div>
-
     <div class="app" style="display: none;">
         <header>
             <h1>
@@ -1642,107 +1310,39 @@
     <div class="notification-container" id="notificationContainer">
         <!-- Las notificaciones se agregarán aquí mediante JavaScript -->
     </div>
-    
-    <!-- Chatbot médico -->
-    <div class="chatbot-toggle" id="chatbotToggle">
-        <i class="fas fa-robot"></i>
-    </div>
-    <div class="chatbot-container" id="chatbot">
-        <div class="chatbot-header">
-            <h3>Asistente Médico Virtual</h3>
-            <button id="closeChatbot" class="close-notification">&times;</button>
-        </div>
-        <div class="chatbot-messages" id="chatbotMessages">
-            <div class="message bot">
-                ¡Hola! Soy tu asistente médico virtual. ¿En qué puedo ayudarte hoy?
-            </div>
-        </div>
-        <div class="chatbot-input">
-            <input type="text" id="chatbotInput" placeholder="Escribe tu pregunta...">
-            <button class="btn primary" style="padding: 8px 16px;">
-                <i class="fas fa-paper-plane"></i>
-            </button>
-        </div>
-    </div>
 
     <script>
-        // Datos médicos simulados - en una aplicación real, esto vendría de una API
-        const medicalData = {
-            // ... (mantener los datos existentes) ...
-            
-            // Nuevas secciones agregadas
-            simulador: {
-                title: "Simulador de Signos Vitales",
-                icon: "fa-heartbeat",
-                description: "Simulador interactivo de signos vitales para práctica y entrenamiento médico",
-                vitals: [
-                    { id: "heartRate", label: "Frecuencia Cardíaca", value: 75, unit: "lpm", normalRange: [60, 100] },
-                    { id: "bloodPressure", label: "Presión Arterial", value: "120/80", unit: "mmHg", normalRange: ["90/60", "120/80"] },
-                    { id: "oxygenSaturation", label: "Sat. Oxígeno", value: 98, unit: "%", normalRange: [95, 100] },
-                    { id: "respiratoryRate", label: "Frecuencia Respiratoria", value: 16, unit: "rpm", normalRange: [12, 20] },
-                    { id: "temperature", label: "Temperatura", value: 36.8, unit: "°C", normalRange: [36.1, 37.2] }
-                ],
-                scenarios: [
-                    { id: "normal", name: "Paciente Normal", values: { heartRate: 75, bloodPressure: "120/80", oxygenSaturation: 98, respiratoryRate: 16, temperature: 36.8 } },
-                    { id: "tachycardia", name: "Taquicardia", values: { heartRate: 140, bloodPressure: "110/70", oxygenSaturation: 96, respiratoryRate: 22, temperature: 37.0 } },
-                    { id: "bradycardia", name: "Bradicardia", values: { heartRate: 48, bloodPressure: "100/65", oxygenSaturation: 95, respiratoryRate: 12, temperature: 36.5 } },
-                    { id: "hypertension", name: "Hipertensión", values: { heartRate: 85, bloodPressure: "170/100", oxygenSaturation: 97, respiratoryRate: 18, temperature: 36.9 } },
-                    { id: "hypotension", name: "Hipotensión", values: { heartRate: 110, bloodPressure: "85/55", oxygenSaturation: 93, respiratoryRate: 24, temperature: 36.7 } },
-                    { id: "fever", name: "Fiebre", values: { heartRate: 95, bloodPressure: "125/80", oxygenSaturation: 96, respiratoryRate: 20, temperature: 38.9 } }
-                ]
-            },
-            
-            evaluacion: {
-                title: "Evaluación y Progreso",
-                icon: "fa-graduation-cap",
-                description: "Sistema de evaluación y seguimiento de tu progreso en el aprendizaje",
-                quizzes: {
-                    curaciones: [
-                        {
-                            question: "¿Cuál es el primer paso en la curación de una herida quirúrgica?",
-                            options: [
-                                "Aplicar el antiséptico",
-                                "Lavado de manos y colocación de guantes",
-                                "Retirar el apósito anterior",
-                                "Evaluar características de la herida"
-                            ],
-                            correct: 1
-                        },
-                        {
-                            question: "¿Qué solución se recomienda para limpiar la mayoría de las heridas?",
-                            options: [
-                                "Agua oxigenada",
-                                "Solución salina fisiológica",
-                                "Alcohol etílico",
-                                "Povidona yodada"
-                            ],
-                            correct: 1
-                        }
-                    ],
-                    cardiologia: [
-                        {
-                            question: "¿Cuál es el tiempo objetivo 'puerta-balón' en un infarto agudo de miocardio?",
-                            options: [
-                                "30 minutos",
-                                "60 minutos",
-                                "90 minutos",
-                                "120 minutos"
-                            ],
-                            correct: 2
-                        }
-                    ]
-                },
-                progress: {
-                    completed: ["curaciones", "cardiologia"],
-                    scores: {
-                        curaciones: 85,
-                        cardiologia: 92
-                    },
-                    totalProcedures: 42,
-                    learnedProcedures: 18
-                }
+        // Datos médicos almacenados en localStorage
+        function getStoredData() {
+            const data = localStorage.getItem('edumed_data');
+            if (!data) {
+                return {
+                    curaciones: [],
+                    cardiologia: [],
+                    neumologia: [],
+                    endocrinologia: [],
+                    neurologia: [],
+                    oncologia: [],
+                    nephrologia: [],
+                    gastroenterologia: [],
+                    reumatologia: [],
+                    emergencias: [],
+                    farmacologia: [],
+                    nutricion: [],
+                    infecciones: [],
+                    movilizacion: [],
+                    rcp: [],
+                    recursos: [],
+                    simulador: [],
+                    evaluacion: []
+                };
             }
-        };
+            return JSON.parse(data);
+        }
+
+        function saveData(data) {
+            localStorage.setItem('edumed_data', JSON.stringify(data));
+        }
 
         // Elementos DOM
         const loginModal = document.getElementById('loginModal');
@@ -1755,21 +1355,14 @@
         const searchSuggestions = document.getElementById('searchSuggestions');
         const mainContent = document.getElementById('mainContent');
         const notificationContainer = document.getElementById('notificationContainer');
-        const chatbotToggle = document.getElementById('chatbotToggle');
-        const chatbot = document.getElementById('chatbot');
-        const closeChatbot = document.getElementById('closeChatbot');
-        const chatbotMessages = document.getElementById('chatbotMessages');
-        const chatbotInput = document.getElementById('chatbotInput');
         
         // Botones de categoría
         const categoryButtons = document.querySelectorAll('.cat-btn');
-        
-        // Preferencias de usuario y almacenamiento de datos
+
+        // Preferencias de usuario
         const userPreferences = {
             theme: 'light',
             recentCategories: [],
-            savedProcedures: [],
-            userProgress: {},
             currentUser: null
         };
 
@@ -1777,12 +1370,8 @@
         function initApp() {
             // Comprobar si el usuario ha iniciado sesión
             checkLoginStatus();
-            
             // Inicializar búsqueda
             initSearch();
-            
-            // Inicializar chatbot
-            initChatbot();
             
             // Mostrar notificación de bienvenida después del inicio de sesión
             if (userPreferences.currentUser) {
@@ -1810,7 +1399,6 @@
                 const userAvatar = document.querySelector('.user-avatar');
                 const userName = document.querySelector('.user-name');
                 const userRole = document.querySelector('.user-role');
-                
                 // Usar la primera letra del nombre para el avatar
                 userAvatar.textContent = userPreferences.currentUser.name.charAt(0).toUpperCase();
                 userName.textContent = `Dr. ${userPreferences.currentUser.name}`;
@@ -1824,12 +1412,10 @@
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             
-            // En una aplicación real, esto validaría con un servidor
-            // Por ahora, simularemos un inicio de sesión exitoso
+            // Validación simple
             if (email && password) {
                 const name = email.split('@')[0].split('.')[0];
                 const role = "Médico Residente";
-                
                 userPreferences.currentUser = {
                     email: email,
                     name: name.charAt(0).toUpperCase() + name.slice(1),
@@ -1848,6 +1434,9 @@
                 
                 // Inicializar aplicación
                 initApp();
+                
+                // Cargar la primera categoría
+                handleCategoryNavigation('curaciones');
                 
                 // Mostrar notificación de bienvenida
                 showNotification(`👋 Bienvenido Dr. ${userPreferences.currentUser.name}`, 'success');
@@ -1910,9 +1499,6 @@
                 userPreferences.recentCategories = [categoryId, ...userPreferences.recentCategories.filter(id => id !== categoryId)];
             }
             
-            // Guardar preferencias
-            saveUserPreferences();
-            
             // Actualizar botón activo
             updateActiveButton(categoryId);
             
@@ -1923,9 +1509,6 @@
             if (window.innerWidth <= 768) {
                 sidebar.classList.add('hidden-mobile');
             }
-            
-            // Actualizar URL
-            window.history.pushState({category: categoryId}, '', `#${categoryId}`);
             
             // Mostrar notificación
             const categoryName = document.querySelector(`.cat-btn[data-cat="${categoryId}"]`).textContent.trim();
@@ -1942,29 +1525,10 @@
             });
         }
 
-        // Guardar preferencias de usuario
-        function saveUserPreferences() {
-            try {
-                if (userPreferences.currentUser) {
-                    localStorage.setItem('edumed_preferences', JSON.stringify({
-                        theme: userPreferences.theme,
-                        recentCategories: userPreferences.recentCategories,
-                        savedProcedures: userPreferences.savedProcedures,
-                        userProgress: userPreferences.userProgress
-                    }));
-                }
-            } catch (e) {
-                console.error('Error guardando preferencias:', e);
-            }
-        }
-
         // Cargar contenido de categoría
         function loadCategoryContent(categoryId) {
-            const category = medicalData[categoryId];
-            if (!category) {
-                showNotification('❌ Categoría no encontrada', 'error');
-                return;
-            }
+            const data = getStoredData();
+            const categoryData = data[categoryId] || [];
             
             // Mostrar estado de carga
             mainContent.innerHTML = `
@@ -1974,635 +1538,349 @@
                 </div>
             `;
             
-            // Simular retardo de API
+            // Simular retardo de carga
             setTimeout(() => {
                 let content = '';
+                const categoryTitle = document.querySelector(`.cat-btn[data-cat="${categoryId}"]`).textContent.trim();
                 
-                if (categoryId === 'recursos') {
-                    content = renderResourcesContent(category);
-                } else if (categoryId === 'farmacologia') {
-                    content = renderFarmacologiaContent(category);
-                } else if (categoryId === 'simulador') {
-                    content = renderSimulatorContent(category);
-                } else if (categoryId === 'evaluacion') {
-                    content = renderEvaluationContent(category);
-                } else {
-                    content = renderProceduresContent(category);
-                }
+                content = `
+                    <div class="page-header">
+                        <h1 class="page-title">
+                            <i class="fas ${getCategoryIcon(categoryId)}"></i>
+                            ${categoryTitle}
+                        </h1>
+                        <div class="action-buttons">
+                            <button class="btn primary" onclick="showAddProcedureForm('${categoryId}')">
+                                <i class="fas fa-plus"></i>
+                                Nuevo Procedimiento
+                            </button>
+                        </div>
+                    </div>
+                    <div class="procedure-list" id="procedureList">
+                        ${categoryData.length > 0 ? 
+                            categoryData.map((proc, index) => `
+                                <div class="procedure-item">
+                                    <div class="procedure-item-info">
+                                        <div class="procedure-item-title">${proc.title}</div>
+                                        <div class="procedure-item-category">${proc.category}</div>
+                                    </div>
+                                    <div class="procedure-item-actions">
+                                        <button class="btn btn-sm btn-edit" onclick="editProcedure('${categoryId}', ${index})">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-delete" onclick="deleteProcedure('${categoryId}', ${index})">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            `).join('') : 
+                            '<p>No hay procedimientos registrados en esta categoría.</p>'
+                        }
+                    </div>
+                `;
                 
                 mainContent.innerHTML = content;
-                
-                // Actualizar título de página
-                const pageTitle = mainContent.querySelector('.page-title');
-                if (pageTitle) {
-                    pageTitle.innerHTML = `
-                        <i class="fas ${category.icon}"></i>
-                        ${category.title}
-                    `;
-                }
-                
-                // Inicializar calculadoras si existen
-                initCalculators();
-                
-                // Inicializar simulador si existe
-                if (categoryId === 'simulador') {
-                    initSimulator();
-                }
-                
-                // Inicializar evaluaciones si existen
-                if (categoryId === 'evaluacion') {
-                    initEvaluation();
-                }
             }, 300);
         }
 
-        // Renderizar contenido de procedimientos
-        function renderProceduresContent(category) {
-            return `
+        // Mostrar formulario para agregar procedimiento
+        function showAddProcedureForm(categoryId) {
+            const categoryTitle = document.querySelector(`.cat-btn[data-cat="${categoryId}"]`).textContent.trim();
+            
+            mainContent.innerHTML = `
                 <div class="page-header">
                     <h1 class="page-title">
-                        <i class="fas ${category.icon}"></i>
-                        ${category.title}
+                        <i class="fas ${getCategoryIcon(categoryId)}"></i>
+                        Nuevo Procedimiento - ${categoryTitle}
                     </h1>
                     <div class="action-buttons">
-                        <button class="btn primary" onclick="showNotification('🔍 Funcionalidad en desarrollo', 'info')">
-                            <i class="fas fa-plus"></i>
-                            Nuevo Procedimiento
+                        <button class="btn secondary" onclick="loadCategoryContent('${categoryId}')">
+                            <i class="fas fa-arrow-left"></i>
+                            Volver
                         </button>
                     </div>
                 </div>
-                <div class="category-card">
-                    <h2>
-                        <i class="fas ${category.icon}"></i>
-                        Técnicas de ${category.title}
-                    </h2>
-                    <p>Esta sección proporciona protocolos estandarizados para el cuidado clínico, basados en evidencia científica actualizada y guías de práctica clínica reconocidas internacionalmente.</p>
-                    
-                    ${category.procedures.map(procedure => `
-                        <div class="procedure">
-                            <h3>
-                                <i class="fas ${procedure.icon}"></i>
-                                ${procedure.title}
-                            </h3>
-                            <p class="summary">
-                                <i class="fas fa-info-circle"></i>
-                                ${procedure.summary}
-                            </p>
-                            <div class="materials">
-                                <h4>
-                                    <i class="fas fa-box-open"></i>
-                                    Materiales Necesarios
-                                </h4>
-                                <ul>
-                                    ${procedure.materials.map(material => `<li>${material}</li>`).join('')}
-                                </ul>
-                            </div>
-                            <div class="steps">
-                                <h4>
-                                    <i class="fas fa-step-forward"></i>
-                                    Pasos del Procedimiento
-                                </h4>
-                                <ol>
-                                    ${procedure.steps.map(step => `<li>${step}</li>`).join('')}
-                                </ol>
-                            </div>
-                            <div class="notes">
-                                <i class="fas fa-exclamation-triangle"></i>
-                                <strong>Consideraciones Importantes:</strong> ${procedure.notes}
-                            </div>
-                            
-                            <!-- Referencias visuales -->
-                            ${procedure.visualReferences ? `
-                            <div class="external-links">
-                                <h4>
-                                    <i class="fas fa-image"></i>
-                                    Recursos Visuales y Educativos
-                                </h4>
-                                <ul>
-                                    ${procedure.visualReferences.map(ref => `
-                                        <li>
-                                            <a href="${ref.url}" target="_blank">
-                                                <i class="fas fa-external-link-alt"></i>
-                                                <div>
-                                                    <strong>${ref.title}</strong>
-                                                    <div style="font-size: 0.9rem; margin-top: 4px;">${ref.description}</div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    `).join('')}
-                                </ul>
-                            </div>
-                            ` : ''}
-                            
-                            <div class="source-reference">
-                                <i class="fas fa-book"></i>
-                                Basado en las <strong>${procedure.source.description}</strong>.
-                                <span class="source-badge ${procedure.source.type}">
-                                    <i class="fas fa-shield-alt"></i>
-                                    ${procedure.source.name}
-                                </span>
-                                <span style="margin-left: 8px; font-size: 0.8rem; color: var(--muted);">Actualizado: ${formatDate(procedure.lastUpdated)}</span>
-                            </div>
+                <div class="procedure-form">
+                    <form id="procedureForm">
+                        <div class="form-group">
+                            <label for="procedureTitle">Título del Procedimiento</label>
+                            <input type="text" id="procedureTitle" required>
                         </div>
-                    `).join('')}
+                        <div class="form-group">
+                            <label for="procedureSummary">Resumen</label>
+                            <textarea id="procedureSummary" placeholder="Descripción breve del procedimiento..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="procedureMaterials">Materiales Necesarios</label>
+                            <textarea id="procedureMaterials" placeholder="Lista de materiales necesarios..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="procedureSteps">Pasos del Procedimiento</label>
+                            <textarea id="procedureSteps" placeholder="Pasos detallados del procedimiento..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="procedureNotes">Notas y Consideraciones</label>
+                            <textarea id="procedureNotes" placeholder="Notas importantes sobre el procedimiento..."></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn secondary" onclick="loadCategoryContent('${categoryId}')">
+                                <i class="fas fa-times"></i>
+                                Cancelar
+                            </button>
+                            <button type="button" class="btn primary" onclick="saveProcedure('${categoryId}')">
+                                <i class="fas fa-save"></i>
+                                Guardar Procedimiento
+                            </button>
+                        </div>
+                    </form>
                 </div>
             `;
         }
 
-        // Renderizar contenido del simulador
-        function renderSimulatorContent(category) {
-            return `
-                <div class="page-header">
-                    <h1 class="page-title">
-                        <i class="fas ${category.icon}"></i>
-                        ${category.title}
-                    </h1>
-                </div>
-                
-                <div class="simulator-container">
-                    <h2 class="simulator-header">
-                        <i class="fas fa-heartbeat"></i>
-                        Simulador de Signos Vitales
-                    </h2>
-                    <p>Este simulador te permite practicar la interpretación de signos vitales en diferentes escenarios clínicos. Selecciona un escenario o ajusta los valores manualmente.</p>
-                    
-                    <div class="vital-signs" id="vitalSigns">
-                        ${category.vitals.map(vital => `
-                            <div class="vital-card">
-                                <div class="vital-label">${vital.label}</div>
-                                <div class="vital-value" id="${vital.id}">${vital.value}${vital.unit}</div>
-                                <div class="vital-controls">
-                                    <input type="range" min="${vital.normalRange[0]}" max="${vital.normalRange[1] * 1.5}" value="${vital.value}" 
-                                           step="${vital.unit === '°C' ? 0.1 : 1}" 
-                                           oninput="updateVital('${vital.id}', this.value, '${vital.unit}')">
-                                </div>
-                            </div>
-                        `).join('')}
-                    </div>
-                    
-                    <h3 style="margin: 20px 0 10px 0; color: var(--accent);">
-                        <i class="fas fa-list"></i>
-                        Escenarios Clínicos
-                    </h3>
-                    <div class="scenario-buttons" style="display: flex; gap: 10px; flex-wrap: wrap;">
-                        ${category.scenarios.map(scenario => `
-                            <button class="btn secondary" onclick="loadScenario('${scenario.id}')">
-                                ${scenario.name}
-                            </button>
-                        `).join('')}
-                    </div>
-                    
-                    <div class="simulator-controls">
-                        <button class="btn primary" onclick="randomScenario()">
-                            <i class="fas fa-random"></i>
-                            Escenario Aleatorio
-                        </button>
-                        <button class="btn warning" onclick="resetSimulator()">
-                            <i class="fas fa-redo"></i>
-                            Reiniciar
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="simulator-container">
-                    <h2 class="simulator-header">
-                        <i class="fas fa-brain"></i>
-                        Interpretación de Resultados
-                    </h2>
-                    <div id="interpretationResult">
-                        <p>Selecciona un escenario o ajusta los valores para obtener una interpretación.</p>
-                    </div>
-                </div>
-            `;
-        }
-
-        // Inicializar simulador
-        function initSimulator() {
-            // Cargar escenario normal por defecto
-            loadScenario('normal');
-        }
-
-        // Actualizar signo vital
-        function updateVital(id, value, unit) {
-            const element = document.getElementById(id);
-            if (element) {
-                element.textContent = value + unit;
-            }
-            interpretVitals();
-        }
-
-        // Cargar escenario
-        function loadScenario(scenarioId) {
-            const category = medicalData.simulador;
-            const scenario = category.scenarios.find(s => s.id === scenarioId);
+        // Guardar procedimiento
+        function saveProcedure(categoryId) {
+            const title = document.getElementById('procedureTitle').value;
+            const summary = document.getElementById('procedureSummary').value;
+            const materials = document.getElementById('procedureMaterials').value;
+            const steps = document.getElementById('procedureSteps').value;
+            const notes = document.getElementById('procedureNotes').value;
             
-            if (scenario) {
-                for (const [key, value] of Object.entries(scenario.values)) {
-                    const element = document.getElementById(key);
-                    if (element) {
-                        const vital = category.vitals.find(v => v.id === key);
-                        element.textContent = value + (vital ? vital.unit : '');
-                        
-                        // Actualizar el control deslizante
-                        const slider = element.parentElement.querySelector('input[type="range"]');
-                        if (slider) {
-                            slider.value = typeof value === 'string' ? value.split('/')[0] : value;
-                        }
-                    }
-                }
-                interpretVitals();
-                showNotification(`✅ Escenario cargado: ${scenario.name}`, 'success');
-            }
-        }
-
-        // Escenario aleatorio
-        function randomScenario() {
-            const category = medicalData.simulador;
-            const randomIndex = Math.floor(Math.random() * category.scenarios.length);
-            loadScenario(category.scenarios[randomIndex].id);
-        }
-
-        // Reiniciar simulador
-        function resetSimulator() {
-            loadScenario('normal');
-        }
-
-        // Interpretar signos vitales
-        function interpretVitals() {
-            const interpretationElement = document.getElementById('interpretationResult');
-            if (!interpretationElement) return;
-            
-            // Obtener valores actuales
-            const heartRate = parseInt(document.getElementById('heartRate').textContent);
-            const bloodPressure = document.getElementById('bloodPressure').textContent;
-            const oxygenSaturation = parseInt(document.getElementById('oxygenSaturation').textContent);
-            const respiratoryRate = parseInt(document.getElementById('respiratoryRate').textContent);
-            const temperature = parseFloat(document.getElementById('temperature').textContent);
-            
-            // Realizar interpretación básica
-            let interpretation = '';
-            let alertLevel = 'info';
-            
-            // Evaluar frecuencia cardíaca
-            if (heartRate < 60) {
-                interpretation += `<p>❌ <strong>Bradicardia:</strong> Frecuencia cardíaca por debajo de lo normal (${heartRate} lpm).</p>`;
-                alertLevel = 'warning';
-            } else if (heartRate > 100) {
-                interpretation += `<p>❌ <strong>Taquicardia:</strong> Frecuencia cardíaca por encima de lo normal (${heartRate} lpm).</p>`;
-                alertLevel = 'warning';
-            } else {
-                interpretation += `<p>✅ <strong>Frecuencia cardíaca normal:</strong> ${heartRate} lpm.</p>`;
-            }
-            
-            // Evaluar presión arterial (simplificado)
-            const [systolic, diastolic] = bloodPressure.split('/').map(Number);
-            if (systolic < 90 || diastolic < 60) {
-                interpretation += `<p>❌ <strong>Hipotensión:</strong> Presión arterial baja (${bloodPressure} mmHg).</p>`;
-                alertLevel = 'warning';
-            } else if (systolic > 140 || diastolic > 90) {
-                interpretation += `<p>❌ <strong>Hipertensión:</strong> Presión arterial elevada (${bloodPressure} mmHg).</p>`;
-                alertLevel = 'warning';
-            } else {
-                interpretation += `<p>✅ <strong>Presión arterial normal:</strong> ${bloodPressure} mmHg.</p>`;
-            }
-            
-            // Evaluar saturación de oxígeno
-            if (oxygenSaturation < 95) {
-                interpretation += `<p>❌ <strong>Hipoxemia:</strong> Saturación de oxígeno baja (${oxygenSaturation}%).</p>`;
-                alertLevel = 'warning';
-            } else {
-                interpretation += `<p>✅ <strong>Saturación de oxígeno normal:</strong> ${oxygenSaturation}%.</p>`;
-            }
-            
-            // Evaluar frecuencia respiratoria
-            if (respiratoryRate < 12) {
-                interpretation += `<p>❌ <strong>Bradipnea:</strong> Frecuencia respiratoria baja (${respiratoryRate} rpm).</p>`;
-                alertLevel = 'warning';
-            } else if (respiratoryRate > 20) {
-                interpretation += `<p>❌ <strong>Taquipnea:</strong> Frecuencia respiratoria elevada (${respiratoryRate} rpm).</p>`;
-                alertLevel = 'warning';
-            } else {
-                interpretation += `<p>✅ <strong>Frecuencia respiratoria normal:</strong> ${respiratoryRate} rpm.</p>`;
-            }
-            
-            // Evaluar temperatura
-            if (temperature < 36.1) {
-                interpretation += `<p>❌ <strong>Hipotermia:</strong> Temperatura corporal baja (${temperature}°C).</p>`;
-                alertLevel = 'warning';
-            } else if (temperature > 37.2) {
-                interpretation += `<p>❌ <strong>Fiebre:</strong> Temperatura corporal elevada (${temperature}°C).</p>`;
-                alertLevel = 'warning';
-            } else {
-                interpretation += `<p>✅ <strong>Temperatura normal:</strong> ${temperature}°C.</p>`;
-            }
-            
-            // Resumen
-            if (alertLevel === 'info') {
-                interpretation = `<div class="interaction-warning mild">
-                    <i class="fas fa-check-circle"></i>
-                    <strong>Paciente estable:</strong> Todos los signos vitales están dentro de los rangos normales.
-                </div>` + interpretation;
-            } else {
-                interpretation = `<div class="interaction-warning moderate">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <strong>Paciente inestable:</strong> Se detectaron valores anormales que requieren atención.
-                </div>` + interpretation;
-            }
-            
-            interpretationElement.innerHTML = interpretation;
-        }
-
-        // Renderizar contenido de evaluación
-        function renderEvaluationContent(category) {
-            return `
-                <div class="page-header">
-                    <h1 class="page-title">
-                        <i class="fas ${category.icon}"></i>
-                        ${category.title}
-                    </h1>
-                </div>
-                
-                <div class="category-card">
-                    <h2>
-                        <i class="fas fa-chart-line"></i>
-                        Mi Progreso de Aprendizaje
-                    </h2>
-                    
-                    <div class="progress-container">
-                        <h4>Procedimientos Completados</h4>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: ${(category.progress.learnedProcedures / category.progress.totalProcedures) * 100}%"></div>
-                        </div>
-                        <p>${category.progress.learnedProcedures} de ${category.progress.totalProcedures} procedimientos</p>
-                    </div>
-                    
-                    <div class="progress-container">
-                        <h4>Puntuaciones por Categoría</h4>
-                        ${Object.entries(category.progress.scores).map(([cat, score]) => `
-                            <div>
-                                <div style="display: flex; justify-content: space-between;">
-                                    <span>${medicalData[cat]?.title || cat}</span>
-                                    <span>${score}%</span>
-                                </div>
-                                <div class="progress-bar">
-                                    <div class="progress-fill" style="width: ${score}%"></div>
-                                </div>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-                
-                <div class="category-card">
-                    <h2>
-                        <i class="fas fa-graduation-cap"></i>
-                        Evaluaciones de Conocimiento
-                    </h2>
-                    <p>Pon a prueba tus conocimientos con estas evaluaciones interactivas.</p>
-                    
-                    <div class="quiz-container" id="quizContainer">
-                        <div class="quiz-question" id="quizQuestion">
-                            Selecciona una categoría para comenzar una evaluación.
-                        </div>
-                        <div class="quiz-options" id="quizOptions">
-                            ${Object.entries(category.quizzes).map(([cat, quizzes]) => `
-                                <div class="quiz-option" onclick="startQuiz('${cat}')">
-                                    <i class="fas fa-play-circle"></i>
-                                    ${medicalData[cat]?.title || cat} (${quizzes.length} preguntas)
-                                </div>
-                            `).join('')}
-                        </div>
-                        <div class="quiz-controls" id="quizControls" style="display: none;">
-                            <button class="btn secondary" onclick="previousQuestion()">
-                                <i class="fas fa-arrow-left"></i>
-                                Anterior
-                            </button>
-                            <span id="quizProgress">Pregunta 0 de 0</span>
-                            <button class="btn primary" onclick="nextQuestion()">
-                                Siguiente
-                                <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
-        // Inicializar evaluación
-        function initEvaluation() {
-            // Aquí se puede cargar el progreso real del usuario desde localStorage
-        }
-
-        // Variables para el cuestionario
-        let currentQuiz = null;
-        let currentQuestionIndex = 0;
-        let userAnswers = [];
-
-        // Comenzar cuestionario
-        function startQuiz(category) {
-            const quizzes = medicalData.evaluacion.quizzes[category];
-            if (quizzes && quizzes.length > 0) {
-                currentQuiz = {
-                    category: category,
-                    questions: quizzes
-                };
-                currentQuestionIndex = 0;
-                userAnswers = [];
-                displayQuestion();
-                
-                // Mostrar controles del cuestionario
-                document.getElementById('quizControls').style.display = 'flex';
-            }
-        }
-
-        // Mostrar pregunta actual
-        function displayQuestion() {
-            if (!currentQuiz || currentQuestionIndex >= currentQuiz.questions.length) {
-                finishQuiz();
+            if (!title) {
+                showNotification('❌ El título es obligatorio', 'error');
                 return;
             }
             
-            const question = currentQuiz.questions[currentQuestionIndex];
-            const quizContainer = document.getElementById('quizContainer');
+            const newProcedure = {
+                id: Date.now(),
+                title: title,
+                summary: summary,
+                materials: materials,
+                steps: steps,
+                notes: notes,
+                category: document.querySelector(`.cat-btn[data-cat="${categoryId}"]`).textContent.trim(),
+                date: new Date().toISOString(),
+                lastUpdated: new Date().toISOString()
+            };
             
-            quizContainer.innerHTML = `
-                <div class="quiz-question">
-                    ${currentQuestionIndex + 1}. ${question.question}
+            const data = getStoredData();
+            if (!data[categoryId]) {
+                data[categoryId] = [];
+            }
+            data[categoryId].push(newProcedure);
+            saveData(data);
+            
+            showNotification('✅ Procedimiento guardado exitosamente', 'success');
+            loadCategoryContent(categoryId);
+        }
+
+        // Editar procedimiento
+        function editProcedure(categoryId, index) {
+            const data = getStoredData();
+            const procedure = data[categoryId][index];
+            
+            mainContent.innerHTML = `
+                <div class="page-header">
+                    <h1 class="page-title">
+                        <i class="fas ${getCategoryIcon(categoryId)}"></i>
+                        Editar Procedimiento
+                    </h1>
+                    <div class="action-buttons">
+                        <button class="btn secondary" onclick="loadCategoryContent('${categoryId}')">
+                            <i class="fas fa-arrow-left"></i>
+                            Volver
+                        </button>
+                    </div>
                 </div>
-                <div class="quiz-options">
-                    ${question.options.map((option, index) => `
-                        <div class="quiz-option ${userAnswers[currentQuestionIndex] === index ? 'selected' : ''}" 
-                             onclick="selectAnswer(${index})">
-                            ${String.fromCharCode(65 + index)}. ${option}
+                <div class="procedure-form">
+                    <form id="procedureForm">
+                        <div class="form-group">
+                            <label for="procedureTitle">Título del Procedimiento</label>
+                            <input type="text" id="procedureTitle" value="${procedure.title}" required>
                         </div>
-                    `).join('')}
-                </div>
-                <div class="quiz-controls" style="display: flex;">
-                    <button class="btn secondary" onclick="previousQuestion()" ${currentQuestionIndex === 0 ? 'disabled' : ''}>
-                        <i class="fas fa-arrow-left"></i>
-                        Anterior
-                    </button>
-                    <span id="quizProgress">Pregunta ${currentQuestionIndex + 1} de ${currentQuiz.questions.length}</span>
-                    <button class="btn primary" onclick="nextQuestion()">
-                        ${currentQuestionIndex === currentQuiz.questions.length - 1 ? 'Finalizar' : 'Siguiente'}
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
+                        <div class="form-group">
+                            <label for="procedureSummary">Resumen</label>
+                            <textarea id="procedureSummary">${procedure.summary}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="procedureMaterials">Materiales Necesarios</label>
+                            <textarea id="procedureMaterials">${procedure.materials}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="procedureSteps">Pasos del Procedimiento</label>
+                            <textarea id="procedureSteps">${procedure.steps}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="procedureNotes">Notas y Consideraciones</label>
+                            <textarea id="procedureNotes">${procedure.notes}</textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn secondary" onclick="loadCategoryContent('${categoryId}')">
+                                <i class="fas fa-times"></i>
+                                Cancelar
+                            </button>
+                            <button type="button" class="btn primary" onclick="updateProcedure('${categoryId}', ${index})">
+                                <i class="fas fa-save"></i>
+                                Actualizar
+                            </button>
+                        </div>
+                    </form>
                 </div>
             `;
         }
 
-        // Seleccionar respuesta
-        function selectAnswer(index) {
-            userAnswers[currentQuestionIndex] = index;
-            displayQuestion();
-        }
-
-        // Pregunta anterior
-        function previousQuestion() {
-            if (currentQuestionIndex > 0) {
-                currentQuestionIndex--;
-                displayQuestion();
+        // Actualizar procedimiento
+        function updateProcedure(categoryId, index) {
+            const title = document.getElementById('procedureTitle').value;
+            const summary = document.getElementById('procedureSummary').value;
+            const materials = document.getElementById('procedureMaterials').value;
+            const steps = document.getElementById('procedureSteps').value;
+            const notes = document.getElementById('procedureNotes').value;
+            
+            if (!title) {
+                showNotification('❌ El título es obligatorio', 'error');
+                return;
             }
+            
+            const data = getStoredData();
+            data[categoryId][index] = {
+                ...data[categoryId][index],
+                title: title,
+                summary: summary,
+                materials: materials,
+                steps: steps,
+                notes: notes,
+                lastUpdated: new Date().toISOString()
+            };
+            saveData(data);
+            
+            showNotification('✅ Procedimiento actualizado exitosamente', 'success');
+            loadCategoryContent(categoryId);
         }
 
-        // Siguiente pregunta
-        function nextQuestion() {
-            if (currentQuestionIndex < currentQuiz.questions.length - 1) {
-                currentQuestionIndex++;
-                displayQuestion();
-            } else {
-                finishQuiz();
-            }
-        }
-
-        // Finalizar cuestionario
-        function finishQuiz() {
-            if (!currentQuiz) return;
-            
-            // Calcular puntuación
-            let score = 0;
-            userAnswers.forEach((answer, index) => {
-                if (answer === currentQuiz.questions[index].correct) {
-                    score++;
-                }
-            });
-            
-            const percentage = Math.round((score / currentQuiz.questions.length) * 100);
-            
-            // Mostrar resultados
-            const quizContainer = document.getElementById('quizContainer');
-            quizContainer.innerHTML = `
-                <h3 style="color: var(--accent); margin-bottom: 16px;">
-                    <i class="fas fa-trophy"></i>
-                    Resultados del Cuestionario
-                </h3>
-                <div style="text-align: center; margin: 20px 0;">
-                    <div style="font-size: 2rem; font-weight: bold; color: var(--accent);">
-                        ${percentage}%
-                    </div>
-                    <div style="font-size: 1.1rem; color: var(--muted);">
-                        ${score} de ${currentQuiz.questions.length} correctas
-                    </div>
-                </div>
-                <div style="margin: 20px 0;">
-                    ${currentQuiz.questions.map((question, index) => {
-                        const isCorrect = userAnswers[index] === question.correct;
-                        return `
-                            <div style="margin-bottom: 16px; padding: 12px; border-radius: 8px; 
-                                        background: ${isCorrect ? 'rgba(16, 185, 129, 0.1)' : 'rgba(239, 68, 68, 0.1)'}; 
-                                        border-left: 4px solid ${isCorrect ? 'var(--success-green)' : 'var(--alert-red)'};">
-                                <div style="font-weight: 500; margin-bottom: 8px;">
-                                    ${index + 1}. ${question.question}
-                                </div>
-                                <div style="color: ${isCorrect ? 'var(--success-green)' : 'var(--alert-red)'};">
-                                    <i class="fas ${isCorrect ? 'fa-check' : 'fa-times'}"></i>
-                                    Tu respuesta: ${userAnswers[index] !== undefined ? question.options[userAnswers[index]] : 'Sin responder'}
-                                </div>
-                                ${!isCorrect ? `
-                                    <div style="color: var(--success-green); margin-top: 4px;">
-                                        <i class="fas fa-check-circle"></i>
-                                        Respuesta correcta: ${question.options[question.correct]}
-                                    </div>
-                                ` : ''}
-                            </div>
-                        `;
-                    }).join('')}
-                </div>
-                <button class="btn primary" onclick="startQuiz('${currentQuiz.category}')" style="width: 100%;">
-                    <i class="fas fa-redo"></i>
-                    Intentar de nuevo
-                </button>
-            `;
-            
-            // Guardar puntuación (en una aplicación real, esto se enviaría a un servidor)
-            if (percentage > (medicalData.evaluacion.progress.scores[currentQuiz.category] || 0)) {
-                medicalData.evaluacion.progress.scores[currentQuiz.category] = percentage;
-                showNotification(`✅ Nuevo récord: ${percentage}% en ${medicalData[currentQuiz.category]?.title || currentQuiz.category}`, 'success');
-            }
-        }
-
-        // Inicializar chatbot
-        function initChatbot() {
-            chatbotToggle.addEventListener('click', () => {
-                chatbot.classList.toggle('open');
-            });
-            
-            closeChatbot.addEventListener('click', () => {
-                chatbot.classList.remove('open');
-            });
-            
-            chatbotInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    sendChatbotMessage();
-                }
-            });
-        }
-
-        // Enviar mensaje al chatbot
-        function sendChatbotMessage() {
-            const message = chatbotInput.value.trim();
-            if (message) {
-                // Agregar mensaje del usuario
-                addMessage(message, 'user');
-                chatbotInput.value = '';
+        // Eliminar procedimiento
+        function deleteProcedure(categoryId, index) {
+            if (confirm('¿Está seguro de que desea eliminar este procedimiento?')) {
+                const data = getStoredData();
+                data[categoryId].splice(index, 1);
+                saveData(data);
                 
-                // Simular respuesta del chatbot después de un breve retraso
-                setTimeout(() => {
-                    let response = generateChatbotResponse(message);
-                    addMessage(response, 'bot');
-                }, 1000);
+                showNotification('🗑️ Procedimiento eliminado', 'info');
+                loadCategoryContent(categoryId);
             }
         }
 
-        // Agregar mensaje al chat
-        function addMessage(text, sender) {
-            const messageElement = document.createElement('div');
-            messageElement.className = `message ${sender}`;
-            messageElement.textContent = text;
-            chatbotMessages.appendChild(messageElement);
-            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        // Obtener icono por categoría
+        function getCategoryIcon(categoryId) {
+            const icons = {
+                'curaciones': 'fa-band-aid',
+                'cardiologia': 'fa-heart',
+                'neumologia': 'fa-lungs',
+                'endocrinologia': 'fa-brain',
+                'neurologia': 'fa-head-side-brain',
+                'oncologia': 'fa-dna',
+                'nephrologia': 'fa-kidneys',
+                'gastroenterologia': 'fa-stomach',
+                'reumatologia': 'fa-bone',
+                'emergencias': 'fa-ambulance',
+                'farmacologia': 'fa-pills',
+                'nutricion': 'fa-apple-alt',
+                'infecciones': 'fa-virus',
+                'movilizacion': 'fa-wheelchair',
+                'rcp': 'fa-heartbeat',
+                'recursos': 'fa-book-open',
+                'simulador': 'fa-heartbeat',
+                'evaluacion': 'fa-graduation-cap'
+            };
+            return icons[categoryId] || 'fa-info-circle';
         }
 
-        // Generar respuesta del chatbot
-        function generateChatbotResponse(message) {
-            const lowerMessage = message.toLowerCase();
+        // Inicializar búsqueda
+        function initSearch() {
+            searchInput.addEventListener('input', () => {
+                const query = searchInput.value.toLowerCase();
+                if (query.length < 2) {
+                    searchSuggestions.style.display = 'none';
+                    return;
+                }
+                
+                const data = getStoredData();
+                let suggestions = [];
+                
+                Object.keys(data).forEach(category => {
+                    const categoryTitle = document.querySelector(`.cat-btn[data-cat="${category}"]`).textContent.trim();
+                    data[category].forEach(procedure => {
+                        if (procedure.title.toLowerCase().includes(query) || 
+                            procedure.summary.toLowerCase().includes(query)) {
+                            suggestions.push({
+                                title: procedure.title,
+                                category: categoryTitle,
+                                categoryKey: category
+                            });
+                        }
+                    });
+                });
+                
+                if (suggestions.length > 0) {
+                    displaySearchSuggestions(suggestions);
+                } else {
+                    searchSuggestions.style.display = 'none';
+                }
+            });
             
-            // Respuestas predefinidas basadas en palabras clave
-            if (lowerMessage.includes('hola') || lowerMessage.includes('buenos días') || lowerMessage.includes('buenas tardes')) {
-                return '¡Hola! Soy tu asistente médico virtual. ¿En qué puedo ayudarte hoy?';
-            } else if (lowerMessage.includes('procedimiento') || lowerMessage.includes('curación') || lowerMessage.includes('técnica')) {
-                return 'Puedo ayudarte a encontrar información sobre procedimientos médicos. ¿Hay algún procedimiento específico que te interese?';
-            } else if (lowerMessage.includes('fármaco') || lowerMessage.includes('medicamento') || lowerMessage.includes('interacción')) {
-                return 'Para información sobre medicamentos e interacciones, te recomiendo consultar la sección de Farmacología.';
-            } else if (lowerMessage.includes('signo vital') || lowerMessage.includes('presión') || lowerMessage.includes('frecuencia')) {
-                return 'Puedes practicar la interpretación de signos vitales usando nuestro simulador interactivo.';
-            } else if (lowerMessage.includes('gracias') || lowerMessage.includes('agrade')) {
-                return '¡De nada! Estoy aquí para ayudarte. ¿Hay algo más en lo que pueda asistirte?';
-            } else {
-                return 'Interesante pregunta. Como asistente virtual, mi conocimiento es limitado, pero te recomiendo consultar las guías médicas actualizadas o hablar con un especialista para información más detallada.';
-            }
+            searchInput.addEventListener('blur', () => {
+                setTimeout(() => {
+                    searchSuggestions.style.display = 'none';
+                }, 200);
+            });
         }
 
-        // ... (resto del código existente: initSearch, displaySearchSuggestions, performSearch, showNotification, formatDate, etc.) ...
+        // Mostrar sugerencias de búsqueda
+        function displaySearchSuggestions(suggestions) {
+            searchSuggestions.innerHTML = '';
+            suggestions.slice(0, 5).forEach(suggestion => {
+                const item = document.createElement('div');
+                item.className = 'suggestion-item';
+                item.innerHTML = `
+                    <i class="fas fa-search"></i>
+                    <div>
+                        <div>${suggestion.title}</div>
+                        <div style="font-size: 0.8rem; color: var(--muted);">${suggestion.category}</div>
+                    </div>
+                `;
+                item.addEventListener('click', () => {
+                    searchInput.value = suggestion.title;
+                    searchSuggestions.style.display = 'none';
+                    // Buscar y mostrar el procedimiento
+                    const data = getStoredData();
+                    const procedure = data[suggestion.categoryKey].find(p => p.title === suggestion.title);
+                    if (procedure) {
+                        handleCategoryNavigation(suggestion.categoryKey);
+                        showNotification(`🔍 Mostrando: ${procedure.title}`, 'info');
+                    }
+                });
+                searchSuggestions.appendChild(item);
+            });
+            searchSuggestions.style.display = 'block';
+        }
+
+        // Mostrar notificación
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check' : type === 'error' ? 'times' : 'info'} notification-icon"></i>
+                <div class="notification-content">${message}</div>
+                <button class="close-notification" onclick="this.parentElement.remove()">&times;</button>
+            `;
+            notificationContainer.appendChild(notification);
+            
+            // Auto-eliminar después de 5 segundos
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.remove();
+                }
+            }, 5000);
+        }
 
         // Inicializar la aplicación cuando el DOM esté cargado
         document.addEventListener('DOMContentLoaded', initApp);
