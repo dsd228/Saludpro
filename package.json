@@ -1,0 +1,26 @@
+{
+  "name": "medical-education-app",
+  "version": "1.0.0",
+  "description": "Plataforma avanzada de educación clínica para profesionales de la salud",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve -s .",
+    "predeploy": "echo 'No se requiere compilación para esta app simple'",
+    "deploy": "gh-pages -d ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dsd228/medical-education-app.git"
+  },
+  "keywords": [
+    "medical",
+    "education",
+    "healthcare",
+    "react"
+  ],
+  "author": "Tu Nombre",
+  "license": "MIT",
+  "devDependencies": {
+    "gh-pages": "^6.1.1"
+  }
+}
