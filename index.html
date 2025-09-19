@@ -2,8 +2,12 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=5.0">
     <meta name="description" content="Enfermería DAVID · Sistema completo con almacenamiento persistente">
+    <meta name="theme-color" content="#00b4d8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Saludpro">
     <title>Enfermería DAVID · Sistema Completo</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -281,6 +285,11 @@
         .cat-btn[data-cat="calculadoras"] i { color: #FF5722; }
         .cat-btn[data-cat="recursos"] i { color: #00BCD4; }
         .cat-btn[data-cat="pacientes"] i { color: #673AB7; }
+        .cat-btn[data-cat="chat-medico"] i { color: #4CAF50; }
+        .cat-btn[data-cat="seguimiento"] i { color: #FF9800; }
+        .cat-btn[data-cat="videoconsultas"] i { color: #2196F3; }
+        .cat-btn[data-cat="marketplace"] i { color: #9C27B0; }
+        .cat-btn[data-cat="panel-medico"] i { color: #607D8B; }
         
         .small {
             font-size: 0.9rem;
@@ -1416,6 +1425,247 @@
                 font-size: 1.5rem;
             }
         }
+        
+        /* New Components Styles */
+        .chat-container {
+            background: var(--glass-2);
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            margin-top: 24px;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            height: 600px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 0;
+            margin-bottom: 16px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .chat-message {
+            margin-bottom: 16px;
+            padding: 12px 16px;
+            border-radius: 16px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+
+        .chat-message.user {
+            background: var(--accent);
+            color: white;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+
+        .chat-message.ai {
+            background: var(--primary-blue-lighter);
+            color: var(--text-light);
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .chat-input-container {
+            display: flex;
+            gap: 12px;
+            align-items: flex-end;
+        }
+
+        .chat-input {
+            flex: 1;
+            min-height: 44px;
+            max-height: 120px;
+            resize: vertical;
+        }
+
+        .video-container {
+            background: var(--glass-2);
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            margin-top: 24px;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .video-interface {
+            background: #000;
+            border-radius: 16px;
+            height: 400px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-controls {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .video-btn {
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: none;
+            font-family: var(--font);
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .video-btn.call {
+            background: var(--gradient-success);
+            color: white;
+        }
+
+        .video-btn.end {
+            background: var(--gradient-danger);
+            color: white;
+        }
+
+        .video-btn.record {
+            background: var(--gradient-warning);
+            color: white;
+        }
+
+        .marketplace-container {
+            background: var(--glass-2);
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            margin-top: 24px;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .service-card {
+            background: var(--primary-blue-lighter);
+            border-radius: 16px;
+            padding: 20px;
+            border-left: 5px solid var(--primary-blue);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .treatment-tracking {
+            background: var(--glass-2);
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            margin-top: 24px;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .progress-chart {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-dark);
+        }
+
+        .doctor-panel {
+            background: var(--glass-2);
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            margin-top: 24px;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 24px;
+        }
+
+        .dashboard-card {
+            background: var(--primary-blue-lighter);
+            border-radius: 14px;
+            padding: 20px;
+            border-left: 5px solid var(--primary-blue);
+            transition: var(--transition);
+            border: 1px solid var(--border-light);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent);
+            margin: 8px 0;
+        }
+
+        @media (max-width: 768px) {
+            .chat-container,
+            .video-container,
+            .marketplace-container,
+            .treatment-tracking,
+            .doctor-panel {
+                border-radius: 16px;
+                padding: 20px;
+            }
+
+            .service-grid,
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .video-interface {
+                height: 250px;
+            }
+
+            .video-controls {
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1491,6 +1741,26 @@
                     <button class="cat-btn" data-cat="pacientes">
                         <i class="fas fa-users"></i>
                         Gestión de Pacientes
+                    </button>
+                    <button class="cat-btn" data-cat="chat-medico">
+                        <i class="fas fa-robot"></i>
+                        Chat Médico IA
+                    </button>
+                    <button class="cat-btn" data-cat="seguimiento">
+                        <i class="fas fa-chart-line"></i>
+                        Seguimiento Tratamientos
+                    </button>
+                    <button class="cat-btn" data-cat="videoconsultas">
+                        <i class="fas fa-video"></i>
+                        Videoconsultas
+                    </button>
+                    <button class="cat-btn" data-cat="marketplace">
+                        <i class="fas fa-store"></i>
+                        Marketplace Médico
+                    </button>
+                    <button class="cat-btn" data-cat="panel-medico">
+                        <i class="fas fa-chart-pie"></i>
+                        Panel Médico Avanzado
                     </button>
                 </div>
                 <div class="small">
@@ -1908,6 +2178,243 @@
                         </button>
                     </div>
                     <div id="resources-container"></div>
+                </div>
+                
+                <!-- Chat Médico IA -->
+                <div class="chat-container" id="chatMedico" style="display:none;">
+                    <div class="chat-header">
+                        <i class="fas fa-robot" style="color: var(--accent); font-size: 1.5rem;"></i>
+                        <h2 style="margin: 0; color: var(--accent);">Chat Médico con IA</h2>
+                        <div style="margin-left: auto;">
+                            <span style="color: var(--success-green);">● En línea</span>
+                        </div>
+                    </div>
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="chat-message ai">
+                            <strong>DrBot IA:</strong> ¡Hola! Soy tu asistente médico virtual. Puedo ayudarte con consultas básicas, agendar citas, y proporcionar información médica general. ¿En qué puedo asistirte hoy?
+                        </div>
+                    </div>
+                    <div class="chat-input-container">
+                        <textarea id="chatInput" class="chat-input form-control" placeholder="Escribe tu consulta médica o solicitud de cita..." rows="2"></textarea>
+                        <button id="sendChatBtn" class="btn primary">
+                            <i class="fas fa-paper-plane"></i> Enviar
+                        </button>
+                    </div>
+                    <div style="margin-top: 16px; display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button class="btn ghost chat-suggestion" data-suggestion="¿Puedo agendar una cita?">
+                            📅 Agendar Cita
+                        </button>
+                        <button class="btn ghost chat-suggestion" data-suggestion="¿Qué síntomas debo vigilar?">
+                            🩺 Síntomas a Vigilar
+                        </button>
+                        <button class="btn ghost chat-suggestion" data-suggestion="¿Cómo tomar mi medicamento?">
+                            💊 Medicamentos
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Seguimiento de Tratamientos -->
+                <div class="treatment-tracking" id="seguimiento" style="display:none;">
+                    <h2><i class="fas fa-chart-line"></i> Seguimiento Personalizado de Tratamientos</h2>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="patientSelect"><i class="fas fa-user"></i> Seleccionar Paciente</label>
+                            <select id="patientSelect" class="form-control">
+                                <option value="">Seleccionar paciente...</option>
+                                <option value="maria">María González - Diabetes</option>
+                                <option value="carlos">Carlos Rodríguez - EPOC</option>
+                                <option value="ana">Ana Martínez - VIH</option>
+                                <option value="roberto">Roberto Sánchez - IC</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="treatmentType"><i class="fas fa-pills"></i> Tipo de Tratamiento</label>
+                            <select id="treatmentType" class="form-control">
+                                <option value="">Seleccionar tratamiento...</option>
+                                <option value="medicacion">Medicación</option>
+                                <option value="fisioterapia">Fisioterapia</option>
+                                <option value="dieta">Dieta Especial</option>
+                                <option value="ejercicio">Ejercicio</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="progress-chart">
+                        <div style="text-align: center;">
+                            <i class="fas fa-chart-area" style="font-size: 3rem; color: var(--accent); margin-bottom: 16px;"></i>
+                            <h3>Gráfica de Progreso del Tratamiento</h3>
+                            <p>Selecciona un paciente y tratamiento para ver el progreso detallado</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px;">
+                        <button id="addReminderBtn" class="btn primary">
+                            <i class="fas fa-bell"></i> Agregar Recordatorio
+                        </button>
+                        <button id="viewProgressBtn" class="btn secondary">
+                            <i class="fas fa-chart-line"></i> Ver Progreso Detallado
+                        </button>
+                        <button id="exportTreatmentBtn" class="btn ghost">
+                            <i class="fas fa-file-export"></i> Exportar Datos
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Videoconsultas -->
+                <div class="video-container" id="videoconsultas" style="display:none;">
+                    <h2><i class="fas fa-video"></i> Sistema de Videoconsultas</h2>
+                    <div class="video-interface">
+                        <div style="text-align: center;">
+                            <i class="fas fa-video" style="font-size: 4rem; margin-bottom: 20px; opacity: 0.7;"></i>
+                            <h3>Sala de Videoconsulta</h3>
+                            <p>Conecte con pacientes de forma segura</p>
+                            <div id="videoStatus" style="margin-top: 20px; color: #ccc;">
+                                Estado: Desconectado
+                            </div>
+                        </div>
+                    </div>
+                    <div class="video-controls">
+                        <button id="startCallBtn" class="video-btn call">
+                            <i class="fas fa-phone"></i> Iniciar Llamada
+                        </button>
+                        <button id="endCallBtn" class="video-btn end" disabled>
+                            <i class="fas fa-phone-slash"></i> Finalizar
+                        </button>
+                        <button id="recordBtn" class="video-btn record" disabled>
+                            <i class="fas fa-record-vinyl"></i> Grabar Sesión
+                        </button>
+                        <button id="notesBtn" class="btn secondary">
+                            <i class="fas fa-sticky-note"></i> Tomar Notas
+                        </button>
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <label for="doctorNotes"><i class="fas fa-notes-medical"></i> Notas de la Consulta</label>
+                        <textarea id="doctorNotes" class="form-control" rows="4" placeholder="Registre observaciones importantes durante la videoconsulta..."></textarea>
+                    </div>
+                </div>
+                
+                <!-- Marketplace Médico -->
+                <div class="marketplace-container" id="marketplace" style="display:none;">
+                    <h2><i class="fas fa-store"></i> Marketplace de Servicios Médicos</h2>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="serviceCategory"><i class="fas fa-tags"></i> Categoría de Servicio</label>
+                            <select id="serviceCategory" class="form-control">
+                                <option value="">Todas las categorías</option>
+                                <option value="consultas">Consultas Médicas</option>
+                                <option value="laboratorio">Exámenes de Laboratorio</option>
+                                <option value="radiologia">Radiología</option>
+                                <option value="fisioterapia">Fisioterapia</option>
+                                <option value="cirugia">Cirugías</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="priceRange"><i class="fas fa-dollar-sign"></i> Rango de Precio</label>
+                            <select id="priceRange" class="form-control">
+                                <option value="">Cualquier precio</option>
+                                <option value="low">€0 - €50</option>
+                                <option value="medium">€50 - €150</option>
+                                <option value="high">€150+</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="service-grid">
+                        <div class="service-card">
+                            <h4><i class="fas fa-stethoscope"></i> Consulta Cardiología</h4>
+                            <p><strong>Dr. García Martínez</strong></p>
+                            <p>⭐ 4.8/5 (126 reseñas)</p>
+                            <p style="color: var(--accent); font-weight: bold; font-size: 1.2rem;">€75</p>
+                            <p style="color: var(--success-green);">🎯 Promoción: 20% descuento</p>
+                            <div style="margin-top: 12px;">
+                                <button class="btn primary" style="width: 100%;">Reservar Cita</button>
+                            </div>
+                        </div>
+                        
+                        <div class="service-card">
+                            <h4><i class="fas fa-vials"></i> Análisis Completo</h4>
+                            <p><strong>Lab. MediCenter</strong></p>
+                            <p>⭐ 4.6/5 (89 reseñas)</p>
+                            <p style="color: var(--accent); font-weight: bold; font-size: 1.2rem;">€45</p>
+                            <p style="color: var(--warning-yellow);">⚡ Resultados en 24h</p>
+                            <div style="margin-top: 12px;">
+                                <button class="btn primary" style="width: 100%;">Solicitar</button>
+                            </div>
+                        </div>
+                        
+                        <div class="service-card">
+                            <h4><i class="fas fa-x-ray"></i> Radiografía Tórax</h4>
+                            <p><strong>Centro Radiológico Plus</strong></p>
+                            <p>⭐ 4.9/5 (203 reseñas)</p>
+                            <p style="color: var(--accent); font-weight: bold; font-size: 1.2rem;">€35</p>
+                            <p style="color: var(--success-green);">✨ Sin esperas</p>
+                            <div style="margin-top: 12px;">
+                                <button class="btn primary" style="width: 100%;">Agendar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Panel Médico Avanzado -->
+                <div class="doctor-panel" id="panelMedico" style="display:none;">
+                    <h2><i class="fas fa-chart-pie"></i> Panel de Control Avanzado para Médicos</h2>
+                    
+                    <div class="dashboard-grid">
+                        <div class="dashboard-card">
+                            <h4><i class="fas fa-users"></i> Pacientes Activos</h4>
+                            <div class="stat-number">127</div>
+                            <p style="color: var(--success-green);">↗ +12 este mes</p>
+                        </div>
+                        
+                        <div class="dashboard-card">
+                            <h4><i class="fas fa-calendar-check"></i> Citas Hoy</h4>
+                            <div class="stat-number">8</div>
+                            <p style="color: var(--warning-yellow);">2 pendientes</p>
+                        </div>
+                        
+                        <div class="dashboard-card">
+                            <h4><i class="fas fa-prescription"></i> Recetas Emitidas</h4>
+                            <div class="stat-number">45</div>
+                            <p>Esta semana</p>
+                        </div>
+                        
+                        <div class="dashboard-card">
+                            <h4><i class="fas fa-chart-line"></i> Satisfacción</h4>
+                            <div class="stat-number">96%</div>
+                            <p style="color: var(--success-green);">Excelente</p>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 24px;">
+                        <h3><i class="fas fa-clock"></i> Próximas Citas</h3>
+                        <div style="background: var(--primary-blue-lighter); border-radius: 12px; padding: 16px; margin-top: 12px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                <strong>María González</strong>
+                                <span style="color: var(--accent);">10:30 AM</span>
+                            </div>
+                            <p style="margin: 4px 0;">Control diabetes - Consulta de seguimiento</p>
+                            <p style="color: var(--muted); font-size: 0.9rem;">Videoconsulta programada</p>
+                        </div>
+                        
+                        <div style="background: var(--primary-blue-lighter); border-radius: 12px; padding: 16px; margin-top: 12px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                <strong>Carlos Rodríguez</strong>
+                                <span style="color: var(--accent);">2:15 PM</span>
+                            </div>
+                            <p style="margin: 4px 0;">EPOC - Evaluación función pulmonar</p>
+                            <p style="color: var(--muted); font-size: 0.9rem;">Consulta presencial</p>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
+                        <button class="btn primary">
+                            <i class="fas fa-plus"></i> Nueva Cita
+                        </button>
+                        <button class="btn secondary">
+                            <i class="fas fa-file-medical"></i> Generar Reporte
+                        </button>
+                        <button class="btn ghost">
+                            <i class="fas fa-cog"></i> Configuración
+                        </button>
+                    </div>
                 </div>
             </main>
         </div>
@@ -2927,6 +3434,13 @@
             pacientes.style.display = 'none';
             recursos.style.display = 'none';
             
+            // Hide new feature components
+            if ($('chatMedico')) $('chatMedico').style.display = 'none';
+            if ($('seguimiento')) $('seguimiento').style.display = 'none';
+            if ($('videoconsultas')) $('videoconsultas').style.display = 'none';
+            if ($('marketplace')) $('marketplace').style.display = 'none';
+            if ($('panelMedico')) $('panelMedico').style.display = 'none';
+            
             // Remove active state from all buttons
             document.querySelectorAll('.cat-btn').forEach(btn => {
                 btn.classList.remove('active');
@@ -3032,7 +3546,12 @@
                 'rcp': 'Reanimación Cardiovascular Integral',
                 'calculadoras': 'Calculadoras Clínicas Especializadas',
                 'recursos': 'Recursos Educativos y Protocolos',
-                'pacientes': 'Gestión Integral de Pacientes'
+                'pacientes': 'Gestión Integral de Pacientes',
+                'chat-medico': 'Chat Médico con Inteligencia Artificial',
+                'seguimiento': 'Seguimiento Personalizado de Tratamientos',
+                'videoconsultas': 'Sistema de Videoconsultas Médicas',
+                'marketplace': 'Marketplace de Servicios Médicos',
+                'panel-medico': 'Panel de Control Avanzado para Médicos'
             };
             return titles[cat] || cat;
         }
@@ -3056,6 +3575,16 @@
                     showPacientes();
                 } else if (cat === 'recursos') {
                     showRecursos();
+                } else if (cat === 'chat-medico') {
+                    showChatMedico();
+                } else if (cat === 'seguimiento') {
+                    showSeguimiento();
+                } else if (cat === 'videoconsultas') {
+                    showVideoconsultas();
+                } else if (cat === 'marketplace') {
+                    showMarketplace();
+                } else if (cat === 'panel-medico') {
+                    showPanelMedico();
                 } else {
                     renderCategory(cat);
                 }
@@ -3836,6 +4365,213 @@
             `;
             document.body.appendChild(container);
             return container;
+        }
+        
+        // New feature functions
+        function showChatMedico() {
+            clearContent();
+            $('chatMedico').style.display = 'block';
+            
+            // Initialize chat functionality
+            const chatMessages = $('chatMessages');
+            const chatInput = $('chatInput');
+            const sendBtn = $('sendChatBtn');
+            
+            function addMessage(message, sender) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `chat-message ${sender}`;
+                messageDiv.innerHTML = sender === 'user' ? 
+                    `<strong>Usted:</strong> ${message}` : 
+                    `<strong>DrBot IA:</strong> ${message}`;
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+            
+            function sendMessage() {
+                const message = chatInput.value.trim();
+                if (!message) return;
+                
+                addMessage(message, 'user');
+                chatInput.value = '';
+                
+                // Simulate AI response
+                setTimeout(() => {
+                    let response = "Gracias por su consulta. ";
+                    
+                    if (message.toLowerCase().includes('cita') || message.toLowerCase().includes('agendar')) {
+                        response += "Para agendar una cita, puedo ayudarle a encontrar disponibilidad. ¿Qué especialidad necesita y cuál sería su fecha preferida?";
+                    } else if (message.toLowerCase().includes('síntoma') || message.toLowerCase().includes('dolor')) {
+                        response += "Es importante evaluar sus síntomas adecuadamente. Le recomiendo programar una consulta para una evaluación completa. ¿Desde cuándo presenta estos síntomas?";
+                    } else if (message.toLowerCase().includes('medicamento') || message.toLowerCase().includes('medicina')) {
+                        response += "Para información sobre medicamentos, siempre consulte con su médico o farmacéutico. ¿Tiene alguna pregunta específica sobre su tratamiento actual?";
+                    } else {
+                        response += "He recibido su consulta. Un profesional médico podrá brindarle la mejor orientación. ¿Le gustaría que programe una consulta?";
+                    }
+                    
+                    addMessage(response, 'ai');
+                }, 1000);
+            }
+            
+            sendBtn.onclick = sendMessage;
+            chatInput.onkeypress = (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            };
+            
+            // Chat suggestions
+            document.querySelectorAll('.chat-suggestion').forEach(btn => {
+                btn.onclick = () => {
+                    chatInput.value = btn.dataset.suggestion;
+                    sendMessage();
+                };
+            });
+        }
+        
+        function showSeguimiento() {
+            clearContent();
+            $('seguimiento').style.display = 'block';
+            
+            const patientSelect = $('patientSelect');
+            const treatmentType = $('treatmentType');
+            const progressChart = document.querySelector('.progress-chart');
+            
+            function updateProgressChart() {
+                const patient = patientSelect.value;
+                const treatment = treatmentType.value;
+                
+                if (patient && treatment) {
+                    progressChart.innerHTML = `
+                        <div style="text-align: center; width: 100%;">
+                            <h3>Progreso de ${treatment} - ${patientSelect.options[patientSelect.selectedIndex].text}</h3>
+                            <div style="background: var(--accent); height: 20px; border-radius: 10px; margin: 20px 0; position: relative;">
+                                <div style="background: var(--success-green); height: 100%; width: 75%; border-radius: 10px;"></div>
+                                <span style="position: absolute; right: 10px; top: 2px; color: white; font-size: 0.8rem;">75% Adherencia</span>
+                            </div>
+                            <p>Última actualización: ${new Date().toLocaleDateString()}</p>
+                            <div style="display: flex; justify-content: space-around; margin-top: 20px;">
+                                <div><strong>Dosis tomadas:</strong> 21/28</div>
+                                <div><strong>Próxima cita:</strong> ${new Date(Date.now() + 7*24*60*60*1000).toLocaleDateString()}</div>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+            
+            patientSelect.onchange = updateProgressChart;
+            treatmentType.onchange = updateProgressChart;
+            
+            $('addReminderBtn').onclick = () => {
+                showNotification('Recordatorio configurado correctamente', 'success');
+            };
+        }
+        
+        function showVideoconsultas() {
+            clearContent();
+            $('videoconsultas').style.display = 'block';
+            
+            const videoStatus = $('videoStatus');
+            const startCallBtn = $('startCallBtn');
+            const endCallBtn = $('endCallBtn');
+            const recordBtn = $('recordBtn');
+            const doctorNotes = $('doctorNotes');
+            
+            let callActive = false;
+            let recording = false;
+            
+            startCallBtn.onclick = () => {
+                callActive = true;
+                videoStatus.textContent = 'Estado: Conectado - Llamada en curso';
+                videoStatus.style.color = '#38b000';
+                startCallBtn.disabled = true;
+                endCallBtn.disabled = false;
+                recordBtn.disabled = false;
+                showNotification('Videoconsulta iniciada', 'success');
+            };
+            
+            endCallBtn.onclick = () => {
+                callActive = false;
+                recording = false;
+                videoStatus.textContent = 'Estado: Desconectado';
+                videoStatus.style.color = '#ccc';
+                startCallBtn.disabled = false;
+                endCallBtn.disabled = true;
+                recordBtn.disabled = true;
+                recordBtn.textContent = '🔴 Grabar Sesión';
+                showNotification('Videoconsulta finalizada', 'info');
+            };
+            
+            recordBtn.onclick = () => {
+                recording = !recording;
+                recordBtn.innerHTML = recording ? 
+                    '<i class="fas fa-stop"></i> Detener Grabación' : 
+                    '<i class="fas fa-record-vinyl"></i> Grabar Sesión';
+                showNotification(recording ? 'Grabación iniciada' : 'Grabación detenida', 'info');
+            };
+            
+            $('notesBtn').onclick = () => {
+                if (doctorNotes.value.trim()) {
+                    showNotification('Notas guardadas correctamente', 'success');
+                } else {
+                    doctorNotes.focus();
+                }
+            };
+        }
+        
+        function showMarketplace() {
+            clearContent();
+            $('marketplace').style.display = 'block';
+            
+            const serviceCategory = $('serviceCategory');
+            const priceRange = $('priceRange');
+            
+            function filterServices() {
+                const category = serviceCategory.value;
+                const price = priceRange.value;
+                
+                // This would normally filter the service cards based on the criteria
+                showNotification(`Filtros aplicados: ${category || 'Todas'} - ${price || 'Cualquier precio'}`, 'info');
+            }
+            
+            serviceCategory.onchange = filterServices;
+            priceRange.onchange = filterServices;
+            
+            // Add click handlers for service cards
+            document.querySelectorAll('.service-card button').forEach(btn => {
+                btn.onclick = (e) => {
+                    e.stopPropagation();
+                    const serviceName = btn.closest('.service-card').querySelector('h4').textContent;
+                    showNotification(`Solicitud enviada para: ${serviceName}`, 'success');
+                };
+            });
+        }
+        
+        function showPanelMedico() {
+            clearContent();
+            $('panelMedico').style.display = 'block';
+            
+            // Add functionality for doctor panel buttons
+            const buttons = $('panelMedico').querySelectorAll('button');
+            buttons.forEach(btn => {
+                btn.onclick = () => {
+                    const action = btn.textContent.trim();
+                    showNotification(`Acción: ${action} - Funcionalidad en desarrollo`, 'info');
+                };
+            });
+            
+            // Simulate real-time updates
+            setInterval(() => {
+                const timeElements = $('panelMedico').querySelectorAll('.stat-number');
+                if (timeElements.length > 0 && Math.random() > 0.95) {
+                    // Occasionally update a stat (simulating real-time data)
+                    const randomStat = timeElements[Math.floor(Math.random() * timeElements.length)];
+                    const currentValue = parseInt(randomStat.textContent);
+                    if (!isNaN(currentValue)) {
+                        randomStat.textContent = currentValue + (Math.random() > 0.5 ? 1 : -1);
+                    }
+                }
+            }, 5000);
         }
         
         // Quick action buttons
