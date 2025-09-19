@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Enfermería DAVID · Sistema completo con almacenamiento persistente">
-    <title>Enfermería DAVID · Sistema Completo</title>
+    <meta name="description" content="Saludpro · Plataforma Avanzada de Telemedicina con IoT, VR y Marketplace de Salud">
+    <title>Saludpro · Telemedicina Avanzada</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -1322,12 +1322,170 @@
             100% { transform: scale(1); }
         }
         
+        /* Telemedicine Styles */
+        .telemedicine-panel, .iot-panel, .marketplace-panel, .vr-panel {
+            background: var(--glass-2);
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            margin-top: 24px;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+        
+        .telemedicine-panel h2, .iot-panel h2, .marketplace-panel h2, .vr-panel h2 {
+            color: var(--accent);
+            margin-bottom: 24px;
+            font-size: 1.6rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .feature-cards, .marketplace-categories, .vr-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .feature-card, .category-card, .vr-card {
+            background: rgba(58, 134, 255, 0.08);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+        }
+        
+        .feature-card:hover, .category-card:hover, .vr-card:hover {
+            transform: translateY(-4px);
+            background: rgba(58, 134, 255, 0.12);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .feature-card h3, .vr-card h3 {
+            color: var(--accent);
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .video-container {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+        
+        /* IoT Dashboard Styles */
+        .iot-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .iot-card {
+            background: rgba(0, 180, 216, 0.08);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid var(--border-light);
+        }
+        
+        .iot-card h3 {
+            color: var(--accent);
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .vitals-grid, .medication-tracker, .activity-stats {
+            display: grid;
+            gap: 12px;
+        }
+        
+        .vital-item, .med-item, .stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+        
+        .vital-value, .adherence-rate, .stat-value {
+            font-weight: bold;
+            color: var(--accent);
+        }
+        
+        /* Marketplace Styles */
+        .marketplace-search {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        
+        .marketplace-search input {
+            flex: 1;
+        }
+        
+        /* VR Styles */
+        .vr-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin: 12px 0;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+        
+        .vr-controls {
+            margin-top: 24px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+        }
+        
+        .vr-controls h3 {
+            color: var(--accent);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .vr-settings {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+        
+        .vr-settings label {
+            display: block;
+            margin-bottom: 4px;
+            font-weight: 500;
+            color: var(--text-light);
+        }
+        
+        /* Welcome card adjustments for new layout */
+        .welcome-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 24px;
+        }
+        
         @media (max-width: 1024px) {
             .app {
                 border-radius: 16px;
             }
             
-            .category-card, .disease-panel, .med-combo, .pae-form, .rcp-guide, .patient-list, .resource-panel {
+            .category-card, .disease-panel, .med-combo, .pae-form, .rcp-guide, .patient-list, .resource-panel, .telemedicine-panel, .iot-panel, .marketplace-panel, .vr-panel {
                 border-radius: 16px;
                 padding: 24px;
             }
@@ -1421,7 +1579,7 @@
 <body>
     <div class="app">
         <header>
-            <h1><i class="fas fa-microscope brand-icon"></i> Enfermería DAVID · Sistema Completo</h1>
+            <h1><i class="fas fa-stethoscope brand-icon"></i> Saludpro · Telemedicina Avanzada</h1>
             <div class="controls">
                 <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
                     <i class="fas fa-moon"></i>
@@ -1436,6 +1594,22 @@
                     <h3>Funcionalidades</h3>
                 </div>
                 <div class="cat-grid" role="navigation">
+                    <button class="cat-btn" data-cat="telemedicina">
+                        <i class="fas fa-video"></i>
+                        Telemedicina
+                    </button>
+                    <button class="cat-btn" data-cat="iot-monitoring">
+                        <i class="fas fa-wifi"></i>
+                        Monitoreo IoT
+                    </button>
+                    <button class="cat-btn" data-cat="marketplace">
+                        <i class="fas fa-shopping-cart"></i>
+                        Marketplace
+                    </button>
+                    <button class="cat-btn" data-cat="vr-rehabilitation">
+                        <i class="fas fa-vr-cardboard"></i>
+                        Rehabilitación VR
+                    </button>
                     <button class="cat-btn" data-cat="higiene">
                         <i class="fas fa-soap"></i>
                         Higiene Clínica
@@ -1494,7 +1668,7 @@
                     </button>
                 </div>
                 <div class="small">
-                    Seleccione una categoría para acceder a procedimientos, guías clínicas, combinador de fármacos, enfermedades y más funciones especializadas.
+                    Plataforma integral de telemedicina con IoT, VR y marketplace. Seleccione una categoría para acceder a consultas virtuales, monitoreo remoto, procedimientos clínicos y recursos especializados.
                 </div>
             </nav>
             
@@ -1511,25 +1685,30 @@
                 
                 <div class="content-area" id="contentArea">
                     <div class="category-card">
-                        <h2><i class="fas fa-home"></i> Bienvenido a Enfermería DAVID</h2>
-                        <p>Sistema integral de apoyo clínico para profesionales de enfermería y salud. Esta plataforma proporciona acceso rápido a información esencial, protocolos, herramientas de cálculo y recursos educativos.</p>
-                        <p>Diseñado para optimizar la toma de decisiones clínicas, mejorar la seguridad del paciente y facilitar la documentación de cuidados.</p>
+                        <h2><i class="fas fa-home"></i> Bienvenido a Saludpro</h2>
+                        <p>Plataforma visionaria de telemedicina avanzada que integra seguimiento con IoT, marketplace de salud y realidad virtual para rehabilitación. Diseñada para revolucionar la atención médica remota y el cuidado integral del paciente.</p>
+                        <p>Conectamos profesionales de la salud, pacientes y tecnología avanzada para brindar atención médica personalizada, accesible y de calidad superior desde cualquier lugar.</p>
                         
                         <div class="welcome-actions">
-                            <div class="welcome-card" id="quickRcpCard">
+                            <div class="welcome-card" id="quickTelemedicineCard">
+                                <i class="fas fa-video"></i>
+                                <h3>Consulta por Telemedicina</h3>
+                                <p>Realice consultas médicas virtuales con video HD, compartir archivos y historial clínico integrado en tiempo real.</p>
+                            </div>
+                            <div class="welcome-card" id="quickIotCard">
                                 <i class="fas fa-heartbeat"></i>
-                                <h3>Guía Rápida de RCP</h3>
-                                <p>Acceda rápidamente a los pasos esenciales de la reanimación cardiopulmonar con temporizador integrado y protocolos actualizados.</p>
+                                <h3>Monitoreo IoT</h3>
+                                <p>Seguimiento continuo de signos vitales y adherencia a tratamientos mediante dispositivos IoT conectados.</p>
                             </div>
-                            <div class="welcome-card" id="quickMedCard">
-                                <i class="fas fa-prescription-bottle-alt"></i>
-                                <h3>Combinador de Fármacos</h3>
-                                <p>Verifique interacciones medicamentosas peligrosas en segundos con base de datos actualizada y referencias científicas.</p>
+                            <div class="welcome-card" id="quickMarketplaceCard">
+                                <i class="fas fa-shopping-cart"></i>
+                                <h3>Marketplace de Salud</h3>
+                                <p>Acceda a medicamentos, dispositivos médicos y servicios de salud especializados con entrega a domicilio.</p>
                             </div>
-                            <div class="welcome-card" id="quickPaeCard">
-                                <i class="fas fa-clipboard-list"></i>
-                                <h3>Crear PAE Avanzado</h3>
-                                <p>Genere planes de atención de enfermería personalizados con inteligencia clínica y seguimiento de resultados.</p>
+                            <div class="welcome-card" id="quickVrCard">
+                                <i class="fas fa-vr-cardboard"></i>
+                                <h3>Rehabilitación VR</h3>
+                                <p>Sesiones de rehabilitación inmersivas con realidad virtual para terapia física y cognitiva personalizada.</p>
                             </div>
                         </div>
                     </div>
@@ -1908,6 +2087,186 @@
                         </button>
                     </div>
                     <div id="resources-container"></div>
+                </div>
+                
+                <!-- Telemedicina -->
+                <div class="telemedicine-panel" id="telemedicina" style="display:none;">
+                    <h2><i class="fas fa-video"></i> Plataforma de Telemedicina</h2>
+                    <div class="feature-cards">
+                        <div class="feature-card">
+                            <h3><i class="fas fa-video-camera"></i> Consultas Virtuales</h3>
+                            <p>Realice consultas médicas seguras con video HD, chat y compartir pantalla.</p>
+                            <div class="video-container">
+                                <button id="startVideoCall" class="btn primary">
+                                    <i class="fas fa-video"></i> Iniciar Consulta
+                                </button>
+                                <button id="scheduleCall" class="btn secondary">
+                                    <i class="fas fa-calendar-plus"></i> Programar Cita
+                                </button>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <h3><i class="fas fa-file-medical"></i> Historia Clínica Digital</h3>
+                            <p>Acceso instantáneo a expedientes médicos completos durante la consulta.</p>
+                            <button id="viewMedicalRecords" class="btn primary">
+                                <i class="fas fa-folder-open"></i> Ver Expedientes
+                            </button>
+                        </div>
+                        <div class="feature-card">
+                            <h3><i class="fas fa-prescription"></i> Recetas Digitales</h3>
+                            <p>Genere y envíe recetas médicas digitales directamente al marketplace.</p>
+                            <button id="createPrescription" class="btn primary">
+                                <i class="fas fa-edit"></i> Crear Receta
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Monitoreo IoT -->
+                <div class="iot-panel" id="iot-monitoring" style="display:none;">
+                    <h2><i class="fas fa-wifi"></i> Monitoreo IoT Inteligente</h2>
+                    <div class="iot-dashboard">
+                        <div class="iot-card">
+                            <h3><i class="fas fa-heartbeat"></i> Signos Vitales</h3>
+                            <div class="vitals-grid">
+                                <div class="vital-item">
+                                    <span class="vital-label">Frecuencia Cardíaca</span>
+                                    <span class="vital-value" id="heartRate">72 bpm</span>
+                                </div>
+                                <div class="vital-item">
+                                    <span class="vital-label">Presión Arterial</span>
+                                    <span class="vital-value" id="bloodPressure">120/80 mmHg</span>
+                                </div>
+                                <div class="vital-item">
+                                    <span class="vital-label">Temperatura</span>
+                                    <span class="vital-value" id="temperature">36.5°C</span>
+                                </div>
+                                <div class="vital-item">
+                                    <span class="vital-label">Oxigenación</span>
+                                    <span class="vital-value" id="oxygenation">98%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="iot-card">
+                            <h3><i class="fas fa-pills"></i> Adherencia a Medicamentos</h3>
+                            <div class="medication-tracker">
+                                <div class="med-item">
+                                    <span>Enalapril 10mg</span>
+                                    <span class="adherence-rate">95%</span>
+                                </div>
+                                <div class="med-item">
+                                    <span>Metformina 850mg</span>
+                                    <span class="adherence-rate">88%</span>
+                                </div>
+                            </div>
+                            <button id="viewMedAdherence" class="btn primary">
+                                <i class="fas fa-chart-line"></i> Ver Tendencias
+                            </button>
+                        </div>
+                        <div class="iot-card">
+                            <h3><i class="fas fa-running"></i> Actividad Física</h3>
+                            <div class="activity-stats">
+                                <div class="stat-item">
+                                    <span>Pasos Hoy</span>
+                                    <span class="stat-value">8,247</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span>Calorías</span>
+                                    <span class="stat-value">342 kcal</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Marketplace de Salud -->
+                <div class="marketplace-panel" id="marketplace" style="display:none;">
+                    <h2><i class="fas fa-shopping-cart"></i> Marketplace de Salud</h2>
+                    <div class="marketplace-search">
+                        <input type="text" id="marketplaceSearch" class="form-control" placeholder="Buscar medicamentos, dispositivos o servicios...">
+                        <button id="searchMarketplace" class="btn primary">
+                            <i class="fas fa-search"></i> Buscar
+                        </button>
+                    </div>
+                    <div class="marketplace-categories">
+                        <div class="category-card">
+                            <h3><i class="fas fa-pills"></i> Medicamentos</h3>
+                            <p>Medicamentos recetados con entrega a domicilio</p>
+                            <button class="btn secondary">Explorar</button>
+                        </div>
+                        <div class="category-card">
+                            <h3><i class="fas fa-thermometer"></i> Dispositivos Médicos</h3>
+                            <p>Termómetros, tensiómetros, glucómetros</p>
+                            <button class="btn secondary">Explorar</button>
+                        </div>
+                        <div class="category-card">
+                            <h3><i class="fas fa-user-md"></i> Servicios Especializados</h3>
+                            <p>Consultas con especialistas y terapias</p>
+                            <button class="btn secondary">Explorar</button>
+                        </div>
+                        <div class="category-card">
+                            <h3><i class="fas fa-home"></i> Atención Domiciliaria</h3>
+                            <p>Enfermería y cuidados en casa</p>
+                            <button class="btn secondary">Explorar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rehabilitación VR -->
+                <div class="vr-panel" id="vr-rehabilitation" style="display:none;">
+                    <h2><i class="fas fa-vr-cardboard"></i> Rehabilitación con Realidad Virtual</h2>
+                    <div class="vr-features">
+                        <div class="vr-card">
+                            <h3><i class="fas fa-brain"></i> Terapia Cognitiva</h3>
+                            <p>Ejercicios inmersivos para mejorar memoria, atención y funciones ejecutivas</p>
+                            <div class="vr-stats">
+                                <span>Sesiones completadas: 12</span>
+                                <span>Progreso: 78%</span>
+                            </div>
+                            <button id="startCognitiveVR" class="btn primary">
+                                <i class="fas fa-play"></i> Iniciar Sesión
+                            </button>
+                        </div>
+                        <div class="vr-card">
+                            <h3><i class="fas fa-walking"></i> Fisioterapia</h3>
+                            <p>Ejercicios de movilidad y equilibrio en entornos virtuales seguros</p>
+                            <div class="vr-stats">
+                                <span>Tiempo total: 8.5 horas</span>
+                                <span>Mejora: +34%</span>
+                            </div>
+                            <button id="startPhysicalVR" class="btn primary">
+                                <i class="fas fa-play"></i> Iniciar Sesión
+                            </button>
+                        </div>
+                        <div class="vr-card">
+                            <h3><i class="fas fa-heart"></i> Rehabilitación Cardíaca</h3>
+                            <p>Programas de ejercicio supervisados virtualmente</p>
+                            <div class="vr-stats">
+                                <span>Resistencia: +45%</span>
+                                <span>FC Objetivo: Alcanzada</span>
+                            </div>
+                            <button id="startCardiacVR" class="btn primary">
+                                <i class="fas fa-play"></i> Iniciar Sesión
+                            </button>
+                        </div>
+                    </div>
+                    <div class="vr-controls">
+                        <h3><i class="fas fa-cog"></i> Configuración VR</h3>
+                        <div class="vr-settings">
+                            <label>Dispositivo VR:</label>
+                            <select id="vrDevice" class="form-control">
+                                <option>Oculus Quest 2</option>
+                                <option>HTC Vive</option>
+                                <option>PlayStation VR</option>
+                            </select>
+                            <label>Nivel de Dificultad:</label>
+                            <select id="vrDifficulty" class="form-control">
+                                <option>Principiante</option>
+                                <option>Intermedio</option>
+                                <option>Avanzado</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </main>
         </div>
@@ -2916,6 +3275,10 @@
         const calculadoras = $('calculadoras');
         const pacientes = $('pacientes');
         const recursos = $('recursos');
+        const telemedicina = $('telemedicina');
+        const iotMonitoring = $('iot-monitoring');
+        const marketplace = $('marketplace');
+        const vrRehabilitation = $('vr-rehabilitation');
         
         function clearContent() {
             contentArea.innerHTML = '';
@@ -2926,6 +3289,10 @@
             calculadoras.style.display = 'none';
             pacientes.style.display = 'none';
             recursos.style.display = 'none';
+            telemedicina.style.display = 'none';
+            iotMonitoring.style.display = 'none';
+            marketplace.style.display = 'none';
+            vrRehabilitation.style.display = 'none';
             
             // Remove active state from all buttons
             document.querySelectorAll('.cat-btn').forEach(btn => {
@@ -3019,6 +3386,10 @@
         
         function getCatTitle(cat) {
             const titles = {
+                'telemedicina': 'Plataforma de Telemedicina Avanzada',
+                'iot-monitoring': 'Monitoreo IoT Inteligente',
+                'marketplace': 'Marketplace de Salud',
+                'vr-rehabilitation': 'Rehabilitación con Realidad Virtual',
                 'higiene': 'Procedimientos de Higiene Clínica',
                 'curaciones': 'Técnicas Avanzadas de Curación',
                 'farmaco': 'Farmacología y Administración de Medicamentos',
@@ -3042,7 +3413,15 @@
             btn.addEventListener('click', () => {
                 const cat = btn.getAttribute('data-cat');
                 
-                if (cat === 'medicamentos') {
+                if (cat === 'telemedicina') {
+                    showTelemedicina();
+                } else if (cat === 'iot-monitoring') {
+                    showIoTMonitoring();
+                } else if (cat === 'marketplace') {
+                    showMarketplace();
+                } else if (cat === 'vr-rehabilitation') {
+                    showVRRehabilitation();
+                } else if (cat === 'medicamentos') {
                     showMedCombo();
                 } else if (cat === 'enfermedades') {
                     showDiseases();
@@ -3792,6 +4171,90 @@
             }
         });
         
+        // New Telemedicine show functions
+        function showTelemedicina() {
+            clearContent();
+            telemedicina.style.display = 'block';
+            document.querySelector('[data-cat="telemedicina"]').classList.add('active');
+            
+            // Initialize video call simulation
+            initializeVideoCall();
+        }
+        
+        function showIoTMonitoring() {
+            clearContent();
+            iotMonitoring.style.display = 'block';
+            document.querySelector('[data-cat="iot-monitoring"]').classList.add('active');
+            
+            // Simulate real-time IoT data updates
+            startIoTSimulation();
+        }
+        
+        function showMarketplace() {
+            clearContent();
+            marketplace.style.display = 'block';
+            document.querySelector('[data-cat="marketplace"]').classList.add('active');
+        }
+        
+        function showVRRehabilitation() {
+            clearContent();
+            vrRehabilitation.style.display = 'block';
+            document.querySelector('[data-cat="vr-rehabilitation"]').classList.add('active');
+        }
+        
+        // Initialize video call functionality
+        function initializeVideoCall() {
+            const startVideoBtn = $('startVideoCall');
+            const scheduleBtn = $('scheduleCall');
+            
+            if (startVideoBtn) {
+                startVideoBtn.addEventListener('click', () => {
+                    showNotification('Iniciando consulta virtual... Conectando con paciente', 'info');
+                    setTimeout(() => {
+                        showNotification('Consulta virtual activa - Video HD habilitado', 'success');
+                    }, 2000);
+                });
+            }
+            
+            if (scheduleBtn) {
+                scheduleBtn.addEventListener('click', () => {
+                    showNotification('Abriendo calendario de citas...', 'info');
+                });
+            }
+        }
+        
+        // Simulate IoT data updates
+        function startIoTSimulation() {
+            // Simulate real-time vital signs updates
+            setInterval(() => {
+                const heartRate = $('heartRate');
+                const bloodPressure = $('bloodPressure');
+                const temperature = $('temperature');
+                const oxygenation = $('oxygenation');
+                
+                if (heartRate) {
+                    const hr = 65 + Math.floor(Math.random() * 20);
+                    heartRate.textContent = `${hr} bpm`;
+                }
+                
+                if (bloodPressure) {
+                    const systolic = 115 + Math.floor(Math.random() * 15);
+                    const diastolic = 70 + Math.floor(Math.random() * 15);
+                    bloodPressure.textContent = `${systolic}/${diastolic} mmHg`;
+                }
+                
+                if (temperature) {
+                    const temp = (36.2 + Math.random() * 0.8).toFixed(1);
+                    temperature.textContent = `${temp}°C`;
+                }
+                
+                if (oxygenation) {
+                    const spo2 = 95 + Math.floor(Math.random() * 5);
+                    oxygenation.textContent = `${spo2}%`;
+                }
+            }, 5000);
+        }
+        
         // Notification system
         function showNotification(message, type = 'info') {
             const container = document.getElementById('notification-container') || createNotificationContainer();
@@ -3850,6 +4313,35 @@
         $('quickPaeCard').addEventListener('click', () => {
             document.querySelector('[data-cat="pae"]').click();
         });
+        
+        // New telemedicine welcome card handlers
+        const quickTelemedicineCard = $('quickTelemedicineCard');
+        if (quickTelemedicineCard) {
+            quickTelemedicineCard.addEventListener('click', () => {
+                document.querySelector('[data-cat="telemedicina"]').click();
+            });
+        }
+        
+        const quickIotCard = $('quickIotCard');
+        if (quickIotCard) {
+            quickIotCard.addEventListener('click', () => {
+                document.querySelector('[data-cat="iot-monitoring"]').click();
+            });
+        }
+        
+        const quickMarketplaceCard = $('quickMarketplaceCard');
+        if (quickMarketplaceCard) {
+            quickMarketplaceCard.addEventListener('click', () => {
+                document.querySelector('[data-cat="marketplace"]').click();
+            });
+        }
+        
+        const quickVrCard = $('quickVrCard');
+        if (quickVrCard) {
+            quickVrCard.addEventListener('click', () => {
+                document.querySelector('[data-cat="vr-rehabilitation"]').click();
+            });
+        }
         
         // Add keyboard shortcuts
         document.addEventListener('keydown', (e) => {
